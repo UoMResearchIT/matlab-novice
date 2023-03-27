@@ -4,27 +4,34 @@ teaching: 60
 exercises: 5
 questions:
 - "How can I store values and do simple calculations with them?"
+- "Which type of operations can I do?"
 objectives:
 - "Navigate among important sections of the MATLAB environment."
 - "Assign values to variables."
-- "Identify what type of data is stored in MATLAB arrays."
-- "Read tabular data from a file into a program."
+- "Identify what type of data is stored in a variable."
+- "Creating simple arrays."
+- "Be able to explore the values of saved variables."
+- "Learn how to delete variables and keep things tidy."
 keypoints:
-- "MATLAB stores data in arrays."
-- "Use `readmatrix` to read tabular CSV data into a program."
+- "Variables store data for future use. Their names must start with a letter, and can have underscores and numbers."
+- "We can add, substract, multiply, divide and potentiate numbers."
+- "We can also compare variables with `<`, `>`, `==`, `>=`, `<=`, `~=`, and use `~` to negate the result."
+- "MATLAB stores data in arrays. The data in an array has to be of the same type."
+- "You can supress output with `;`, and print a variable with `disp`."
+- "Use `clear` to delete variables, and `clc` to clear the console."
 ---
 
 
 
 ## Introduction to the MATLAB GUI
+
 Before we can start programming, we need to know a little about the MATLAB interface.
 Using the default setup, the MATLAB desktop contains several important sections:
 
 * In the **Command Window** we can execute commands.
 Commands are typed after the prompt `>>` and are executed immediately after pressing <kbd>Enter</kbd>.
 * Alternatively, we can open the **Editor**, write our code and run it all at once.
-The advantage of this is that
-we can save our code and run it again in the same way at a later stage.
+The advantage of this is that we can save our code and run it again in the same way at a later stage.
 * The **Workspace** contains all the variables which we have loaded into memory.
 * The **Current Folder** window shows files in the current directory,
   and we can change the current folder using this window.
@@ -33,7 +40,10 @@ Suggestions for functions that would do what you want to do will pop up.
 Clicking on them will open the documentation.
 Another way to access the documentation is via the `help` command --- we will return to this later.
 
+
+
 ## Working with variables
+
 In this lesson we will learn how to manipulate the inflammation dataset with MATLAB.
 But before we discuss how to deal with many data points,
 we will show how to store a single value on the computer.
@@ -41,357 +51,464 @@ we will show how to store a single value on the computer.
 We can create a new [variable]({{ page.root }}/reference.html#variable) by assigning a value to it using `=`:
 
 ~~~
->> weight_kg = 55;
-~~~
-{: .language-matlab}
-
-At first glance nothing appears to have happened!
-We don't get any output in the command window because we put a semi-colon after the variable assignment:
-this suppresses output, which is generally a good thing because it makes code run more quickly.
-Let's run the command again without the semi-colon, and this time we have some output in the command window:
-
-~~~
->> weight_kg = 55
+>> x = 55
 ~~~
 {: .language-matlab}
 
 ```
-weight_kg =
+x =
     55
 ```
 {: .output}
+
+Notice that matlab responded by printing an output confirming that the variable has the desired value,
+and also that the variable appeared in the workspace.
 
 A variable is just a name for a piece of data or *value*.
 Variable names must begin with a letter, and are case sensitive.
 They can contain also numbers or underscores. Examples of valid variable names are
-`x`, `f_0` or `current_temperature`.
+`weight`, `size3`, `patient_name` or `alive_on_day_3`.
 
-Once a variable has a value, we can print it using the `disp` function:
+The reason we work with variables is so that we can reuse them, or save them for later use.
+We can do operations with these variables. For example, we can do a simple sum:
 
 ~~~
->> disp(weight_kg)
+>> y = 10
+>> x + y
 ~~~
 {: .language-matlab}
 
-~~~
-    55
-~~~
-{: .output}
-
-or simply typing its name, followed by <kbd>Enter</kbd>
-
 ```
->> weight_kg
-```
-{: .language-matlab}
-
-```
-weight_kg =
-    55
-```
-{: .output}
-
-
-Storing single values is fine, but how can we store multiple values in the same variable?
-We can create an array using square brackets, separating each value with a comma:
-
-```
->> a = [1, 2, 3]
-```
-{: .language-matlab}
-
-```
-a =
-     1     2     3
-```
-{: .output}
-
-In a similar way, we can create matrices using semi-colons to separate rows:
-
-```
->> b = [a; 4, 5, 6]
-```
-{: .language-matlab}
-
-
-```
-b =
-     1     2     3
-     4     5     6
-```
-{: .output}
-
-Something to bear in mind about arrays and matrices is that all values in an array
-must be of the same type e.g. all numbers or all strings.
-It is however possible to convert between data types e.g. `num2str` which converts
-numbers to a string representation.
-
-```
->> num2str(a)
+y =
+    10
 ans =
-    '1  2  3'
+    65
 ```
-{: .language-matlab}
-
-So once we have a numeric value stored in a variable, we can do arithmetic with it:
-
-~~~
->> weight_lb = 2.2 * weight_kg;
->> disp(['Weight in pounds: ', num2str(weight_lb)])
-~~~
-{: .language-matlab}
-
-~~~
-Weight in pounds: 121
-~~~
 {: .output}
 
-That last command combines several new concepts,
-so let's break it down:
+Note that the answer was saved in a new variable called `ans`.
+This variable is temporary, and will be overwritten with any new operation we do.
+For example, if we now substract y from x we get:
 
-The `disp` function takes a single argument --- the value to print.
-So if we want to print more than one value on a single line,
-we can print an *array* of values (i.e. one argument),
-which we create using square brackets,
-and recall that an array must contain values all of the same type.
-In this case we convert the number to a string so that we
-can print an array of characters.
-
-We can change the value of a variable by assigning it a new one:
 ~~~
->> weight_kg = 57.5
+>> x - y
 ~~~
 {: .language-matlab}
 
-~~~
-weight_kg =
-    57.5
-~~~
+```
+ans =
+    45
+```
 {: .output}
 
-Assigning a value to one variable does not change the values of other
-variables.
-
-For example, we just changed the value of `weight_kg` from 55 to 57.5,
-but `weight_lb` hasn't changed:
+The result of the sum is now gone forever.
+We can of course assign the result of an operation to a new variable, for example:
 
 ~~~
->> weight_lb
+>> z = x * y
 ~~~
 {: .language-matlab}
 
-~~~
-weight_lb =
-    121
-~~~
+```
+z =
+    550
+```
 {: .output}
 
-Since `weight_lb` doesn't "remember" where its value came from, it isn't
-automatically updated when `weight_kg` changes. This is important to
-remember, and different from the way spreadsheets work.
+This created a new variable `z`. If you look at the workspace, you can see that the value of z is 550.
 
-Now that we know how to assign values to variables, let's
-view a list of all the variables in our workspace:
+We can even use a variable in an operation, and save the value in the same variable. Fer example:
 
 ~~~
->> who
+>> y = y/5
 ~~~
 {: .language-matlab}
-
-~~~
-Your variables are:
-
-a  b  weight_kg  weight_lb
-~~~
+```
+y =
+    2
+```
 {: .output}
 
-To remove a variable from MATLAB, use the `clear` command:
+Where you can see that the expression to the right of the `=` sign is evaluated *first*,
+and the result is then assigned to the variable specified to the left of the `=` sign.
+
+Of course, we can use multiple variables in a single operation, for example:
 
 ~~~
->> clear weight_lb
->> who
+>> z = z - y^3 + 5*x
 ~~~
 {: .language-matlab}
-
-
-~~~
-Your variables are:
-
-a  b  weight_kg
-~~~
+```
+z =
+    817
+```
 {: .output}
 
-Alternatively, we can look at the **Workspace**.
-The workspace contains all variable names and assigned values that we currently work with.
-As long as they pop up in the workspace,
-they are universally available.
-It's generally a good idea to keep the workspace as clean as possible.
-To remove all variables from the workspace, execute the command `clear` on its own.
+where we used the caret symbol `^` to take the third power of y.
+
 
 > ## Predicting Variable Values
 >
 > Predict what variables refer to what values after each statement in the following program:
->
 > ~~~
-> >> mass = 47.5
-> >> age = 122
+> >> mass = 10
+> >> age = 30/12
 > >> mass = mass * 2.0
-> >> age = age - 20
+> >> age + 0.5
+> >> frac = mass/age
 > ~~~
 > {: .language-matlab}
 >
 > > ## Solution
-> > The first two lines assign the initial values to the variables, so mass = 47.5 and age = 122.
-> > The next line evaluates `mass * 2.0` i.e. `47.5 * 2.0 = 95`,
+> > The first two lines assign the initial values to the variables, so mass = 10 and age = 2.5.
+> > The next line evaluates `mass * 2.0` i.e. `10 * 2.0 = 20`,
 > > *then* assigns the result to the variable `mass`.
-> > The last line evaulates `age - 20` i.e. `122 - 20`, *then* assigns the result to the variable `age`.
-> > So the final values are mass = 95, and age = 102.
+> > The next line evaluates `age + 0.5` i.e. `2.5 + 0.5`, but the value is not saved, so it is saved in ans.
+> > The last line evaulates `mass / age` i.e. `20 / 2.5`, *then* assigns the result to the variable `frac`.
+> > So at the end, your workspace will have the variables:
 > >
-> > The key point to understand here is that the expression to the right of the `=` sign is evaluated first,
-> > and the result is then assigned to the variable specified to the left of the `=` sign.
+> > - age = 2.5
+> > - ans = 3
+> > - frac = 8
+> > - mass = 20
+> >
 > {: .solution}
 {: .challenge}
 
 
-## Good practices for project organisation
-Before we get started, let's create some directories to help organise this project.
 
-> ## Tip: Good Enough Practices for Scientific Computing
+### Logical operations
+
+In programming, there is another type of opperation that becomes very important: comparison.
+We can compare two numbers (or variables) to see which one is smaller, for example
+
+~~~
+>> c1 = frac < 10
+~~~
+{: .language-matlab}
+```
+c1 =
+  logical
+   1
+```
+{: .output}
+
+Something interesting just happened with the variable c1.
+If I ask you wether frac (8) is smaller than 10, you would say "yes". Matlab answered with a ` logical 1`.
+If I ask you wether frac is greater than 10, you would say "no". Matlab answers with a ` logical 0`.
+
+~~~
+>> c2 = frac > 10
+~~~
+{: .language-matlab}
+```
+c2 =
+  logical
+   0
+```
+{: .output}
+
+There are only two options (yes or no, true or false, 0 or 1),
+and so it is "cheaper" for the computer to only save space for those two options.
+
+The "type" of data is not the same as a number.
+It comes froma  logical comparison, and so matlab identifies it as such.
+
+You can also see that in the workspace these variables have a tick next to them, instead of the squares we had seen.
+There is actually other symbols we can get there, which relate to the types of information we can save (more on this in a bit).
+
+We can also check if two variables (or even operations) are the same
+
+~~~
+>> c3 = frac == mass/age
+~~~
+{: .language-matlab}
+```
+c3 =
+  logical
+   1
+```
+{: .output}
+
+And we can combine comparisons.
+For example, we can check wether frac is smaller than 10 ***and*** the age is greater than 5
+
+~~~
+>> c4 = frac < 10 && age > 5
+~~~
+{: .language-matlab}
+```
+c4 =
+  logical
+   0
+```
+{: .output}
+
+In this case, both conditions need to be met for the result to be "yes" (1).
+
+If we want a "yes" as long as at least one of the conditions are met,
+we woudl ask if frac is smaller than 10 ***or*** the age is greater than 5
+
+~~~
+>> c5 = frac < 10 || age > 5
+~~~
+{: .language-matlab}
+```
+c5 =
+  logical
+   1
+```
+{: .output}
+
+> ## Negating conditions and including the limits
 >
-> [Good Enough Practices for Scientific Computing](https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/)
-> is a paper written by researchers involved with the Carpentries,
-> which covers basic workflow skills for research computing.
-> It recommends the following for project organization:
+> We often asks questions or characterise things in negative.
+> "We did not start late today.",
+> "I was not going faster than the speed limit officer!",
+> and "I didn't shoot no deputy" are just some examples.
 >
-> 1. Put each project in its own directory, which is named after the project.
-> 2. Put text documents associated with the project in the `doc` directory.
-> 3. Put raw data and metadata in the `data` directory, and files generated during clean-up and analysis in a `results` directory.
-> 4. Put source code for the project in the `src` directory,
->    and programs brought in from elsewhere or compiled locally in the `bin` directory.
-> 5. Name all files to reflect their content or function.
+> Naturally, we may want to do so in programming too.
+> In matlab the negative is represented with `~`.
+> For example, we can check if the speed is indeed not faster than the limit with `~(speed > 70)`,
+> which matlab reads as "not speed greater than 70".
+>
+> Can you express these questions in matlab code?
+> - Is 1 + 2 + 3 + 4 not smaller than 10?
+> - Is 5 to the power of 3 different from 125?
+>
+> Can you ask these questions using a negative instead? Code them!
+> - Is 42 greater or equal to 2 * 3 * 7?
+> - Is x + y smaller than x/y?
+>
+> > ## Solution
+> > We can ask the first two question in positive, encapsulate it in brackets, and then negate it:
+> > - `~(1 + 2 + 3 + 4 < 10)`
+> > - `~(5^3 == 125)`
+> >
+> > Asking if two things are different is so common, that matlab has a special symbol for it.
+> > So the second question, we could have asked instead with
+> > - `5^3 ~= 125`
+> >
+> > The next two questions we need to first figure out what the negative is.
+> > - The negative os "greater or equal" is simply "smaller", and so our question is
+> > "Is 42 not smaller than 2 * 3 * 7?, which in code is `~(42 < 2 * 3 * 7)`.
+> > - The negative of "smaller" is in turn "greater or equal", so our question turns into
+> > "Is x+y not greater or equal to x/y?", which in code is `~(x+y > x/y || x+y == x/y)`
+> >
+> > That last one seems a bit too complicated, and it is all beacuse we need to *include the limit*,
+> > that is, because we want to include values that are greater ***and*** equal to something.
+> > There is actually a special symbol in matlab for that `>=`, and of cours for smaller or equal too `<=`.
+> >
+> > Using this symbol, our last answer becomes `~(x+y >= x/y)`, which does not look nearly as scary.
+> >
+> {: .solution}
+{: .challenge}
+
+
+## Data types
+
+We mentioned above that we can get other symbols in the workspace which relate to the types of information we can save.
+
+We know we can save numbers, and logical values, but we can also save letters or strings, for example.
+Numbers are by default saved as type [*double*](https://uk.mathworks.com/help/matlab/ref/double.html),
+which just means they can store very big or very small numbers.
+Letters are type ['*char*'](https://uk.mathworks.com/help/matlab/ref/char.html),
+and words or sentences are ["*strings*"](https://uk.mathworks.com/help/matlab/ref/string.html).
+Logical values (or booleans) are values that mean [true](https://uk.mathworks.com/help/matlab/ref/true.html)
+or [false](https://uk.mathworks.com/help/matlab/ref/false.html), and are represented with zero or one.
+They are usually the result of comparing things.
+
+~~~
+>> weight = 64.5
+>> size3 = 'L'
+>> patient_name = "Jane Doe"
+>> alive_on_day_3 = true
+~~~
+{: .language-matlab}
+```
+weight =
+   64.5000
+
+size3 =
+    'L'
+
+patient_name =
+    "Jane Doe"
+
+alive_on_day_3 =
+  logical
+   1
+```
+{: .output}
+
+Notice the single tick for character variables, in contrast with the double quote for strings.
+
+If you look at the woorkspace, you'll notice that the icon next to each variable is different,
+and if you hover over it, it will tell you the type of variable it is.
+
+
+
+### Arrays
+
+You may notice that all of the variable types start with a `1x1`.
+This is because matlab thinks in terms of *groups* of variables called arrays, or matrices.
+
+We can create an array using square brackets and separating each value with a comma:
+```
+>> A = [1, 2, 3]
+```
+{: .language-matlab}
+```
+A =
+     1     2     3
+```
+{: .output}
+
+If you now hover over the data type icon, you'll find that it shows `1x3`.
+This means that the array A has 1 ***row*** and 3 ***columns***.
+
+We can create matrices using semi-colons to separate rows:
+```
+>> B = [1, 2; 3, 4; 5, 6]
+```
+{: .language-matlab}
+```
+B =
+     1     2
+     3     4
+     5     6
+```
+{: .output}
+
+You'll notice that B has three rows and two columns, which explains the `3x2` we get from the workspace.
+
+We can also create arrays of other types of data. For example, we could create an array of names:
+```
+>> Names = ["Jhon", "Abigail", "Bertrand", "Lucile"]
+```
+{: .language-matlab}
+```
+Names =
+  1×4 string array
+    "Jhon"    "Abigail"    "Bertrand"    "Lucile"
+```
+{: .output}
+
+Or we can use logical values too:
+```
+>> C = [true; false; false; true]
+```
+{: .language-matlab}
+```
+C =
+  4×1 logical array
+   1
+   0
+   0
+   1
+```
+{: .output}
+
+Something to bear in mind, however, is that all values in an array must be of the same type.
+
+I mentioned before that matlab is actually used to working with arrays rather than individual variables.
+Well, if it is so used to them, can we do operations with them?
+
+The answer is of course yes! In fact, this is what makes MATLAB a particularly interesting programming language.
+
+We can, for example, check the whole matrix B and look for values greater than, say, 3.
+```
+>> B > 3
+```
+{: .language-matlab}
+```
+ans =
+  3×2 logical array
+   0   0
+   0   1
+   1   1
+```
+{: .output}
+
+Matlab then compared each element of B and asked "is this element greater than 3?".
+The result is another array, of the same size and dimensions as B, with the answers.
+
+We can also do sums, multiplications, and pretty much anything we want with an array, but we need to be careful with what we do.
+
+Despite this being so interesting and increadibly powerful, this course will focus on more basic programming concepts,
+and so we will use the feature rather little.
+However, it is very important that you keep it in mind, and that you do ask questions about it during the break if you are interested.
+
+> ## Suppressing the output
+>
+> In general, the output can be a bit redundant (or even annoying!), and it can make the code slower,
+> so it is considered good form to always supress it. To supress it, we add a semi-colon at the end of the line:
+>
+> ~~~
+> >> x = 33;
+> ~~~
+> {: .language-matlab}
+>
+> At first glance nothing appears to have happened, but the workspace shows the new value was assigned.
 >
 {: .callout}
 
-We already have a `data` directory in our `matlab-novice-inflammation` project directory,
-so we only need to create a `results` directory for this project.
-You can use your computer's file browser to create this directory.
-We'll save all our scripts and function files in the main project directory.
 
-A final step is to set the *current folder* in MATLAB to our project folder.
-Use the **Current Folder** window in the MATLAB GUI to browse to your project folder
-(`matlab-novice-inflammation`).
+> ## Printing a variable's value
+>
+> If we really want to print the variable, then we can simply type its name and hit <kbd>Enter</kbd>,
+> ~~~
+> >> patient_name
+> ~~~
+> {: .language-matlab}
+>
+> ```
+>
+> patient_name =
+>
+>     "Jane Doe"
+>
+> ```
+> {: .output}
+>
+>  or using the `disp` ***function***.
+>
+>  Functions are pre-defined algorithms (chunks of code), that can be used multiple times.
+>  They usually take some "inputs" inside brackets, and either produce something or output something.
+>
+>  The [disp](https://uk.mathworks.com/help/matlab/ref/disp.html) function, in particular, takes just one input --
+>  the variable that you want to print -- and what it does is to print the variable in a nice way.
+>  For the variable patient_name, we would use it like this:
+>
+> ~~~
+> >> disp(patient_name)
+> ~~~
+> {: .language-matlab}
+>
+> ~~~
+> Jane Doe
+> ~~~
+> {: .output}
+>
+> Note how the output is a bit different from what we got when we just typed the variable name.
+> There is less indentation and less empty lines.
+{: .callout}
 
-In order to check the current directory, we can run `pwd` (print working directory).
-A second check we can do is to run the `ls` (list) command in the Command Window to list the contents
-of the working directory ---
-we should get the following output:
-
-```
-data   results
-```
-{: .output}
-
-
-
-Reading data from files and writing data to them
-are essential tasks in scientific computing,
-and admittedly,
-something that we'd rather not spend a lot of time thinking about.
-Fortunately, MATLAB comes with a number of high-level tools to do these things efficiently,
-sparing us the grisly detail.
-
-If we know what our data looks like (in this case, we have a matrix stored as comma-separated values)
-and we're unsure about what command we want to use,
-we can search the documentation.
-Type `read matrix` into the documentation toolbar.
-MATLAB suggests using `readmatrix`.
-If we have a closer look at the documentation,
-MATLAB also tells us, which in- and output arguments this function has.
-
-To load the data from our CSV file into MATLAB, type the following
-command into the MATLAB command window, and press <kbd>Enter</kbd>:
-
-~~~
->> patient_data = readmatrix('data/inflammation-01.csv');
-~~~
-{: .language-matlab}
-
-This loads the data and assigns it to a variable, *patient_data*.
-This is a good example of when to use a semi-colon to suppress output ---
-try re-running the command without the semi-colon to find out why.
-You should see a wall of numbers printed, which is the data from the file.
-
-~~~
->> patient_data = readmatrix('data/inflammation-01.csv')
-~~~
-{: .language-matlab}
-
-The expression `readmatrix(...)` is a
-[function call]({{ page.root }}/reference.html#function-call).
-Functions generally need [arguments]({{ page.root }}/reference.html#argument)
-to run.
-In the case of the `readmatrix` function, we need to provide a single
-argument: the name of the file we want to read data from. This
-argument needs to be a character string or
-[string]({{ page.root }}/reference.html#string), so we put it in quotes.
-
-
-Now that our data is in memory, we can start doing things with it.
-First, let's find out its [size]({{ page.root }}/reference.html#size):
-
-~~~
->> size(patient_data)
-~~~
-{: .language-matlab}
-
-~~~
-ans =
-
-    60 40
-~~~
-{: .output}
-
-The output tells us that the variable `patient_data`
-refers to a table of values
-that has 60 rows and 40 columns.
-
-MATLAB stores *all* data in the form of multi-dimensional arrays. For example:
-
-* Numbers, or *scalars* are represented as two dimensional arrays with only one row and one column, as are single characters.
-* Lists of numbers, or *vectors* are two dimensional as well, but the value of one of the dimensions equals one.
-  By default vectors are row vectors, meaning they have one row and as many columns as there are elements in the vector.
-* Tables of numbers, or *matrices* are arrays with more than one column and more than one row.
-* Even character strings, like sentences, are stored as an "array
-of characters".
-
-Normally, MATLAB arrays can't store elements of different data types. For
-instance, a MATLAB array can't store both a `float` and a `char`. To do that,
-you have to use a [Cell Array](http://www.mathworks.com/help/matlab/cell-arrays.html).
-
-We can use the `class` function to find out what type of data lives
-inside an array:
-
-~~~
->> class(patient_data)
-~~~
-{: .language-matlab}
-
-~~~
-ans =
-    'double'
-~~~
-{: .output}
-
-This output tells us that `patient_data` contains
-double precision floating-point numbers. This is the default numeric
-data type in MATLAB. If you want to store other numeric data types,
-you need to tell MATLAB explicitly. For example, the command,
-
-~~~
->> x = int16(325);
-~~~
-{: .language-matlab}
-
-
-assigns the value `325` to the name `x`, storing it as a 16-bit signed
-integer.
+> ## Keeping things tidy
+>
+> We have declared a few variables now, and we might not be using all of them.
+> If we want to delete a variable we can do so by typing `clear` and the name of the variable, e.g.:
+> ~~~
+> >> clear alive_on_day_3
+> ~~~
+> {: .language-matlab}
+> You might be able to see it disappear from the workspace.
+> If you now try to use alive_on_day_3, matlab will error.
+>
+> We can also delete **all** our variables with the command `clear`, without any variable names.
+> Be careful though, there's no way back!
+>
+> Another thing you might want to clear every once in a while is the output.
+> To do that, we use the command `clc`.
+> Again, there is no way back!
+{: .callout}
