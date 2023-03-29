@@ -1,32 +1,118 @@
 ---
 title: Arrays
-teaching: 15
+teaching: 20
 exercises: 5
 questions:
-- "How can I access subsets of data?"
+- "How can I access the information in an array?"
 objectives:
-- "Select individual values and subsections from data."
+- "Learn how to create multidimensional arrays"
+- "Select individual values and subsections of an array."
 keypoints:
-- "`M(row, column)` indices are used to select data points"
-- "`:` is used to take slices of data"
+- "Some functions to initialize matrices include zeros, ones, and rand.
+  They all produce a square matrix if only one argument is given,
+  but you can specify the dimensions you want separated by a comma."
+- "To select data points we use `M(rows, columns)`, where rows and columns are the
+  indices of the elements we want. They can be just numbers or arrays of numbers."
+- "We use the colon operator to select ranges of elements as `start:increment:end`."
+- "We use the keyword `end` to get the index of the last element."
+- "The colon operator by itself `:` selects all the elements."
 ---
 
-## Array indexing
-Now that we understand what kind of data can be stored in an array, 
-we need to learn the proper syntax for working with arrays in MATLAB. 
-To do this we will begin by discussing array **indexing**, which is the 
-method by which we can select one or more different elements of an 
-array. A solid understanding of array indexing will greatly assist 
-our ability to organize our data.
 
-Let's start by creating an 8-by-8 "magic" Matrix:
 
-~~~
->> M = magic(8)
-~~~
+## Initializing an Array
+
+We just talked about how matlab *thinks* in arrays, and declared some very simple arrays using square brackets.
+In some cases, we will want to create space to save data, but not save anything just yet.
+One way of doing so is with `zeros`.
+The function [zeros](https://uk.mathworks.com/help/matlab/ref/zeros.html)
+takes the dimensions of our array as arguments, and populates it with zeros. For example,
+```
+>> Z = zeros(3,5)
+```
+{: .language-matlab}
+```
+Z =
+     0     0     0     0     0
+     0     0     0     0     0
+     0     0     0     0     0
+```
+{: .output}
+creates a matrix of 3 rows and 5 columns, all with zeros.
+If we had only passed one dimension, matlab assumes you want a square matrix, so
+```
+>> Z = zeros(3)
+```
+{: .language-matlab}
+```
+Z =
+     0     0     0
+     0     0     0
+     0     0     0
+```
+{: .output}
+yields a 3x3 array.
+If we want a single row and 5 columns, we need to remember that matlab reads `rows`x`columns`, so
+```
+>> Z = zeros(1x5)
+```
+{: .language-matlab}
+```
+Z =
+     0     0     0     0     0
+```
+{: .output}
+
+This logic of the `zeros` function is shared with many other functions that create arrays.
+
+For example, the [`ones` function](https://uk.mathworks.com/help/matlab/ref/ones.html)
+is quite similar, but the arrays are filled with ones, and
+the [`rand` function](https://uk.mathworks.com/help/matlab/ref/rand.html)
+assigns uniformly distributed random numbers between zero and 1.
+```
+>> R = rand(8);
+>> O = ones(10,10);
+```
 {: .language-matlab}
 
-~~~
+> **Note:** This is when supressing the output becomes more important.
+> You can more comfortably explore the variables `R` and `O` by double clicking them in the workspace.
+{: .callout}
+
+The [`magic` function](https://uk.mathworks.com/help/matlab/ref/magic.html) is also similar,
+but you can only declare square matrices with it.
+The magic thing about them is that the sum of the elements on each row or column add up to the same number.
+```
+>> M = magic(4)
+```
+{: .language-matlab}
+```
+M =
+    16     2     3    13
+     5    11    10     8
+     9     7     6    12
+     4    14    15     1
+```
+{: .output}
+In this case, each row or column add up to 34.
+But how could I tell in a bigger matrix?
+How can I select some of the elements of the array and sum them, for example?
+
+
+## Array indexing
+
+Array **indexing**, is the method by which we can select one or more different elements of an array.
+A solid understanding of array indexing will be essential to work with arrays.
+Lets start with selecting one element.
+
+First, we will create an 8x8 "magic" matrix:
+
+```
+>> M = magic(8)
+```
+{: .language-matlab}
+
+```
 ans =
 
    64    2    3   61   60    6    7   57
@@ -37,86 +123,114 @@ ans =
    41   23   22   44   45   19   18   48
    49   15   14   52   53   11   10   56
     8   58   59    5    4   62   63    1
-~~~
+```
 {: .output}
 
 We want to access a single value from the matrix:
 
 ![Accessing a single value](../fig/matrix-single-element.svg)
 
-To do that, we must provide
-its [index]({{ page.root }}/reference.html#index) in parentheses:
-
-~~~
+To do that, we must provide its [index]({{ page.root }}/reference.html#index) in parentheses.
+In a 2D array, this means the row and column of the element separated by a comma,
+that is, as `(row, column)`. This index goes after the name of our array. In our case, this is:
+```
 >> M(5, 6)
-~~~
+```
 {: .language-matlab}
-
-~~~
+```
 ans = 38
-~~~
+```
 {: .output}
 
-Indices are provided as (row, column). So the index `(5, 6)` selects the element
-on the fifth row and sixth column.
+So the index `(5, 6)` selects the element on the fifth row and sixth column of `M`.
 
-An index like `(5, 6)` selects a single element of
-an array, but we can also access sections of the matrix, or [slices]({{ page.root }}/reference.html#slice).
-To access a row of values:
+> **Note:** Matlab starts counting indices at 1, not 0! (as many other programming languages).
+{: .callout}
 
-![Accessing a single value](../fig/matrix-row.svg)
+An index like the one we used selects a single element of an array,
+but we can also select a group of them if instead of a number we give arrays as indices.
+For example, if we want to select this submatrix:
 
-we can do:
+![Accessing a submatrix](../fig/matrix-submatrix.svg)
 
-~~~
->> M(5, :)
-~~~
+we want rows 4, 5 and 6, and columns 5, 6 and 7, that is, the arrays `[4,5,6]` for rows, and `[5,6,7]` for columns:
+```
+>> M([4,5,6],[5,6,7])
+```
 {: .language-matlab}
-
-~~~
+```
 ans =
-
-   32   34   35   29   28   38   39   25
-
-~~~
+   36   30   31
+   28   38   39
+   45   19   18
+```
 {: .output}
 
-Providing `:` as the index for a dimension selects *all* elements
-along that dimension.
-So, the index `(5, :)` selects
-the elements on row `5`, and *all* columns---effectively, the entire row.
-We can also
-select multiple rows,
+In matlab, the symbol `:` is used to specify a range.
+The rows and columns we just selected could have been specified as ranges.
+So if we want the rows from 4 to 6 and columns from 5 to 7,
+we can specify the ranges as `4:6` and `5:7`.
+On top of being a much quicker and neater way to get the rows and columns,
+matlab knows that the range will produce an array, so we do not even need the square brackets anymore.
+So the command above becomes:
+```
+>> M(4:6, 5:7)
+```
+{: .language-matlab}
+```
+ans =
+   36   30   31
+   28   38   39
+   45   19   18
+```
+{: .output}
+
+The `:` operator has another couple of tricks that will be useful.
+If we want a whole row, for example:
+
+![Accessing a row](../fig/matrix-row.svg)
+
+we could in principle pick the 5th row and for the columns use the range `1:8`.
+Another option is to use the command `end` instead of the 8 to get the last element, that is `1:end`.
+However, getting a whole row or column is such a common operation, that using `:` alone is equivalent!
+We can then get the whole fifth row with:
+```
+>> M(5, :)
+```
+{: .language-matlab}
+```
+ans =
+   32   34   35   29   28   38   39   25
+```
+{: .output}
+
+We can also select multiple rows,
 
 ![Accessing multiple rows](../fig/matrix-multi-rows.svg)
 
-~~~
+```
 >> M(1:4, :)
-~~~
+```
 {: .language-matlab}
-
-~~~
+```
 ans =
-
    64    2    3   61   60    6    7   57
     9   55   54   12   13   51   50   16
    17   47   46   20   21   43   42   24
    40   26   27   37   36   30   31   33
-~~~
+```
 {: .output}
 
-and columns:
+or multiple columns:
 
 ![Accessing multiple columns](../fig/matrix-multi-cols.svg)
 
-~~~
+```
 >> M(:, 6:end)
-~~~
+```
 {: .language-matlab}
-
-~~~
+```
 ans =
-
     6    7   57
    51   50   16
    43   42   24
@@ -125,117 +239,146 @@ ans =
    19   18   48
    11   10   56
    62   63    1
-~~~
+```
 {: .output}
 
-To select a submatrix,
-
-![Accessing a submatrix](../fig/matrix-submatrix.svg)
-
-we have to take slices in both dimensions:
-
-~~~
->> M(4:6, 5:7)
-~~~
+The last trick the `:` symbol has in store is that it can specify the *increment* in a range.
+That is, there is no reason why `1:6` has to include 1, 2, 3, 4, 5, and 6.
+This is only the case if the increment is one.
+We may only want the odd numbers (1, 3, and 5), for example, which can be obtained with an increment of 2.
+To specify the increment, we write the range as `start:increment:end`.
+So to get the odd numbers between 1 and 6 we would write:
+```
+>> 1:2:6
+```
 {: .language-matlab}
-
-~~~
+```
 ans =
-
-   36   30   31
-   28   38   39
-   45   19   18
-
-~~~
+    1    3   5
+```
 {: .output}
 
-We don't have to take all the values in the slice---if we provide
-a [stride]({{ page.root }}/reference.html#stride). Let's say we want to start with row `2`,
-and subsequently select every third row:
+We can of course use this to select elements in an array.
+Let's say we want to start with row `2`, and subsequently select every third row:
 
 ![Accessing strided columns](../fig/matrix-strided-rows.svg)
 
-~~~
+We then need to use:
+```
 >> M(2:3:end, :)
-~~~
+```
 {: .language-matlab}
-
-~~~
+```
 ans =
-
     9   55   54   12   13   51   50   16
    32   34   35   29   28   38   39   25
     8   58   59    5    4   62   63    1
-~~~
+```
 {: .output}
 
-And we can also select values in a "checkerboard",
+We can even select values in a "checkerboard"
 
 ![Accessing strided rows and columns](../fig/matrix-strided-rowncols.svg)
 
-by taking appropriate strides in both dimensions:
-
-~~~
+by defining the apropriate intervals in both dimensions:
+```
 >> M(1:3:end, 2:2:end)
-~~~
+```
 {: .language-matlab}
-
-~~~
+```
 ans =
-
     2   61    6   57
    26   37   30   33
    15   52   11   56
-~~~
+```
 {: .output}
 
 > ## Slicing
 >
-> A subsection of an array is called a [slice]({{ page.root }}/reference.html#slice). We can take slices of character strings as well:
+> A subsection of an array is called a [slice]({{ page.root }}/reference.html#slice).
+> We can take slices of character strings as well:
 >
-> ~~~
+> ```
 > >> element = 'oxygen';
 > >> disp(['first three characters: ', element(1:3)])
 > >> disp(['last three characters: ', element(4:6)])
-> ~~~
+> ```
 > {: .language-matlab}
 >
-> ~~~
+> ```
 > first three characters: oxy
 > last three characters: gen
-> ~~~
+> ```
 > {: .output}
 >
-> 1. What is the value of `element(4:end)`? What about `element(1:2:end)`? Or `element(2:end - 1)`?
+> 1. Use slicing to figure out:
+>   - Select all elements from the 3rd to the last one.
+>   - What is the value of `element(1:2:end)`?
+>   - How would you get all characters except the first and last?
 >
-> 2. For any size array, MATLAB allows us to index with a single colon operator (`:`).
->    This can have surprising effects.
->    For instance, compare `element` with `element(:)`. What is `size(element)` versus `size(element(:))`?
->    Finally,
->    try using the single colon on the matrix `M` above: `M(:)`.
->    What seems to be happening when we use the single colon operator for slicing?
+> 2. We used the single colon operator `:` in the indices to get all the available column or row numbers,
+>    but we can also use it like this: `M(:)`. What do you think will happen?
+>    How many elements does `M(:)` have?
+>    What would happen if we use it for the element variable? Compare the result from `element` and `element(:)`.
+>    Are there any differences?
 >
 > > ## Solution
 > >
-> > 1. Exercises using slicing
+> > 1) Exercises using slicing
 > >
-> > 	```
-> > 	element(4:end)   % Select all elements from 4th to last
-> > 	ans =
-> > 	    'gen'
-> > 	element(1:2:end) % Select every other element starting at first
-> > 	ans =
-> > 	    'oye
-> > 	element(2:end-1) % Select elements starting with 2nd, until last-but-one
-> > 	ans =
-> > 	    'xyge'
-> > 	```
-> > 	{: .language-matlab}
+> >   - To select all elements from 3rd to last we can use start our range at `3` and use the keyword `end`:
+> >     ```
+> >     >> element(3:end)
+> >     ```
+> >     {: .language-matlab}
+> >     ```
+> >     ans =
+> >         'ygen'
+> >     ```
+> >     {: .output}
 > >
-> > 2. The colon operator 'flattens' a vector or matrix into a column vector.
-> > The order of the elements in the resulting vector comes from appending 
-> > each column of the original array in turn.
-> > Have a look at the order of the values in `M(:)` vs `M`
+> >   - The command `element(1:2:end)` starts at the first character, selects every other element (notice the interval is 2),
+> >     and goes all the way until the last element, so:
+> >     ```
+> >     >> element(1:2:end)
+> >     ```
+> >     {: .language-matlab}
+> >     ```
+> >     ans =
+> >         'oye'
+> >     ```
+> >     {: .output}
+> >
+> >   - To select each character starting with the second we set the start at `2`,
+> >     and to not include the last one we can finish at `end-1`:
+> >     ```
+> >     >> element(2:end-1)
+> >     ```
+> >     {: .language-matlab}
+> >     ```
+> >     ans =
+> >         'xyge'
+> >     ```
+> >     {: .output}
+> >
+> > 2) The colon operator gets all the elements that it can find, and so using it as `M(:)` returns all the elements of M.
+> >    We can make sure that the result of `M(:)` has 8x8=64 elements
+> >    by using the function [size](https://uk.mathworks.com/help/matlab/ref/size.html),
+> >    which returns the dimensions of the array given as an input:
+> >    ```
+> >    >> size(M(:))
+> >    ```
+> >    {: .language-matlab}
+> >    ```
+> >    ans =
+> >        64    1
+> >    ```
+> >    {: .output}
+> >    So it has 64 rows and 1 column. Efectively, then, `M(:)` 'flattens' the array into a column vector.
+> >    The order of the elements in the resulting vector comes from appending each column of the original array in turn.
+> >    Therefore, the last 8 elements we see if we evaluate `M(:)` correspond to the last column of `M`, for example.
+> >
+> >    The difference between evaluating `element` and `element(:)` is that the former is a row vector, and the latter a column vector.
 > {: .solution}
 {: .challenge}
 
