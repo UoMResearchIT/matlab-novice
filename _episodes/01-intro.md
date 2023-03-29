@@ -1,6 +1,6 @@
 ---
 title: Working With Variables
-teaching: 60
+teaching: 40
 exercises: 5
 questions:
 - "How can I store values and do simple calculations with them?"
@@ -49,12 +49,10 @@ But before we discuss how to deal with many data points,
 we will show how to store a single value on the computer.
 
 We can create a new [variable]({{ page.root }}/reference.html#variable) by assigning a value to it using `=`:
-
-~~~
+```
 >> x = 55
-~~~
+```
 {: .language-matlab}
-
 ```
 x =
     55
@@ -71,13 +69,11 @@ They can contain also numbers or underscores. Examples of valid variable names a
 
 The reason we work with variables is so that we can reuse them, or save them for later use.
 We can do operations with these variables. For example, we can do a simple sum:
-
-~~~
+```
 >> y = 10
 >> x + y
-~~~
+```
 {: .language-matlab}
-
 ```
 y =
     10
@@ -89,12 +85,10 @@ ans =
 Note that the answer was saved in a new variable called `ans`.
 This variable is temporary, and will be overwritten with any new operation we do.
 For example, if we now substract y from x we get:
-
-~~~
+```
 >> x - y
-~~~
+```
 {: .language-matlab}
-
 ```
 ans =
     45
@@ -103,12 +97,10 @@ ans =
 
 The result of the sum is now gone forever.
 We can of course assign the result of an operation to a new variable, for example:
-
-~~~
+```
 >> z = x * y
-~~~
+```
 {: .language-matlab}
-
 ```
 z =
     550
@@ -118,10 +110,9 @@ z =
 This created a new variable `z`. If you look at the workspace, you can see that the value of z is 550.
 
 We can even use a variable in an operation, and save the value in the same variable. Fer example:
-
-~~~
+```
 >> y = y/5
-~~~
+```
 {: .language-matlab}
 ```
 y =
@@ -133,10 +124,9 @@ Where you can see that the expression to the right of the `=` sign is evaluated 
 and the result is then assigned to the variable specified to the left of the `=` sign.
 
 Of course, we can use multiple variables in a single operation, for example:
-
-~~~
+```
 >> z = z - y^3 + 5*x
-~~~
+```
 {: .language-matlab}
 ```
 z =
@@ -150,13 +140,13 @@ where we used the caret symbol `^` to take the third power of y.
 > ## Predicting Variable Values
 >
 > Predict what variables refer to what values after each statement in the following program:
-> ~~~
+> ```
 > >> mass = 10
 > >> age = 30/12
 > >> mass = mass * 2.0
 > >> age + 0.5
 > >> frac = mass/age
-> ~~~
+> ```
 > {: .language-matlab}
 >
 > > ## Solution
@@ -181,10 +171,9 @@ where we used the caret symbol `^` to take the third power of y.
 
 In programming, there is another type of opperation that becomes very important: comparison.
 We can compare two numbers (or variables) to see which one is smaller, for example
-
-~~~
+```
 >> c1 = frac < 10
-~~~
+```
 {: .language-matlab}
 ```
 c1 =
@@ -194,12 +183,11 @@ c1 =
 {: .output}
 
 Something interesting just happened with the variable c1.
-If I ask you wether frac (8) is smaller than 10, you would say "yes". Matlab answered with a ` logical 1`.
-If I ask you wether frac is greater than 10, you would say "no". Matlab answers with a ` logical 0`.
-
-~~~
+If I ask you wether frac (8) is smaller than 10, you would say "yes". Matlab answered with a `logical 1`.
+If I ask you wether frac is greater than 10, you would say "no". Matlab answers with a `logical 0`.
+```
 >> c2 = frac > 10
-~~~
+```
 {: .language-matlab}
 ```
 c2 =
@@ -218,10 +206,9 @@ You can also see that in the workspace these variables have a tick next to them,
 There is actually other symbols we can get there, which relate to the types of information we can save (more on this in a bit).
 
 We can also check if two variables (or even operations) are the same
-
-~~~
+```
 >> c3 = frac == mass/age
-~~~
+```
 {: .language-matlab}
 ```
 c3 =
@@ -232,10 +219,9 @@ c3 =
 
 And we can combine comparisons.
 For example, we can check wether frac is smaller than 10 ***and*** the age is greater than 5
-
-~~~
+```
 >> c4 = frac < 10 && age > 5
-~~~
+```
 {: .language-matlab}
 ```
 c4 =
@@ -248,10 +234,9 @@ In this case, both conditions need to be met for the result to be "yes" (1).
 
 If we want a "yes" as long as at least one of the conditions are met,
 we woudl ask if frac is smaller than 10 ***or*** the age is greater than 5
-
-~~~
+```
 >> c5 = frac < 10 || age > 5
-~~~
+```
 {: .language-matlab}
 ```
 c5 =
@@ -293,7 +278,7 @@ c5 =
 > > - The negative os "greater or equal" is simply "smaller", and so our question is
 > > "Is 42 not smaller than 2 * 3 * 7?, which in code is `~(42 < 2 * 3 * 7)`.
 > > - The negative of "smaller" is in turn "greater or equal", so our question turns into
-> > "Is x+y not greater or equal to x/y?", which in code is `~(x+y > x/y || x+y == x/y)`
+> > "Is x+y not greater or equal to x/y?", which in code is `~(x+y > x/y || x+y == x/y)`.
 > >
 > > That last one seems a bit too complicated, and it is all beacuse we need to *include the limit*,
 > > that is, because we want to include values that are greater ***and*** equal to something.
@@ -317,24 +302,20 @@ and words or sentences are ["*strings*"](https://uk.mathworks.com/help/matlab/re
 Logical values (or booleans) are values that mean [true](https://uk.mathworks.com/help/matlab/ref/true.html)
 or [false](https://uk.mathworks.com/help/matlab/ref/false.html), and are represented with zero or one.
 They are usually the result of comparing things.
-
-~~~
+```
 >> weight = 64.5
 >> size3 = 'L'
 >> patient_name = "Jane Doe"
 >> alive_on_day_3 = true
-~~~
+```
 {: .language-matlab}
 ```
 weight =
    64.5000
-
 size3 =
     'L'
-
 patient_name =
     "Jane Doe"
-
 alive_on_day_3 =
   logical
    1
@@ -444,9 +425,9 @@ However, it is very important that you keep it in mind, and that you do ask ques
 > In general, the output can be a bit redundant (or even annoying!), and it can make the code slower,
 > so it is considered good form to always supress it. To supress it, we add a semi-colon at the end of the line:
 >
-> ~~~
+> ```
 > >> x = 33;
-> ~~~
+> ```
 > {: .language-matlab}
 >
 > At first glance nothing appears to have happened, but the workspace shows the new value was assigned.
@@ -457,9 +438,9 @@ However, it is very important that you keep it in mind, and that you do ask ques
 > ## Printing a variable's value
 >
 > If we really want to print the variable, then we can simply type its name and hit <kbd>Enter</kbd>,
-> ~~~
+> ```
 > >> patient_name
-> ~~~
+> ```
 > {: .language-matlab}
 >
 > ```
@@ -480,14 +461,14 @@ However, it is very important that you keep it in mind, and that you do ask ques
 >  the variable that you want to print -- and what it does is to print the variable in a nice way.
 >  For the variable patient_name, we would use it like this:
 >
-> ~~~
+> ```
 > >> disp(patient_name)
-> ~~~
+> ```
 > {: .language-matlab}
 >
-> ~~~
+> ```
 > Jane Doe
-> ~~~
+> ```
 > {: .output}
 >
 > Note how the output is a bit different from what we got when we just typed the variable name.
@@ -498,9 +479,9 @@ However, it is very important that you keep it in mind, and that you do ask ques
 >
 > We have declared a few variables now, and we might not be using all of them.
 > If we want to delete a variable we can do so by typing `clear` and the name of the variable, e.g.:
-> ~~~
+> ```
 > >> clear alive_on_day_3
-> ~~~
+> ```
 > {: .language-matlab}
 > You might be able to see it disappear from the workspace.
 > If you now try to use alive_on_day_3, matlab will error.
