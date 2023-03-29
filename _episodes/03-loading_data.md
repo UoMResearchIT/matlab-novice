@@ -1,6 +1,6 @@
 ---
 title: Loading data
-teaching: 20
+teaching: 30
 exercises: 5
 questions:
 - "How can I load data to an array?"
