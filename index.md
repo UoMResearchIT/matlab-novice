@@ -20,7 +20,7 @@ language *well*.
 
 ### Introductory slides
 
-Some slides to introduce the training can be found [here]({{ page.root }} /files/intro_slides.pdf).
+Some slides to introduce the training can be found [here]({{ page.root }}/files/intro_slides.pdf).
 
 > ## GNU Octave
 >
