@@ -157,6 +157,78 @@ std_p5 =
 ```
 {: .output}
 
+> ## All data points at once
+>
+> Can you think of a way to get the mean of the whole data?
+> What about the `max`, `min` and `std`?
+>
+> > ## Solution
+> >
+> > We already know that the colon operator as an index returns all the elements,
+> > so `patient_data(:)` will return a vector with all the data points.
+> > To compute the mean, we then use:
+> > ```
+> > >> global_mean = mean(patient_data(:))
+> > ```
+> > {: .language-matlab}
+> > ```
+> > global_mean =
+> >     6.1487
+> > ```
+> > {: .output}
+> > This works for `max`, `min` and `std` too:
+> > ```
+> > >> global_max = max(patient_data(:))
+> > >> global_min = min(patient_data(:))
+> > >> global_std = std(patient_data(:))
+> > ```
+> > {: .language-matlab}
+> > ```
+> > global_max =
+> >     20
+> > global_min =
+> >      0
+> > global_std =
+> >     4.6148
+> > ```
+> > {: .output}
+> {: .solution}
+{: .challenge}
+
+Now that we have the global statistics, we can check how patient 5 compares with them:
+```
+>> mean_p5 > global_mean
+>> max_p5 == global_max
+>> min_p5 == global_min
+>> std_p5 < global_std
+```
+{: .language-matlab}
+```
+ans =
+  logical
+   0
+ans =
+  logical
+   0
+ans =
+  logical
+   1
+ans =
+  logical
+   1
+```
+So we know that patient 5 did not suffer more inflamation than average,
+that it is not the patient who got the most inflamed,
+that he had the global minimum inflamation at some point (0),
+and that the std of his inflamation is not below the average.
+
+> ## Food for thought
+>
+> How would you find the patient who got the highest inflamation?
+>
+> Would you be happy to do it if you had 1000 patients?
+{: .challenge}
+
 #### **One day at a time**
 
 We could also have looked not at a single patient, but at a single day.
@@ -187,6 +259,40 @@ std_d9 =
 ```
 {: .output}
 
+We could now check how day 9 compares to the global values:
+```
+>> mean_d9 > global_mean
+>> max_d9 == global_max
+>> min_d9 == global_min
+>> std_d9 < global_std
+```
+{: .language-matlab}
+```
+ans =
+  logical
+   0
+ans =
+  logical
+   0
+ans =
+  logical
+   0
+ans =
+  logical
+   1
+```
+So we know that day 9 was still relatively low inflamation,
+that it is not the day with the highest inflamation,
+that every patient was at least a bit inflamed at that moment,
+and that the std of his inflamation is below the average (so datapoints are closer to each other).
+
+> ## Food for thought
+>
+> How would you find which days had an inflamation value above the global mean?
+>
+> Would you be happy to do it if you had 1000 days worth of data?
+{: .challenge}
+
 #### **Whole array analisis**
 
 The analisis we've done until now would be very tedious to repeat for each patient or day.
@@ -210,6 +316,41 @@ The other statistics behave in the same way, so we can more appropriately label 
 {: .language-matlab}
 
 You'll notice that each of the above avriables is a `1x40` array.
+
+Now that we have the information for each day in an array,
+we can take advantage of Matlab's capacity to do array operations.
+For example, we can find out which days had an inflamation above the global average:
+```
+>> per_day_mean > global_mean
+```
+{: .language-matlab}
+```
+ans =
+  1×40 logical array
+  Columns 1 through 14
+   0   0   0   0   0   0   0   0   0   0   0   0   1   1
+
+  Columns 15 through 28
+   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+
+  Columns 29 through 40
+   1   1   0   0   0   0   0   0   0   0   0   0
+```
+We could count which day it is, but lets take a shortcut and use the find function:
+```
+>> find(ans)
+```
+{: .language-matlab}
+```
+ans =
+  Columns 1 through 9
+    13    14    15    16    17    18    19    20    21
+
+  Columns 10 through 18
+    22    23    24    25    26    27    28    29    30
+```
+So it seems that days 13 to 30 were the critical days.
+
 
 But what if we want the analysis per patient, instead of per day?
 
@@ -287,55 +428,25 @@ so that the commands become:
 
 All of the above return a `60x1` vector.
 
-> ## All data points at once
+> ## Most inflamed patients
 >
-> We've learned how to get the mean of each patient and of each day,
-> but can you think of a way to get the mean of the whole data?
-> What about the `max`, `min` and `std`?
+> Can you find the patients that got the highest inflamation?
 >
 > > ## Solution
-> >
-> > One way to do this would be to call mean once to get the mean per day,
-> > and then call it again on the result, to get the mean of all the data:
+> > Using the power matlab has to compare arrays,
+> > we can check which patients have a `max` equal to the `global_max`.
+> > If we wrap this check in the find function, we get the row numbers:
 > > ```
-> > >> mean(mean(patient_data))
+> > >> find(per_patient_max == global_max)
 > > ```
 > > {: .language-matlab}
 > > ```
 > > ans =
-> >     6.1487
+> >      8
+> >     29
+> >     52
 > > ```
-> > {: .output}
-> > This is ok, and would work for `max` and `min` too, but not for `std`.
-> >
-> > A more efficient way is to pass all the elements in `patient_data` as a vector.
-> > We already know how to do that, using the colon operator.
-> > Our command then becomes:
-> > ```
-> > >> pd_mean = mean(patient_data(:))
-> > ```
-> > {: .language-matlab}
-> > ```
-> > pd_mean =
-> >     6.1487
-> > ```
-> > {: .output}
-> > Appart from looking nicer, this works for `max`, `min` and `std` too:
-> > ```
-> > >> pd_max = max(patient_data(:))
-> > >> pd_min = min(patient_data(:))
-> > >> pd_std = std(patient_data(:))
-> > ```
-> > {: .language-matlab}
-> > ```
-> > pd_max =
-> >     20
-> > pd_min =
-> >      0
-> > pd_std =
-> >     4.6148
-> > ```
-> > {: .output}
+> > So the patients 8, 29 and 52 got the maximum inflamation levels.
 > {: .solution}
 {: .challenge}
 

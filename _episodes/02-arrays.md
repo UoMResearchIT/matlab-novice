@@ -1,7 +1,7 @@
 ---
 title: Arrays
-teaching: 20
-exercises: 5
+teaching: 25
+exercises: 10
 questions:
 - "How can I access the information in an array?"
 objectives:
@@ -13,7 +13,7 @@ keypoints:
   but you can specify the dimensions you want separated by a comma."
 - "To select data points we use `M(rows, columns)`, where rows and columns are the
   indices of the elements we want. They can be just numbers or arrays of numbers."
-- "We use the colon operator to select ranges of elements as `start:increment:end`."
+- "We use the colon operator to select ranges of elements as `start:end` or `start:increment:end`."
 - "We use the keyword `end` to get the index of the last element."
 - "The colon operator by itself `:` selects all the elements."
 ---
@@ -166,7 +166,37 @@ ans =
 ```
 {: .output}
 
-In matlab, the symbol `:` is used to specify a range.
+> ## The `:` operator
+> In matlab, the symbol `:` ([`colon`](https://uk.mathworks.com/help/matlab/ref/colon.html)) is used to specify a range.
+> The range is specified as `start:end`.
+> For example, if we type `1:6` it generates an array of consecutive numbers from 1 to 6:
+> ```
+> >> 1:6
+> ```
+> {: .language-matlab}
+> ```
+> ans =
+>    1     2     3     4     5     6
+> ```
+> {: .output}
+>
+> We can also specify an *increment* other than one.
+> To specify the increment, we write the range as `start:increment:end`.
+> For example, if we type `1:3:15` it generates an array starting with 1, then 1+3, then 1+2*3, and so on,
+> until it reaches 15 (or as close as it can get to 15 without going past it):
+> ```
+> >> 1:3:15
+> ```
+> {: .language-matlab}
+> ```
+> ans =
+>    1     4     7    10    13
+> ```
+> {: .output}
+> The array stopped at 13 because 13+3=16, which is over 15.
+>
+{: .callout}
+
 The rows and columns we just selected could have been specified as ranges.
 So if we want the rows from 4 to 6 and columns from 5 to 7,
 we can specify the ranges as `4:6` and `5:7`.
@@ -185,17 +215,38 @@ ans =
 ```
 {: .output}
 
-The `:` operator has another couple of tricks that will be useful.
+> ## Checkerboard
+>
+> Select the elements highlighted on the image:
+>
+> ![Accessing strided rows and columns](../fig/matrix-strided-rowncols.svg)
+>
+> > ## Solution
+> > We need to select every other element in both dimensions.
+> > To do that, we define the apropriate intervals with an increment of 2:
+> > ```
+> > >> M(1:3:end, 2:2:end)
+> > ```
+> > {: .language-matlab}
+> > ```
+> > ans =
+> >     2   61    6   57
+> >    26   37   30   33
+> >    15   52   11   56
+> > ```
+> > {: .output}
+> {: .solution}
+{: .challenge}
+
+### Selecting whole rows or columns
+
 If we want a whole row, for example:
 
 ![Accessing a row](../fig/matrix-row.svg)
 
 we could in principle pick the 5th row and for the columns use the range `1:8`.
-Another option is to use the command `end` instead of the 8 to get the last element, that is `1:end`.
-However, getting a whole row or column is such a common operation, that using `:` alone is equivalent!
-We can then get the whole fifth row with:
 ```
->> M(5, :)
+>> M(5, 1:8)
 ```
 {: .language-matlab}
 ```
@@ -203,8 +254,72 @@ ans =
    32   34   35   29   28   38   39   25
 ```
 {: .output}
+However, we need to know that there are 8 columns, which is not very robust.
 
-We can also select multiple rows,
+> ## The key-word `end`
+> When indexing the elements of an array, the key word `end` can be used to get the last index available.
+>
+> For example, `M(2,end)` returns the last element of the second row:
+> ```
+> >> M(2,end)
+> ```
+> {: .language-matlab}
+> ```
+> ans =
+>    16
+> ```
+> {: .output}
+>
+> We can also use it in combination with the `:` operator.
+> For example, `M(5:end,3)` returns the elements of column 3 from row 5 until the end:
+> ```
+> >> M(5:end,3)
+> ```
+> {: .language-matlab}
+> ```
+> ans =
+>    35
+>    22
+>    14
+>    59
+> ```
+> {: .output}
+>
+{: .callout}
+
+We can then use the keyword `end` instead of the 8 to get the whole row with `1:end`.
+```
+>> M(5, 1:end)
+```
+{: .language-matlab}
+```
+ans =
+   32   34   35   29   28   38   39   25
+```
+{: .output}
+This is much better, now this works for any size of matrix, and we don't need to know the size.
+
+> ## Using `:` as an index
+>
+> getting a whole row or column is such a common operation, that matlab has a shortcut:
+> Using `:` alone is equivalent!
+>
+> For example, We can then get the whole fifth row with:
+> ```
+> >> M(5, :)
+> ```
+> {: .language-matlab}
+> ```
+> ans =
+>    16
+> ```
+> {: .output}
+>
+{: .callout}
+
+As you can see, the `:` operator is quite important when accessing arrays!
+
+We can use it to select multiple rows,
 
 ![Accessing multiple rows](../fig/matrix-multi-rows.svg)
 
@@ -242,61 +357,33 @@ ans =
 ```
 {: .output}
 
-The last trick the `:` symbol has in store is that it can specify the *increment* in a range.
-That is, there is no reason why `1:6` has to include 1, 2, 3, 4, 5, and 6.
-This is only the case if the increment is one.
-We may only want the odd numbers (1, 3, and 5), for example, which can be obtained with an increment of 2.
-To specify the increment, we write the range as `start:increment:end`.
-So to get the odd numbers between 1 and 6 we would write:
-```
->> 1:2:6
-```
-{: .language-matlab}
-```
-ans =
-    1    3   5
-```
-{: .output}
+> ## Master indexing
+>
+> Select the elements highlighted on the image without using the numbers 5 or 8, and using `end` only once:
+>
+> ![Accessing strided columns](../fig/matrix-strided-rows.svg)
+>
+> > ## Solution
+> > We need to tart with row `2`, and subsequently select every third row:
+> > ```
+> > >> M(2:3:end, :)
+> > ```
+> > {: .language-matlab}
+> > ```
+> > ans =
+> >     9   55   54   12   13   51   50   16
+> >    32   34   35   29   28   38   39   25
+> >     8   58   59    5    4   62   63    1
+> > ```
+> > {: .output}
+> {: .solution}
+{: .challenge}
 
-We can of course use this to select elements in an array.
-Let's say we want to start with row `2`, and subsequently select every third row:
 
-![Accessing strided columns](../fig/matrix-strided-rows.svg)
-
-We then need to use:
-```
->> M(2:3:end, :)
-```
-{: .language-matlab}
-```
-ans =
-    9   55   54   12   13   51   50   16
-   32   34   35   29   28   38   39   25
-    8   58   59    5    4   62   63    1
-```
-{: .output}
-
-We can even select values in a "checkerboard"
-
-![Accessing strided rows and columns](../fig/matrix-strided-rowncols.svg)
-
-by defining the apropriate intervals in both dimensions:
-```
->> M(1:3:end, 2:2:end)
-```
-{: .language-matlab}
-```
-ans =
-    2   61    6   57
-   26   37   30   33
-   15   52   11   56
-```
-{: .output}
-
-> ## Slicing
+> ## Slicing character arrays
 >
 > A subsection of an array is called a [slice]({{ page.root }}/reference.html#slice).
-> We can take slices of character strings as well:
+> We can take slices of character arrays as well:
 >
 > ```
 > >> element = 'oxygen';
@@ -311,10 +398,10 @@ ans =
 > ```
 > {: .output}
 >
-> 1. Use slicing to figure out:
+> 1. Use slicing to:
 >   - Select all elements from the 3rd to the last one.
->   - What is the value of `element(1:2:end)`?
->   - How would you get all characters except the first and last?
+>   - Find out what is the value of `element(1:2:end)`?
+>   - Figure out how would you get all characters except the first and last?
 >
 > 2. We used the single colon operator `:` in the indices to get all the available column or row numbers,
 >    but we can also use it like this: `M(:)`. What do you think will happen?

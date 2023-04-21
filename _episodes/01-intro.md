@@ -1,6 +1,6 @@
 ---
 title: Working With Variables
-teaching: 40
+teaching: 30
 exercises: 5
 questions:
 - "How can I store values and do simple calculations with them?"
@@ -137,36 +137,6 @@ z =
 where we used the caret symbol `^` to take the third power of y.
 
 
-> ## Predicting Variable Values
->
-> Predict what variables refer to what values after each statement in the following program:
-> ```
-> >> mass = 10
-> >> age = 30/12
-> >> mass = mass * 2.0
-> >> age + 0.5
-> >> frac = mass/age
-> ```
-> {: .language-matlab}
->
-> > ## Solution
-> > The first two lines assign the initial values to the variables, so mass = 10 and age = 2.5.
-> > The next line evaluates `mass * 2.0` i.e. `10 * 2.0 = 20`,
-> > *then* assigns the result to the variable `mass`.
-> > The next line evaluates `age + 0.5` i.e. `2.5 + 0.5`, but the value is not saved, so it is saved in ans.
-> > The last line evaulates `mass / age` i.e. `20 / 2.5`, *then* assigns the result to the variable `frac`.
-> > So at the end, your workspace will have the variables:
-> >
-> > - age = 2.5
-> > - ans = 3
-> > - frac = 8
-> > - mass = 20
-> >
-> {: .solution}
-{: .challenge}
-
-
-
 ### Logical operations
 
 In programming, there is another type of opperation that becomes very important: comparison.
@@ -203,7 +173,45 @@ The "type" of data is not the same as a number.
 It comes froma  logical comparison, and so matlab identifies it as such.
 
 You can also see that in the workspace these variables have a tick next to them, instead of the squares we had seen.
-There is actually other symbols we can get there, which relate to the types of information we can save (more on this in a bit).
+There is actually other symbols we can get there, which relate to the types of information we can save (unfold the info below if you want to know more).
+
+
+> ## Data types
+> We mentioned above that we can get other symbols in the workspace which relate to the types of information we can save.
+>
+> We know we can save numbers, and logical values, but we can also save letters or strings, for example.
+> Numbers are by default saved as type [*double*](https://uk.mathworks.com/help/matlab/ref/double.html),
+> which just means they can store very big or very small numbers.
+> Letters are type ['*char*'](https://uk.mathworks.com/help/matlab/ref/char.html),
+> and words or sentences are ["*strings*"](https://uk.mathworks.com/help/matlab/ref/string.html).
+> Logical values (or booleans) are values that mean [true](https://uk.mathworks.com/help/matlab/ref/true.html)
+> or [false](https://uk.mathworks.com/help/matlab/ref/false.html), and are represented with zero or one.
+> They are usually the result of comparing things.
+> ```
+> >> weight = 64.5
+> >> size3 = 'L'
+> >> patient_name = "Jane Doe"
+> >> alive_on_day_3 = true
+> ```
+> {: .language-matlab}
+> ```
+> weight =
+>    64.5000
+> size3 =
+>     'L'
+> patient_name =
+>     "Jane Doe"
+> alive_on_day_3 =
+>   logical
+>    1
+> ```
+> {: .output}
+>
+> Notice the single tick for character variables, in contrast with the double quote for strings.
+>
+> If you look at the woorkspace, you'll notice that the icon next to each variable is different,
+> and if you hover over it, it will tell you the type of variable it is.
+{: .solution}
 
 We can also check if two variables (or even operations) are the same
 ```
@@ -245,6 +253,7 @@ c5 =
 ```
 {: .output}
 
+
 > ## Negating conditions and including the limits
 >
 > We often asks questions or characterise things in negative.
@@ -260,10 +269,7 @@ c5 =
 > Can you express these questions in matlab code?
 > - Is 1 + 2 + 3 + 4 not smaller than 10?
 > - Is 5 to the power of 3 different from 125?
->
-> Can you ask these questions using a negative instead? Code them!
-> - Is 42 greater or equal to 2 * 3 * 7?
-> - Is x + y smaller than x/y?
+> - Is x + y not greater or equal to x/y?
 >
 > > ## Solution
 > > We can ask the first two question in positive, encapsulate it in brackets, and then negate it:
@@ -274,11 +280,8 @@ c5 =
 > > So the second question, we could have asked instead with
 > > - `5^3 ~= 125`
 > >
-> > The next two questions we need to first figure out what the negative is.
-> > - The negative os "greater or equal" is simply "smaller", and so our question is
-> > "Is 42 not smaller than 2 * 3 * 7?, which in code is `~(42 < 2 * 3 * 7)`.
-> > - The negative of "smaller" is in turn "greater or equal", so our question turns into
-> > "Is x+y not greater or equal to x/y?", which in code is `~(x+y > x/y || x+y == x/y)`.
+> > - We can ask if x+y is greater or equal to x/y with `x+y > x/y || x+y == x/y`, so asking if
+> > x + y not greater or equal to x/y we do by negating the above with brackets: `~(x+y > x/y || x+y == x/y)`
 > >
 > > That last one seems a bit too complicated, and it is all beacuse we need to *include the limit*,
 > > that is, because we want to include values that are greater ***and*** equal to something.
@@ -289,43 +292,6 @@ c5 =
 > {: .solution}
 {: .challenge}
 
-
-## Data types
-
-We mentioned above that we can get other symbols in the workspace which relate to the types of information we can save.
-
-We know we can save numbers, and logical values, but we can also save letters or strings, for example.
-Numbers are by default saved as type [*double*](https://uk.mathworks.com/help/matlab/ref/double.html),
-which just means they can store very big or very small numbers.
-Letters are type ['*char*'](https://uk.mathworks.com/help/matlab/ref/char.html),
-and words or sentences are ["*strings*"](https://uk.mathworks.com/help/matlab/ref/string.html).
-Logical values (or booleans) are values that mean [true](https://uk.mathworks.com/help/matlab/ref/true.html)
-or [false](https://uk.mathworks.com/help/matlab/ref/false.html), and are represented with zero or one.
-They are usually the result of comparing things.
-```
->> weight = 64.5
->> size3 = 'L'
->> patient_name = "Jane Doe"
->> alive_on_day_3 = true
-```
-{: .language-matlab}
-```
-weight =
-   64.5000
-size3 =
-    'L'
-patient_name =
-    "Jane Doe"
-alive_on_day_3 =
-  logical
-   1
-```
-{: .output}
-
-Notice the single tick for character variables, in contrast with the double quote for strings.
-
-If you look at the woorkspace, you'll notice that the icon next to each variable is different,
-and if you hover over it, it will tell you the type of variable it is.
 
 
 

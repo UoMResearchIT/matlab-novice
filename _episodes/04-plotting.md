@@ -12,6 +12,8 @@ keypoints:
 - "Use `plot(vector)` to visualize data in the y axis with an index number in the x axis."
 - "Use `plot(X,Y)` to specify values in both axes."
 - "Document your plots with `title('My title')`, `xlabel('My horizontal label')` and `ylabel('My vertical label')`."
+- "Use `hold on` and `hold off` to plot multiple lines at the same time."
+- "Use `legend` and add `,'DisplayName','legend name here'` inside the plot function to add a legend."
 - "Use `subplot(m,n,p)` to create a grid of `m` x `n` plots, and choose a position `p` for a plot."
 ---
 
@@ -25,18 +27,27 @@ deserves an entire lecture (or course) of its own, but we can
 explore a few features of MATLAB here.
 
 We will start by exploring the function `plot`.
-If we only provide a vector as an argument it plots a data-point for each value on the y axis,
-and it uses the index of each element as the x axis.
-The the average (accross patients) inflammation over time can then be plotted with:
+The most common usage is to provide two vectors, like `plot(X,Y)`.
+Lets start by plotting the the average (accross patients) inflammation over time.
+For the `Y` vector we can provide `per_day_mean`,
+and for the `X` vector we can simply use the day number,
+which we can generate as a range with `1:40`.
+Then our plot can be generated with:
 ```
->> plot(per_day_mean)
+>> plot(1:40,per_day_mean)
 ```
 {: .language-matlab}
+> **Note:** If we only provide a vector as an argument it plots a data-point for each value on the y axis,
+and it uses the index of each element as the x axis.
+> For our patient data the indices coincide with the day of the study,
+> so `plot(per_day_mean)` generates the same plot.
+> In most cases, however, using the indices on the x axis is not desireable.
+{: .callout}
 > **Note:** We do not even need to have the vactor saved as a variable.
 > We would obtain the same plot with the command `plot(mean(patient_data, 1))`.
 {: .callout}
 
-As it is, the image is useless.
+As it is, the image is not very informative.
 We need to give the figure a `title` and label the axes using `xlabel` and `ylabel`,
 so that other people can understand what it shows
 (including us if we return to this plot 6 months from now).
@@ -80,26 +91,38 @@ smoothly, while the minimum seems to be a step function. Neither result
 seems particularly likely, so either there's a mistake in our
 calculations or something is wrong with our data.
 
-> ## Specifying both axes
->
-> For our patient data the indices coincide with the day of the study,
-: but in most cases using the indices on the x axis is not desireable.
-> To pass data for both the x and y values we can use the same `plot` function,
-> but we give it two vectors as arguments `(X,Y)`.
-> For example, the snipet bellow defines both `X` and `Y` and plots them:
-> ```
-> >> time=0:.1:14;
-> >> sin_t=sin(t);
-> >> plot(time,sin_t)
-> >> title('Sinusoidal function')
-> >> ylabel("sin(t)")
-> >> xlabel("t")
-> ```
-> {: .language-matlab}
->
-> ![Sine Function]({{ page.root }}/fig/sine.png)
->
-{: .callout}
+## Multiple lines in a plot
+
+It is often the case that we want more than one line in a single plot.
+In matlab we can "hold" a plot and keep plotting on top.
+For example, we might want to contrast the mean values accross patients
+with the information of a single patient.
+If we are displaying more than one line, it is important we add a legend.
+We can specify the legend names by adding `,'DisplayName',"legend name here"`
+inside the plot function. We then need to activate the legend by running `legend`
+So, to plot the mean values we first do:
+```
+>> plot(per_day_mean,'DisplayName',"Mean")
+>> legend
+>> title('Daily average inflammation')
+>> xlabel('Day of trial')
+>> ylabel('Inflammation')
+```
+{: .language-matlab}
+
+![Average inflamation with legend]({{ page.root }}/fig/average_inflammation_with_legend.png)
+
+Then, we can use the instruction `hold on` to add a plot for patient_5.
+```
+>> hold on
+>> plot(patient_5,'DisplayName',"Patient 5")
+>> hold off
+```
+{: .language-matlab}
+
+![Average inflamation and Patient 5]({{ page.root }}/fig/average_inflammation_and_patient_5_with_legend.png)
+
+Remember to tell matlab you are done by adding `hold off` when you are done!
 
 
 ## Subplots
@@ -170,7 +193,7 @@ whereas `heatmap` can process [tables](https://uk.mathworks.com/help/matlab/ref/
 (that can have strings or categories in them).
 In our case, which one you use is a matter of taste.
 
-### Conclusions on our data analysis
+### Is all our data corrupt?
 Our work so far has convinced us that something is wrong with our
 first data file. We would like to check the other 11 the same way,
 but typing in the same commands repeatedly is tedious and error-prone.
