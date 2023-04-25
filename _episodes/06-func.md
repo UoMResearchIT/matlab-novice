@@ -14,42 +14,23 @@ keypoints:
 - "Define functions using the `function` keyword."
 ---
 
-If we only had one data set to analyze,
-it would probably be faster to load the file into a spreadsheet
-and use that to plot some simple statistics.
-But we have twelve files to check,
-and may have more in future.
-In this lesson,
-we'll learn how to write a function
-so that we can repeat several operations with a single command.
+In the `patient_analysis` script we created,
+we can choose which patient to analyse by modifying the variable `patient_number`.
+If we want patient 13, we need to open `patient_analysis.m`, go to line 9, modify the variable,
+save and then run `patient_analysis`.
+This is a lot of steps for such a simple request.
 
-Let's start by defining a function `fahr_to_kelvin` that converts temperatures from Fahrenheit to Kelvin:
-
-~~~
-function ktemp = fahr_to_kelvin(ftemp)
-    %FAHR_TO_KELVIN   Convert Fahrenheit to Kelvin
-
-    ktemp = ((ftemp - 32) * (5/9)) + 273.15;
-end
-~~~
-{: .language-matlab}
+We have used a few predefined Matlab functions, to which we can provide arguments.
+So how can we define a function in Matlab?
 
 A MATLAB function *must* be saved in a text file with a `.m` extension.
 The name of that file must be the same as the function defined
 inside it. The name must start with a letter and cannot contain spaces.
-So, you will need to save the above code in a file called
-`fahr_to_kelvin.m`.
-Remember to save your m-files in the current directory.
 
-The first line of our function is called the *function definition*,
-and it declares that we're writing a function named `fahr_to_kelvin`,
-that has a single input parameter,`ftemp`,
-and a single output parameter, `ktemp`.
+The first line of our function is called the *function definition*.
 Anything following the function definition line is called the *body* of the
 function. The keyword `end` marks the end of the function body, and the
 function won't know about any code after `end`.
-
-![function-definition]({{ page.root }}/fig/function_definition.png)
 
 A function can have multiple input and output parameters if required,
 but isn't required to have any of either.
@@ -77,88 +58,159 @@ current working directory.
 > the path for functions called from the command line.
 {: .callout}
 
-We can call our function from the command line
-like any other MATLAB function:
+We already have a `.m` file called `patient_analysis`, so lets define a function with that name.
 
-~~~
->> fahr_to_kelvin(32)
-~~~
+Open the `patient_analysis.m` file, if you don't already have it open.
+Instead of line 9, where `patient_number` is set, we want to provide that variable as an input.
+So lets remove that line, and right at the top of our script we'll add the function definition
+telling matlab what our function is called and what inputs it needs.
+```
+function patient_analysis(patient_number)
+    % PATIENT_ANALYSIS   Computes mean, max and min of a patient and compares to global statistics.
+
+    % Load patient data
+    patient_data = readmatrix('data/inflammation-01.csv');
+
+    % Compute global statistics
+    g_mean = mean(patient_data(:));
+    g_max = max(patient_data(:));
+    g_min = min(patient_data(:));
+
+    % Compute patient statistics
+    p_mean = mean(patient_data(patient_number,:));
+    p_max = max(patient_data(patient_number,:));
+    p_min = min(patient_data(patient_number,:));
+
+    % Compare patient vs global
+    disp('Patient:')
+    disp(patient_number)
+    disp('High mean?')
+    disp(p_mean > g_mean)
+    disp('Highest max?')
+    disp(p_max == g_max)
+    disp('Lowest min?')
+    disp(p_min == g_min)
+
+end
+```
 {: .language-matlab}
 
-~~~
-ans = 273.15
-~~~
+Congratulations! You've now created a Matlab function.
+
+You may have noticed that the code inside the function is indented.
+Matlab does not need this, but it makes it much more readable!
+
+Lets clear our workspace and run our function in the command line:
+```
+>> clear
+>> clc
+>> patient_analysis(13)
+```
+{: .language-matlab}
+```
+Patient 5:
+High mean?
+   1
+Highest max?
+   0
+Lowest min?
+   1
+```
 {: .output}
 
-When we pass a value, like `32`, to the function, the value is assigned
-to the variable `ftemp` so that it can be used inside the function. If we
-want to return a value from the function, we must assign that value to a
-variable named `ktemp`---in the first line of our function, we promised
-that the output of our function would be named `ktemp`.
+So now we can get the patient analysis of whichever patient we want,
+and we do not need to modify `patient_analysis.m` anymore.
+However, you may have noticed that we have no variables in our workspace.
+Inside the function, the variables `patient_data`, `g_mean`, `g_max`, `g_min`, `p_mean`,
+`p_max`, and `p_min` are created, but then they are deleted when the function ends.
 
-Outside of the function, the variables `ftemp` and `ktemp` aren't visible;
-they are only used by the function body to refer to the input and
-output values.
+## Introduce debugger here???
 
 This is one of the major differences between scripts and functions:
 a script can be thought of as automating the command line,
 with full access to all variables in the base workspace,
-whereas a function can only read and write variables from the calling workspace
-if they are passed as arguments ---
-i.e. a function has its own separate workspace.
+whereas a function has its own separate workspace.
 
-Now that we've seen how to convert Fahrenheit to Kelvin, it's easy to convert
-Kelvin to Celsius.
+To be able to access variables from your workspace, you have to pass them in as inputs.
+To be able to save variables to your workspace, it needs to return them as outputs.
 
-~~~
-function ctemp = kelvin_to_celsius(ktemp)
-    %KELVIN_TO_CELSIUS   Convert from Kelvin to Celcius
+Lets say, for example, that we want to save the mean of each patient.
+In our `patient_analysis.m` we already compute the value and save it in `p_mean`,
+but we need to tell matlab that we want the function to return it.
 
-    ctemp = ktemp - 273.15;
-end
-~~~
+To do that we modify the function definition like this:
+```
+function p_mean = patient_analysis(patient_number)
+```
 {: .language-matlab}
 
-Again, we can call this function like any other:
+It is important that the variable name is the same that is used inside the function.
 
-~~~
->> kelvin_to_celsius(0.0)
-~~~
+If we now run our function in the command line, we get:
+```
+p13 = patient_analysis(13)
+```
 {: .language-matlab}
+```
+Patient 5:
+High mean?
+   1
+Highest max?
+   0
+Lowest min?
+   1
 
-~~~
-ans = -273.15
-~~~
+p13 =
+    6.2250
+```
 {: .output}
 
-What about converting Fahrenheit to Celsius?
-We could write out the formula, but we don't need to.
-Instead, we can [compose]({{ page.root }}/reference.html#function-composition) the two
-functions we have already created:
-
-~~~
-function ctemp = fahr_to_celsius(ftemp)
-    %FAHR_TO_CELSIUS   Convert Fahrenheit to Celcius
-
-    ktemp = fahr_to_kelvin(ftemp);
-    ctemp = kelvin_to_celsius(ktemp);
-end
-~~~
+We could return more outputs if we want.
+For example, lets return the min and max as well.
+To do that, we need to specify all the outputs in square brackets, as an array.
+So we need to replace the function definition for:
+```
+function [p_mean,p_max,p_min] = patient_analysis(patient_number)
+```
 {: .language-matlab}
 
-Calling this function,
-
-~~~
->> fahr_to_celsius(32.0)
-~~~
+To call our function now we need to provide space for all 3 outputs,
+so in the command line, we run it as:
+```
+[p13_mean,p13_max,p13_min] = patient_analysis(13)
+```
 {: .language-matlab}
-
-we get, as expected:
-
-~~~
-ans = 0
-~~~
+```
+Patient 5:
+High mean?
+   1
+Highest max?
+   0
+Lowest min?
+   1
+p13_mean =
+    6.2250
+p13_max =
+    17
+p13_min =
+     0
+```
 {: .output}
+
+> **Note**
+> If you had not provided space for all the outputs,
+> Matlab assumes you are only interested in the first one,
+> so `ans` would save the mean.
+{: .callout}
+
+## Could add an `if` here, to prevent the output print?
+
+## Stopped editing here!!!
+
+
+
+
+
 
 This is our first taste of how larger programs are built:
 we define basic operations,
