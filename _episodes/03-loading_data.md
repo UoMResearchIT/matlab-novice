@@ -41,7 +41,7 @@ Before we get started, however, let's create some directories to help organise t
 {: .callout}
 
 We already have a `data` directory in our `matlab-novice-inflammation` project directory,
-so we only need to create a `results` directory for this project.
+so we only need to create `results` and `src` directories for this project.
 You can use your computer's file browser to create this directory.
 
 A final step is to set the *current folder* in MATLAB to our project folder.
@@ -54,7 +54,7 @@ of the working directory ---
 we should get the following output:
 
 ```
-data   results
+data   results src
 ```
 {: .output}
 
