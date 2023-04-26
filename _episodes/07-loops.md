@@ -275,7 +275,7 @@ and we can re-use variables previously defined as loop variables as well:
 ~~~
 {: .output}
 
-## Effectively gathering then filenames of multiple files
+## Effectively gathering the filenames of multiple files
 
 There is one major problem remaining with our script: we have to manually create the `filenames` array. Wouldn't it 
 be good if we could tell MATLAB to automatically generate a list of the data files in a particular folder? That way
