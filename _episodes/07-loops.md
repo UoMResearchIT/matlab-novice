@@ -143,6 +143,7 @@ for file_index = 1:12
 end
 
 ~~~
+{: .language-matlab}
 
 This improved version uses a [for loop]({{ page.root }}/reference.html#for-loop) to
 repeat an operation---in this case, reading in some data and adding it to the `data` array---once for
@@ -191,6 +192,7 @@ for file_index = 1:2
 end
 
 ~~~
+{: .language-matlab}
 
 Although this works,
 it's not the best way to write our loop:
@@ -219,6 +221,7 @@ for file_index = length(filenames)
     cat(1, data, study_data)
 end
 ~~~
+{: .language-matlab}
 
 This is much more robust code,
 as it can deal identically with
@@ -272,7 +275,7 @@ and we can re-use variables previously defined as loop variables as well:
 ~~~
 {: .output}
 
-## Effectively gathering then filenames of multiple files
+## Effectively gathering the filenames of multiple files
 
 There is one major problem remaining with our script: we have to manually create the `filenames` array. Wouldn't it 
 be good if we could tell MATLAB to automatically generate a list of the data files in a particular folder? That way
@@ -344,7 +347,7 @@ end
 
 
 ~~~
->> plot_all
+>> statistics_all
 ~~~
 {: .language-matlab}
 
@@ -384,7 +387,7 @@ end
 
 
 ~~~
->> plot_all
+>> statistics_all
 ~~~
 {: .language-matlab}
 
@@ -412,65 +415,71 @@ inflammation-12.csv
 > Use the code we've just written to read in all of the trial data into one array and then write a for loop that 
 > generates comparison plots for the first 10 patients in the array and saves them to disk. Reuse the `patient_vs_mean`
 > function we wrote at the end of the last lesson.
->>
->> ## Solution
->> ~~~
->> %PlOT_PATIENT_VS_MEAN_SAMPLE Running patient_vs_mean on a sample of patients.
->>
->> files = dir("data/inflammation-*.csv");
->> filenames = [];
->>
->> for i = 1:length(files)
->>  file_name = files(i).name;
->>  file_name = fullfile("data", file_name);
->>  filenames = [filenames; file_name]
->>  disp(filenames(i));
->> end
->>
->> data = []
->>
->> for file_index = 1:12
->>  study_data = readmatrix(filenames(file_index));
->>  data = cat(1, data, study_data);
->> end
->>
->> per_day_mean = mean(data);
->>
->> for patient_no = 1:10
->>  patient_vs_mean(per_day_mean, data(patient_no,:), ['patient '+string(patient_no)])
->> end
->> ~~~
+>
+> > ## Solution
+> > ~~~
+> > %PlOT_PATIENT_VS_MEAN_SAMPLE Running patient_vs_mean on a sample of patients.
+> >
+> > files = dir("data/inflammation-*.csv");
+> > filenames = [];
+> >
+> > for i = 1:length(files)
+> >  file_name = files(i).name;
+> >  file_name = fullfile("data", file_name);
+> >  filenames = [filenames; file_name]
+> >  disp(filenames(i));
+> > end
+> >
+> > data = []
+> >
+> > for file_index = 1:12
+> >  study_data = readmatrix(filenames(file_index));
+> >  data = cat(1, data, study_data);
+> > end
+> >
+> > per_day_mean = mean(data);
+> >
+> > for patient_no = 1:10
+> >  patient_vs_mean(per_day_mean, data(patient_no,:), ['patient '+string(patient_no)])
+> > end
+> > ~~~
+> > {: .language-matlab}
+> {: .solution}
+{: .challenge}
 >
 > Can we modify the script to generate a plot for every 50 patients in the full data set? Recall that we can 
 > generate ranges with increments of different sizes, for example `1:2:10`.
 >
->> ## Solution
->> ~~~
->> %PlOT_PATIENT_VS_MEAN_SAMPLE Running patient_vs_mean on a sample of patients.
->>
->> files = dir("data/inflammation-*.csv");
->> filenames = [];
->>
->> for i = 1:length(files)
->>  file_name = files(i).name;
->>  file_name = fullfile("data", file_name);
->>  filenames = [filenames; file_name];
->>  disp(filenames(i))
->> end
->>
->> data = []
->>
->> for file_index = 1:12
->>  study_data = readmatrix(filenames(file_index));
->>  data = cat(1, data, study_data);
->> end
->>
->> per_day_mean = mean(data);
->>
->> for patient_no = 1:50:length(data)
->>  patient_vs_mean(per_day_mean, data(patient_no,:), ['patient '+string(patient_no)])
->> end
->> ~~~
+> > ## Solution
+> > ~~~
+> > %PlOT_PATIENT_VS_MEAN_SAMPLE Running patient_vs_mean on a sample of patients.
+> >
+> > files = dir("data/inflammation-*.csv");
+> > filenames = [];
+> >
+> > for i = 1:length(files)
+> >  file_name = files(i).name;
+> >  file_name = fullfile("data", file_name);
+> >  filenames = [filenames; file_name];
+> >  disp(filenames(i))
+> > end
+> >
+> > data = []
+> >
+> > for file_index = 1:12
+> >  study_data = readmatrix(filenames(file_index));
+> >  data = cat(1, data, study_data);
+> > end
+> >
+> > per_day_mean = mean(data);
+> >
+> > for patient_no = 1:50:length(data)
+> >  patient_vs_mean(per_day_mean, data(patient_no,:), ['patient '+string(patient_no)])
+> > end
+> > ~~~
+> > {: .language-matlab}
+> {: .solution}
+{: .challenge}
 
 We've now looked at how to use loops to analyze data from multiple files. Next we will look at how we can use 
 conditional statements to quickly and easily change what kind of analysis our code performs.
