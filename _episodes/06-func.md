@@ -38,7 +38,9 @@ The general form of a function is shown in the pseudo-code below:
 
 ```
 function [out1, out2] = function_name(in1, in2)
-    %FUNCTION_NAME   Function description
+    % FUNCTION_NAME   Function description
+    %    Can add more text for the function help
+    %    An example is always useful!
 
     % This section below is called the body of the function
     out1 = something calculated;
@@ -67,6 +69,9 @@ telling matlab what our function is called and what inputs it needs.
 ```
 function patient_analysis(patient_number)
     % PATIENT_ANALYSIS   Computes mean, max and min of a patient and compares to global statistics.
+    %    Takes the patient number as an input, and prints the relevant information to console.
+    %    Sample usage:
+    %       patient_analysis(5)
 
     % Load patient data
     patient_data = readmatrix('data/inflammation-01.csv');
@@ -123,8 +128,6 @@ and we do not need to modify `patient_analysis.m` anymore.
 However, you may have noticed that we have no variables in our workspace.
 Inside the function, the variables `patient_data`, `g_mean`, `g_max`, `g_min`, `p_mean`,
 `p_max`, and `p_min` are created, but then they are deleted when the function ends.
-
-## Introduce debugger here???
 
 This is one of the major differences between scripts and functions:
 a script can be thought of as automating the command line,
@@ -203,405 +206,119 @@ p13_min =
 > so `ans` would save the mean.
 {: .callout}
 
-## Could add an `if` here, to prevent the output print?
 
-## Stopped editing here!!!
-
-
-
-
-
-
-This is our first taste of how larger programs are built:
-we define basic operations,
-then combine them in ever-larger chunks to get the effect we want.
-Real-life functions will usually be larger than the ones shown
-here---typically half a dozen to a few dozen lines---but
-they shouldn't ever be much longer than that,
-or the next person who reads it won't be able to understand what's going on.
-
-> ## Concatenating in a Function
+> ## Plotting daily average of different data files
 >
-> In MATLAB, we concatenate strings by putting them into an array or using the
-> `strcat` function:
->
-> ~~~
-> >> disp(['abra', 'cad', 'abra'])
-> ~~~
-> {: .language-matlab}
->
-> ~~~
-> abracadabra
-> ~~~
-> {: .output}
->
-> ~~~
-> >> disp(strcat('a', 'b'))
-> ~~~
-> {: .language-matlab}
->
-> ~~~
-> ab
-> ~~~
-> {: .output}
->
-> Write a function called `fence` that has two parameters, `original` and
-> `wrapper` and adds `wrapper` before and after `original`:
->
-> ~~~
-> >> disp(fence('name', '*'))
-> ~~~
-> {: .language-matlab}
->
-> ~~~
-> *name*
-> ~~~
-> {: .output}
-> > ## Solution
-> > ```
-> > function wrapped = fence(original, wrapper)
-> >     %FENCE   Return original string, with wrapper prepended and appended
-> >
-> >     wrapped = strcat(wrapper, original, wrapper);
-> > end
-> > ```
-> > {: .language-matlab}
-> {: .solution}
-{: .challenge}
-
-> ## Getting the Outside
->
-> If the variable `s` refers to a string, then `s(1)` is the string's first
-> character and `s(end)` is its last. Write a function called `outer` that returns
-> a string made up of just the first and last characters of its input:
->
-> ~~~
-> >> disp(outer('helium'))
-> ~~~
-> {: .language-matlab}
->
-> ~~~
-> hm
-> ~~~
-> {: .output}
-> > ## Solution
-> > ```
-> > function ends = outer(s)
-> >     %OUTER   Return first and last characters from a string
-> > 
-> >     ends = strcat(s(1), s(end));
-> > end
-> > ```
-> > {: .language-matlab}
-> {: .solution}
-{: .challenge}
-
-> ## Variables Inside and Outside Functions
->
-> Consider our function `fahr_to_kelvin` from earlier in the episode:
-> ```
-> function ktemp = fahr_to_kelvin(ftemp)
->   %FAHR_TO_KELVIN   Convert Fahrenheit to Kelvin
->   ktemp = ((ftemp-32)*(5.0/9.0)) + 273.15;
-> end
-> ```
-> {: .language-matlab}
-> 
-> What does the following code display when run --- and why?
->
-> ~~~
-> ftemp = 0
-> ktemp = 0
->
-> disp(fahr_to_kelvin(8))
-> disp(fahr_to_kelvin(41))
-> disp(fahr_to_kelvin(32))
->
-> disp(ktemp)
-> ~~~
-> {: .language-matlab}
->
-> > ## Solution
-> > ```
-> > 259.8167
-> > 278.1500
-> > 273.1500
-> > 0
-> > ```
-> > {: .output}
-> >
-> > `ktemp` is 0 because the function `fahr_to_kelvin` has no knowledge of
-> > the variable `ktemp` which exists outside of the function.
-> {: .solution}
-{: .challenge}
-
-Once we start putting things in functions so that we can
-re-use them, we need to start testing that those functions are
-working correctly.
-To see how to do this, let's write a function to center a
-dataset around a particular value:
-
-~~~
-function out = center(data, desired)
-    out = (data - mean(data(:))) + desired;
-end
-~~~
-{: .language-matlab}
-
-We could test this on our actual data, but since we
-don't know what the values ought to be,
-it will be hard to tell if the result was correct,
-Instead, let's create a matrix of 0's, and then center that
-around 3:
-
-~~~
->> z = zeros(2,2);
->> center(z, 3)
-~~~
-{: .language-matlab}
-
-~~~
-ans =
-
-   3   3
-   3   3
-~~~
-{: .output}
-
-That looks right, so let's try out `center` function on our real data:
-
-~~~
->> data = readmatrix('data/inflammation-01.csv');
->> centered = center(data(:), 0)
-~~~
-{: .language-matlab}
-
-It's hard to tell from the default output whether the
-result is correct--this is often the case when working with
-fairly large arrays--but, there are a few simple tests that
-will reassure us.
-
-Let's calculate some simple statistics:
-
-~~~
->> disp([min(data(:)), mean(data(:)), max(data(:))])
-~~~
-{: .language-matlab}
-
-~~~
-0.00000    6.14875   20.00000
-~~~
-{: .output}
-
-And let's do the same after applying our `center` function
-to the data:
-
-~~~
->> disp([min(centered(:)), mean(centered(:)), max(centered(:))])
-~~~
-{: .language-matlab}
-
-~~~
-   -6.1487   -0.0000   13.8513
-~~~
-{: .output}
-
-That seems almost right: the original mean
-was about 6.1, so the lower bound from zero is now about -6.1.
-The mean of the centered data isn't quite zero--we'll explore
-why not in the challenges--but it's pretty close. We can even
-go further and check that the standard
-deviation hasn't changed:
-
-~~~
->> std(data(:)) - std(centered(:))
-~~~
-{: .language-matlab}
-
-~~~
-5.3291e-15
-~~~
-{: .output}
-
-The difference is very small. It's still possible that our function
-is wrong, but it seems unlikely enough that we should probably
-get back to doing our analysis. We have one more task first, though:
-we should write some [documentation]({{ page.root }}/reference.html#documentation)
-for our function to remind ourselves later what it's for and
-how to use it.
-
-~~~
-function out = center(data, desired)
-    %CENTER   Center data around a desired value.
-    %
-    %       center(DATA, DESIRED)
-    %
-    %   Returns a new array containing the values in
-    %   DATA centered around the value.
-
-    out = (data  - mean(data(:))) + desired;
-end
-~~~
-{: .language-matlab}
-
-Comment lines immediately below the function definition line
-are called "help text". Typing `help function_name` brings
-up the help text for that function:
-
-~~~
->> help center
-~~~
-{: .language-matlab}
-
-~~~
-Center   Center data around a desired value.
-
-    center(DATA, DESIRED)
-
-Returns a new array containing the values in
-DATA centered around the value.
-~~~
-{: .output}
-
-> ## Testing a Function
->
-> 1. Write a function called `normalise` that takes an array as input and returns an
->    array of the same shape with its values scaled to lie in the range 0.0 to 1.0.
->    (If L and H are the lowest and highest values in the input array, respectively,
->    then the function should map a value v to (v - L)/(H - L).) Be sure to give the
->    function a comment block explaining its use.
->
-> 1. Run `help linspace` to see how to use `linspace` to generate
->    regularly-spaced values. Use arrays like this to test your `normalise` function.
->
-> > ## Solution
-> >
-> > 1. 
-> >
-> >     ```
-> >     function out = normalise(in)
-> >         %NORMALISE   Return original array, normalised so that the
-> >         %            new values lie in the range 0 to 1.
-> >
-> >         H = max(max(in));
-> >         L = min(min(in));
-> >         out = (in-L)/(H-L);
-> >     end
-> >     ```
-> >     {: .language-matlab}
-> >
-> > 2. 
-> >
-> >     ```
-> >     a = linspace(1, 10);   % Create evenly-spaced vector
-> >     norm_a = normalise(a); % Normalise vector
-> >     plot(a, norm_a)        % Visually check normalisation
-> >     ```
-> >     {: .language-matlab}
-> {: .solution}
-{: .challenge}
-
-> ## Convert a script into a function
->
-> Write a function called `plot_dataset` which plots the three summary graphs
-> (max, min, std) for a given inflammation data file.
+> Look back at the `plot_daily_average` script.
+> The data and resulting image file names are hard-coded in the script.
+> We actually have 12 datafiles.
+> Turn the script into a function that lets you generate the plots for any of the files.
 >
 > The function should operate on a single data file,
-> and should have two parameters: `file_name` and `plot_switch`.
-> When called, the function should create the three graphs produced in the
-> previous lesson. Whether they are displayed or saved to the `results` directory
-> should be controlled by the value of `plot_switch`
-> i.e. `plot_dataset('data/inflammation-01.csv', 0)`
-> should display the corresponding graphs for the first data set;
-> `plot_dataset('data/inflammation-02.csv', 1)` should save the figures for the second
-> dataset to the `results` directory.
+> and should have two parameters: `data_file` and `plot_file`.
+> When called, the function should create the three graphs,
+> and save the plot as `plot_file`.
 >
 > You should mostly be reusing code from the `plot_all` script.
 >
-> Be sure to give your function help text.
->
 > > ## Solution
 > > ```
-> > function plot_dataset(file_name, plot_switch)
-> >     %PLOT_DATASET    Perform analysis for named data file.
-> >     %   Create figures to show average, max and min inflammation.
-> >     %   Display plots in GUI using plot_switch = 0,
-> >     %   or save to disk using plot_switch = 1.
-> >     %
-> >     %   Example:
-> >     %       plot_dataset('data/inflammation-01.csv', 0)
-> >     
-> >     % Generate string for image name:
-> >     img_name = replace(file_name, '.csv', '.png');
-> >     img_name = replace(img_name, 'data', 'results');
+> > function plot_daily_average(data_file,plot_name)
+> >     %PLOT_DAILY_AVERAGE   Plots daily average, max and min inflammation accross patients.
+> >     %   The function takes the data in data_file and saves it as plot_name
+> >     %   Example usage:
+> >     %       plot_daily_average('data/inflammation-03.csv','results/plot3.png')
 > >
-> >     patient_data = readmatrix(file_name);
-> >     
-> >     if plot_switch == 1
-> >     	figure('visible', 'off')
-> >     else
-> >     	figure('visible', 'on')
-> >     end
-> >     
-> >     subplot(2, 2, 1)
+> >     % Load patient data
+> >     patient_data = readmatrix(data_file);
+> >
+> >     figure('visible', 'off')
+> >
+> >     % Plot average inflammation per day
+> >     subplot(1, 3, 1)
 > >     plot(mean(patient_data, 1))
-> >     ylabel('average')
-> >     
-> >     subplot(2, 2, 2)
+> >     title('Daily average inflammation')
+> >     xlabel('Day of trial')
+> >     ylabel('Inflammation')
+> >
+> >     % Plot max inflammation per day
+> >     subplot(1, 3, 2)
 > >     plot(max(patient_data, [], 1))
-> >     ylabel('max')
-> >     
-> >     subplot(2, 2, 3)
+> >     title('Max')
+> >     ylabel('Inflammation')
+> >     xlabel('Day of trial')
+> >
+> >     % Plot min inflammation per day
+> >     subplot(1, 3, 3)
 > >     plot(min(patient_data, [], 1))
-> >     ylabel('min')
-> >     
-> >     if plot_switch == 1
-> >         print(img_name, '-dpng')
-> >         close()
-> >     end
-> >  end
-> >  ```
-> > {: .language-matlab}
-> {: .solution}
-{: .challenge}
-
-> ## Automate the analysis for all files
->
-> Modify the `plot_all` script so that as it loops over the
-> data files, it calls the function `plot_dataset` for each file
-> in turn.
-> Your script should save the image files to the 'results' directory
-> rather than displaying the figures in the MATLAB GUI.
->
-> > ## Solution
+> >     title('Min')
+> >     ylabel('Inflammation')
+> >     xlabel('Day of trial')
 > >
-> > ```
-> > %PLOT_ALL    Analyse all inflammation datasets
-> > %   Create figures to show average, max and min inflammation.
-> > %   Save figures to 'results' directory.
+> >     % Save plot in 'results' folder as png image:
+> >     saveas(gcf,plot_name)
 > >
-> > files = dir('data/inflammation-*.csv');
-> >
-> > for i = 1:length(files)
-> >     file_name = files(i).name;
-> >     file_name = fullfile('data', file_name);
-> >
-> >     % Process each data set, saving figures to disk.
-> >     plot_dataset(file_name, 1);
+> >     close()
 > > end
 > > ```
 > > {: .language-matlab}
 > {: .solution}
 {: .challenge}
 
-
-We have now solved our original problem: we can analyze
-any number of data files with a single command.
-More importantly, we have met two of the most important
-ideas in programming:
-
-1. Use arrays to store related values, and loops to
-   repeat operations on them.
-
-2. Use functions to make code easier to re-use and
-   easier to understand.
+> ## Plotting patient vs mean
+>
+> Create a function called `patient_vs_mean` that generates a plot like this one:
+>
+> ![Plotting patient vs mean]({{ page.root }}/fig/Subject_5.png)
+>
+> The function should have the following inputs:
+>
+> - `per_day_mean` - A 1D array with the average inflamation per day already loaded
+> (you'll have to load the data and compute per_day_mean before calling the function).
+>
+> - `pataient_data` - A 1D array with the data for the patient of interest only.
+>
+> - `patient_reference` - A string that will be used to identify the patient on the plot,
+> and also as a file name (you should add the extension `png` in your function).
+>
+> When called, the function should create and save the plot as `patient_reference`.png in the results folder.
+>
+> Look back at the previous lessons if you need to!
+>
+> > ## Solution
+> > ```
+> > function patient_vs_mean(per_day_mean,pataient_data,patient_reference)
+> >     % PATIENT_VS_MEAN   Plots the global mean and patient inflamation on top of each other.
+> >     %   per_day_mean should be a vector with the global mean.
+> >     %   pataient_data should be a vector with only the patient data.
+> >     %   patient_reference will be used to identify the patient on the plot.
+> >     %
+> >     %   Sample usage:
+> >     %       patient_data = readmatrix('data/inflammation-01.csv');
+> >     %       per_day_mean = mean(patient_data);
+> >     %       patient_vs_mean(per_day_mean,patient_data(5,:),"Subject 5")
+> >
+> >     figure('visible', 'off')
+> >
+> >     %Plot per_day_mean
+> >     plot(per_day_mean,'DisplayName',"Mean")
+> >     legend
+> >     title('Daily average inflammation')
+> >     xlabel('Day of trial')
+> >     ylabel('Inflammation')
+> >
+> >     %Overlap patient data
+> >     hold on
+> >     plot(pataient_data,'DisplayName',patient_reference)
+> >     hold off
+> >
+> >     % Save plot
+> >     saveas(gcf,"results/"+patient_reference+".png")
+> >
+> >     close()
+> >
+> > end
+> > ```
+> > {: .language-matlab}
+> {: .solution}
+{: .challenge}

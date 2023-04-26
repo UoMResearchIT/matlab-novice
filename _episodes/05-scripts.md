@@ -194,7 +194,7 @@ Lowest min?
 Let's write an H1 line at the top of our script:
 
 ```
-%PATIENT_ANALYSIS   Computes mean, max and min of a patient and compares to global statistics.
+% PATIENT_ANALYSIS   Computes mean, max and min of a patient and compares to global statistics.
 ```
 {: .language-matlab}
 
@@ -223,7 +223,7 @@ edit src/plot_daily_average.m
 In the script, lets recap what we need to do:
 
 ```
-%PLOT_DAILY_AVERAGE   Plots daily average inflammation accross patients.
+% PLOT_DAILY_AVERAGE   Plots daily average inflammation accross patients.
 
 % Load patient data
 patient_data = readmatrix('data/inflammation-01.csv');
@@ -265,7 +265,7 @@ Let's modify our `plot_daily_average` script so that it creates sub-plots,
 rather than individual plots.
 
 ```
-%PLOT_DAILY_AVERAGE   Plots daily average, max and min inflammation accross patients.
+% PLOT_DAILY_AVERAGE   Plots daily average, max and min inflammation accross patients.
 
 % Load patient data
 patient_data = readmatrix('data/inflammation-01.csv');
@@ -345,7 +345,7 @@ close()
 Adding these two lines, our finished script looks like this:
 
 ```
-%PLOT_DAILY_AVERAGE   Saves plot of daily average, max and min inflammation accross patients.
+% PLOT_DAILY_AVERAGE   Saves plot of daily average, max and min inflammation accross patients.
 
 % Load patient data
 patient_data = readmatrix('data/inflammation-01.csv');
@@ -364,14 +364,14 @@ subplot(1, 3, 2)
 plot(max(patient_data, [], 1))
 title('Max')
 ylabel('Inflammation')
-xlabel('Day')
+xlabel('Day of trial')
 
 % Plot min inflammation per day
 subplot(1, 3, 3)
 plot(min(patient_data, [], 1))
 title('Min')
 ylabel('Inflammation')
-xlabel('Day')
+xlabel('Day of trial')
 
 
 % Save plot in 'results' folder as png image:
