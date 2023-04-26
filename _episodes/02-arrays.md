@@ -79,7 +79,17 @@ assigns uniformly distributed random numbers between zero and 1.
 > You can more comfortably explore the variables `R` and `O` by double clicking them in the workspace.
 {: .callout}
 
-The [`magic` function](https://uk.mathworks.com/help/matlab/ref/magic.html) is also similar,
+By the way, the `ones` function can actually help us initialize a matrix to any value,
+because we can multiply a matrix by a constant and it will multiply each element.
+So for example,
+```
+>> Fives = ones(3,6)*5;
+```
+{: .language-matlab}
+Produces a 3x6 matrix full of fives.
+
+
+The [`magic` function](https://uk.mathworks.com/help/matlab/ref/magic.html) has a similar logic,
 but you can only declare square matrices with it.
 The magic thing about them is that the sum of the elements on each row or column add up to the same number.
 ```
@@ -225,7 +235,7 @@ ans =
 > > We need to select every other element in both dimensions.
 > > To do that, we define the apropriate intervals with an increment of 2:
 > > ```
-> > >> M(1:3:end, 2:2:end)
+> > >> M(1:3:8, 2:2:8)
 > > ```
 > > {: .language-matlab}
 > > ```

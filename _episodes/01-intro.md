@@ -142,6 +142,9 @@ where we used the caret symbol `^` to take the third power of y.
 In programming, there is another type of opperation that becomes very important: comparison.
 We can compare two numbers (or variables) to see which one is smaller, for example
 ```
+>> mass = 20
+>> age = 2.5
+>> frac = mass/age
 >> c1 = frac < 10
 ```
 {: .language-matlab}
@@ -457,5 +460,9 @@ However, it is very important that you keep it in mind, and that you do ask ques
 >
 > Another thing you might want to clear every once in a while is the output.
 > To do that, we use the command `clc`.
+> ```
+> >> clc
+> ```
+> {: .language-matlab}
 > Again, there is no way back!
 {: .callout}
