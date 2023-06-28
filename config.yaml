@@ -83,6 +83,6 @@ profiles:
 # sandpaper and varnish versions) should live
 
 
-url: 'https://swcarpentry.github.io/matlab-novice-inflammation'
+url: 'https://uomresearchit.github.io/matlab-novice/'
 analytics: carpentries
 lang: en
