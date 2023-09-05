@@ -6,9 +6,9 @@ exercises: 20
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- "Compare and contrast MATLAB function files with MATLAB scripts."
+- "Learn the how to write a function"
 - "Define a function that takes arguments."
-- "Test a function."
+- "Compare and contrast MATLAB function files with MATLAB scripts."
 - "Recognize why we should divide programs into small, single-purpose functions."
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -16,13 +16,134 @@ exercises: 20
 :::::::::::::::::::::::::::::::::::::::: questions
 
 - "How can I teach MATLAB how to do new things?"
+- "How can I make programs I write more reliable and re-usable?"
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+It has come to our attention that the data about inflammation that we've been analysing contains some systematic errors. 
+The measurements were made using the incorrect scale, with inflammation recorded in Arbitrary Inflammation Units (AIU) 
+rather than the scientific standard International Inflmmation Units (IIU). Luckily there is a handy formula which can be 
+used for converting measurements in AIU to IIU, but it involves some hard to remember constants:
+
+```matlab
+inflammation_IIU = (inflammation_AIU + B)*A
+B = 5.634
+A = 0.275
+```
+There are several files worth of data to be converted from AIU to IIU: is there a way we can do this quickly and 
+conveniently? If we have to re-enter the conversion formula multiple times, the chance of us getting the constants 
+wrong is high. Thankfully there is a convenient way to teach MATLAB new to do new things, like our conversion formula.
+We can do this by writing a function.
+
+We have already used a few predefined MATLAB functions which we can pass arguments to. How can we define our own? A 
+MATLAB function *must* be saved in a text file with a `.m` extension. The name of the file must be the same as the name
+of the function defined in the file.
+
+The first line of our function is called the *function definition* and must include the special `function` keyword to 
+let MATLAB know that we are defining a function. Anything following the function definition line is called the *body*
+of the function. The keyword `end` marks the end of the function body. The function only knows about code that comes
+between the function definition line and the `end` keyword. It will not have access to variables from outside this block
+of code apart from those that are passed in as *arguments* or *input parameters*. The rest of our code won't have access 
+to any variables from inside this block, apart from those that are passed out as *output parameters*.
+
+A function can have multiple input and output parameters as required, but doesn't have to have any. The general form
+of a function is shown in the pseudo-code below:
+
+```matlab
+function [out1, out2] = function_name(in1, in2)
+    % FUNCTION_NAME   Function description
+    %    Can add more text for the function help
+    %    An example is always useful!
+
+    % This section below is called the body of the function
+    out1 = calculation using in1 and in2;
+    out2 = another calculation;
+end
+```
+
+Just as we saw with scripts, functions must be _visible_ to MATLAB, i.e.,
+a file containing a function has to be placed in a directory that
+MATLAB knows  about. The most convenient of those directories is the
+current working directory.
+
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## GNU Octave
+
+In common with MATLAB, Octave searches the current working directory and
+the path for functions called from the command line.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Let's put this into practice to create a function that will teach MATLAB to use our AIU to IIU conversion formula.
+Create a file called `inflammation_AIU_to_IIU.m` in the current working directory, enter the following function 
+definition, and save the file:
+
+```matlab
+function inflammation_in_IIU = function inflammation_AIU_to_IIU(inflammation_in_AIU)
+   % INFLAMMATION_AIU_TO_IIU  Convert inflammation mesured in AIU to inflammation measued in AIU.
+
+   A = 0.275;
+   B = 5.634;
+
+   inflammation_in_IIU = (inflammation_in_AIU + B)*A;
+
+end
+```
+We can now call our function as we would any other function in MATLAB:
+
+```matlab
+>> inflammation_AIU_to_IIU(6)
+```
+
+```output
+ans = 3.19935
+```
+
+When we pass a value, like `6`, to the function, it is assigned to the variable `inflammation_in_AIU` so that it can 
+be used in the body of the function. To return a value from the function, we must assign that value to the variable
+`inflammation_in_IIU` from our function definition line. What ever value `inflammation_in_IIU` has when the `end` 
+keyword in the function definition is reached, that will be the value returned.
+
+Outside the function, the variables `inflammation_in_AIU`, `inflammation_in_IIU`, `A`, and `B` aren't accessible; they
+are only used by in function body. This is one of the major differences between scripts and functions. Scripts can be
+thought of as automating the command line and have access to all the variables in the base workspace, whereas a function
+can only read variables from the base workspace if they are passed in as arguments. Functions can only set variables in
+the base workspace if it passes them back as output.
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Writing your own conversion function
+
+We'd like a function that reverses the conversion of AIU to IIU. Re-arrange the conversion
+formula and write a function called `inflammation_IIU_to_AIU` that converts inflammation measued in IIU to inflammation
+measured in AIU.
+
+Remember to save your function definition in a file with the required name, start the file with the function definition 
+line, followed by the function body, ending with the `end` keyword.
+
+:::::::::::::  solution
+
+```matlab
+function inflammation_in_AIU = inflammation_IIU_to_AIU(inflammation_in_IIU)
+   % INFLAMMTION_IIU_TO_AIU   Convert inflammation measured in IIU to inflammation measured in AIU.
+
+   A = 0.275;
+   B = 5.634;
+
+   inflammation_in_AIU = inflammation_in_IIU/A - B;
+
+end
+```
+
+:::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 In the `patient_analysis` script we created,
 we can choose which patient to analyse by modifying the variable `patient_number`.
-If we want patient 13, we need to open `patient_analysis.m`, go to line 9, modify the variable,
+If we want information about patient 13, we need to open `patient_analysis.m`, go to line 9, modify the variable,
 save and then run `patient_analysis`.
 This is a lot of steps for such a simple request.
 
