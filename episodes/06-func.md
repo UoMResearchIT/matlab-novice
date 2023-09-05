@@ -6,8 +6,9 @@ exercises: 20
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- "Compare and contrast MATLAB function files with MATLAB scripts."
+- "Learn the how to write a function"
 - "Define a function that takes arguments."
+- "Compare and contrast MATLAB function files with MATLAB scripts."
 - "Recognize why we should divide programs into small, single-purpose functions."
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -15,6 +16,7 @@ exercises: 20
 :::::::::::::::::::::::::::::::::::::::: questions
 
 - "How can I teach MATLAB how to do new things?"
+- "How can I make programs I write more reliable and re-usable?"
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -113,7 +115,7 @@ the base workspace if it passes them back as output.
 
 ## Writing your own conversion function
 
-For completeness, we'd like a function that the reverses the conversion of AIU to IIU. Re-arrange the conversion
+We'd like a function that reverses the conversion of AIU to IIU. Re-arrange the conversion
 formula and write a function called `inflammation_IIU_to_AIU` that converts inflammation measued in IIU to inflammation
 measured in AIU.
 
@@ -132,9 +134,11 @@ function inflammation_in_AIU = inflammation_IIU_to_AIU(inflammation_in_IIU)
    inflammation_in_AIU = inflammation_in_IIU/A - B;
 
 end
-
-
 ```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 In the `patient_analysis` script we created,
