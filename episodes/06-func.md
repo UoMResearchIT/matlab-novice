@@ -20,6 +20,8 @@ exercises: 20
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Writing functions from scratch
+
 It has come to our attention that the data about inflammation that we've been analysing contains some systematic errors. 
 The measurements were made using the incorrect scale, with inflammation recorded in Arbitrary Inflammation Units (AIU) 
 rather than the scientific standard International Inflmmation Units (IIU). Luckily there is a handy formula which can be 
@@ -32,10 +34,10 @@ A = 0.275
 ```
 There are several files worth of data to be converted from AIU to IIU: is there a way we can do this quickly and 
 conveniently? If we have to re-enter the conversion formula multiple times, the chance of us getting the constants 
-wrong is high. Thankfully there is a convenient way to teach MATLAB new to do new things, like our conversion formula.
+wrong is high. Thankfully there is a convenient way to teach MATLAB how to do new things, like our converting AIU to IIU.
 We can do this by writing a function.
 
-We have already used a few predefined MATLAB functions which we can pass arguments to. How can we define our own? A 
+We have already used some predefined MATLAB functions which we can pass arguments to. How can we define our own? A 
 MATLAB function *must* be saved in a text file with a `.m` extension. The name of the file must be the same as the name
 of the function defined in the file.
 
@@ -61,10 +63,8 @@ function [out1, out2] = function_name(in1, in2)
 end
 ```
 
-Just as we saw with scripts, functions must be _visible_ to MATLAB, i.e.,
-a file containing a function has to be placed in a directory that
-MATLAB knows  about. The most convenient of those directories is the
-current working directory.
+Just as we saw with scripts, functions must be _visible_ to MATLAB, i.e., a file containing a function has to be placed 
+in a directory that MATLAB knows  about. The most convenient of those directories is the current working directory.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
@@ -140,56 +140,29 @@ end
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-
-In the `patient_analysis` script we created,
-we can choose which patient to analyse by modifying the variable `patient_number`.
-If we want information about patient 13, we need to open `patient_analysis.m`, go to line 9, modify the variable,
-save and then run `patient_analysis`.
-This is a lot of steps for such a simple request.
-
-We have used a few predefined Matlab functions, to which we can provide arguments.
-So how can we define a function in Matlab?
-
-A MATLAB function *must* be saved in a text file with a `.m` extension.
-The name of that file must be the same as the function defined
-inside it. The name must start with a letter and cannot contain spaces.
-
-The first line of our function is called the *function definition*.
-Anything following the function definition line is called the *body* of the
-function. The keyword `end` marks the end of the function body, and the
-function won't know about any code after `end`.
-
-A function can have multiple input and output parameters if required,
-but isn't required to have any of either.
-The general form of a function is shown in the pseudo-code below:
-
-```matlab
-function [out1, out2] = function_name(in1, in2)
-    % FUNCTION_NAME   Function description
-    %    Can add more text for the function help
-    %    An example is always useful!
-
-    % This section below is called the body of the function
-    out1 = something calculated;
-    out2 = something else;
-end
-```
-
-Just as we saw with scripts, functions must be _visible_ to MATLAB, i.e.,
-a file containing a function has to be placed in a directory that
-MATLAB knows  about. The most convenient of those directories is the
-current working directory.
-
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## GNU Octave
+## Functions that work on arrays
 
-In common with MATLAB, Octave searches the current working directory and
-the path for functions called from the command line.
+One of the benefits of writing functions in MATLAB is that functions like the ones we have just written that take
+a single numerical variable as input, perform a straightforward calculation, and return a single numerical variable 
+as output will also be able to operate on an array of numerical variables *for free*.
+
+This will make converting the inflammation data in our files using the function we've just written very quick. Give it 
+a go!
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-We already have a `.m` file called `patient_analysis`, so lets define a function with that name.
+## Transforming scripts into functions
+
+In the `patient_analysis` script we created, we can choose which patient to analyse by modifying the variable 
+`patient_number`. If we want information about patient 13, we need to open `patient_analysis.m`, go to line 9, modify 
+the variable, save and then run `patient_analysis`. This is a lot of steps for such a simple request.
+
+Can we use what we've learned about writing functions to transform (or *refactor*) our script into a function, increasing 
+its usefulness in the process?
+
+We already have a `.m` file called `patient_analysis`, so lets begin by defining a function with that name.
 
 Open the `patient_analysis.m` file, if you don't already have it open.
 Instead of line 9, where `patient_number` is set, we want to provide that variable as an input.
@@ -228,10 +201,10 @@ function patient_analysis(patient_number)
 end
 ```
 
-Congratulations! You've now created a Matlab function.
+Congratulations! You've now created a Matlab function from a Matlab script!
 
-You may have noticed that the code inside the function is indented.
-Matlab does not need this, but it makes it much more readable!
+You may have noticed that the code inside the function is indented. Matlab does not need this, but it makes it much more 
+readable!
 
 Lets clear our workspace and run our function in the command line:
 ```matlab
@@ -249,16 +222,13 @@ Lowest min?
    1
 ```
 
-So now we can get the patient analysis of whichever patient we want,
-and we do not need to modify `patient_analysis.m` anymore.
-However, you may have noticed that we have no variables in our workspace.
-Inside the function, the variables `patient_data`, `g_mean`, `g_max`, `g_min`, `p_mean`,
-`p_max`, and `p_min` are created, but then they are deleted when the function ends.
+So now we can get the patient analysis of whichever patient we want, and we do not need to modify `patient_analysis.m` 
+anymore. However, you may have noticed that we have no variables in our workspace. Inside the function, the variables 
+`patient_data`, `g_mean`, `g_max`, `g_min`, `p_mean`, `p_max`, and `p_min` are created, but then they are deleted when 
+the function ends.
 
-This is one of the major differences between scripts and functions:
-a script can be thought of as automating the command line,
-with full access to all variables in the base workspace,
-whereas a function has its own separate workspace.
+This is one of the major differences between scripts and functions: a script can be thought of as automating the command 
+line, with full access to all variables in the base workspace, whereas a function has its own separate workspace.
 
 To be able to access variables from your workspace, you have to pass them in as inputs.
 To be able to save variables to your workspace, it needs to return them as outputs.
