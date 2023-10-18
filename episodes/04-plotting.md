@@ -1,7 +1,7 @@
 ---
 title: Plotting data
-teaching: 30
-exercises: 0
+teaching: 25
+exercises: 10
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
