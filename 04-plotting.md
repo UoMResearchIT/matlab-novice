@@ -103,11 +103,11 @@ In matlab we can "hold" a plot and keep plotting on top.
 For example, we might want to contrast the mean values accross patients
 with the information of a single patient.
 If we are displaying more than one line, it is important we add a legend.
-We can specify the legend names by adding `,'DisplayName',"legend name here"`
+We can specify the legend names by adding `,DisplayName="legend name here"`
 inside the plot function. We then need to activate the legend by running `legend`
 So, to plot the mean values we first do:
 ```matlab
->> plot(per_day_mean,'DisplayName',"Mean")
+>> plot(per_day_mean,DisplayName="Mean")
 >> legend
 >> title('Daily average inflammation')
 >> xlabel('Day of trial')
@@ -119,7 +119,7 @@ So, to plot the mean values we first do:
 Then, we can use the instruction `hold on` to add a plot for patient_5.
 ```matlab
 >> hold on
->> plot(patient_5,'DisplayName',"Patient 5")
+>> plot(patient_5,DisplayName="Patient 5")
 >> hold off
 ```
 
@@ -233,7 +233,7 @@ subjects of the next two lessons.
 - "Use `plot(X,Y)` to specify values in both axes."
 - "Document your plots with `title('My title')`, `xlabel('My horizontal label')` and `ylabel('My vertical label')`."
 - "Use `hold on` and `hold off` to plot multiple lines at the same time."
-- "Use `legend` and add `,'DisplayName','legend name here'` inside the plot function to add a legend."
+- "Use `legend` and add `,DisplayName="legend name here"` inside the plot function to add a legend."
 - "Use `tiledlayout(m,n)` to create a grid of `m` x `n` plots, and use `nexttile` to change the position of the next plot."
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::

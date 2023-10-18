@@ -341,13 +341,13 @@ close()
 And, we'd also have to change this line of code, from:
 
 ```matlab
-figure('visible', 'off')
+figure(visible='off')
 ```
 
 to:
 
 ```matlab
-figure('visible', 'on')
+figure(visible='on')
 % or equivalently: figure()
 ```
 
@@ -382,9 +382,9 @@ for i = 1:length(files)
 
     % Create figures
     if plot_switch == 1
-        figure('visible', 'off')
+        figure(visible='off')
     else
-        figure('visible', 'on')
+        figure(visible='on')
     end
 
     tlo = tiledlayout(1,3);

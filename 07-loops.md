@@ -592,7 +592,7 @@ for i = 1:length(files)
     patient_data = readmatrix(file_name);
 
     % Create figures
-    figure('visible', 'off')
+    figure(visible='off')
 
     tlo = tiledlayout(1,3);
     xlabel(tlo,'Day of trial')
