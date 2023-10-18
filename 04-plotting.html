@@ -65,7 +65,7 @@
           <button class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             More <i data-feather="chevron-down"></i>
           </button>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown"><li><a class="dropdown-item" href="discuss.html">Discussion</a></li><li><a class="dropdown-item" href="reference.html">Learning resources</a></li>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown"><li><a class="dropdown-item" href="reference.html">Learning resources</a></li>
           </ul></li>
       </ul></div>
     <form class="d-flex col-md-2 search-form">
@@ -244,7 +244,7 @@
                       <li>
                         <a href="profiles.html">Learner Profiles</a>
                       </li>
-                      <li><a href="discuss.html">Discussion</a></li><li><a href="reference.html">Learning resources</a></li>
+                      <li><a href="reference.html">Learning resources</a></li>
                     </ul></div>
                 </div>
               </div>
@@ -409,13 +409,13 @@ plot. In matlab we can “hold” a plot and keep plotting on top. For
 example, we might want to contrast the mean values accross patients with
 the information of a single patient. If we are displaying more than one
 line, it is important we add a legend. We can specify the legend names
-by adding <code>,'DisplayName',"legend name here"</code> inside the plot
+by adding <code>,DisplayName="legend name here"</code> inside the plot
 function. We then need to activate the legend by running
 <code>legend</code> So, to plot the mean values we first do:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_mean</span><span class="op">,</span><span class="ss">'DisplayName'</span><span class="op">,</span><span class="st">"Mean"</span>)</span>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_mean</span><span class="op">,</span><span class="va">DisplayName</span><span class="op">=</span><span class="st">"Mean"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">legend</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Daily average inflammation'</span>)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
@@ -427,7 +427,7 @@ for patient_5.</p>
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">hold</span> <span class="va">on</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">patient_5</span><span class="op">,</span><span class="ss">'DisplayName'</span><span class="op">,</span><span class="st">"Patient 5"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">patient_5</span><span class="op">,</span><span class="va">DisplayName</span><span class="op">=</span><span class="st">"Patient 5"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">hold</span> <span class="va">off</span></span></code></pre>
 </div>
 <figure><img src="fig/average_inflammation_and_patient_5_with_legend.png" alt="Average inflamation and Patient 5" class="figure mx-auto d-block"></figure><p>Remember to tell matlab you are done by adding <code>hold off</code>
@@ -550,8 +550,8 @@ an index number in the x axis.”</li>
 <li>“Use <code>hold on</code> and <code>hold off</code> to plot multiple
 lines at the same time.”</li>
 <li>“Use <code>legend</code> and add
-<code>,'DisplayName','legend name here'</code> inside the plot function
-to add a legend.”</li>
+<code>,DisplayName="legend name here"</code> inside the plot function to
+add a legend.”</li>
 <li>“Use <code>tiledlayout(m,n)</code> to create a grid of
 <code>m</code> x <code>n</code> plots, and use <code>nexttile</code> to
 change the position of the next plot.”</li>
