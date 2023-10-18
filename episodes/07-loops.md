@@ -594,23 +594,21 @@ for i = 1:length(files)
     % Create figures
     figure('visible', 'off')
 
-    subplot(2, 2, 1)
+    tlo = tiledlayout(1,3);
+    xlabel(tlo,'Day of trial')
+    ylabel(tlo,'Inflammation')
+
+    nexttile
     plot(mean(patient_data, 1))
     title('Average')
-    ylabel('Inflammation')
-    xlabel('Day')
 
-    subplot(2, 2, 2)
+    nexttile
     plot(max(patient_data, [], 1))
     title('Max')
-    ylabel('Inflammation')
-    xlabel('Day')
 
-    subplot(2, 2, 3)
+    nexttile
     plot(min(patient_data, [], 1))
     title('Min')
-    ylabel('Inflammation')
-    xlabel('Day')
 
     print(img_name, '-dpng')
     close()

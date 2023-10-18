@@ -275,26 +275,25 @@ patient_data = readmatrix('data/inflammation-01.csv');
 
 figure
 
+% Define tiled layout and labels
+tlo = tiledlayout(1,3);
+xlabel(tlo,'Day of trial')
+ylabel(tlo,'Inflammation')
+
 % Plot average inflammation per day
-subplot(1, 3, 1)
+nexttile
 plot(mean(patient_data, 1))
-title('Daily average inflammation')
-xlabel('Day of trial')
-ylabel('Inflammation')
+title('Average')
 
 % Plot max inflammation per day
-subplot(1, 3, 2)
+nexttile
 plot(max(patient_data, [], 1))
 title('Max')
-ylabel('Inflammation')
-xlabel('Day of trial')
 
 % Plot min inflammation per day
-subplot(1, 3, 3)
+nexttile
 plot(min(patient_data, [], 1))
 title('Min')
-ylabel('Inflammation')
-xlabel('Day of trial')
 ```
 
 The script now allows us to create all 3 plots with a single command: `plot_daily_average`.
@@ -354,27 +353,25 @@ patient_data = readmatrix('data/inflammation-01.csv');
 
 figure('visible', 'off')
 
+% Define tiled layout and labels
+tlo = tiledlayout(1,3);
+xlabel(tlo,'Day of trial')
+ylabel(tlo,'Inflammation')
+
 % Plot average inflammation per day
-subplot(1, 3, 1)
+nexttile
 plot(mean(patient_data, 1))
-title('Daily average inflammation')
-xlabel('Day of trial')
-ylabel('Inflammation')
+title('Average')
 
 % Plot max inflammation per day
-subplot(1, 3, 2)
+nexttile
 plot(max(patient_data, [], 1))
 title('Max')
-ylabel('Inflammation')
-xlabel('Day of trial')
 
 % Plot min inflammation per day
-subplot(1, 3, 3)
+nexttile
 plot(min(patient_data, [], 1))
 title('Min')
-ylabel('Inflammation')
-xlabel('Day of trial')
-
 
 % Save plot in 'results' folder as png image:
 saveas(gcf,'results/daily_average_01.png')

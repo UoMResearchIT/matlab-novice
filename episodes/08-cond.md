@@ -387,23 +387,21 @@ for i = 1:length(files)
         figure('visible', 'on')
     end
 
-    subplot(2, 2, 1)
+    tlo = tiledlayout(1,3);
+    xlabel(tlo,'Day of trial')
+    ylabel(tlo,'Inflammation')
+
+    nexttile
     plot(mean(patient_data, 1))
     title('Average')
-    ylabel('Inflammation')
-    xlabel('Day')
 
-    subplot(2, 2, 2)
+    nexttile
     plot(max(patient_data, [], 1))
     title('Max')
-    ylabel('Inflammation')
-    xlabel('Day')
 
-    subplot(2, 2, 3)
+    nexttile
     plot(min(patient_data, [], 1))
     title('Min')
-    ylabel('Inflammation')
-    xlabel('Day')
 
     if plot_switch == 1
         print(img_name, '-dpng')
