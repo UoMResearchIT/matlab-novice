@@ -1,7 +1,7 @@
 ---
 title: Arrays
-teaching: 25
-exercises: 10
+teaching: 50
+exercises: 20
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives

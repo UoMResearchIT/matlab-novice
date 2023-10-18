@@ -1,7 +1,7 @@
 ---
 title: Working With Variables
 teaching: 30
-exercises: 5
+exercises: 20
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
