@@ -332,7 +332,7 @@ We can ask MATLAB to create an empty figure window without
 displaying it by setting its `'visible'` property to `'off'`, like so:
 
 ```matlab
-figure('visible', 'off')
+figure(visible='off')
 ```
 
 When we do this, we have to be careful to manually "close" the figure
@@ -351,7 +351,7 @@ Adding these two lines, our finished script looks like this:
 % Load patient data
 patient_data = readmatrix('data/inflammation-01.csv');
 
-figure('visible', 'off')
+figure(visible='off')
 
 % Define tiled layout and labels
 tlo = tiledlayout(1,3);

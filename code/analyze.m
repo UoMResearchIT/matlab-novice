@@ -6,7 +6,7 @@ disp(['Standard deviation: ', num2str(std(patient_data(:)))]);
 
 ave_inflammation = mean(patient_data, 1);
 
-figure('visible', 'off')
+figure(visible='off')
 
 tlo = tiledlayout(1,3);
 xlabel(tlo,'Day of trial')

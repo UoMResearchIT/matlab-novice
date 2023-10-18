@@ -15,9 +15,9 @@ for idx = 1:3
     ave_inflammation = mean(patient_data, 1);
 
     if plot_switch == 1
-        figure('visible', 'off')
+        figure(visible='off')
     else
-        figure('visible', 'on')
+        figure(visible='on')
     end
 
     tlo = tiledlayout(1,3);

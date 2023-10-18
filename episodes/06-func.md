@@ -349,7 +349,7 @@ function plot_daily_average(data_file,plot_name)
     % Load patient data
     patient_data = readmatrix(data_file);
 
-    figure('visible', 'off')
+    figure(visible='off')
 
     % Define tiled layout and labels
     tlo = tiledlayout(1,3);
@@ -418,10 +418,10 @@ function patient_vs_mean(per_day_mean,pataient_data,patient_reference)
     %       per_day_mean = mean(patient_data);
     %       patient_vs_mean(per_day_mean,patient_data(5,:),"Subject 5")
 
-    figure('visible', 'off')
+    figure(visible='off')
 
     %Plot per_day_mean
-    plot(per_day_mean,'DisplayName',"Mean")
+    plot(per_day_mean,DisplayName="Mean")
     legend
     title('Daily average inflammation')
     xlabel('Day of trial')
@@ -429,7 +429,7 @@ function patient_vs_mean(per_day_mean,pataient_data,patient_reference)
 
     %Overlap patient data
     hold on
-    plot(pataient_data,'DisplayName',patient_reference)
+    plot(pataient_data,DisplayName=patient_reference)
     hold off
 
     % Save plot
