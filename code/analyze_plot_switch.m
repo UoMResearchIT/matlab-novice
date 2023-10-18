@@ -20,15 +20,18 @@ for idx = 1:3
         figure('visible', 'on')
     end
 
-    subplot(2, 2, 1);
+    tlo = tiledlayout(1,3);
+    xlabel(tlo,'Day of trial')
+
+    nexttile
     plot(ave_inflammation);
     ylabel('average')
 
-    subplot(2, 2, 2);
+    nexttile
     plot(max(patient_data, [], 1));
     ylabel('max')
 
-    subplot(2, 2, 3);
+    nexttile
     plot(min(patient_data, [], 1));
     ylabel('min')
 

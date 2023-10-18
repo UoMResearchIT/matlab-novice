@@ -8,15 +8,18 @@ ave_inflammation = mean(patient_data, 1);
 
 figure('visible', 'off')
 
-subplot(1, 3, 1);
+tlo = tiledlayout(1,3);
+xlabel(tlo,'Day of trial')
+
+nexttile
 plot(ave_inflammation);
 ylabel('average')
 
-subplot(1, 3, 2);
+nexttile
 plot(max(patient_data, [], 1));
 ylabel('max')
 
-subplot(1, 3, 3);
+nexttile
 plot(min(patient_data, [], 1));
 ylabel('min')
 

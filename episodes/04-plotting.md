@@ -128,28 +128,51 @@ Then, we can use the instruction `hold on` to add a plot for patient_5.
 Remember to tell matlab you are done by adding `hold off` when you are done!
 
 
-## Subplots
+## Multiple plots in a figure
 
-It is often convenient to combine multiple plots into one figure.
-The `subplot(m,n,p)`command allows us to do just that.
-The first two parameter define a grid of `m` rows and `n` columns,
-in which our plots will be placed.
-The third parameter indicates the position on the grid that we want to use for the "next" plot command.
+It is often convenient to show different plots side by side.
+The [`tiledlayout(m,n)`](https://mathworks.com/help/matlab/ref/tiledlayout.html) command allows us to do just that.
+The first two parameter define a grid of `m` rows and `n` columns in which our plots will be placed.
+To be able to plot something on each of the tiles, we use the [`nexttile`](https://mathworks.com/help/releases/R2019b/matlab/ref/nexttile.html) command.
 For example, we can show the average daily min and max plots together with:
 ```matlab
->> subplot(1, 2, 1)
+>> tiledlayout(1, 2)
+>> nexttile
 >> plot(per_day_max)
->> ylabel('max')
->> xlabel('day')
-
->> subplot(1, 2, 2)
+>> title('Max')
+>> xlabel('Day of trial')
+>> ylabel('Inflamation')
+>> nexttile
 >> plot(per_day_min)
->> ylabel('min')
->> xlabel('day')
+>> title('Min')
+>> xlabel('Day of trial')
+>> ylabel('Inflamation')
+```
+![](fig/max-min-tiledplot.png){alt='Max Min tiledplot'}
+
+We can also specify titles and labels for the whole tiled layout if we assign the tiled layout to a variable 
+and pass it as a first argument to `title`, `xlabel` or `ylabel`, for example:
+```matlab
+>> tlo=tiledlayout(1, 2)
+>> title(tlo,'Per day data')
+>> xlabel(tlo,'Day of trial')
+>> ylabel(tlo,'Inflamation')
+>> nexttile
+>> plot(per_day_max)
+>> title('Max')
+>> nexttile
+>> plot(per_day_min)
+>> title('Min')
 ```
 
-![](fig/max-min-subplot.png){alt='Max Min subplot'}
+![](fig/max-min-tiledplot-titles.png){alt='Max Min tiledplot with shared labels'}
 
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+**Note:** The [`subplot`](https://mathworks.com/help/matlab/ref/subplot.html)
+command was deprecated in favour of `tiledlayout` in 2019.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ## Heatmaps
@@ -211,6 +234,6 @@ subjects of the next two lessons.
 - "Document your plots with `title('My title')`, `xlabel('My horizontal label')` and `ylabel('My vertical label')`."
 - "Use `hold on` and `hold off` to plot multiple lines at the same time."
 - "Use `legend` and add `,'DisplayName','legend name here'` inside the plot function to add a legend."
-- "Use `subplot(m,n,p)` to create a grid of `m` x `n` plots, and choose a position `p` for a plot."
+- "Use `tiledlayout(m,n)` to create a grid of `m` x `n` plots, and use `nexttile` to change the position of the next plot."
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
