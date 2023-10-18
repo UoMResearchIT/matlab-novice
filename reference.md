@@ -2,16 +2,16 @@
 title: 'Learning resources'
 ---
 
-[Matlab online](mathworks.com/products/matlab-online.html) lets you use the software for free, which can be useful when you do not have access to the university licences.
+[Matlab online](https://mathworks.com/products/matlab-online.html) lets you use the software for free, which can be useful when you do not have access to the university licences.
 
-The [totorials section](https://uk.mathworks.com/support/learn-with-matlab-tutorials.html)
+The [totorials section](https://mathworks.com/support/learn-with-matlab-tutorials.html)
 on MATLAB's site also lists useful video tutorials and examples to work through.
 
-[MATLAB Academy](matlabacademy.mathworks.com/)
+[MATLAB Academy](https://matlabacademy.mathworks.com/)
 provides a lot of self-taught material and free courses.
-In particular, the [Onramp](matlabacademy.mathworks.com/details/matlab-onramp/gettingstarted) program covers material similar to this course.
+In particular, the [Onramp](https://matlabacademy.mathworks.com/details/matlab-onramp/gettingstarted) program covers material similar to this course.
 
-[Matlab cody](mathworks.com/matlabcentral/cody) can be a good way to keep practicing and find interesting challenges to learn how to code with MATLAB.
+[Matlab cody](https://mathworks.com/matlabcentral/cody) can be a good way to keep practicing and find interesting challenges to learn how to code with MATLAB.
 
 
 ## Glossary
@@ -102,11 +102,6 @@ For example, the statement `x += 3` means the same thing as `x = x + 3`.
 
 [integer]{#integer}
 :   A whole number, such as -12343. See also: [floating-point number](#floating-point-number).
-
-[invariant]{#invariant}
-:   An expression whose value doesn't change during the execution of a program,
-typically used in an [assertion](#assertion).
-See also: [precondition](#precondition), [postcondition](#postcondition).
 
 [library]{#library}
 :   A family of code units (functions, classes, variables) that implement a set of

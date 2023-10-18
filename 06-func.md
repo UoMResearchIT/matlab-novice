@@ -351,26 +351,25 @@ function plot_daily_average(data_file,plot_name)
 
     figure('visible', 'off')
 
+    % Define tiled layout and labels
+    tlo = tiledlayout(1,3);
+    xlabel(tlo,'Day of trial')
+    ylabel(tlo,'Inflammation')
+
     % Plot average inflammation per day
-    subplot(1, 3, 1)
+    nexttile
     plot(mean(patient_data, 1))
-    title('Daily average inflammation')
-    xlabel('Day of trial')
-    ylabel('Inflammation')
+    title('Average')
 
     % Plot max inflammation per day
-    subplot(1, 3, 2)
+    nexttile
     plot(max(patient_data, [], 1))
     title('Max')
-    ylabel('Inflammation')
-    xlabel('Day of trial')
 
     % Plot min inflammation per day
-    subplot(1, 3, 3)
+    nexttile
     plot(min(patient_data, [], 1))
     title('Min')
-    ylabel('Inflammation')
-    xlabel('Day of trial')
 
     % Save plot in 'results' folder as png image:
     saveas(gcf,plot_name)
