@@ -1,25 +1,28 @@
 ---
-title: 'FIXME'
+title: 'Learning resources'
 ---
 
-## Glossary
+[Matlab online](mathworks.com/products/matlab-online.html) lets you use the software for free, which can be useful when you do not have access to the university licences.
+
+The [totorials section](https://uk.mathworks.com/support/learn-with-matlab-tutorials.html)
+on MATLAB's site also lists useful video tutorials and examples to work through.
+
+[MATLAB Academy](matlabacademy.mathworks.com/)
+provides a lot of self-taught material and free courses.
+In particular, the [Onramp](matlabacademy.mathworks.com/details/matlab-onramp/gettingstarted) program covers material similar to this course.
+
+[Matlab cody](mathworks.com/matlabcentral/cody) can be a good way to keep practicing and find interesting challenges to learn how to code with MATLAB.
+
 
 ## Glossary
-
-[additive color model]{#additive-color-model}
-:   A way to represent colors as the sum of contributions from primary colors
-such as [red, green, and blue](#rgb).
 
 [argument]{#argument}
 :   A value given to a function or program when it runs.
 The term is often used interchangeably (and inconsistently) with [parameter](#parameter).
 
-[assertion]{#assertion}
-:   An expression which is supposed to be true at a particular point in a program.
-Programmers typically put assertions in their code to check for errors;
-if the assertion fails (i.e., if the expression evaluates as false),
-the program halts and produces an error message.
-See also: [invariant](#invariant), [precondition](#precondition), [postcondition](#postcondition).
+[array]{#array}
+:   A collection of values saved in a single variable
+and accessed through an [index](#index)
 
 [assign]{#assign}
 :   To give a value a name by associating a variable with it.
@@ -27,8 +30,8 @@ See also: [invariant](#invariant), [precondition](#precondition), [postcondition
 [body]{#body}
 :   (of a function): the statements that are executed when a function runs.
 
-[call stack]{#call-stack}
-:   A data structure inside a running program that keeps track of active function calls.
+[boolean]{#boolean}
+:   A type of variable to store logical values, such as 1,0 or true,false.
 
 [case-insensitive]{#case-insensitive}
 :   Treating text as if upper and lower case characters of the same letter were the same.
@@ -56,9 +59,6 @@ in which the values in each row are separated by commas.
 
 [default value]{#default-value}
 :   A value to use for a [parameter](#parameter) if nothing is specified explicitly.
-
-[defensive programming]{#defensive-programming}
-:   The practice of writing programs that check their own operation to catch errors as early as possible.
 
 [delimiter]{#delimiter}
 :   A character or characters used to separate individual values,
@@ -95,8 +95,7 @@ is also an operand on the right hand side of the assignment.
 For example, the statement `x += 3` means the same thing as `x = x + 3`.
 
 [index]{#index}
-:   A subscript that specifies the location of a single value in a collection,
-such as a single pixel in an image.
+:   A subscript that specifies the location of a single value in a collection, such as a single element of an array.
 
 [inner loop]{#inner-loop}
 :   A loop that is inside another loop. See also: [outer loop](#outer-loop).
@@ -132,26 +131,10 @@ The term is often used interchangeably (and inconsistently) with [argument](#arg
 :   A connection from the output of one program to the input of another.
 When two or more programs are connected in this way, they are called a "pipeline".
 
-[postcondition]{#postcondition}
-:   A condition that a function (or other block of code) guarantees is true
-once it has finished running.
-Postconditions are often represented using [assertions](#assertion).
-
-[precondition]{#precondition}
-:   A condition that must be true in order for a function (or other block of code) to run correctly.
-
-[regression]{#regression}
-:   To re-introduce a bug that was once fixed.
-
 [RGB]{#rgb}
-:   An [additive model](#additive-color-model)
-that represents colors as combinations of red, green, and blue.
+:   Amodel that represents colors as combinations of red, green, and blue.
 Each color's value is typically in the range 0..255
 (i.e., a one-byte integer).
-
-[silent failure]{#silent-failure}
-:   Failing without producing any warning messages.
-Silent failures are hard to detect and debug.
 
 [size]{#size}
 :   An array's dimensions, represented as a vector.
@@ -160,12 +143,6 @@ For example, a 5×3 array's size is `(5,3)`.
 [slice]{#slice}
 :   A regular subsequence of a larger sequence,
 such as the first five elements or every second element.
-
-[stack frame]{#stack-frame}
-:   A data structure that provides storage for a function's local variables.
-Each time a function is called, a new stack frame is created
-and put on the top of the [call stack](#call-stack). When the function returns,
-the stack frame is discarded.
 
 [standard input]{#standard-input}
 :   A process's default input stream.
@@ -192,19 +169,10 @@ a sequence of zero or more characters.
 :   CHECKME: a programming error that occurs when statements are in an order or contain characters
 not expected by the programming language
 
-[test oracle]{#test-oracle}
-:   A program, device, data set, or human being
-against which the results of a test can be compared.
-
-[test-driven development]{#test-driven-development}
-:   The practice of writing unit tests *before* writing the code they test.
-
 [type]{#type}
-:   CHECKME The classification of something in a program (for example, the contents of a variable)
-as a kind of number (e.g. [floating-point](#floating-point-number), [integer](#integer)), [string](#string), or something else.
+:   The classification of objects in a program.
+For example, a variable's type can be [boolean](#boolean), [integer](#integer), [array](#array), [string](#string), among others.
 
 [while loop]{#while-loop}
 :   A loop that keeps executing as long as some condition is true.
 See also: [for loop](#for-loop).
-
-

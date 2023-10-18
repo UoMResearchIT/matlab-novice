@@ -13,6 +13,6 @@
 "episodes/08-cond.md" "ad6e520c143ce719c701765c05ef4cb3" "site/built/08-cond.md" "2023-06-28"
 "instructors/instructor-notes.md" "95bc9dd61103b3d6345f9d96dce4538b" "site/built/instructor-notes.md" "2023-10-18"
 "learners/discuss.md" "e7d00cb8aa5e7de1aaaa659777dad8d4" "site/built/discuss.md" "2023-06-28"
-"learners/reference.md" "6bc234566a60ccec289a3dbce6aeece4" "site/built/reference.md" "2023-06-28"
+"learners/reference.md" "d0657233bd22009b22cce42e8ee043cb" "site/built/reference.md" "2023-10-18"
 "learners/setup.md" "e86013e5580010eb2b0c7f73c7a4ea27" "site/built/setup.md" "2023-06-28"
 "profiles/learner-profiles.md" "60b93493cf1da06dfd63255d73854461" "site/built/learner-profiles.md" "2023-06-28"
