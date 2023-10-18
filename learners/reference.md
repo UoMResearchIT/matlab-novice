@@ -1,8 +1,17 @@
 ---
-title: 'FIXME'
+title: 'Learning resources'
 ---
 
-## Glossary
+[Matlab online](mathworks.com/products/matlab-online.html) lets you use the software for free, which can be useful when you do not have access to the university licences.
+
+The [totorials section](https://uk.mathworks.com/support/learn-with-matlab-tutorials.html)
+on MATLAB's site also lists useful video tutorials and examples to work through.
+
+[MATLAB Academy](matlabacademy.mathworks.com/)
+provides a lot of self-taught material and free courses.
+In particular, the [Onramp](matlabacademy.mathworks.com/details/matlab-onramp/gettingstarted) program covers material similar to this course.
+
+[Matlab cody](mathworks.com/matlabcentral/cody) can be a good way to keep practicing and find interesting challenges to learn how to code with MATLAB.
 
 ## Glossary
 
