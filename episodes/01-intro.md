@@ -46,7 +46,7 @@ In this lesson we will learn how to manipulate the inflammation dataset with MAT
 But before we discuss how to deal with many data points,
 we will show how to store a single value on the computer.
 
-We can create a new [variable](../learners/reference.md#variable) by assigning a value to it using `=`:
+We can create a new [variable](../learners/reference.md#variable) by assigning a value to it using `=`
 
 ```matlab
 >> x = 55
@@ -135,6 +135,13 @@ We can compare two numbers (or variables) to see which one is smaller, for examp
 >> c1 = frac < 10
 ```
 ```output
+mass =
+    20
+age =
+    2.5000
+frac =
+     8
+
 c1 =
   logical
    1
@@ -254,28 +261,39 @@ For example, we can check if the speed is indeed not faster than the limit with 
 which matlab reads as "not speed greater than 70".
 
 Can you express these questions in matlab code?
+
 - Is 1 + 2 + 3 + 4 not smaller than 10?
 - Is 5 to the power of 3 different from 125?
+- Is x + y greater or equal to x/y?
 - Is x + y not greater or equal to x/y?
 
 :::::::::::::::  solution
 
 We can ask the first two question in positive, encapsulate it in brackets, and then negate it:
+
 - `~(1 + 2 + 3 + 4 < 10)`
 - `~(5^3 == 125)`
 
 Asking if two things are different is so common, that matlab has a special symbol for it.
 So the second question, we could have asked instead with
+
 - `5^3 ~= 125`
 
-- We can ask if x+y is greater or equal to x/y with `x+y > x/y || x+y == x/y`, so asking if
-x + y not greater or equal to x/y we do by negating the above with brackets: `~(x+y > x/y || x+y == x/y)`
+We can ask if x+y is greater or equal to x/y with: 
 
-That last one seems a bit too complicated, and it is all beacuse we need to *include the limit*,
-that is, because we want to include values that are greater ***and*** equal to something.
-There is actually a special symbol in matlab for that `>=`, and of cours for smaller or equal too `<=`.
+- `x+y > x/y || x+y == x/y`
 
-Using this symbol, our last answer becomes `~(x+y >= x/y)`, which does not look nearly as scary.
+There is actually again a shortcut for this, matlab understands `>=` as "greater or equal to",
+and of cours for smaller or equal too it understands `<=`.
+So the same condition could be written as:
+
+- `x+y >= x/y`
+
+Asking if x + y is not greater or equal to x/y is the same question as above, but negated.
+Remembering to add the brackets, we get:
+
+- `~(x+y > x/y || x+y == x/y)`
+- or `~(x+y >= x/y)`
 
 :::::::::::::::::::::::::
 
@@ -336,7 +354,7 @@ C =
    1
 ```
 
-Something to bear in mind, however, is that all values in an array must be of the same type.
+Something to bear in mind, however, is that all values in an array **must be of the same type**.
 
 I mentioned before that matlab is actually used to working with arrays rather than individual variables.
 Well, if it is so used to them, can we do operations with them?
