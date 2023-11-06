@@ -25,7 +25,7 @@ and something that we'd rather not spend a lot of time thinking about.
 Fortunately, MATLAB comes with a number of high-level tools to do these things efficiently,
 sparing us the grisly detail.
 
-Before we get started, however, let's create some directories to help organise this project.
+Before we get started, however, let's make sure we have the directories to help organise this project.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
@@ -45,13 +45,12 @@ It recommends the following for project organization:
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-We already have a `data` directory in our `matlab-novice-inflammation` project directory,
-so we only need to create `results` and `src` directories for this project.
-You can use your computer's file browser to create this directory.
+We already have a `data`, `results` and `src` directories in our `matlab-novice-inflammation` project directory,
+so we are ready to continue.
 
 A final step is to set the *current folder* in MATLAB to our project folder.
 Use the **Current Folder** window in the MATLAB GUI to browse to your project folder
-(the one now containing the 'data' and 'results' directories).
+(the one now containing the 'data', 'results' and 'src' directories).
 
 To verify the current directory in matlab we can run `pwd` (print working directory).
 A second check we can do is to run the `ls` (list) command in the Command Window to list the contents
@@ -59,25 +58,36 @@ of the working directory ---
 we should get the following output:
 
 ```output
-data   results src
+data  results  src
 ```
 
 
-We are now set to load our data.
+We are now set to load our data. As a reminder, our data is structured like this:
 
-If we know what our data looks like (in this case, we have a matrix stored as comma-separated values)
-and we're unsure about what command we want to use, we can search the documentation.
+![](fig/index_inflammation-data.png){alt='Information saved in each data file.'}
+
+But it is stored without the headers, as comma-separated values.
+The first few rows of our first file, `data/base/inflammation-01.csv`, look like this:
+
+```
+0,0.065,0.169,0.271,0.332,0.359,0.354,0.333,0.304,0.268,0.234,0.204,0.179,0.141,0.133,0.115,0.083,0.076,0.065,0.065,0.047,0.04,0.041,0.028,0.02,0.028,0.012,0.02,0.011,0.015,0.009,0.01,0.01,0.007,0.007,0.001,0.008,-0,0.006,0.004
+0,0.034,0.114,0.2,0.272,0.321,0.328,0.32,0.314,0.287,0.246,0.215,0.207,0.171,0.146,0.131,0.107,0.1,0.088,0.065,0.061,0.052,0.04,0.042,0.04,0.03,0.031,0.031,0.016,0.019,0.02,0.017,0.019,0.006,0.009,0.01,0.01,0.005,0.001,0.011
+0,0.081,0.216,0.277,0.273,0.356,0.38,0.349,0.315,0.23,0.235,0.198,0.106,0.198,0.084,0.171,0.126,0.14,0.086,0.01,0.06,0.081,0.022,0.035,0.01,0.086,-0,0.102,0.032,0.07,0.017,0.136,0.022,-0,0.031,0.054,-0,-0,0.05,0.001
+```
+
+We can search the documentation to try to learn how to read our matrix of data.
 Type `read matrix` into the documentation toolbar.
 MATLAB suggests using `readmatrix`.
 If we have a closer look at the documentation,
-MATLAB also tells us, which inputs and output this function has.
+MATLAB also tells us which inputs and output this function has.
 
 For the `readmatrix` function we need to provide a single
 argument: the ***path*** to the file we want to read data from.
 Since our data is in the 'data' folder, the path will begin with "data/",
-and will be followed by the name of the file:
+we'll also need to specify the subfolder (we will start by using "base/"),
+and this will be followed by the name of the file:
 ```matlab
->> patient_data = readmatrix('data/inflammation-01.csv');
+>> patient_data = readmatrix('data/base/inflammation-01.csv');
 ```
 
 This loads the data and assigns it to a variable, *patient_data*.
@@ -121,10 +131,12 @@ If we want to look at a single patients' data, then, we have to get all the colu
 ```
 ```output
 patient_5 =
-  Columns 1 through 25
-     0     1     1     3     3     1     3     5     2     4     4     7     6     5     3    10     8    10     6    17     9    14     9     7    13
-  Columns 26 through 40
-     9    12     6     7     7     9     6     3     2     2     4     2     0     1     1
+  Columns 1 through 14
+         0    0.0370    0.1330    0.2280    0.3060    0.3410    0.3410    0.3480    0.3160    0.2750    0.2540    0.2250    0.1870    0.1630
+  Columns 15 through 28
+    0.1440    0.1190    0.1070    0.0880    0.0720    0.0600    0.0510    0.0510    0.0390    0.0330    0.0240    0.0280    0.0170    0.0200
+  Columns 29 through 40
+    0.0160    0.0200    0.0190    0.0180    0.0070    0.0160    0.0220    0.0180    0.0150    0.0050    0.0100    0.0100
 ```
 
 Looking at these 40 numbers tells us very little, so we might want to look at the mean instead, for example.
@@ -133,7 +145,7 @@ Looking at these 40 numbers tells us very little, so we might want to look at th
 ```
 ```output
 mean_p5 =
-    5.5500
+    0.1046
 ```
 We can also compute other statistics, like the maximum, minimum and standard deviation.
 ```matlab
@@ -143,11 +155,11 @@ We can also compute other statistics, like the maximum, minimum and standard dev
 ```
 ```output
 max_p5 =
-    17
+    0.3480
 min_p5 =
      0
 std_p5 =
-    4.1072
+    0.1142
 ```
 
 :::::::::::::::::::::::::::::::::::::::  challenge
@@ -168,7 +180,7 @@ To compute the mean, we then use:
 ```
 ```output
 global_mean =
-    6.1487
+    0.1053
 ```
 This works for `max`, `min` and `std` too:
 ```matlab
@@ -178,11 +190,11 @@ This works for `max`, `min` and `std` too:
 ```
 ```output
 global_max =
-    20
+    0.4530
 global_min =
      0
 global_std =
-    4.6148
+    0.1118
 ```
 
 :::::::::::::::::::::::::
@@ -208,7 +220,7 @@ ans =
    1
 ans =
   logical
-   1
+   0
 ```
 So we know that patient 5 did not suffer more inflamation than average,
 that it is not the patient who got the most inflamed,
@@ -243,13 +255,13 @@ However, matlab is smart enough to figure out what to do with enquieries just li
 ```
 ```output
 mean_d9 =
-     5.2333
+    0.3116
 max_d9 =
-     8
+    0.3780
 min_d9 =
-     2
+    0.2290
 std_d9 =
-    1.9430
+    0.0186
 ```
 
 We could now check how day 9 compares to the global values:
@@ -262,7 +274,7 @@ We could now check how day 9 compares to the global values:
 ```
 ans =
   logical
-   0
+   1
 ans =
   logical
    0
@@ -273,10 +285,10 @@ ans =
   logical
    1
 ```
-So we know that day 9 was still relatively low inflamation,
-that it is not the day with the highest inflamation,
-that every patient was at least a bit inflamed at that moment,
-and that the std of his inflamation is below the average (so datapoints are closer to each other).
+So we know that at day 9 there was signifficant inflamation,
+but that it is not the day with the highest inflamation;
+Also, that every patient was at least a bit inflamed at that moment,
+and that the std of inflamation this day is below the average (so datapoints are closer to each other).
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -319,14 +331,10 @@ For example, we can find out which days had an inflamation above the global aver
 ```
 ans =
   1×40 logical array
-  Columns 1 through 14
-   0   0   0   0   0   0   0   0   0   0   0   0   1   1
-
-  Columns 15 through 28
-   1   1   1   1   1   1   1   1   1   1   1   1   1   1
-
-  Columns 29 through 40
-   1   1   0   0   0   0   0   0   0   0   0   0
+  Columns 1 through 20
+   0   0   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   0   0   0
+  Columns 21 through 40
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
 ```
 We could count which day it is, but lets take a shortcut and use the find function:
 ```matlab
@@ -334,13 +342,9 @@ We could count which day it is, but lets take a shortcut and use the find functi
 ```
 ```
 ans =
-  Columns 1 through 9
-    13    14    15    16    17    18    19    20    21
-
-  Columns 10 through 18
-    22    23    24    25    26    27    28    29    30
+     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17
 ```
-So it seems that days 13 to 30 were the critical days.
+So it seems that days 3 to 17 were the critical days.
 
 
 But what if we want the analysis per patient, instead of per day?
@@ -431,11 +435,9 @@ If we wrap this check in the find function, we get the row numbers:
 ```
 ```
 ans =
-     8
-    29
-    52
+     31
 ```
-So the patients 8, 29 and 52 got the maximum inflamation levels.
+So patient 31 has the maximum inflamation level.
 
 :::::::::::::::::::::::::
 

@@ -61,13 +61,10 @@ Our dataset is divided in 3 groups:
 
 In the files, each row holds information for a single patient and the columns represent successive days.
 
-![](fig/inflammation-data.png){alt='Information saved in each data file.'}
-
 The actual data sets do not have titles for columns or rows.
 The data is stored in [Comma Separated Values (CSV)](learners/reference.md#comma-separated-values) format.
 This means that values in a single row are separated with a `,`.
-The first few rows of our first file,
-[`inflammation-01.csv`](episodes/data/matlab-novice-inflammation/data/inflammation-01.csv), look like this:
+The first few rows of our first file, `data/base/inflammation-01.csv`, look like this:
 
 ```
 0,0.065,0.169,0.271,0.332,0.359,0.354,0.333,0.304,0.268,0.234,0.204,0.179,0.141,0.133,0.115,0.083,0.076,0.065,0.065,0.047,0.04,0.041,0.028,0.02,0.028,0.012,0.02,0.011,0.015,0.009,0.01,0.01,0.007,0.007,0.001,0.008,-0,0.006,0.004
