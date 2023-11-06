@@ -388,7 +388,7 @@ end
 
 Create a function called `patient_vs_mean` that generates a plot like this one:
 
-![](fig/Subject_5.png){alt='Plotting patient vs mean'}
+![](fig/plotting_average_inflammation_and_patient_5_with_legend.svg){alt='Plotting patient vs mean'}
 
 The function should have the following inputs:
 
@@ -416,7 +416,7 @@ function patient_vs_mean(per_day_mean,pataient_data,patient_reference)
     %   Sample usage:
     %       patient_data = readmatrix('data/inflammation-01.csv');
     %       per_day_mean = mean(patient_data);
-    %       patient_vs_mean(per_day_mean,patient_data(5,:),"Subject 5")
+    %       patient_vs_mean(per_day_mean,patient_data(5,:),"Patient 5")
 
     figure(visible='off')
 

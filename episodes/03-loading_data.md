@@ -64,7 +64,7 @@ data  results  src
 
 We are now set to load our data. As a reminder, our data is structured like this:
 
-![](fig/index_inflammation-data.png){alt='Information saved in each data file.'}
+![](fig/loading-data_inflammation-data.png){alt='Information saved in each data file.'}
 
 But it is stored without the headers, as comma-separated values.
 The first few rows of our first file, `data/base/inflammation-01.csv`, look like this:

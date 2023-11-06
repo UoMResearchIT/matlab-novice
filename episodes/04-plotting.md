@@ -65,12 +65,11 @@ so that other people can understand what it shows
 >> ylabel('Inflammation')
 ```
 
-![](fig/average-inflammation.png){alt='Average inflammation'}
+![](fig/plotting_average-inflammation.svg){alt='Average inflammation'}
 
 Much better, now the image actually communicates something.
+As expected, this image tells us way more than the numbers we had seen in the previous section.
 
-The result is roughly a linear rise and fall, which is suspicious:
-based on other studies, we expect a sharper rise and slower fall.
 Let's have a look at two other statistics: the maximum and minimum
 inflammation per day across all patients.
 ```matlab
@@ -80,7 +79,7 @@ inflammation per day across all patients.
 >> xlabel('Day of trial')
 ```
 
-![](fig/max-inflammation.png){alt='Maximum inflammation'}
+![](fig/plotting_max-inflammation.svg){alt='Maximum inflammation'}
 
 ```matlab
 >> plot(per_day_min)
@@ -89,12 +88,9 @@ inflammation per day across all patients.
 >> xlabel('Day of trial')
 ```
 
-![](fig/min-inflammation.png){alt='Minumum inflammation'}
+![](fig/plotting_min-inflammation.svg){alt='Minumum inflammation'}
 
-From the figures, we see that the maximum value rises and falls perfectly
-smoothly, while the minimum seems to be a step function. Neither result
-seems particularly likely, so either there's a mistake in our
-calculations or something is wrong with our data.
+These two are much more noisy than the mean, as can be expected.
 
 ## Multiple lines in a plot
 
@@ -114,7 +110,7 @@ So, to plot the mean values we first do:
 >> ylabel('Inflammation')
 ```
 
-![](fig/average_inflammation_with_legend.png){alt='Average inflamation with legend'}
+![](fig/plotting_average_inflammation_with_legend.svg){alt='Average inflamation with legend'}
 
 Then, we can use the instruction `hold on` to add a plot for patient_5.
 ```matlab
@@ -123,12 +119,56 @@ Then, we can use the instruction `hold on` to add a plot for patient_5.
 >> hold off
 ```
 
-![](fig/average_inflammation_and_patient_5_with_legend.png){alt='Average inflamation and Patient 5'}
+![](fig/plotting_average_inflammation_and_patient_5_with_legend.svg){alt='Average inflamation and Patient 5'}
+
+So this patient seems fairly average.
 
 Remember to tell matlab you are done by adding `hold off` when you are done!
 
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Patients 3 & 4
+
+Try to plot the mean and the data for patients 3 and 4 together.
+
+:::::::::::::::  solution
+
+The first part for the mean remains unchanged: 
+
+```matlab
+>> plot(per_day_mean,DisplayName="Mean")
+>> legend
+>> title('Daily average inflammation')
+>> xlabel('Day of trial')
+>> ylabel('Inflammation')
+```
+
+Now we need to get the patient specific data.
+We can get the data for patients 3 and 4 as we did in the previous episode i.e. `patient_data(3,:)`.
+Now we either save that data in a variables, or we use it directly in the plot instruction, like this:
+
+```matlab
+>> hold on
+>> plot(patient_data(3,:),DisplayName="Patient 3")
+>> plot(patient_data(4,:),DisplayName="Patient 4")
+>> hold off
+```
+
+The result looks like this:
+
+![](fig/plotting_patients-3-4.svg){alt='Average inflamation and Patients 3 & 4'}
+
+Patient 4 seems also quite average, but patient's 3 measurements are quite noisy!
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Multiple plots in a figure
+
+**Note:** The [`subplot`](https://mathworks.com/help/matlab/ref/subplot.html)
+command was deprecated in favour of `tiledlayout` in 2019.
+
 
 It is often convenient to show different plots side by side.
 The [`tiledlayout(m,n)`](https://mathworks.com/help/matlab/ref/tiledlayout.html) command allows us to do just that.
@@ -148,7 +188,7 @@ For example, we can show the average daily min and max plots together with:
 >> xlabel('Day of trial')
 >> ylabel('Inflamation')
 ```
-![](fig/max-min-tiledplot.png){alt='Max Min tiledplot'}
+![](fig/plotting_max-min-tiledplot.svg){alt='Max Min tiledplot'}
 
 We can also specify titles and labels for the whole tiled layout if we assign the tiled layout to a variable 
 and pass it as a first argument to `title`, `xlabel` or `ylabel`, for example:
@@ -165,12 +205,16 @@ and pass it as a first argument to `title`, `xlabel` or `ylabel`, for example:
 >> title('Min')
 ```
 
-![](fig/max-min-tiledplot-titles.png){alt='Max Min tiledplot with shared labels'}
+![](fig/plotting_max-min-tiledplot-titles.svg){alt='Max Min tiledplot with shared labels'}
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-**Note:** The [`subplot`](https://mathworks.com/help/matlab/ref/subplot.html)
-command was deprecated in favour of `tiledlayout` in 2019.
+## Clearing a figure
+
+If you now try to plot something like the mean, as we had done before,
+you will notice that the plot is assigned to the second plot space in the tiled layout.
+
+To clear the tiled layout, you can use the instruction `clf`, which stands for "clear figure".
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -191,10 +235,11 @@ takes a table as input and produces a heatmap:
 >> ylabel('Patient number')
 ```
 
-![](fig/heatmap.png){alt='Heat map'}
+![](fig/plotting_heatmap.svg){alt='Heat map'}
 
-We gain something by visualizing the whole dataset at once,
-but it is harder to distinwish the overly linear rises and fall over a 40 day period.
+We gain something by visualizing the whole dataset at once; 
+for example, we can see that some patients (3, 15, 25, 31, 36 and 60) have very noisy data.
+However, it is harder to distinwish the details of the inflammatory response.
 
 Similarly, the [`imagesc` function](https://uk.mathworks.com/help/matlab/ref/imagesc.html)
 represents the matrix as a color image. 
@@ -205,7 +250,7 @@ represents the matrix as a color image.
 >> ylabel('Patient number')
 ```
 
-![](fig/inflammation-heatmap.png){alt='imagesc Heat map'}
+![](fig/plotting_imagesc-heatmap.svg){alt='imagesc Heat map'}
 
 Every value in the matrix is *mapped* to a color. 
 Blue regions in this heat map are low values, while yellow shows high values.
