@@ -1,9 +1,9 @@
-function fabricate_data_v(varargin)
+function fabricate_data(varargin)
     %% Function arguments
     % Define default values
-    default_filename = 'fabricated_data.csv';
+    default_filename = "";
     default_np = 60;                % Number of patients
-    default_days = 30;              % Days of trial
+    default_days = 40;              % Days of trial
     default_prob_group_2 = 0.3;     % Probability of patient having mu and sigma 2
     default_prob_extra_noisy = 0.1; % Probability of measurements being extra noisy
     %Input parser
@@ -30,8 +30,8 @@ function fabricate_data_v(varargin)
     sig_2 = 0.3;    % Variance for group 2
     damp_2 = 0.6;   % Dampening of lognormal for group 2
     % Noise strengths
-    ns=0.005;       % Deviation from log normal plot
-    en_ns = 0.03;   % Deviation from log normal plot for extra noisy data
+    ns=0.001;       % Deviation from log normal plot
+    en_ns = 0.01;   % Deviation from log normal plot for extra noisy data
     mu_ns=0.05;     % Noise of mean
     sig_ns=0.02;    % Noise of variance
 
@@ -46,7 +46,7 @@ function fabricate_data_v(varargin)
     x = repmat(1:days,np,1);
     y = exp(-(log(x) - mu).^2 ./ sig) ./ (x .* sig * sqrt(2 * pi) .* damp);
     % Add noise to data for all data points at once
-    r = randn(np, days) .* p_ns;
+    r = randn(np, days) .* p_ns ./ damp;
     p = y + r;
     % Postprocessing data
     p = p .* (p > 0);   % Removes negative numbers
@@ -56,5 +56,7 @@ function fabricate_data_v(varargin)
     % Plot all data points with semi-transparent lines
     plot(1:days, p, 'Color', [0 0 0 0.1]);
 
-    writematrix(p,filename)
+    if filename ~= ""
+        writematrix(p,filename)
+    end
 end
