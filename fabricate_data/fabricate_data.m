@@ -1,46 +1,60 @@
-second_group = 0.3;
-extra_noisy = 0.1;
+function fabricate_data_v(varargin)
+    %% Function arguments
+    % Define default values
+    default_filename = 'fabricated_data.csv';
+    default_np = 60;                % Number of patients
+    default_days = 30;              % Days of trial
+    default_prob_group_2 = 0.3;     % Probability of patient having mu and sigma 2
+    default_prob_extra_noisy = 0.1; % Probability of measurements being extra noisy
+    %Input parser
+    p=inputParser;
+    addParameter(p,'filename',default_filename)
+    addParameter(p,'np',default_np)
+    addParameter(p,'days',default_days)
+    addParameter(p,'prob_group_2',default_prob_group_2)
+    addParameter(p,'prob_extra_noisy',default_prob_extra_noisy)
+    parse(p,varargin{:})
+    % Access the arguments
+    filename = p.Results.filename;
+    np = p.Results.np;
+    days = p.Results.days;
+    prob_group_2 = p.Results.prob_group_2;
+    prob_extra_noisy = p.Results.prob_extra_noisy;
 
-% Noise strengths
-ns=0.005;       % Deviation from log normal plot
-en_ns = 0.03;   % For extra noisy data
-mu_ns=0.05;     % Noise of mean
-sig_ns=0.02;    % Npise of sigma
+    %% Other defaults
+    % Group parameters
+    mu_1 = 2.3;     % Mean for group 1
+    sig_1 = 0.7;    % Variance for group 1
+    damp_1 = 0.2;   % Dampening of lognormal for group 1
+    mu_2 = 2.9;     % Mean for group 2
+    sig_2 = 0.3;    % Variance for group 2
+    damp_2 = 0.6;   % Dampening of lognormal for group 2
+    % Noise strengths
+    ns=0.005;       % Deviation from log normal plot
+    en_ns = 0.03;   % Deviation from log normal plot for extra noisy data
+    mu_ns=0.05;     % Noise of mean
+    sig_ns=0.02;    % Noise of variance
 
-x=1:30; % Days of trial
-np=600;  % Number of patients per file
+    %% Fabricate data
+    % Generate random parameters for each patient
+    group = rand(np, 1) < prob_group_2;
+    mu = mu_1 + group*(mu_2 - mu_1) + randn(np,1)*mu_ns;
+    sig = sig_1 + group*(sig_2 - sig_1) + randn(np,1)*sig_ns;
+    damp = damp_1 + group*(damp_2 - damp_1);
+    p_ns = ns + (rand(np, 1) < prob_extra_noisy)*(en_ns - ns);
+    % Compute the inflammation level for all data points at once
+    x = repmat(1:days,np,1);
+    y = exp(-(log(x) - mu).^2 ./ sig) ./ (x .* sig * sqrt(2 * pi) .* damp);
+    % Add noise to data for all data points at once
+    r = randn(np, days) .* p_ns;
+    p = y + r;
+    % Postprocessing data
+    p = p .* (p > 0);   % Removes negative numbers
+    p(:, 1) = 0;        % Makes sure it starts at 0
+    p = round(p, 3);
 
-clf
-hold on
-for i = 1:np
-    % Chooses distribution parameters
-    mu=2.3;
-    sig=0.7;
-    damp=0.2;
-    if rand<second_group
-        mu=2.9;
-        sig=0.3;
-        damp=0.6;
-    end
-    % Adds noise to parameters
-    mu=mu+randn*mu_ns;
-    sig=sig+randn*sig_ns;
+    % Plot all data points with semi-transparent lines
+    plot(1:days, p, 'Color', [0 0 0 0.1]);
 
-    % Computes inflamation level
-    y=exp(-(log(x)-mu).^2/sig)./(x*sig*sqrt(2*3.141592)*damp);
-    %plot(x,y)
-
-    % Adds noise to data
-    p_ns=ns;
-    if rand<extra_noisy
-        p_ns=en_ns;
-    end
-    r=randn(1,30)*p_ns;
-    p=y+r;
-    p=p.*(p>0); % Removes negative numbers
-    p(1)=0;     % Makes sure it starts at 0
-    p=round(p,3);
-
-    plot(x,p,'Color',[0 0 0 0.1])
+    writematrix(p,filename)
 end
-hold off
