@@ -52,27 +52,33 @@ To begin tackling this lesson, you will need to:
 
 ## Overview of the data
 
-We are studying inflammation in patients who have been given a new treatment for arthritis,
-and need to analyze the first dozen data sets.
-The data sets are stored in
-[Comma Separated Values (CSV)](learners/reference.md#comma-separated-values) format:
-each row holds information for a single patient,
-and the columns represent successive days.
+We are studying inflammation in patients who have been given a new treatment.
+Our dataset is divided in 3 groups:
+
+- The base group consists of 12 files containing a base study of inflammation after a surgery without any new treatment.
+- The control group consists of 6 files containing the data for patients that were given a placebo.
+- The test group consists of 6 files containing the data for patients that were given the new treatement.
+
+In the files, each row holds information for a single patient and the columns represent successive days.
+
+![](fig/inflammation-data.png){alt='Information saved in each data file.'}
+
+The actual data sets do not have titles for columns or rows.
+The data is stored in [Comma Separated Values (CSV)](learners/reference.md#comma-separated-values) format.
+This means that values in a single row are separated with a `,`.
 The first few rows of our first file,
 [`inflammation-01.csv`](episodes/data/matlab-novice-inflammation/data/inflammation-01.csv), look like this:
 
 ```
-0,0,1,3,1,2,4,7,8,3,3,3,10,5,7,4,7,7,12,18,6,13,11,11,7,7,4,6,8,8,4,4,5,7,3,4,2,3,0,0
-0,1,2,1,2,1,3,2,2,6,10,11,5,9,4,4,7,16,8,6,18,4,12,5,12,7,11,5,11,3,3,5,4,4,5,5,1,1,0,1
-0,1,1,3,3,2,6,2,5,9,5,7,4,5,4,15,5,11,9,10,19,14,12,17,7,12,11,7,4,2,10,5,4,2,2,3,2,2,1,1
-0,0,2,0,4,2,2,1,6,7,10,7,9,13,8,8,15,10,10,7,17,4,4,7,6,15,6,4,9,11,3,5,6,3,3,4,2,3,2,1
-0,1,1,3,3,1,3,5,2,4,4,7,6,5,3,10,8,10,6,17,9,14,9,7,13,9,12,6,7,7,9,6,3,2,2,4,2,0,1,1
+0,0.065,0.169,0.271,0.332,0.359,0.354,0.333,0.304,0.268,0.234,0.204,0.179,0.141,0.133,0.115,0.083,0.076,0.065,0.065,0.047,0.04,0.041,0.028,0.02,0.028,0.012,0.02,0.011,0.015,0.009,0.01,0.01,0.007,0.007,0.001,0.008,-0,0.006,0.004
+0,0.034,0.114,0.2,0.272,0.321,0.328,0.32,0.314,0.287,0.246,0.215,0.207,0.171,0.146,0.131,0.107,0.1,0.088,0.065,0.061,0.052,0.04,0.042,0.04,0.03,0.031,0.031,0.016,0.019,0.02,0.017,0.019,0.006,0.009,0.01,0.01,0.005,0.001,0.011
+0,0.081,0.216,0.277,0.273,0.356,0.38,0.349,0.315,0.23,0.235,0.198,0.106,0.198,0.084,0.171,0.126,0.14,0.086,0.01,0.06,0.081,0.022,0.035,0.01,0.086,-0,0.102,0.032,0.07,0.017,0.136,0.022,-0,0.031,0.054,-0,-0,0.05,0.001
 ```
 
-We want to:
+We want to explore and analyse this data, and for that we will need to:
 
-- load that data into memory,
-- calculate the average inflammation per day across all patients, and
-- plot the result.
+- Load that data into memory.
+- Make operations with the data.
+- Visualize the processed data.
 
 To do all that, we'll have to learn a little bit about programming.
