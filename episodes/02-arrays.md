@@ -458,13 +458,13 @@ last three characters: gen
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- "Some functions to initialize matrices include zeros, ones, and rand.
+- "Some functions to initialize matrices include `zeros`, `ones`, and `rand`.
   They all produce a square matrix if only one argument is given,
-  but you can specify the dimensions you want separated by a comma."
-- "To select data points we use `M(rows, columns)`, where rows and columns are the
-  indices of the elements we want. They can be just numbers or arrays of numbers."
-- "We use the colon operator to select ranges of elements as `start:end` or `start:increment:end`."
-- "We use the keyword `end` to get the index of the last element."
+  but you can specify the dimensions you want separated by a comma, as in `zeros(rows,columns)`."
+- "To select data points we use round brackets and provide the row and column indices of the elements we want.
+  They can be just numbers or arrays of numbers. E.g. `M(5,[3,4,5])`"
+- "We can use the colon operator `:` to generate ordered arrays as `start:end` or `start:increment:end`."
+- "We can use the keyword `end` to get the index of the last element."
 - "The colon operator by itself `:` selects all the elements."
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
