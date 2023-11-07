@@ -19,6 +19,9 @@ exercises: 10
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+Now that we've written a function that performs analysis on a single patient from a dataset, we'd like to extend our 
+analysis to all the patients in the dataset. We could manually run the function for every 
+
 
 Recall that we have to do this analysis for every one of our dozen datasets, and we need a better way than
 typing out commands for each one,
