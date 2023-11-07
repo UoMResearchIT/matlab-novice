@@ -6,7 +6,7 @@ exercises: 20
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- "Learn the how to write a function"
+- "Learn how to write a function"
 - "Define a function that takes arguments."
 - "Compare and contrast MATLAB function files with MATLAB scripts."
 - "Recognize why we should divide programs into small, single-purpose functions."
@@ -15,7 +15,7 @@ exercises: 20
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- "How can I teach MATLAB how to do new things?"
+- "How can I teach MATLAB to do new things?"
 - "How can I make programs I write more reliable and re-usable?"
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -37,8 +37,10 @@ conveniently? If we have to re-enter the conversion formula multiple times, the 
 wrong is high. Thankfully there is a convenient way to teach MATLAB how to do new things, like our converting AIU to IIU.
 We can do this by writing a function.
 
-We have already used some predefined MATLAB functions which we can pass arguments to. How can we define our own? A 
-MATLAB function *must* be saved in a text file with a `.m` extension. The name of the file must be the same as the name
+We have already used some predefined MATLAB functions which we can pass arguments to. How can we define our own?
+
+A MATLAB function *must* be saved in a text file with a `.m` extension.
+The name of the file must be the same as the name
 of the function defined in the file.
 
 The first line of our function is called the *function definition* and must include the special `function` keyword to 
@@ -63,8 +65,10 @@ function [out1, out2] = function_name(in1, in2)
 end
 ```
 
-Just as we saw with scripts, functions must be _visible_ to MATLAB, i.e., a file containing a function has to be placed 
-in a directory that MATLAB knows  about. The most convenient of those directories is the current working directory.
+Just as we saw with scripts, functions must be _visible_ to MATLAB,
+i.e., a file containing a function has to be placed in a directory that MATLAB knows  about.
+Following the same logic we used with scripts,
+we will put our code source files in the `src` folder.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
@@ -76,12 +80,12 @@ the path for functions called from the command line.
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Let's put this into practice to create a function that will teach MATLAB to use our AIU to IIU conversion formula.
-Create a file called `inflammation_AIU_to_IIU.m` in the current working directory, enter the following function 
-definition, and save the file:
+Create a file called `inflammation_AIU_to_IIU.m` in the `src` folder,
+enter the following function definition, and save the file:
 
 ```matlab
 function inflammation_in_IIU = function inflammation_AIU_to_IIU(inflammation_in_AIU)
-   % INFLAMMATION_AIU_TO_IIU  Convert inflammation mesured in AIU to inflammation measued in AIU.
+   % INFLAMMATION_AIU_TO_IIU  Convert inflammation mesured in AIU to inflammation measued in IIU.
 
    A = 0.275;
    B = 5.634;
@@ -100,16 +104,36 @@ We can now call our function as we would any other function in MATLAB:
 ans = 3.19935
 ```
 
+We got the number we expected, and at first glance it seems like it is almost the same as a script.
+However, if you look at the variables in the workspace, you'll probably notice one big difference.
+Although a variable called `inflammation_in_IIU` was defined in the function, it does not exist in our workspace.
+
+Lets have a look using the debugger to see what is happening.
+
 When we pass a value, like `6`, to the function, it is assigned to the variable `inflammation_in_AIU` so that it can 
 be used in the body of the function. To return a value from the function, we must assign that value to the variable
 `inflammation_in_IIU` from our function definition line. What ever value `inflammation_in_IIU` has when the `end` 
 keyword in the function definition is reached, that will be the value returned.
 
 Outside the function, the variables `inflammation_in_AIU`, `inflammation_in_IIU`, `A`, and `B` aren't accessible; they
-are only used by in function body. This is one of the major differences between scripts and functions. Scripts can be
-thought of as automating the command line and have access to all the variables in the base workspace, whereas a function
-can only read variables from the base workspace if they are passed in as arguments. Functions can only set variables in
-the base workspace if it passes them back as output.
+are only used by in function body.
+
+This is one of the major differences between scripts and functions: a script can be thought of as automating the command line, with full access to all variables in the base workspace, whereas a function has its own separate workspace.
+
+To be able to access variables from your workspace inside a function, you have to pass them in as inputs.
+To be able to save variables to your workspace, it needs to return them as outputs.
+
+As with any operation, if we want to save the result, we need to assign the result to a variable, for example
+
+```matlab
+>> val_in_IIU = inflammation_AIU_to_IIU(6)
+```
+
+```output
+val_in_IIU = 3.19935
+```
+
+And we can see `val_in_IIU` saved in our workspace.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -144,9 +168,10 @@ end
 
 ## Functions that work on arrays
 
-One of the benefits of writing functions in MATLAB is that functions like the ones we have just written that take
-a single numerical variable as input, perform a straightforward calculation, and return a single numerical variable 
-as output will also be able to operate on an array of numerical variables *for free*.
+One of the benefits of writing functions in MATLAB is that often they will also be able to operate on an array of numerical variables *for free*.
+
+This is only the case when each operation in the function can be applied to an array too.
+In our example, we are adding a number and multiplying by another, both of which are ok to operate on arrays.
 
 This will make converting the inflammation data in our files using the function we've just written very quick. Give it 
 a go!
@@ -222,16 +247,13 @@ Lowest min?
    1
 ```
 
-So now we can get the patient analysis of whichever patient we want, and we do not need to modify `patient_analysis.m` 
-anymore. However, you may have noticed that we have no variables in our workspace. Inside the function, the variables 
-`patient_data`, `g_mean`, `g_max`, `g_min`, `p_mean`, `p_max`, and `p_min` are created, but then they are deleted when 
-the function ends.
-
-This is one of the major differences between scripts and functions: a script can be thought of as automating the command 
-line, with full access to all variables in the base workspace, whereas a function has its own separate workspace.
-
-To be able to access variables from your workspace, you have to pass them in as inputs.
-To be able to save variables to your workspace, it needs to return them as outputs.
+So now we can get the patient analysis of whichever patient we want,
+and we do not need to modify `patient_analysis.m` anymore.
+However, you may have noticed that we have no variables in our workspace.
+Remember, inside the function, the variables
+`patient_data`, `g_mean`, `g_max`, `g_min`, `p_mean`, `p_max`, and `p_min` are created,
+but then they are deleted when the function ends.
+If we want to save them, we need to pass them as outputs.
 
 Lets say, for example, that we want to save the mean of each patient.
 In our `patient_analysis.m` we already compute the value and save it in `p_mean`,
@@ -427,7 +449,10 @@ end
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- "Break programs up into short, single-purpose functions with meaningful names."
+- A MATLAB function *must* be saved in a text file with a `.m` extension. The name of the file must be the same as the name
+of the function defined in the file.
 - "Define functions using the `function` keyword."
+- Functions have an independent workspace. Access variables from your workspace inside a function by passing them as inputs. Access variables from the function returning them as outputs.
+- "Break programs up into short, single-purpose functions with meaningful names."
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
