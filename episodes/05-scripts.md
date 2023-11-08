@@ -31,7 +31,7 @@ In addition to running MATLAB commands one-by-one on the command line,
 we can also write several commands in a *script*.
 A MATLAB script is just a text file with a `.m` extension.
 We've written commands to load data from a `.csv` file,
-compute statistics of the data and display some plots about that data.
+compute statistics from the data and plot the data in some figures.
 Let's put those commands in a script called `patient_analysis.m`,
 which we'll save in the `src` directory in our current folder, `matlab-novice-inflammation`.
 
@@ -97,7 +97,7 @@ disp(p_min == g_min)
 
 ## Comments
 
-You might have noticed that we described what we want our code to do using the percent sign: `%`.
+You might have noticed that we described what we want our code to do in lines starting withg the percent sign: `%`.
 This is another plus of writing scripts: 
 you can comment your code to make it easier to understand when you come back to it after a while.
 
@@ -111,8 +111,8 @@ Now, before running this script lets clear our workplace so that we can see what
 
 If you now run the script by clicking "Run" on the graphical user interface,
 pressing `F5` on the keyboard,
-or typing the script's name `patient_analysis` on the command line (without extention),
-you'll see a bunch of variables appear on the workspace and this output:
+or typing the script's name `patient_analysis` on the command line (the file name without the extension),
+you'll see a bunch of variables appear in the workspace and this output:
 ```matlab
 patient_analysis
 ```
@@ -131,7 +131,7 @@ Remember, we supressed most outputs with `;`, so the only lines printed are the 
 As you can see, the script ran every line of code in the script in order, and created any variable we asked for.
 Having the code in the script makes it much easier to follow what we are doing, and also make changes.
 For example, if we now want to look at patient 8, all we need to do is change the number in lines 10, 11 and 12.
-We can actually do a bit better, and replace that number for a variable `patient_number`.
+We can actually do a bit better, and replace that number with a variable `patient_number`.
 
 This variable needs to exist before it is used, so lets insert it before computing the patient statistics, like so:
 

@@ -66,7 +66,8 @@ We are now set to load our data. As a reminder, our data is structured like this
 
 ![](fig/loading-data_inflammation-data.png){alt='Information saved in each data file.'}
 
-But it is stored without the headers, as comma-separated values.
+But it is stored without the headers, as comma-separated values. Each line in the file corresponds to a row, and
+the value for each column is separated from its neighbours by a comma.
 The first few rows of our first file, `data/base/inflammation-01.csv`, look like this:
 
 ```
@@ -223,9 +224,9 @@ ans =
    0
 ```
 So we know that patient 5 did not suffer more inflamation than average,
-that it is not the patient who got the most inflamed,
-that he had the global minimum inflamation at some point (0),
-and that the std of his inflamation is not below the average.
+that they are not the patient who got the most inflamed,
+that they had the global minimum inflamation at some point (0),
+and that the std of their inflamation is not below the average.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -285,10 +286,10 @@ ans =
   logical
    1
 ```
-So we know that at day 9 there was signifficant inflamation,
+So we know that at day 9 there was significant inflamation,
 but that it is not the day with the highest inflamation;
 Also, that every patient was at least a bit inflamed at that moment,
-and that the std of inflamation this day is below the average (so datapoints are closer to each other).
+and that the standard deviation of inflamation this day is below the standard deviation of the whole dataset (so datapoints are closer to each other).
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -300,11 +301,11 @@ Would you be happy to do it if you had 1000 days worth of data?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-#### **Whole array analisis**
+#### **Whole array analysis**
 
-The analisis we've done until now would be very tedious to repeat for each patient or day.
-Luckily, we've been telling you that matlab is used to thinking in terms of arrays.
-Surely then, it must be possible to get the mean of each patient or each day in one go.
+The analysis we've done until now would be very tedious to repeat for each patient or day.
+Luckily, we've learnt that matlab is used to thinking in terms of arrays.
+Surely it must be possible to get the mean of each patient or each day in one go.
 It is definitely tempting to simply call the mean on the array, so let's try it:
 ```matlab
 >> x=mean(patient_data);
@@ -320,7 +321,7 @@ The other statistics behave in the same way, so we can more appropriately label 
 >> per_day_std = std(patient_data);
 ```
 
-You'll notice that each of the above avriables is a `1x40` array.
+You'll notice that each of the above variables is a `1x40` array.
 
 Now that we have the information for each day in an array,
 we can take advantage of Matlab's capacity to do array operations.

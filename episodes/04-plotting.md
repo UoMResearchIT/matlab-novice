@@ -6,8 +6,8 @@ exercises: 10
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- "Display simple graphs with adequate titles and labels."
-- "Get familiar with functions `plot`, `heatmap` and `imagesc`."
+- "Display simple graphs with appropriate titles and labels."
+- "Get familiar with the functions `plot`, `heatmap` and `imagesc`."
 - "Learn how to show images side by side."
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -28,7 +28,7 @@ explore a few features of MATLAB here.
 
 We will start by exploring the function `plot`.
 The most common usage is to provide two vectors, like `plot(X,Y)`.
-Lets start by plotting the the average (accross patients) inflammation over time.
+Lets start by plotting the average inflammation across patients over time.
 For the `Y` vector we can provide `per_day_mean`,
 and for the `X` vector we can simply use the day number,
 which we can generate as a range with `1:40`.
@@ -50,7 +50,7 @@ In most cases, however, using the indices on the x axis is not desireable.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-**Note:** We do not even need to have the vactor saved as a variable.
+**Note:** We do not even need to have the vector saved as a variable.
 We would obtain the same plot with the command `plot(mean(patient_data, 1))`.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -58,7 +58,7 @@ We would obtain the same plot with the command `plot(mean(patient_data, 1))`.
 As it is, the image is not very informative.
 We need to give the figure a `title` and label the axes using `xlabel` and `ylabel`,
 so that other people can understand what it shows
-(including us if we return to this plot 6 months from now).
+(including us, if we return to this plot 6 months from now).
 ```matlab
 >> title('Daily average inflammation')
 >> xlabel('Day of trial')
@@ -67,8 +67,8 @@ so that other people can understand what it shows
 
 ![](fig/plotting_average-inflammation.svg){alt='Average inflammation'}
 
-Much better, now the image actually communicates something.
-As expected, this image tells us way more than the numbers we had seen in the previous section.
+That's much better! Now the plot actually communicates something.
+As we expected, this figure tells us way more than the numbers we had seen in the previous section.
 
 Let's have a look at two other statistics: the maximum and minimum
 inflammation per day across all patients.
@@ -90,15 +90,15 @@ inflammation per day across all patients.
 
 ![](fig/plotting_min-inflammation.svg){alt='Minumum inflammation'}
 
-These two are much more noisy than the mean, as can be expected.
+These two are much more noisy than the mean, as we'd be expect.
 
 ## Multiple lines in a plot
 
-It is often the case that we want more than one line in a single plot.
-In matlab we can "hold" a plot and keep plotting on top.
+It is often the case that we want to plot more than one line in a single figure.
+In MATLAB we can "hold" a figure and keep plotting on the same axes.
 For example, we might want to contrast the mean values accross patients
-with the information of a single patient.
-If we are displaying more than one line, it is important we add a legend.
+with the inflammation of a single patient.
+If we are displaying more than one line, it is important to add a legend.
 We can specify the legend names by adding `,DisplayName="legend name here"`
 inside the plot function. We then need to activate the legend by running `legend`
 So, to plot the mean values we first do:
@@ -123,13 +123,13 @@ Then, we can use the instruction `hold on` to add a plot for patient_5.
 
 So this patient seems fairly average.
 
-Remember to tell matlab you are done by adding `hold off` when you are done!
+Remember to tell matlab you are done by adding `hold off` when you have finished adding lines to the figure!
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ## Patients 3 & 4
 
-Try to plot the mean and the data for patients 3 and 4 together.
+Try to plot the mean across all patients and the inflammation data for patients 3 and 4 together.
 
 :::::::::::::::  solution
 
@@ -143,9 +143,9 @@ The first part for the mean remains unchanged:
 >> ylabel('Inflammation')
 ```
 
-Now we need to get the patient specific data.
+Now we need to get the specific data for each patient.
 We can get the data for patients 3 and 4 as we did in the previous episode i.e. `patient_data(3,:)`.
-Now we either save that data in a variables, or we use it directly in the plot instruction, like this:
+Now we can either save that data in a variable, or we use it directly in the plot instruction, like this:
 
 ```matlab
 >> hold on
@@ -221,11 +221,11 @@ To clear the tiled layout, you can use the instruction `clf`, which stands for "
 
 ## Heatmaps
 
-If we wanted to look at all our data at the same time we need a three dimensions:
-One for the patients, one for the days, and another one for the inflamation values.
-An option is to use a heatmap, that is, use the colour of each point to represent the inflamation values.
+If we wanted to look at all our data at the same time we need three dimensions:
+One for the patients, one for the day, and another one for the inflamation.
+One option is to use a heatmap, that is, use the colour of each point to represent the inflamation values.
 
-In matlab, at least two methods can do this for us. 
+In MATLAB, at least two methods can do this for us. 
 The [`heatmap` function](https://uk.mathworks.com/help/matlab/ref/heatmap.html)
 takes a table as input and produces a heatmap:
 ```matlab
@@ -239,7 +239,7 @@ takes a table as input and produces a heatmap:
 
 We gain something by visualizing the whole dataset at once; 
 for example, we can see that some patients (3, 15, 25, 31, 36 and 60) have very noisy data.
-However, it is harder to distinwish the details of the inflammatory response.
+However, it is harder to distinguish the details of the inflammatory response.
 
 Similarly, the [`imagesc` function](https://uk.mathworks.com/help/matlab/ref/imagesc.html)
 represents the matrix as a color image. 
