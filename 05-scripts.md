@@ -31,9 +31,9 @@ In addition to running MATLAB commands one-by-one on the command line,
 we can also write several commands in a *script*.
 A MATLAB script is just a text file with a `.m` extension.
 We've written commands to load data from a `.csv` file,
-compute statistics of the data and display some plots about that data.
+compute statistics from the data and plot the data in some figures.
 Let's put those commands in a script called `patient_analysis.m`,
-which we'll save in the `src` directory in our current folder,`matlab-novice-inflammation`.
+which we'll save in the `src` directory in our current folder, `matlab-novice-inflammation`.
 
 To create a new script we can click the "New script" button on the top left, or use the command:
 ```matlab
@@ -67,21 +67,11 @@ absolute file path.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## GNU Octave
-
-Octave has only recently gained a MATLAB-like user interface. To change the
-path in any version of Octave, including command-line-only installations, use
-`addpath('path/to/directory')`
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
 We can now type the contents of the script:
 
 ```matlab
 % Load patient data
-patient_data = readmatrix('data/inflammation-01.csv');
+patient_data = readmatrix('data/base/inflammation-01.csv');
 
 % Compute global statistics
 g_mean = mean(patient_data(:));
@@ -103,17 +93,26 @@ disp('Lowest min?')
 disp(p_min == g_min)
 ```
 
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Comments
+
+You might have noticed that we described what we want our code to do in lines starting withg the percent sign: `%`.
+This is another plus of writing scripts: 
+you can comment your code to make it easier to understand when you come back to it after a while.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 Now, before running this script lets clear our workplace so that we can see what is happening.
 ```matlab
 >> clear
 >> clc
 ```
 
-
 If you now run the script by clicking "Run" on the graphical user interface,
 pressing `F5` on the keyboard,
-or typing the script's name `patient_analysis` on the command line (without extention),
-you'll see a bunch of variables appear on the workspace and this output:
+or typing the script's name `patient_analysis` on the command line (the file name without the extension),
+you'll see a bunch of variables appear in the workspace and this output:
 ```matlab
 patient_analysis
 ```
@@ -132,11 +131,13 @@ Remember, we supressed most outputs with `;`, so the only lines printed are the 
 As you can see, the script ran every line of code in the script in order, and created any variable we asked for.
 Having the code in the script makes it much easier to follow what we are doing, and also make changes.
 For example, if we now want to look at patient 8, all we need to do is change the number in lines 10, 11 and 12.
-We can actually do a bit better, and replace that number for a variable `patient_number`.
+We can actually do a bit better, and replace that number with a variable `patient_number`.
+
 This variable needs to exist before it is used, so lets insert it before computing the patient statistics, like so:
+
 ```matlab
 % Load patient data
-patient_data = readmatrix('data/inflammation-01.csv');
+patient_data = readmatrix('data/base/inflammation-01.csv');
 
 % Compute global statistics
 g_mean = mean(patient_data(:));
@@ -174,7 +175,7 @@ Patient 8:
 High mean?
    1
 Highest max?
-   1
+   0
 Lowest min?
    1
 ```
@@ -182,12 +183,6 @@ Lowest min?
 :::::::::::::::::::::::::::::::::::::::::  callout
 
 ## Help text
-
-You might have noticed that we described what we want
-our code to do using the percent sign: `%`.
-This is another plus of writing scripts: you can comment
-your code to make it easier to understand when you come
-back to it after a while.
 
 A comment can appear on any line, but be aware that the first line
 or block of comments in a script or function is used by MATLAB as the
@@ -232,7 +227,7 @@ In the script, lets recap what we need to do:
 % PLOT_DAILY_AVERAGE   Plots daily average inflammation accross patients.
 
 % Load patient data
-patient_data = readmatrix('data/inflammation-01.csv');
+patient_data = readmatrix('data/base/inflammation-01.csv');
 
 figure
 
@@ -263,15 +258,19 @@ plot_daily_average
 
 You should see the figure appear.
 
+Try running `plot_daily_average` again without closing the first figure to see that it does not plot on top of the previous figure
+A second figure is created. If you look carefully, at the top it is labelled as "Figure 2".
 
-Let's modify our `plot_daily_average` script so that it creates sub-plots,
-rather than individual plots.
+It is worth mentioning that it is possible to close all the currently open figures with `close all`.
+
+### Modified script for sub-plots
+Let's modify our `plot_daily_average` script so that it creates sub-plots, rather than individual plots.
 
 ```matlab
 % PLOT_DAILY_AVERAGE   Plots daily average, max and min inflammation accross patients.
 
 % Load patient data
-patient_data = readmatrix('data/inflammation-01.csv');
+patient_data = readmatrix('data/base/inflammation-01.csv');
 
 figure
 
@@ -329,19 +328,13 @@ not displaying the figures could make the script run faster.
 Let's add a couple of lines of code to do this.
 
 We can ask MATLAB to create an empty figure window without
-displaying it by setting its `'visible'` property to `'off'`, like so:
-
-```matlab
-figure(visible='off')
-```
+displaying it by setting its `'visible'` property to `'off'`.
+We can do this by passing the option as an argument to the figure creation: `figure(visible='off')`
 
 When we do this, we have to be careful to manually "close" the figure
 after we are doing plotting on it - the same as we would "close"
-an actual figure window if it were open:
-
-```matlab
-close()
-```
+an actual figure window if it were open.
+We can do so with the command `close()`
 
 Adding these two lines, our finished script looks like this:
 
@@ -349,7 +342,7 @@ Adding these two lines, our finished script looks like this:
 % PLOT_DAILY_AVERAGE   Saves plot of daily average, max and min inflammation accross patients.
 
 % Load patient data
-patient_data = readmatrix('data/inflammation-01.csv');
+patient_data = readmatrix('data/base/inflammation-01.csv');
 
 figure(visible='off')
 
@@ -391,5 +384,15 @@ which are then used to do something. So, can we create our own *functions*?
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
 - "Save MATLAB code in files with a `.m` suffix."
+- The set of commands in a script get executed by calling the script by its name,
+  and all variables are saved to the workspace.
+  Be careful, this potentially **replaces** variables.
+- Comment your code to make it easier to understand using `%` at the start of a line.
+- The first line of any script or function (known as the H1 line) should be a comment.
+  It typically includes the name of the program, and a brief description.
+- You can use `help script_name` to get the information in the H1 line.
+- Create new figures with `figure`, or new 'invisible' figures with figure(visible='off').
+  Remember to close them with `close()`, or `close all`.
+- Save figures with `saveas(gcf,'results/my_plot_name.png')`
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::

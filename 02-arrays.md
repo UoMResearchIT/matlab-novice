@@ -33,7 +33,7 @@ Z =
      0     0     0     0     0
      0     0     0     0     0
 ```
-creates a matrix of 3 rows and 5 columns, all with zeros.
+creates a matrix of 3 rows and 5 columns, filled with zeros.
 If we had only passed one dimension, matlab assumes you want a square matrix, so
 ```matlab
 >> Z = zeros(3)
@@ -54,12 +54,12 @@ Z =
      0     0     0     0     0
 ```
 
-This logic of the `zeros` function is shared with many other functions that create arrays.
+This way `zeros` function works is shared with many other functions that create arrays.
 
 For example, the [`ones` function](https://uk.mathworks.com/help/matlab/ref/ones.html)
-is quite similar, but the arrays are filled with ones, and
+is nearly identical, but the arrays are filled with ones, and
 the [`rand` function](https://uk.mathworks.com/help/matlab/ref/rand.html)
-assigns uniformly distributed random numbers between zero and 1.
+assigns uniformly distributed random numbers between zero and 1 to each space in the array.
 ```matlab
 >> R = rand(8);
 >> O = ones(10,10);
@@ -72,7 +72,7 @@ You can more comfortably explore the variables `R` and `O` by double clicking th
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-By the way, the `ones` function can actually help us initialize a matrix to any value,
+The `ones` function can actually help us initialize a matrix to any value,
 because we can multiply a matrix by a constant and it will multiply each element.
 So for example,
 ```matlab
@@ -81,9 +81,9 @@ So for example,
 Produces a 3x6 matrix full of fives.
 
 
-The [`magic` function](https://uk.mathworks.com/help/matlab/ref/magic.html) has a similar logic,
+The [`magic` function](https://uk.mathworks.com/help/matlab/ref/magic.html) works in a similar way,
 but you can only declare square matrices with it.
-The magic thing about them is that the sum of the elements on each row or column add up to the same number.
+The magic thing about them is that the sum of the elements on each row or column is the same number.
 ```matlab
 >> M = magic(4)
 ```
@@ -94,7 +94,7 @@ M =
      9     7     6    12
      4    14    15     1
 ```
-In this case, each row or column add up to 34.
+In this case, each row or column adds up to 34.
 But how could I tell in a bigger matrix?
 How can I select some of the elements of the array and sum them, for example?
 
@@ -102,7 +102,7 @@ How can I select some of the elements of the array and sum them, for example?
 ## Array indexing
 
 Array **indexing**, is the method by which we can select one or more different elements of an array.
-A solid understanding of array indexing will be essential to work with arrays.
+A solid understanding of array indexing will be essential to working with arrays.
 Lets start with selecting one element.
 
 First, we will create an 8x8 "magic" matrix:
@@ -142,12 +142,13 @@ So the index `(5, 6)` selects the element on the fifth row and sixth column of `
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-**Note:** Matlab starts counting indices at 1, not 0! (as many other programming languages).
+**Note:** Matlab starts counting indices at 1, not 0! Many other programming languages start counting indices at 0, so 
+be careful!.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 An index like the one we used selects a single element of an array,
-but we can also select a group of them if instead of a number we give arrays as indices.
+but we can also select a group of elements if instead of a number we give arrays of indices.
 For example, if we want to select this submatrix:
 
 ![](fig/matrix-submatrix.svg){alt='Accessing a submatrix'}
@@ -295,8 +296,8 @@ This is much better, now this works for any size of matrix, and we don't need to
 
 ## Using `:` as an index
 
-getting a whole row or column is such a common operation, that matlab has a shortcut:
-Using `:` alone is equivalent!
+Getting a whole row or column is such a common operation, that matlab has a shortcut:
+Using `:` alone is equivalent to `1:end`!
 
 For example, We can then get the whole fifth row with:
 ```matlab
@@ -458,13 +459,13 @@ last three characters: gen
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- "Some functions to initialize matrices include zeros, ones, and rand.
+- "Some functions to initialize matrices include `zeros`, `ones`, and `rand`.
   They all produce a square matrix if only one argument is given,
-  but you can specify the dimensions you want separated by a comma."
-- "To select data points we use `M(rows, columns)`, where rows and columns are the
-  indices of the elements we want. They can be just numbers or arrays of numbers."
-- "We use the colon operator to select ranges of elements as `start:end` or `start:increment:end`."
-- "We use the keyword `end` to get the index of the last element."
+  but you can specify the dimensions you want separated by a comma, as in `zeros(rows,columns)`."
+- "To select data points we use round brackets and provide the row and column indices of the elements we want.
+  They can be just numbers or arrays of numbers. E.g. `M(5,[3,4,5])`"
+- "We can use the colon operator `:` to generate ordered arrays as `start:end` or `start:increment:end`."
+- "We can use the keyword `end` to get the index of the last element."
 - "The colon operator by itself `:` selects all the elements."
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
