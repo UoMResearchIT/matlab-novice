@@ -277,7 +277,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Writing MATLAB Scripts</h1>
-        <p> Last updated on 2023-10-18 | 
+        <p> Last updated on 2023-11-08 | 
         
         <a href="https://github.com/swcarpentry/matlab-novice-inflammation/edit/main/episodes/05-scripts.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -322,10 +322,10 @@ easily reproducible.</p>
 line, we can also write several commands in a <em>script</em>. A MATLAB
 script is just a text file with a <code>.m</code> extension. We’ve
 written commands to load data from a <code>.csv</code> file, compute
-statistics of the data and display some plots about that data. Let’s put
+statistics from the data and plot the data in some figures. Let’s put
 those commands in a script called <code>patient_analysis.m</code>, which
-we’ll save in the <code>src</code> directory in our current
-folder,<code>matlab-novice-inflammation</code>.</p>
+we’ll save in the <code>src</code> directory in our current folder,
+<code>matlab-novice-inflammation</code>.</p>
 <p>To create a new script we can click the “New script” button on the
 top left, or use the command:</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -360,26 +360,12 @@ can provide the relative or absolute file path.</p>
 </div>
 </div>
 </div>
-<div id="gnu-octave" class="callout callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div id="gnu-octave" class="callout-inner">
-<h3 class="callout-title">GNU Octave<a class="anchor" aria-label="anchor" href="#gnu-octave"></a>
-</h3>
-<div class="callout-content">
-<p>Octave has only recently gained a MATLAB-like user interface. To
-change the path in any version of Octave, including command-line-only
-installations, use <code>addpath('path/to/directory')</code></p>
-</div>
-</div>
-</div>
 <p>We can now type the contents of the script:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Load patient data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="ss">'data/inflammation-01.csv'</span>)<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="ss">'data/base/inflammation-01.csv'</span>)<span class="op">;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">% Compute global statistics</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">g_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span>(<span class="op">:</span>))<span class="op">;</span></span>
@@ -400,6 +386,21 @@ installations, use <code>addpath('path/to/directory')</code></p>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="va">disp</span>(<span class="ss">'Lowest min?'</span>)</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="va">disp</span>(<span class="va">p_min</span> <span class="op">==</span> <span class="va">g_min</span>)</span></code></pre>
 </div>
+<div id="comments" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="comments" class="callout-inner">
+<h3 class="callout-title">Comments<a class="anchor" aria-label="anchor" href="#comments"></a>
+</h3>
+<div class="callout-content">
+<p>You might have noticed that we described what we want our code to do
+in lines starting withg the percent sign: <code>%</code>. This is
+another plus of writing scripts: you can comment your code to make it
+easier to understand when you come back to it after a while.</p>
+</div>
+</div>
+</div>
 <p>Now, before running this script lets clear our workplace so that we
 can see what is happening.</p>
 <div class="codewrapper sourceCode" id="cb3">
@@ -410,9 +411,9 @@ can see what is happening.</p>
 </div>
 <p>If you now run the script by clicking “Run” on the graphical user
 interface, pressing <code>F5</code> on the keyboard, or typing the
-script’s name <code>patient_analysis</code> on the command line (without
-extention), you’ll see a bunch of variables appear on the workspace and
-this output:</p>
+script’s name <code>patient_analysis</code> on the command line (the
+file name without the extension), you’ll see a bunch of variables appear
+in the workspace and this output:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -436,15 +437,15 @@ order, and created any variable we asked for. Having the code in the
 script makes it much easier to follow what we are doing, and also make
 changes. For example, if we now want to look at patient 8, all we need
 to do is change the number in lines 10, 11 and 12. We can actually do a
-bit better, and replace that number for a variable
-<code>patient_number</code>. This variable needs to exist before it is
-used, so lets insert it before computing the patient statistics, like
-so:</p>
+bit better, and replace that number with a variable
+<code>patient_number</code>.</p>
+<p>This variable needs to exist before it is used, so lets insert it
+before computing the patient statistics, like so:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Load patient data</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="ss">'data/inflammation-01.csv'</span>)<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="ss">'data/base/inflammation-01.csv'</span>)<span class="op">;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">% Compute global statistics</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="va">g_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span>(<span class="op">:</span>))<span class="op">;</span></span>
@@ -485,7 +486,7 @@ changing the value of <code>patient_number</code>.</p>
 High mean?
    1
 Highest max?
-   1
+   0
 Lowest min?
    1</code></pre>
 </div>
@@ -497,10 +498,6 @@ Lowest min?
 <h3 class="callout-title">Help text<a class="anchor" aria-label="anchor" href="#help-text"></a>
 </h3>
 <div class="callout-content">
-<p>You might have noticed that we described what we want our code to do
-using the percent sign: <code>%</code>. This is another plus of writing
-scripts: you can comment your code to make it easier to understand when
-you come back to it after a while.</p>
 <p>A comment can appear on any line, but be aware that the first line or
 block of comments in a script or function is used by MATLAB as the
 <strong>help text</strong>. When we use the <code>help</code> command,
@@ -549,7 +546,7 @@ script.</p>
 <pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">% PLOT_DAILY_AVERAGE   Plots daily average inflammation accross patients.</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">% Load patient data</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="ss">'data/inflammation-01.csv'</span>)<span class="op">;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="ss">'data/base/inflammation-01.csv'</span>)<span class="op">;</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
@@ -579,6 +576,14 @@ plotting on top of existing figures.</p>
 <pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="va">plot_daily_average</span></span></code></pre>
 </div>
 <p>You should see the figure appear.</p>
+<p>Try running <code>plot_daily_average</code> again without closing the
+first figure to see that it does not plot on top of the previous figure
+A second figure is created. If you look carefully, at the top it is
+labelled as “Figure 2”.</p>
+<p>It is worth mentioning that it is possible to close all the currently
+open figures with <code>close all</code>.</p>
+<div class="section level3">
+<h3 id="modified-script-for-sub-plots">Modified script for sub-plots<a class="anchor" aria-label="anchor" href="#modified-script-for-sub-plots"></a></h3>
 <p>Let’s modify our <code>plot_daily_average</code> script so that it
 creates sub-plots, rather than individual plots.</p>
 <div class="codewrapper sourceCode" id="cb16">
@@ -587,7 +592,7 @@ creates sub-plots, rather than individual plots.</p>
 <pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">% PLOT_DAILY_AVERAGE   Plots daily average, max and min inflammation accross patients.</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">% Load patient data</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="ss">'data/inflammation-01.csv'</span>)<span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="ss">'data/base/inflammation-01.csv'</span>)<span class="op">;</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
@@ -651,56 +656,48 @@ visibility as MATLAB plots them. For example, we might not want to view
 figures could make the script run faster.</p>
 <p>Let’s add a couple of lines of code to do this.</p>
 <p>We can ask MATLAB to create an empty figure window without displaying
-it by setting its <code>'visible'</code> property to <code>'off'</code>,
-like so:</p>
+it by setting its <code>'visible'</code> property to <code>'off'</code>.
+We can do this by passing the option as an argument to the figure
+creation: <code>figure(visible='off')</code></p>
+<p>When we do this, we have to be careful to manually “close” the figure
+after we are doing plotting on it - the same as we would “close” an
+actual figure window if it were open. We can do so with the command
+<code>close()</code></p>
+<p>Adding these two lines, our finished script looks like this:</p>
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span>(<span class="va">visible</span><span class="op">=</span><span class="ss">'off'</span>)</span></code></pre>
-</div>
-<p>When we do this, we have to be careful to manually “close” the figure
-after we are doing plotting on it - the same as we would “close” an
-actual figure window if it were open:</p>
-<div class="codewrapper sourceCode" id="cb20">
-<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="va">close</span>()</span></code></pre>
-</div>
-<p>Adding these two lines, our finished script looks like this:</p>
-<div class="codewrapper sourceCode" id="cb21">
-<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">% PLOT_DAILY_AVERAGE   Saves plot of daily average, max and min inflammation accross patients.</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">% Load patient data</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="ss">'data/inflammation-01.csv'</span>)<span class="op">;</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span>(<span class="va">visible</span><span class="op">=</span><span class="ss">'off'</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">% Define tiled layout and labels</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="va">tlo</span> <span class="op">=</span> <span class="va">tiledlayout</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span>)<span class="op">;</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="va">xlabel</span>(<span class="va">tlo</span><span class="op">,</span><span class="ss">'Day of trial'</span>)</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="va">ylabel</span>(<span class="va">tlo</span><span class="op">,</span><span class="ss">'Inflammation'</span>)</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">% Plot average inflammation per day</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="va">nexttile</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="va">plot</span>(<span class="va">mean</span>(<span class="va">patient_data</span><span class="op">,</span> <span class="fl">1</span>))</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="va">title</span>(<span class="ss">'Average'</span>)</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="co">% Plot max inflammation per day</span></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="va">nexttile</span></span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="va">plot</span>(<span class="va">max</span>(<span class="va">patient_data</span><span class="op">,</span> []<span class="op">,</span> <span class="fl">1</span>))</span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="va">title</span>(<span class="ss">'Max'</span>)</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="co">% Plot min inflammation per day</span></span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="va">nexttile</span></span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="va">plot</span>(<span class="va">min</span>(<span class="va">patient_data</span><span class="op">,</span> []<span class="op">,</span> <span class="fl">1</span>))</span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="va">title</span>(<span class="ss">'Min'</span>)</span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="co">% Save plot in 'results' folder as png image:</span></span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="va">saveas</span>(<span class="va">gcf</span><span class="op">,</span><span class="ss">'results/daily_average_01.png'</span>)</span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="va">close</span>()</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">% PLOT_DAILY_AVERAGE   Saves plot of daily average, max and min inflammation accross patients.</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">% Load patient data</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="ss">'data/base/inflammation-01.csv'</span>)<span class="op">;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span>(<span class="va">visible</span><span class="op">=</span><span class="ss">'off'</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">% Define tiled layout and labels</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="va">tlo</span> <span class="op">=</span> <span class="va">tiledlayout</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span>)<span class="op">;</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="va">xlabel</span>(<span class="va">tlo</span><span class="op">,</span><span class="ss">'Day of trial'</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="va">ylabel</span>(<span class="va">tlo</span><span class="op">,</span><span class="ss">'Inflammation'</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">% Plot average inflammation per day</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="va">nexttile</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="va">plot</span>(<span class="va">mean</span>(<span class="va">patient_data</span><span class="op">,</span> <span class="fl">1</span>))</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="va">title</span>(<span class="ss">'Average'</span>)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co">% Plot max inflammation per day</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="va">nexttile</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="va">plot</span>(<span class="va">max</span>(<span class="va">patient_data</span><span class="op">,</span> []<span class="op">,</span> <span class="fl">1</span>))</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="va">title</span>(<span class="ss">'Max'</span>)</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="co">% Plot min inflammation per day</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="va">nexttile</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="va">plot</span>(<span class="va">min</span>(<span class="va">patient_data</span><span class="op">,</span> []<span class="op">,</span> <span class="fl">1</span>))</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="va">title</span>(<span class="ss">'Min'</span>)</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="co">% Save plot in 'results' folder as png image:</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a><span class="va">saveas</span>(<span class="va">gcf</span><span class="op">,</span><span class="ss">'results/daily_average_01.png'</span>)</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="va">close</span>()</span></code></pre>
 </div>
 <p>The scripts we’ve written make regenerating plots easier, and looking
 at individual patient’s data much simpler, but we still need to open the
@@ -717,7 +714,24 @@ are then used to do something. So, can we create our own
 </h3>
 <div class="callout-content">
 <ul><li>“Save MATLAB code in files with a <code>.m</code> suffix.”</li>
+<li>The set of commands in a script get executed by calling the script
+by its name, and all variables are saved to the workspace. Be careful,
+this potentially <strong>replaces</strong> variables.</li>
+<li>Comment your code to make it easier to understand using
+<code>%</code> at the start of a line.</li>
+<li>The first line of any script or function (known as the H1 line)
+should be a comment. It typically includes the name of the program, and
+a brief description.</li>
+<li>You can use <code>help script_name</code> to get the information in
+the H1 line.</li>
+<li>Create new figures with <code>figure</code>, or new ‘invisible’
+figures with figure(visible=‘off’). Remember to close them with
+<code>close()</code>, or <code>close all</code>.</li>
+<li>Save figures with
+<code>saveas(gcf,'results/my_plot_name.png')</code>
+</li>
 </ul></div>
+</div>
 </div>
 </div>
 </section></div> <!-- / div.lesson-content -->
@@ -779,8 +793,8 @@ are then used to do something. So, can we create our own
   "url": "https://uomresearchit.github.io/matlab-novice/05-scripts.html",
   "identifier": "https://uomresearchit.github.io/matlab-novice/05-scripts.html",
   "dateCreated": "2014-12-12",
-  "dateModified": "2023-10-18",
-  "datePublished": "2023-11-07"
+  "dateModified": "2023-11-08",
+  "datePublished": "2023-11-08"
 }
 
   </script><script>

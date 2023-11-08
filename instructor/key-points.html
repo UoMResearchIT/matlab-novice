@@ -339,16 +339,19 @@ clear the console.”</li>
 </ul></section><section id="02-arrays"><h2 class="section-heading"><a href="02-arrays.html">Arrays</a></h2>
 <hr class="half-width">
 <ul>
-<li>“Some functions to initialize matrices include zeros, ones, and
-rand. They all produce a square matrix if only one argument is given,
-but you can specify the dimensions you want separated by a comma.”</li>
-<li>“To select data points we use <code>M(rows, columns)</code>, where
-rows and columns are the indices of the elements we want. They can be
-just numbers or arrays of numbers.”</li>
-<li>“We use the colon operator to select ranges of elements as
-<code>start:end</code> or <code>start:increment:end</code>.”</li>
-<li>“We use the keyword <code>end</code> to get the index of the last
-element.”</li>
+<li>“Some functions to initialize matrices include <code>zeros</code>,
+<code>ones</code>, and <code>rand</code>. They all produce a square
+matrix if only one argument is given, but you can specify the dimensions
+you want separated by a comma, as in
+<code>zeros(rows,columns)</code>.”</li>
+<li>“To select data points we use round brackets and provide the row and
+column indices of the elements we want. They can be just numbers or
+arrays of numbers. E.g. <code>M(5,[3,4,5])</code>”</li>
+<li>“We can use the colon operator <code>:</code> to generate ordered
+arrays as <code>start:end</code> or
+<code>start:increment:end</code>.”</li>
+<li>“We can use the keyword <code>end</code> to get the index of the
+last element.”</li>
 <li>“The colon operator by itself <code>:</code> selects all the
 elements.”</li>
 </ul></section><section id="03-loading_data"><h2 class="section-heading"><a href="03-loading_data.html">Loading data</a></h2>
@@ -384,6 +387,22 @@ change the position of the next plot.”</li>
 <hr class="half-width">
 <ul>
 <li>“Save MATLAB code in files with a <code>.m</code> suffix.”</li>
+<li>The set of commands in a script get executed by calling the script
+by its name, and all variables are saved to the workspace. Be careful,
+this potentially <strong>replaces</strong> variables.</li>
+<li>Comment your code to make it easier to understand using
+<code>%</code> at the start of a line.</li>
+<li>The first line of any script or function (known as the H1 line)
+should be a comment. It typically includes the name of the program, and
+a brief description.</li>
+<li>You can use <code>help script_name</code> to get the information in
+the H1 line.</li>
+<li>Create new figures with <code>figure</code>, or new ‘invisible’
+figures with figure(visible=‘off’). Remember to close them with
+<code>close()</code>, or <code>close all</code>.</li>
+<li>Save figures with
+<code>saveas(gcf,'results/my_plot_name.png')</code>
+</li>
 </ul></section><section id="06-func"><h2 class="section-heading"><a href="06-func.html">Creating Functions</a></h2>
 <hr class="half-width">
 <ul>
@@ -455,8 +474,8 @@ values in your program.”</li>
   "url": "https://uomresearchit.github.io/matlab-novice/instructor/key-points.html",
   "identifier": "https://uomresearchit.github.io/matlab-novice/instructor/key-points.html",
   "dateCreated": "2014-12-12",
-  "dateModified": "2023-11-07",
-  "datePublished": "2023-11-07"
+  "dateModified": "2023-11-08",
+  "datePublished": "2023-11-08"
 }
 
   </script><script>

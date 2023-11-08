@@ -280,7 +280,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Plotting data</h1>
-        <p> Last updated on 2023-10-18 | 
+        <p> Last updated on 2023-11-08 | 
         
         <a href="https://github.com/swcarpentry/matlab-novice-inflammation/edit/main/episodes/04-plotting.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -307,9 +307,9 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>“Display simple graphs with adequate titles and labels.”</li>
-<li>“Get familiar with functions <code>plot</code>, <code>heatmap</code>
-and <code>imagesc</code>.”</li>
+<ul><li>“Display simple graphs with appropriate titles and labels.”</li>
+<li>“Get familiar with the functions <code>plot</code>,
+<code>heatmap</code> and <code>imagesc</code>.”</li>
 <li>“Learn how to show images side by side.”</li>
 </ul></div>
 </div>
@@ -325,8 +325,8 @@ course) of its own, but we can explore a few features of MATLAB
 here.</p>
 <p>We will start by exploring the function <code>plot</code>. The most
 common usage is to provide two vectors, like <code>plot(X,Y)</code>.
-Lets start by plotting the the average (accross patients) inflammation
-over time. For the <code>Y</code> vector we can provide
+Lets start by plotting the average inflammation across patients over
+time. For the <code>Y</code> vector we can provide
 <code>per_day_mean</code>, and for the <code>X</code> vector we can
 simply use the day number, which we can generate as a range with
 <code>1:40</code>. Then our plot can be generated with:</p>
@@ -360,7 +360,7 @@ is not desireable.</p>
 <h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
 </h3>
 <div class="callout-content">
-<p><strong>Note:</strong> We do not even need to have the vactor saved
+<p><strong>Note:</strong> We do not even need to have the vector saved
 as a variable. We would obtain the same plot with the command
 <code>plot(mean(patient_data, 1))</code>.</p>
 </div>
@@ -369,7 +369,7 @@ as a variable. We would obtain the same plot with the command
 <p>As it is, the image is not very informative. We need to give the
 figure a <code>title</code> and label the axes using <code>xlabel</code>
 and <code>ylabel</code>, so that other people can understand what it
-shows (including us if we return to this plot 6 months from now).</p>
+shows (including us, if we return to this plot 6 months from now).</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -377,10 +377,10 @@ shows (including us if we return to this plot 6 months from now).</p>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflammation'</span>)</span></code></pre>
 </div>
-<figure><img src="fig/average-inflammation.png" alt="Average inflammation" class="figure mx-auto d-block"></figure><p>Much better, now the image actually communicates something.</p>
-<p>The result is roughly a linear rise and fall, which is suspicious:
-based on other studies, we expect a sharper rise and slower fall. Let’s
-have a look at two other statistics: the maximum and minimum
+<figure><img src="fig/plotting_average-inflammation.svg" alt="Average inflammation" class="figure mx-auto d-block"></figure><p>That’s much better! Now the plot actually communicates something. As
+we expected, this figure tells us way more than the numbers we had seen
+in the previous section.</p>
+<p>Let’s have a look at two other statistics: the maximum and minimum
 inflammation per day across all patients.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -390,7 +390,7 @@ inflammation per day across all patients.</p>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflammation'</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span></code></pre>
 </div>
-<figure><img src="fig/max-inflammation.png" alt="Maximum inflammation" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb4">
+<figure><img src="fig/plotting_max-inflammation.svg" alt="Maximum inflammation" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_min</span>)</span>
@@ -398,20 +398,18 @@ inflammation per day across all patients.</p>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflammation'</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span></code></pre>
 </div>
-<figure><img src="fig/min-inflammation.png" alt="Minumum inflammation" class="figure mx-auto d-block"></figure><p>From the figures, we see that the maximum value rises and falls
-perfectly smoothly, while the minimum seems to be a step function.
-Neither result seems particularly likely, so either there’s a mistake in
-our calculations or something is wrong with our data.</p>
+<figure><img src="fig/plotting_min-inflammation.svg" alt="Minumum inflammation" class="figure mx-auto d-block"></figure><p>These two are much more noisy than the mean, as we’d be expect.</p>
 </section><section id="multiple-lines-in-a-plot"><h2 class="section-heading">Multiple lines in a plot<a class="anchor" aria-label="anchor" href="#multiple-lines-in-a-plot"></a>
 </h2>
-<hr class="half-width"><p>It is often the case that we want more than one line in a single
-plot. In matlab we can “hold” a plot and keep plotting on top. For
-example, we might want to contrast the mean values accross patients with
-the information of a single patient. If we are displaying more than one
-line, it is important we add a legend. We can specify the legend names
-by adding <code>,DisplayName="legend name here"</code> inside the plot
-function. We then need to activate the legend by running
-<code>legend</code> So, to plot the mean values we first do:</p>
+<hr class="half-width"><p>It is often the case that we want to plot more than one line in a
+single figure. In MATLAB we can “hold” a figure and keep plotting on the
+same axes. For example, we might want to contrast the mean values
+accross patients with the inflammation of a single patient. If we are
+displaying more than one line, it is important to add a legend. We can
+specify the legend names by adding
+<code>,DisplayName="legend name here"</code> inside the plot function.
+We then need to activate the legend by running <code>legend</code> So,
+to plot the mean values we first do:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -421,7 +419,7 @@ function. We then need to activate the legend by running
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflammation'</span>)</span></code></pre>
 </div>
-<figure><img src="fig/average_inflammation_with_legend.png" alt="Average inflamation with legend" class="figure mx-auto d-block"></figure><p>Then, we can use the instruction <code>hold on</code> to add a plot
+<figure><img src="fig/plotting_average_inflammation_with_legend.svg" alt="Average inflamation with legend" class="figure mx-auto d-block"></figure><p>Then, we can use the instruction <code>hold on</code> to add a plot
 for patient_5.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -430,94 +428,153 @@ for patient_5.</p>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">patient_5</span><span class="op">,</span><span class="va">DisplayName</span><span class="op">=</span><span class="st">"Patient 5"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">hold</span> <span class="va">off</span></span></code></pre>
 </div>
-<figure><img src="fig/average_inflammation_and_patient_5_with_legend.png" alt="Average inflamation and Patient 5" class="figure mx-auto d-block"></figure><p>Remember to tell matlab you are done by adding <code>hold off</code>
-when you are done!</p>
+<figure><img src="fig/plotting_average_inflammation_and_patient_5_with_legend.svg" alt="Average inflamation and Patient 5" class="figure mx-auto d-block"></figure><p>So this patient seems fairly average.</p>
+<p>Remember to tell matlab you are done by adding <code>hold off</code>
+when you have finished adding lines to the figure!</p>
+<div id="patients-3-4" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="patients-3-4" class="callout-inner">
+<h3 class="callout-title">Patients 3 &amp; 4<a class="anchor" aria-label="anchor" href="#patients-3-4"></a>
+</h3>
+<div class="callout-content">
+<p>Try to plot the mean across all patients and the inflammation data
+for patients 3 and 4 together.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>The first part for the mean remains unchanged:</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_mean</span><span class="op">,</span><span class="va">DisplayName</span><span class="op">=</span><span class="st">"Mean"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">legend</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Daily average inflammation'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflammation'</span>)</span></code></pre>
+</div>
+<p>Now we need to get the specific data for each patient. We can get the
+data for patients 3 and 4 as we did in the previous episode
+i.e. <code>patient_data(3,:)</code>. Now we can either save that data in
+a variable, or we use it directly in the plot instruction, like
+this:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">hold</span> <span class="va">on</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">patient_data</span>(<span class="fl">3</span><span class="op">,:</span>)<span class="op">,</span><span class="va">DisplayName</span><span class="op">=</span><span class="st">"Patient 3"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">patient_data</span>(<span class="fl">4</span><span class="op">,:</span>)<span class="op">,</span><span class="va">DisplayName</span><span class="op">=</span><span class="st">"Patient 4"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">hold</span> <span class="va">off</span></span></code></pre>
+</div>
+<p>The result looks like this:</p>
+<figure><img src="fig/plotting_patients-3-4.svg" alt="Average inflamation and Patients 3 &amp; 4" class="figure mx-auto d-block"></figure><p>Patient 4 seems also quite average, but patient’s 3 measurements are
+quite noisy!</p>
+</div>
+</div>
+</div>
+</div>
 </section><section id="multiple-plots-in-a-figure"><h2 class="section-heading">Multiple plots in a figure<a class="anchor" aria-label="anchor" href="#multiple-plots-in-a-figure"></a>
 </h2>
-<hr class="half-width"><p>It is often convenient to show different plots side by side. The <a href="https://mathworks.com/help/matlab/ref/tiledlayout.html" class="external-link"><code>tiledlayout(m,n)</code></a>
+<hr class="half-width"><p><strong>Note:</strong> The <a href="https://mathworks.com/help/matlab/ref/subplot.html" class="external-link"><code>subplot</code></a>
+command was deprecated in favour of <code>tiledlayout</code> in
+2019.</p>
+<p>It is often convenient to show different plots side by side. The <a href="https://mathworks.com/help/matlab/ref/tiledlayout.html" class="external-link"><code>tiledlayout(m,n)</code></a>
 command allows us to do just that. The first two parameter define a grid
 of <code>m</code> rows and <code>n</code> columns in which our plots
 will be placed. To be able to plot something on each of the tiles, we
 use the <a href="https://mathworks.com/help/releases/R2019b/matlab/ref/nexttile.html" class="external-link"><code>nexttile</code></a>
 command. For example, we can show the average daily min and max plots
 together with:</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">tiledlayout</span>(<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">nexttile</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_max</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Max'</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflamation'</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">nexttile</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_min</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Min'</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflamation'</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">tiledlayout</span>(<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">nexttile</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_max</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Max'</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflamation'</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">nexttile</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_min</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Min'</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflamation'</span>)</span></code></pre>
 </div>
-<figure><img src="fig/max-min-tiledplot.png" alt="Max Min tiledplot" class="figure mx-auto d-block"></figure><p>We can also specify titles and labels for the whole tiled layout if
+<figure><img src="fig/plotting_max-min-tiledplot.svg" alt="Max Min tiledplot" class="figure mx-auto d-block"></figure><p>We can also specify titles and labels for the whole tiled layout if
 we assign the tiled layout to a variable and pass it as a first argument
 to <code>title</code>, <code>xlabel</code> or <code>ylabel</code>, for
 example:</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">tlo</span><span class="op">=</span><span class="va">tiledlayout</span>(<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="va">tlo</span><span class="op">,</span><span class="ss">'Per day data'</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="va">tlo</span><span class="op">,</span><span class="ss">'Day of trial'</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="va">tlo</span><span class="op">,</span><span class="ss">'Inflamation'</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">nexttile</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_max</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Max'</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">nexttile</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_min</span>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Min'</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">tlo</span><span class="op">=</span><span class="va">tiledlayout</span>(<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="va">tlo</span><span class="op">,</span><span class="ss">'Per day data'</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="va">tlo</span><span class="op">,</span><span class="ss">'Day of trial'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="va">tlo</span><span class="op">,</span><span class="ss">'Inflamation'</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">nexttile</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_max</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Max'</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">nexttile</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_min</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Min'</span>)</span></code></pre>
 </div>
-<figure><img src="fig/max-min-tiledplot-titles.png" alt="Max Min tiledplot with shared labels" class="figure mx-auto d-block"></figure><div id="callout3" class="callout callout">
+<figure><img src="fig/plotting_max-min-tiledplot-titles.svg" alt="Max Min tiledplot with shared labels" class="figure mx-auto d-block"></figure><div id="clearing-a-figure" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout3"></a>
+<div id="clearing-a-figure" class="callout-inner">
+<h3 class="callout-title">Clearing a figure<a class="anchor" aria-label="anchor" href="#clearing-a-figure"></a>
 </h3>
 <div class="callout-content">
-<p><strong>Note:</strong> The <a href="https://mathworks.com/help/matlab/ref/subplot.html" class="external-link"><code>subplot</code></a>
-command was deprecated in favour of <code>tiledlayout</code> in
-2019.</p>
+<p>If you now try to plot something like the mean, as we had done
+before, you will notice that the plot is assigned to the second plot
+space in the tiled layout.</p>
+<p>To clear the tiled layout, you can use the instruction
+<code>clf</code>, which stands for “clear figure”.</p>
 </div>
 </div>
 </div>
 </section><section id="heatmaps"><h2 class="section-heading">Heatmaps<a class="anchor" aria-label="anchor" href="#heatmaps"></a>
 </h2>
-<hr class="half-width"><p>If we wanted to look at all our data at the same time we need a three
-dimensions: One for the patients, one for the days, and another one for
-the inflamation values. An option is to use a heatmap, that is, use the
-colour of each point to represent the inflamation values.</p>
-<p>In matlab, at least two methods can do this for us. The <a href="https://uk.mathworks.com/help/matlab/ref/heatmap.html" class="external-link"><code>heatmap</code>
+<hr class="half-width"><p>If we wanted to look at all our data at the same time we need three
+dimensions: One for the patients, one for the day, and another one for
+the inflamation. One option is to use a heatmap, that is, use the colour
+of each point to represent the inflamation values.</p>
+<p>In MATLAB, at least two methods can do this for us. The <a href="https://uk.mathworks.com/help/matlab/ref/heatmap.html" class="external-link"><code>heatmap</code>
 function</a> takes a table as input and produces a heatmap:</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">heatmap</span>(<span class="va">patient_data</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Inflammation'</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Patient number'</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">heatmap</span>(<span class="va">patient_data</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Inflammation'</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Patient number'</span>)</span></code></pre>
 </div>
-<figure><img src="fig/heatmap.png" alt="Heat map" class="figure mx-auto d-block"></figure><p>We gain something by visualizing the whole dataset at once, but it is
-harder to distinwish the overly linear rises and fall over a 40 day
-period.</p>
+<figure><img src="fig/plotting_heatmap.svg" alt="Heat map" class="figure mx-auto d-block"></figure><p>We gain something by visualizing the whole dataset at once; for
+example, we can see that some patients (3, 15, 25, 31, 36 and 60) have
+very noisy data. However, it is harder to distinguish the details of the
+inflammatory response.</p>
 <p>Similarly, the <a href="https://uk.mathworks.com/help/matlab/ref/imagesc.html" class="external-link"><code>imagesc</code>
 function</a> represents the matrix as a color image.</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">imagesc</span>(<span class="va">patient_data</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Inflammation'</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Patient number'</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">imagesc</span>(<span class="va">patient_data</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Inflammation'</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Patient number'</span>)</span></code></pre>
 </div>
-<figure><img src="fig/inflammation-heatmap.png" alt="imagesc Heat map" class="figure mx-auto d-block"></figure><p>Every value in the matrix is <em>mapped</em> to a color. Blue regions
+<figure><img src="fig/plotting_imagesc-heatmap.svg" alt="imagesc Heat map" class="figure mx-auto d-block"></figure><p>Every value in the matrix is <em>mapped</em> to a color. Blue regions
 in this heat map are low values, while yellow shows high values.</p>
 <p>Both functions provide very similar information, and can be tweaked
 to your liking. The <code>imagesc</code> function is usually only used
@@ -618,8 +675,8 @@ change the position of the next plot.”</li>
   "url": "https://uomresearchit.github.io/matlab-novice/04-plotting.html",
   "identifier": "https://uomresearchit.github.io/matlab-novice/04-plotting.html",
   "dateCreated": "2014-12-12",
-  "dateModified": "2023-10-18",
-  "datePublished": "2023-11-07"
+  "dateModified": "2023-11-08",
+  "datePublished": "2023-11-08"
 }
 
   </script><script>

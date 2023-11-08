@@ -130,12 +130,19 @@
                   <div class="accordion accordion-flush" id="accordionFlushcurrent">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-headingcurrent">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
         Summary and Setup
         </span>
-      
+      </button>
     </div><!--/div.accordion-header-->
+        
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+      <div class="accordion-body">
+        <ul><li><a href="#setting-up-matlab">Setting up MATLAB</a></li>
+        </ul></div><!--/div.accordion-body-->
+    </div><!--/div.accordion-collapse-->
         
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
@@ -327,44 +334,44 @@ a “working directory”.</li>
 <section id="overview-of-the-data"><h2 class="section-heading">Overview of the data<a class="anchor" aria-label="anchor" href="#overview-of-the-data"></a>
 </h2>
 <hr class="half-width"><p>We are studying inflammation in patients who have been given a new
-treatment for arthritis, and need to analyze the first dozen data sets.
-The data sets are stored in <a href="reference.html#comma-separated-values">Comma Separated Values
-(CSV)</a> format: each row holds information for a single patient, and
-the columns represent successive days. The first few rows of our first
-file, <a href="data/matlab-novice-inflammation/data/inflammation-01.csv"><code>inflammation-01.csv</code></a>,
-look like this:</p>
-<pre><code>0,0,1,3,1,2,4,7,8,3,3,3,10,5,7,4,7,7,12,18,6,13,11,11,7,7,4,6,8,8,4,4,5,7,3,4,2,3,0,0
-0,1,2,1,2,1,3,2,2,6,10,11,5,9,4,4,7,16,8,6,18,4,12,5,12,7,11,5,11,3,3,5,4,4,5,5,1,1,0,1
-0,1,1,3,3,2,6,2,5,9,5,7,4,5,4,15,5,11,9,10,19,14,12,17,7,12,11,7,4,2,10,5,4,2,2,3,2,2,1,1
-0,0,2,0,4,2,2,1,6,7,10,7,9,13,8,8,15,10,10,7,17,4,4,7,6,15,6,4,9,11,3,5,6,3,3,4,2,3,2,1
-0,1,1,3,3,1,3,5,2,4,4,7,6,5,3,10,8,10,6,17,9,14,9,7,13,9,12,6,7,7,9,6,3,2,2,4,2,0,1,1</code></pre>
-<p>We want to:</p>
-<ul><li>load that data into memory,</li>
-<li>calculate the average inflammation per day across all patients,
-and</li>
-<li>plot the result.</li>
+treatment. Our dataset is divided in 3 groups:</p>
+<ul><li>The base group consists of 12 files containing a base study of
+inflammation after a surgery without any new treatment.</li>
+<li>The control group consists of 6 files containing the data for
+patients that were given a placebo.</li>
+<li>The test group consists of 6 files containing the data for patients
+that were given the new treatement.</li>
+</ul><p>In the files, each row holds information for a single patient and the
+columns represent successive days.</p>
+<p>The actual data sets do not have titles for columns or rows. The data
+is stored in <a href="reference.html#comma-separated-values">Comma
+Separated Values (CSV)</a> format. This means that values in a single
+row are separated with a <code>,</code>. The first few rows of our first
+file, <code>data/base/inflammation-01.csv</code>, look like this:</p>
+<pre><code>0,0.065,0.169,0.271,0.332,0.359,0.354,0.333,0.304,0.268,0.234,0.204,0.179,0.141,0.133,0.115,0.083,0.076,0.065,0.065,0.047,0.04,0.041,0.028,0.02,0.028,0.012,0.02,0.011,0.015,0.009,0.01,0.01,0.007,0.007,0.001,0.008,-0,0.006,0.004
+0,0.034,0.114,0.2,0.272,0.321,0.328,0.32,0.314,0.287,0.246,0.215,0.207,0.171,0.146,0.131,0.107,0.1,0.088,0.065,0.061,0.052,0.04,0.042,0.04,0.03,0.031,0.031,0.016,0.019,0.02,0.017,0.019,0.006,0.009,0.01,0.01,0.005,0.001,0.011
+0,0.081,0.216,0.277,0.273,0.356,0.38,0.349,0.315,0.23,0.235,0.198,0.106,0.198,0.084,0.171,0.126,0.14,0.086,0.01,0.06,0.081,0.022,0.035,0.01,0.086,-0,0.102,0.032,0.07,0.017,0.136,0.022,-0,0.031,0.054,-0,-0,0.05,0.001</code></pre>
+<p>We want to explore and analyse this data, and for that we will need
+to:</p>
+<ul><li>Load that data into memory.</li>
+<li>Make operations with the data.</li>
+<li>Visualize the processed data.</li>
 </ul><p>To do all that, we’ll have to learn a little bit about
 programming.</p>
-</section><section id="setup"><p>You will need to install MATLAB or <a href="https://www.gnu.org/software/octave/" class="external-link">GNU Octave</a> to do this
+</section><section id="setup"><section id="setting-up-matlab"><h2 class="section-heading">Setting up MATLAB<a class="anchor" aria-label="anchor" href="#setting-up-matlab"></a>
+</h2>
+<hr class="half-width"><p>You will need to install <a href="https://mathworks.com/downloads/" class="external-link">MATLAB</a> or <a href="https://www.gnu.org/software/octave/" class="external-link">GNU Octave</a> to do this
 lesson.</p>
+<p>If you cannot install either of these, you can use <a href="https://matlab.mathworks.com/" class="external-link">MATLAB Online</a>. It is free to
+use, but you need to set up an account.</p>
 <p>You will also need to download some data, which we will analyze using
 MATLAB:</p>
 <ol style="list-style-type: decimal"><li><p>Download <a href="data/matlab-novice-inflammation.zip">matlab-novice-inflammation.zip</a>
 and move the file to your Desktop.</p></li>
 <li><p>Extract the zip archive. This will create a
 <code>matlab-novice-inflammation</code> directory containing the data
-files used in the lesson. Note that on Windows, double-clicking on the
-zip file simply previews the contents: to extract, right-click and
-select <strong>Extract All</strong></p></li>
-<li><p>You can access this folder from the Unix shell with:</p></li>
-</ol><div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Desktop/matlab-novice-inflammation/</span></code></pre>
-</div>
-
-
-      </section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
+files used in the lesson.</p></li>
+</ol></section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link float-end" href="01-intro.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
@@ -414,8 +421,8 @@ select <strong>Extract All</strong></p></li>
   "url": "https://uomresearchit.github.io/matlab-novice/index.html",
   "identifier": "https://uomresearchit.github.io/matlab-novice/index.html",
   "dateCreated": "2014-12-12",
-  "dateModified": "2023-11-07",
-  "datePublished": "2023-11-07"
+  "dateModified": "2023-11-08",
+  "datePublished": "2023-11-08"
 }
 
   </script><script>
