@@ -32,10 +32,10 @@ inflammation_IIU = (inflammation_AIU + B)*A
 B = 5.634
 A = 0.275
 ```
-There are several files worth of data to be converted from AIU to IIU: is there a way we can do this quickly and 
+There are twelve files worth of data to be converted from AIU to IIU: is there a way we can do this quickly and 
 conveniently? If we have to re-enter the conversion formula multiple times, the chance of us getting the constants 
-wrong is high. Thankfully there is a convenient way to teach MATLAB how to do new things, like our converting AIU to IIU.
-We can do this by writing a function.
+wrong is high. Thankfully there is a convenient way to teach MATLAB how to do new things, like converting units from 
+AIU to IIU. We can do this by writing a function.
 
 We have already used some predefined MATLAB functions which we can pass arguments to. How can we define our own?
 
@@ -66,9 +66,9 @@ end
 ```
 
 Just as we saw with scripts, functions must be _visible_ to MATLAB,
-i.e., a file containing a function has to be placed in a directory that MATLAB knows  about.
+i.e., a file containing a function has to be placed in a directory that MATLAB knows about.
 Following the same logic we used with scripts,
-we will put our code source files in the `src` folder.
+we will put our source code files in the `src` folder.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
@@ -84,7 +84,7 @@ Create a file called `inflammation_AIU_to_IIU.m` in the `src` folder,
 enter the following function definition, and save the file:
 
 ```matlab
-function inflammation_in_IIU = function inflammation_AIU_to_IIU(inflammation_in_AIU)
+function inflammation_in_IIU = inflammation_AIU_to_IIU(inflammation_in_AIU)
    % INFLAMMATION_AIU_TO_IIU  Convert inflammation mesured in AIU to inflammation measued in IIU.
 
    A = 0.275;
@@ -97,11 +97,11 @@ end
 We can now call our function as we would any other function in MATLAB:
 
 ```matlab
->> inflammation_AIU_to_IIU(6)
+>> inflammation_AIU_to_IIU(0.5)
 ```
 
 ```output
-ans = 3.19935
+ans = 1.6869
 ```
 
 We got the number we expected, and at first glance it seems like it is almost the same as a script.
@@ -123,7 +123,7 @@ This is one of the major differences between scripts and functions: a script can
 To be able to access variables from your workspace inside a function, you have to pass them in as inputs.
 To be able to save variables to your workspace, it needs to return them as outputs.
 
-As with any operation, if we want to save the result, we need to assign the result to a variable, for example
+As with any operation, if we want to save the result, we need to assign the result to a variable, for example:
 
 ```matlab
 >> val_in_IIU = inflammation_AIU_to_IIU(6)
@@ -170,8 +170,8 @@ end
 
 One of the benefits of writing functions in MATLAB is that often they will also be able to operate on an array of numerical variables *for free*.
 
-This is only the case when each operation in the function can be applied to an array too.
-In our example, we are adding a number and multiplying by another, both of which are ok to operate on arrays.
+This will work when each operation in the function can be applied to an array too.
+In our example, we are adding a number and multiplying by another, both of which are work on arrays.
 
 This will make converting the inflammation data in our files using the function we've just written very quick. Give it 
 a go!
@@ -192,7 +192,10 @@ We already have a `.m` file called `patient_analysis`, so lets begin by defining
 Open the `patient_analysis.m` file, if you don't already have it open.
 Instead of line 9, where `patient_number` is set, we want to provide that variable as an input.
 So lets remove that line, and right at the top of our script we'll add the function definition
-telling matlab what our function is called and what inputs it needs.
+telling matlab what our function is called and what inputs it needs. The function will take the variable `patient_number`
+as input and since we removed the line that assigned a value to that variable, the input will decide which patient is
+analysed.
+
 ```matlab
 function patient_analysis(patient_number)
     % PATIENT_ANALYSIS   Computes mean, max and min of a patient and compares to global statistics.
@@ -201,7 +204,7 @@ function patient_analysis(patient_number)
     %       patient_analysis(5)
 
     % Load patient data
-    patient_data = readmatrix('data/inflammation-01.csv');
+    patient_data = readmatrix('data/base/inflammation-01.csv');
 
     % Compute global statistics
     g_mean = mean(patient_data(:));
@@ -238,9 +241,9 @@ Lets clear our workspace and run our function in the command line:
 >> patient_analysis(13)
 ```
 ```output
-Patient 5:
+Patient 13:
 High mean?
-   1
+   0
 Highest max?
    0
 Lowest min?
@@ -280,7 +283,7 @@ Lowest min?
    1
 
 p13 =
-    6.2250
+    0.1049
 ```
 
 We could return more outputs if we want.
@@ -305,9 +308,9 @@ Highest max?
 Lowest min?
    1
 p13_mean =
-    6.2250
+    0.1049
 p13_max =
-    17
+    0.3450
 p13_min =
      0
 ```
@@ -344,7 +347,7 @@ function plot_daily_average(data_file,plot_name)
     %PLOT_DAILY_AVERAGE   Plots daily average, max and min inflammation accross patients.
     %   The function takes the data in data_file and saves it as plot_name
     %   Example usage:
-    %       plot_daily_average('data/inflammation-03.csv','results/plot3.png')
+    %       plot_daily_average('data/base/inflammation-03.csv','results/plot3.png')
 
     % Load patient data
     patient_data = readmatrix(data_file);
@@ -407,14 +410,14 @@ Look back at the previous lessons if you need to!
 :::::::::::::::  solution
 
 ```matlab
-function patient_vs_mean(per_day_mean,pataient_data,patient_reference)
+function patient_vs_mean(per_day_mean,patient_data,patient_reference)
     % PATIENT_VS_MEAN   Plots the global mean and patient inflamation on top of each other.
     %   per_day_mean should be a vector with the global mean.
     %   pataient_data should be a vector with only the patient data.
     %   patient_reference will be used to identify the patient on the plot.
     %
     %   Sample usage:
-    %       patient_data = readmatrix('data/inflammation-01.csv');
+    %       patient_data = readmatrix('data/base/inflammation-01.csv');
     %       per_day_mean = mean(patient_data);
     %       patient_vs_mean(per_day_mean,patient_data(5,:),"Patient 5")
 
