@@ -6,17 +6,17 @@ exercises: 20
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- "Learn how to write a function"
-- "Define a function that takes arguments."
-- "Compare and contrast MATLAB function files with MATLAB scripts."
-- "Recognize why we should divide programs into small, single-purpose functions."
+- Learn how to write a function
+- Define a function that takes arguments.
+- Compare and contrast MATLAB function files with MATLAB scripts.
+- Recognize why we should divide programs into small, single-purpose functions.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- "How can I teach MATLAB to do new things?"
-- "How can I make programs I write more reliable and re-usable?"
+- How can I teach MATLAB to do new things?
+- How can I make programs I write more reliable and re-usable?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 

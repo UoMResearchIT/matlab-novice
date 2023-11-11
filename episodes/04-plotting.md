@@ -6,15 +6,15 @@ exercises: 10
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- "Display simple graphs with appropriate titles and labels."
-- "Get familiar with the functions `plot`, `heatmap` and `imagesc`."
-- "Learn how to show images side by side."
+- Display simple graphs with appropriate titles and labels.
+- Get familiar with the functions `plot`, `heatmap` and `imagesc`.
+- Learn how to show images side by side.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- "How can I visualize my data?"
+- How can I visualize my data?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -274,11 +274,11 @@ subjects of the next two lessons.
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- "Use `plot(vector)` to visualize data in the y axis with an index number in the x axis."
-- "Use `plot(X,Y)` to specify values in both axes."
-- "Document your plots with `title('My title')`, `xlabel('My horizontal label')` and `ylabel('My vertical label')`."
-- "Use `hold on` and `hold off` to plot multiple lines at the same time."
-- "Use `legend` and add `,DisplayName="legend name here"` inside the plot function to add a legend."
-- "Use `tiledlayout(m,n)` to create a grid of `m` x `n` plots, and use `nexttile` to change the position of the next plot."
+- Use `plot(vector)` to visualize data in the y axis with an index number in the x axis.
+- Use `plot(X,Y)` to specify values in both axes.
+- Document your plots with `title('My title')`, `xlabel('My horizontal label')` and `ylabel('My vertical label')`.
+- Use `hold on` and `hold off` to plot multiple lines at the same time.
+- Use `legend` and add `,DisplayName="legend name here"` inside the plot function to add a legend.
+- Use `tiledlayout(m,n)` to create a grid of `m` x `n` plots, and use `nexttile` to change the position of the next plot.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
