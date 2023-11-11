@@ -70,15 +70,6 @@ i.e., a file containing a function has to be placed in a directory that MATLAB k
 Following the same logic we used with scripts,
 we will put our source code files in the `src` folder.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## GNU Octave
-
-In common with MATLAB, Octave searches the current working directory and
-the path for functions called from the command line.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
 Let's put this into practice to create a function that will teach MATLAB to use our AIU to IIU conversion formula.
 Create a file called `inflammation_AIU_to_IIU.m` in the `src` folder,
 enter the following function definition, and save the file:
@@ -110,7 +101,7 @@ Although a variable called `inflammation_in_IIU` was defined in the function, it
 
 Lets have a look using the debugger to see what is happening.
 
-When we pass a value, like `6`, to the function, it is assigned to the variable `inflammation_in_AIU` so that it can 
+When we pass a value, like `0.5`, to the function, it is assigned to the variable `inflammation_in_AIU` so that it can 
 be used in the body of the function. To return a value from the function, we must assign that value to the variable
 `inflammation_in_IIU` from our function definition line. What ever value `inflammation_in_IIU` has when the `end` 
 keyword in the function definition is reached, that will be the value returned.
@@ -126,11 +117,11 @@ To be able to save variables to your workspace, it needs to return them as outpu
 As with any operation, if we want to save the result, we need to assign the result to a variable, for example:
 
 ```matlab
->> val_in_IIU = inflammation_AIU_to_IIU(6)
+>> val_in_IIU = inflammation_AIU_to_IIU(0.5)
 ```
 
 ```output
-val_in_IIU = 3.19935
+val_in_IIU = 1.6869
 ```
 
 And we can see `val_in_IIU` saved in our workspace.
@@ -171,7 +162,7 @@ end
 One of the benefits of writing functions in MATLAB is that often they will also be able to operate on an array of numerical variables *for free*.
 
 This will work when each operation in the function can be applied to an array too.
-In our example, we are adding a number and multiplying by another, both of which are work on arrays.
+In our example, we are adding a number and multiplying by another, both of which work on arrays.
 
 This will make converting the inflammation data in our files using the function we've just written very quick. Give it 
 a go!
@@ -276,7 +267,7 @@ p13 = patient_analysis(13)
 ```output
 Patient 5:
 High mean?
-   1
+   0
 Highest max?
    0
 Lowest min?
@@ -302,7 +293,7 @@ so in the command line, we run it as:
 ```output
 Patient 5:
 High mean?
-   1
+   0
 Highest max?
    0
 Lowest min?
@@ -453,8 +444,12 @@ end
 
 - A MATLAB function *must* be saved in a text file with a `.m` extension. The name of the file must be the same as the name
 of the function defined in the file.
-- "Define functions using the `function` keyword."
+- Define functions using the `function` keyword to start the definition, and close the definition with the keyword `end`.
 - Functions have an independent workspace. Access variables from your workspace inside a function by passing them as inputs. Access variables from the function returning them as outputs.
-- "Break programs up into short, single-purpose functions with meaningful names."
+- The header of a dunction with inputs an outputs has the form:
+
+```function [output_1,output_2,...] = function_name(input_1,input_2,...)```
+
+- Break programs up into short, single-purpose functions with meaningful names.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
