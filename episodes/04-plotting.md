@@ -261,15 +261,6 @@ whereas `heatmap` can process [tables](https://uk.mathworks.com/help/matlab/ref/
 (that can have strings or categories in them).
 In our case, which one you use is a matter of taste.
 
-### Is all our data corrupt?
-Our work so far has convinced us that something is wrong with our
-first data file. We would like to check the other 11 the same way,
-but typing in the same commands repeatedly is tedious and error-prone.
-Since computers don't get bored (that we know of), we should create a
-way to do a complete analysis with a single command, and then figure out
-how to repeat that step once for each file. These operations are the
-subjects of the next two lessons.
-
 
 
 :::::::::::::::::::::::::::::::::::::::: keypoints

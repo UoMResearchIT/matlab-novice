@@ -224,9 +224,9 @@ c3 =
 
 We can also combine comparisons.
 For example, we can check whether frac is smaller than 10 ***and*** the age is greater than 5
-```
->> c4 = frac < 10 && age > 5
 ```matlab
+>> c4 = frac < 10 && age > 5
+```
 ```output
 c4 =
   logical
