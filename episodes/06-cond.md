@@ -22,16 +22,15 @@ objectives:
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-Our previous lessons have shown us how to manipulate
-data and repeat things.
-However, the programs we have written so far always do
-the same things, regardless of what data they're given.
-We want programs to make choices based on the values
-they are manipulating.
+In the last lesson we began experimenting with scripts, allowing us to re-use code for analysing data and plotting
+figures over and over again. To make our scripts even more useful, it would be nice if they did different things
+in different situations - either depending on the data they're given or on different options that we specify. We 
+want a way for our scripts to make choices.
 
-The tool that MATLAB gives us for doing this is called
-a [conditional statement]({{ page.root }}/reference.html#conditional-statement),
-and it looks like this:
+The tool that MATLAB gives us for doing this is called 
+a [conditional statement]({{ page.root }}/reference.html#conditional-statement). We will use conditional statements 
+together with the logical operations we encountered back in [lesson 01]({{ page.root }}/01-intro.hmtl#logical-operations).
+Together they work like this:
 
 ```matlab
 num = 37;
@@ -51,14 +50,13 @@ done
 ```
 
 The second line of this code uses the keyword `if` to tell MATLAB
-that we want to make a choice. If the test that follows is true,
-the body of the `if` (i.e., the lines between `if` and `else`) are
-executed. If the test is false, the body of the `else` (i.e.,
-the lines between `else` and `end`) are executed instead. Only one
-or the other is ever executed.
+that we want to make a choice. If the logical operation that follows is true,
+the body of the `if` statement (i.e., the lines between `if` and `else`) is
+executed. If the logical operation returns false, the body of the `else` statement (i.e.,
+the lines between `else` and `end`) is executed instead. Only one of these statement bodies is ever executed, never both.
 
 Conditional statements don't have to have an `else` block. If there
-isn't one, MATLAB simply doesn't do anything if the test is false:
+isn't one, MATLAB simply doesn't do anything if the logical operation returns false:
 
 ```matlab
 num = 53;
@@ -93,12 +91,8 @@ else
 end
 ```
 
-One important thing to notice in the code above is that we use
-a double equals sign `==` to test for equality rather than a
-single equals sign. This is because the latter is used to mean
-assignment. In our test, we want to check for the equality of `num`
-and `0`, not *assign* 0 to `num`. This convention was inherited
-from C, and it does take a bit of getting used to...
+Recall that we use a double equals sign `==` to test for equality rather than a
+single equals sign (which assigns a value to a variable).
 
 During a conditional statement, if one of the conditions is true,
 this marks the end of the test: no subsequent conditions will be tested
@@ -122,26 +116,26 @@ else
 end
 ```
 
-We can also combine tests, using `&&` (and) and `||` (or). `&&`
+We can also combine logical operations, using `&&` (and) and `||` (or). `&&`
 is true if both tests are true:
 
 ```matlab
 if ((1 > 0) && (-1 > 0))
     disp('both parts are true')
 else
-    disp('one part is not true')
+    disp('At least one part is not true')
 end
 ```
 
 ```output
-one part is not true
+At least one part is not true
 ```
 
-`||` is true if either test is true:
+`||` is true if either logical operation returns true:
 
 ```matlab
 if (1 < 0) || (3 < 4)
-    disp('at least one part is true')
+    disp('At least one part is true')
 end
 ```
 
@@ -156,7 +150,7 @@ In this case, "either" means "either or both", not
 
 ## True and False Statements
 
-The conditions we have tested above evaluate to a logical value:
+The operations we tested above evaluate to a logical value:
 `true` or `false`.
 However these numerical comparison tests aren't the only values
 which are `true` or `false` in MATLAB.
@@ -236,180 +230,128 @@ end
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Another thing to realize is that `if` statements can
-also be combined with loops. For example, if we want
-to sum the positive numbers in a list, we can write
-this:
+## Scripts with choices
+
+In the last lesson, we wrote a script that saved several plots to disk. It would nice if our script could be more 
+flexible. Could we modify it so that it either saved the plots to disk *or* displayed them on screen? Could we do this
+in such a way to make it easy to change between the two behaviours? This is something that conditional statements allow
+us to do.
+
+We introduce a variable `save_plots` that we can set to either `true` or `false` and modify our script so that when
+`save_plots = true` the plots are saved to disk, and when `save_plots = false` the plots are printed to the screen.
 
 ```matlab
-numbers = [-5, 3, 2, -1, 9, 6];
-total = 0;
+% PLOT_DAILY_AVERAGE_OPTION   Plots daily average, max and min inflammation accross patients. If save_plots is set to 
+% true, the figures are saved to disk. If save_plots is set to false, the figures are displayed on the screen.
 
-for n = numbers
-    if n >= 0
-        total = total + n;
-    end
+% Load patient data
+patient_data = readmatrix('data/base/inflammation-01.csv');
+
+save_plots=true;
+
+if save_plots == true
+    figure(visible='off')
+else
+    figure
 end
 
-disp(['sum of positive values: ', num2str(total)])
-```
+% Define tiled layout and labels
+tlo = tiledlayout(1,3);
+xlabel(tlo,'Day of trial')
+ylabel(tlo,'Inflammation')
 
-```output
-sum of positive values: 20
-```
+% Plot average inflammation per day
+nexttile
+plot(mean(patient_data, 1))
+title('Average')
 
-With a little extra effort, we can calculate the
-positive and negative sums in a loop:
+% Plot max inflammation per day
+nexttile
+plot(max(patient_data, [], 1))
+title('Max')
 
-```matlab
-pos_total = 0;
-neg_total = 0;
+% Plot min inflammation per day
+nexttile
+plot(min(patient_data, [], 1))
+title('Min')
 
-for n = numbers
-    if n >= 0
-        pos_total = pos_total + n;
-    else
-        neg_total = neg_total + n;
-    end
-end
+if save_plots == true 
+    % Save plot in 'results' folder as png image:
+    saveas(gcf,'results/daily_average_01.png')
 
-disp(['sum of positive values: ', num2str(pos_total)])
-disp(['sum of negative values: ', num2str(neg_total)])
-```
+    close()
 
-```output
-sum of positive values: 26
-sum of negative values: -6
-```
-
-We can even put one loop inside another:
-
-```matlab
-for number = 1:3
-    for letter = 'ab'
-        disp([num2str(number), letter])
-    end
 end
 ```
-
-```output
-1a
-1b
-2a
-2b
-3a
-3b
-```
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Nesting
-
-Will changing the order of nesting in the above loop change
-the output? Why? Write down the output you might expect from
-changing the order of the loops, then rewrite the code to test
-your hypothesis.
-
-:::::::::::::::  solution
-
-```matlab
-for letter = 'ab'
-    for number = 1:3
-        disp([num2str(number), letter])
-    end
-end
-```
-
-Reordering the nested loops changes the output. In the new code,
-the number loop happens within the letter loop, so while letter
-= a, number takes the values 1, 2, and 3 in turn.
-
-:::::::::::::::::::::::::
+Save the script in a file names `plot_daily_average_option.m` and investigate what setting the variable `save_plots` 
+to `true` and `false` does.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Currently, our script `plot_all.m` reads in data, analyzes it,
-and saves plots of the results.
-If we would rather display the plots interactively,
-we would have to remove (or *comment out*) the following code:
+:::::::::::::::::::::::::::::::::::::::  challenge
 
+## Changing behaviour based on patient data
+
+We'd like to improve our `patient_analysis` script from the previous lesson, specifially it's output. Currently the 
+script displaus `0` or `1` to indicate whether or not the patient has a high mean, has a maximum equivalent to the 
+highest in the dataset, and has a minimum equivalent to the lowest in the dataset. Instead, we'd like the script to
+print a line of descriptive text when each of these is true:
+1. The meam inflammation for the patient is higher than the global mean.
+2. The maximum inflammation for the patient is the same as the global maximum.
+3. The minimum inflammation for the patient is the same as the gloabel minimum.
+
+If none of the above is the case, then the script should print a line informing us that the patient's mean, maximum
+and minimum inflammation are not remarkable.
+
+Using the `patient_analysis` script from the previous lesson as a starting point, can you use conditional statements
+to make a script that does this? There are several different ways to do this, so cpmpare your finished script with 
+your neighbour and see if you did it the same way.
+
+:::::::::::::::  solution
 ```matlab
-print(img_name,'-dpng')
-close()
-```
+% Load patient data
+patient_data = readmatrix('data/base/inflammation-01.csv');
 
-And, we'd also have to change this line of code, from:
+% Compute global statistics
+g_mean = mean(patient_data(:));
+g_max = max(patient_data(:));
+g_min = min(patient_data(:));
 
-```matlab
-figure(visible='off')
-```
+patient_number = 8;
 
-to:
+% Compute patient statistics
+p_mean = mean(patient_data(patient_number,:));
+p_max = max(patient_data(patient_number,:));
+p_min = min(patient_data(patient_number,:));
 
-```matlab
-figure(visible='on')
-% or equivalently: figure()
-```
+% Compare patient vs global
+disp('Patient:')
+disp(patient_number)
 
-This is not a lot of code to change every time,
-but it's still work that's easily avoided using conditionals.
-Here's our script re-written to use *conditionals*
-to switch between saving plots as images and plotting them interactively:
+printed_something = false;
 
-```matlab
-%PLOT_ALL  Save plots of statistics to disk.
-%          Use variable plot_switch to control interactive plotting
-%          vs saving images to disk.
-%            plot_switch = 0: show plots interactively
-%            plot_switch = 1: save plots to disk
-
-plot_switch = 0;
-
-files = dir('data/inflammation-*.csv');
-
-% Process each file in turn
-for i = 1:length(files)
-    file_name = files(i).name;
-
-    % Generate strings for image names:
-    img_name = replace(file_name, '.csv', '.png');
-
-    % Generate path to data file and image file
-    file_name = fullfile('data', filename);
-    img_name  = fullfile('results', img_name);
-
-    patient_data = readmatrix(file_name);
-
-    % Create figures
-    if plot_switch == 1
-        figure(visible='off')
-    else
-        figure(visible='on')
-    end
-
-    tlo = tiledlayout(1,3);
-    xlabel(tlo,'Day of trial')
-    ylabel(tlo,'Inflammation')
-
-    nexttile
-    plot(mean(patient_data, 1))
-    title('Average')
-
-    nexttile
-    plot(max(patient_data, [], 1))
-    title('Max')
-
-    nexttile
-    plot(min(patient_data, [], 1))
-    title('Min')
-
-    if plot_switch == 1
-        print(img_name, '-dpng')
-        close()
-    end
-
+if p_mean > g_mean
+    disp('Patient''s mean inflammation is higher than the global mean inflammation.')
+    printed_something = true;
 end
+
+if p_max == g_max
+    disp('Patient''s maximum inflammation is the same as the global maximum.')
+    printed_something = true;
+end
+
+if p_min == g_min
+    disp('Patient''s minimum inflammation is the same as the global minimum.')
+    printed_something = true;
+end
+
+if printed_something == false
+    disp('Patient''s mean, maximum and minimum inflammation are not of interest.')
+end
+
 ```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 :::::::::::::::::::::::::::::::::::::::: keypoints

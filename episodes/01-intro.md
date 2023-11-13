@@ -125,7 +125,7 @@ where we used the caret symbol `^` to take the third power of y.
 
 ### Logical operations
 
-In programming, there is another type of opperation that becomes very important: comparison.
+In programming, there is another type of operation that becomes very important: comparison.
 We can compare two numbers (or variables) to see which one is smaller, for example
 ```matlab
 >> mass = 20
