@@ -466,6 +466,7 @@ Again, be careful usig this command, there is no way back!
 - Variables store data for future use. Their names must start with a letter, and can have underscores and numbers.
 - We can add, substract, multiply, divide and potentiate numbers.
 - We can also compare variables with `<`, `>`, `==`, `>=`, `<=`, `~=`, and use `~` to negate the result.
+- Combine logical operations with `&&` (and) and `||` (or).
 - MATLAB stores data in arrays. The data in an array has to be of the same type.
 - You can supress output with `;`, and print a variable with `disp`.
 - Use `clear` to delete variables, and `clc` to clear the console.

@@ -6,7 +6,7 @@ exercises: 5
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Introduce the `if` - `else` statement.
+- Introduce conditional statements.
 - Test for equality within a conditional statement.
 - Combine conditional tests using `AND` and `OR`.
 - Construct a conditional statement using `if`, `elseif`, and `else`.
@@ -23,20 +23,20 @@ exercises: 5
 In the last lesson we began experimenting with scripts, allowing us to re-use code for analysing data and plotting
 figures over and over again. To make our scripts even more useful, it would be nice if they did different things
 in different situations - either depending on the data they're given or on different options that we specify. We 
-want a way for our scripts to make choices.
+want a way for our scripts to "make choices".
 
 The tool that MATLAB gives us for doing this is called 
 a [conditional statement]({{ page.root }}/reference.html#conditional-statement). We will use conditional statements 
 together with the logical operations we encountered back in [lesson 01]({{ page.root }}/01-intro.hmtl#logical-operations).
-Together they work like this:
+They work like this:
 
 ```matlab
-num = 37;
+num = 53;
 
 if num > 100
-    disp('greater')
+    disp('The number is greater than 100')
 else
-    disp('not greater')
+    disp('The number is not greater than 100')
 end
 
 disp('done')
@@ -61,7 +61,7 @@ num = 53;
 disp('before conditional...')
 
 if num > 100
-    disp('53 is greater than 100')
+    disp('The number is greater than 100')
 end
 
 disp('...after conditional')
@@ -72,8 +72,31 @@ before conditional...
 ...after conditional
 ```
 
-We can also chain several tests together using `elseif`. This makes it
-simple to write a script that gives the sign of a number:
+We can also "nest" a conditional statements inside another conditional statement.
+```matlab
+num = 53;
+
+disp('before conditional...')
+if num > 100
+    disp('The number is greater than 100')
+else
+    disp('The number is not greater than 100')
+    if num > 50
+        disp('... but it is greater than 50...')
+    end
+end
+
+disp('...after conditional')
+```
+
+```output
+before conditional...
+...after conditional
+```
+
+This "nesting" can be quite useful, so MATLAB has a special keyword for it.
+We can chain several tests together using `elseif`.
+This makes it simple to write a script that gives the sign of a number:
 
 ```matlab
 %CONDITIONAL_DEMO   Demo script to illustrate use of conditionals
@@ -114,9 +137,7 @@ else
 end
 ```
 
-We can also combine logical operations, using `&&` (and) and `||` (or). `&&`
-is true if both tests are true:
-
+We can also combine logical operations, using `&&` (and) and `||` (or), as we did before:
 ```matlab
 if ((1 > 0) && (-1 > 0))
     disp('both parts are true')
@@ -129,8 +150,6 @@ end
 At least one part is not true
 ```
 
-`||` is true if either logical operation returns true:
-
 ```matlab
 if (1 < 0) || (3 < 4)
     disp('At least one part is true')
@@ -140,9 +159,6 @@ end
 ```output
 at least one part is true
 ```
-
-In this case, "either" means "either or both", not
-"either one or the other but not both".
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -239,7 +255,7 @@ We introduce a variable `save_plots` that we can set to either `true` or `false`
 `save_plots = true` the plots are saved to disk, and when `save_plots = false` the plots are printed to the screen.
 
 ```matlab
-% PLOT_DAILY_AVERAGE_OPTION   Plots daily average, max and min inflammation accross patients. If save_plots is set to 
+% PLOT_DAILY_AVERAGE_OPTION   Plots daily average, max and min inflammation across patients. If save_plots is set to 
 % true, the figures are saved to disk. If save_plots is set to false, the figures are displayed on the screen.
 
 % Load patient data
@@ -288,19 +304,19 @@ to `true` and `false` does.
 
 ## Changing behaviour based on patient data
 
-We'd like to improve our `patient_analysis` script from the previous lesson, specifially it's output. Currently the 
-script displaus `0` or `1` to indicate whether or not the patient has a high mean, has a maximum equivalent to the 
+We'd like to improve our `patient_analysis` script from the previous lesson, specifically it's output. Currently the 
+script displays `0` or `1` to indicate whether or not the patient has a high mean, has a maximum equivalent to the 
 highest in the dataset, and has a minimum equivalent to the lowest in the dataset. Instead, we'd like the script to
 print a line of descriptive text when each of these is true:
-1. The meam inflammation for the patient is higher than the global mean.
+1. The mean inflammation for the patient is higher than the global mean.
 2. The maximum inflammation for the patient is the same as the global maximum.
-3. The minimum inflammation for the patient is the same as the gloabel minimum.
+3. The minimum inflammation for the patient is the same as the global minimum.
 
 If none of the above is the case, then the script should print a line informing us that the patient's mean, maximum
 and minimum inflammation are not remarkable.
 
 Using the `patient_analysis` script from the previous lesson as a starting point, can you use conditional statements
-to make a script that does this? There are several different ways to do this, so cpmpare your finished script with 
+to make a script that does this? There are several different ways to do this, so compare your finished script with 
 your neighbour and see if you did it the same way.
 
 :::::::::::::::  solution
@@ -353,6 +369,8 @@ end
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- "Use `if` and `else` to make choices based on values in your program."
-
+- Use conditional statements to make choices based on values in your program.
+- A conditional statement block starts with an `if` and finishes with `end`. It can also include an `else`.
+- Use `elseif` to nest conditional statements.
+- Use `&&` (and), `||` (or) to combine logical operations.
 ::::::::::::::::::::::::::::::::::::::::::::::::::
