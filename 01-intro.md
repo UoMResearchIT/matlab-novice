@@ -6,19 +6,19 @@ exercises: 20
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- "Navigate among important sections of the MATLAB environment."
-- "Assign values to variables."
-- "Identify what type of data is stored in a variable."
-- "Creating simple arrays."
-- "Be able to explore the values of saved variables."
-- "Learn how to delete variables and keep things tidy."
+- Navigate among important sections of the MATLAB environment.
+- Assign values to variables.
+- Identify what type of data is stored in a variable.
+- Creating simple arrays.
+- Be able to explore the values of saved variables.
+- Learn how to delete variables and keep things tidy.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- "How can I store values and do simple calculations with them?"
-- "Which type of operations can I do?"
+- How can I store values and do simple calculations with them?
+- Which type of operations can I do?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -463,12 +463,12 @@ Again, be careful usig this command, there is no way back!
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- "Variables store data for future use. Their names must start with a letter, and can have underscores and numbers."
-- "We can add, substract, multiply, divide and potentiate numbers."
-- "We can also compare variables with `<`, `>`, `==`, `>=`, `<=`, `~=`, and use `~` to negate the result."
-- "MATLAB stores data in arrays. The data in an array has to be of the same type."
-- "You can supress output with `;`, and print a variable with `disp`."
-- "Use `clear` to delete variables, and `clc` to clear the console."
+- Variables store data for future use. Their names must start with a letter, and can have underscores and numbers.
+- We can add, substract, multiply, divide and potentiate numbers.
+- We can also compare variables with `<`, `>`, `==`, `>=`, `<=`, `~=`, and use `~` to negate the result.
+- MATLAB stores data in arrays. The data in an array has to be of the same type.
+- You can supress output with `;`, and print a variable with `disp`.
+- Use `clear` to delete variables, and `clc` to clear the console.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 

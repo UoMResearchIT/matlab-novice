@@ -6,14 +6,14 @@ exercises: 20
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- "Learn how to create multidimensional arrays"
-- "Select individual values and subsections of an array."
+- Learn how to create multidimensional arrays
+- Select individual values and subsections of an array.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- "How can I access the information in an array?"
+- How can I access the information in an array?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -459,14 +459,14 @@ last three characters: gen
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- "Some functions to initialize matrices include `zeros`, `ones`, and `rand`.
+- Some functions to initialize matrices include `zeros`, `ones`, and `rand`.
   They all produce a square matrix if only one argument is given,
-  but you can specify the dimensions you want separated by a comma, as in `zeros(rows,columns)`."
-- "To select data points we use round brackets and provide the row and column indices of the elements we want.
+  but you can specify the dimensions you want separated by a comma, as in `zeros(rows,columns)`.
+- To select data points we use round brackets and provide the row and column indices of the elements we want.
   They can be just numbers or arrays of numbers. E.g. `M(5,[3,4,5])`"
-- "We can use the colon operator `:` to generate ordered arrays as `start:end` or `start:increment:end`."
-- "We can use the keyword `end` to get the index of the last element."
-- "The colon operator by itself `:` selects all the elements."
+- We can use the colon operator `:` to generate ordered arrays as `start:end` or `start:increment:end`.
+- We can use the keyword `end` to get the index of the last element.
+- The colon operator by itself `:` selects all the elements.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 

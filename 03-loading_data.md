@@ -6,14 +6,14 @@ exercises: 10
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- "Read data from a csv to be able to work with it in matlab."
-- "Familiarize ourselves with our sample data."
+- Read data from a csv to be able to work with it in matlab.
+- Familiarize ourselves with our sample data.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- "How can I load data to an array?"
+- How can I load data to an array?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -451,9 +451,9 @@ so we'll learn to make some plots.
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- "Use `readmatrix` to read tabular CSV data into a program."
-- "Use `mean`, `min`, `max`, and `std` on vectors to get the mean, minimum, maximum and standard deviation."
-- "Use `mean(array,DIM)` to specify the dimension of your array in which to compute the mean."
-- "For `min`, `max`, and `std`, the arguments need to be `(array,[],DIM)` instead."
+- Use `readmatrix` to read tabular CSV data into a program.
+- Use `mean`, `min`, `max`, and `std` on vectors to get the mean, minimum, maximum and standard deviation.
+- Use `mean(array,DIM)` to specify the dimension of your array in which to compute the mean.
+- For `min`, `max`, and `std`, the arguments need to be `(array,[],DIM)` instead.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
