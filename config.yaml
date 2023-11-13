@@ -64,9 +64,9 @@ episodes:
 - 03-loading_data.md
 - 04-plotting.md
 - 05-scripts.md
-- 06-func.md
-- 07-loops.md
-- 08-cond.md
+- 06-cond.md
+- 07-func.md
+- 08-loops.md
 
 # Information for Learners
 learners: 

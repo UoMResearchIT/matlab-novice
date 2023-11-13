@@ -6,18 +6,16 @@ exercises: 5
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- xxx
+- Introduce the `if` - `else` statement.
+- Test for equality within a conditional statement.
+- Combine conditional tests using `AND` and `OR`.
+- Construct a conditional statement using `if`, `elseif`, and `else`.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- "How can programs do different things for different data values?"
-objectives:
-- "Construct a conditional statement using if, elseif, and else"
-- "Test for equality within a conditional statement"
-- "Combine conditional tests using AND and OR"
-- "Build a nested loop"
+- How can programs make choices depending on variable values?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -286,8 +284,6 @@ end
 Save the script in a file names `plot_daily_average_option.m` and investigate what setting the variable `save_plots` 
 to `true` and `false` does.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ## Changing behaviour based on patient data
@@ -350,6 +346,7 @@ if printed_something == false
 end
 
 ```
+:::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
