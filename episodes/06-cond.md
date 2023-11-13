@@ -25,39 +25,12 @@ figures over and over again. To make our scripts even more useful, it would be n
 in different situations - either depending on the data they're given or on different options that we specify. We 
 want a way for our scripts to "make choices".
 
-The tool that MATLAB gives us for doing this is called 
-a [conditional statement]({{ page.root }}/reference.html#conditional-statement). We will use conditional statements 
-together with the logical operations we encountered back in [lesson 01]({{ page.root }}/01-intro.hmtl#logical-operations).
-They work like this:
+The tool that MATLAB gives us for doing this is called a [conditional statement]({{ page.root }}/reference.html#conditional-statement).
+We will use conditional statements together with the logical operations we encountered back in [lesson 01]({{ page.root }}/01-intro.hmtl#logical-operations).
+The simplest conditional statement consists starts with an `if`, and concludes with an `end`, like this:
 
 ```matlab
-num = 53;
-
-if num > 100
-    disp('The number is greater than 100')
-else
-    disp('The number is not greater than 100')
-end
-
-disp('done')
-```
-
-```output
-not greater
-done
-```
-
-The second line of this code uses the keyword `if` to tell MATLAB
-that we want to make a choice. If the logical operation that follows is true,
-the body of the `if` statement (i.e., the lines between `if` and `else`) is
-executed. If the logical operation returns false, the body of the `else` statement (i.e.,
-the lines between `else` and `end`) is executed instead. Only one of these statement bodies is ever executed, never both.
-
-Conditional statements don't have to have an `else` block. If there
-isn't one, MATLAB simply doesn't do anything if the logical operation returns false:
-
-```matlab
-num = 53;
+num = 127;
 disp('before conditional...')
 
 if num > 100
@@ -69,8 +42,44 @@ disp('...after conditional')
 
 ```output
 before conditional...
+The number is greater than 100
 ...after conditional
 ```
+Now try changing the value of `num` to, say, 53:
+
+```output
+before conditional...
+...after conditional
+```
+
+MATLAB skipped the code inside the conditional statement because the logical operation returned false.
+
+The choice making is not quite complete yet.
+We have managed to "do" or "not do" something, but we have not managed to choose between to actions.
+For that, we need to introduce the keyword `else` in the conditional statement, like this:
+
+```matlab
+num = 53;
+disp('before conditional...')
+
+if num > 100
+    disp('The number is greater than 100')
+else
+    disp('The number is not greater than 100')
+end
+
+disp('...after conditional')
+```
+
+```output
+before conditional...
+The number is not greater than 100
+...after conditional
+```
+
+If the logical operation that follows is true, the body of the `if` statement (i.e., the lines between `if` and `else`) is executed.
+If the logical operation returns false, the body of the `else` statement (i.e., the lines between `else` and `end`) is executed instead.
+Only one of these statement bodies is ever executed, never both.
 
 We can also "nest" a conditional statements inside another conditional statement.
 ```matlab
@@ -82,7 +91,7 @@ if num > 100
 else
     disp('The number is not greater than 100')
     if num > 50
-        disp('... but it is greater than 50...')
+        disp('But it is greater than 50...')
     end
 end
 
@@ -91,6 +100,8 @@ disp('...after conditional')
 
 ```output
 before conditional...
+The number is not greater than 100
+But it is greater than 50...
 ...after conditional
 ```
 
@@ -373,4 +384,5 @@ end
 - A conditional statement block starts with an `if` and finishes with `end`. It can also include an `else`.
 - Use `elseif` to nest conditional statements.
 - Use `&&` (and), `||` (or) to combine logical operations.
+- Only one of the statement bodies is ever executed.
 ::::::::::::::::::::::::::::::::::::::::::::::::::
