@@ -232,7 +232,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="06-func.html">6. Creating Functions</a>
+        <a href="06-cond.html">6. Making Choices</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -244,7 +244,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="07-loops.html">7. Repeating With Loops</a>
+        <a href="07-func.html">7. Creating Functions</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -256,7 +256,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="08-cond.html">8. Making Choices</a>
+        <a href="08-loops.html">8. Repeating With Loops</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -329,6 +329,8 @@ letter, and can have underscores and numbers.</li>
 <code>&gt;</code>, <code>==</code>, <code>&gt;=</code>,
 <code>&lt;=</code>, <code>~=</code>, and use <code>~</code> to negate
 the result.</li>
+<li>Combine logical operations with <code>&amp;&amp;</code> (and) and
+<code>||</code> (or).</li>
 <li>MATLAB stores data in arrays. The data in an array has to be of the
 same type.</li>
 <li>You can supress output with <code>;</code>, and print a variable
@@ -402,7 +404,19 @@ figures with figure(visible=‘off’). Remember to close them with
 <li>Save figures with
 <code>saveas(gcf,'results/my_plot_name.png')</code>
 </li>
-</ul></section><section id="06-func"><h2 class="section-heading"><a href="06-func.html">Creating Functions</a></h2>
+</ul></section><section id="06-cond"><h2 class="section-heading"><a href="06-cond.html">Making Choices</a></h2>
+<hr class="half-width">
+<ul>
+<li>Use conditional statements to make choices based on values in your
+program.</li>
+<li>A conditional statement block starts with an <code>if</code> and
+finishes with <code>end</code>. It can also include an
+<code>else</code>.</li>
+<li>Use <code>elseif</code> to nest conditional statements.</li>
+<li>Use <code>&amp;&amp;</code> (and), <code>||</code> (or) to combine
+logical operations.</li>
+<li>Only one of the statement bodies is ever executed.</li>
+</ul></section><section id="07-func"><h2 class="section-heading"><a href="07-func.html">Creating Functions</a></h2>
 <hr class="half-width">
 <ul>
 <li>A MATLAB function <em>must</em> be saved in a text file with a
@@ -420,16 +434,11 @@ from the function returning them as outputs.</li>
 <ul>
 <li>Break programs up into short, single-purpose functions with
 meaningful names.</li>
-</ul></section><section id="07-loops"><h2 class="section-heading"><a href="07-loops.html">Repeating With Loops</a></h2>
+</ul></section><section id="08-loops"><h2 class="section-heading"><a href="08-loops.html">Repeating With Loops</a></h2>
 <hr class="half-width">
 <ul>
 <li>“Use <code>for</code> to create a loop that repeats one or more
 operations.”</li>
-</ul></section><section id="08-cond"><h2 class="section-heading"><a href="08-cond.html">Making Choices</a></h2>
-<hr class="half-width">
-<ul>
-<li>“Use <code>if</code> and <code>else</code> to make choices based on
-values in your program.”</li>
 </ul></section>
 </div>
     </main>
