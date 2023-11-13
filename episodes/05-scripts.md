@@ -6,14 +6,14 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- "Write and save MATLAB scripts."
-- "Save MATLAB plots to disk."
+- Write and save MATLAB scripts.
+- Save MATLAB plots to disk.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- "How can I save and re-use my programs?"
+- How can I save and re-use my programs?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -383,7 +383,7 @@ which are then used to do something. So, can we create our own *functions*?
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- "Save MATLAB code in files with a `.m` suffix."
+- Save MATLAB code in files with a `.m` suffix.
 - The set of commands in a script get executed by calling the script by its name,
   and all variables are saved to the workspace.
   Be careful, this potentially **replaces** variables.
