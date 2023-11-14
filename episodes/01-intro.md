@@ -208,6 +208,15 @@ Notice the single tick for character variables, in contrast with the double quot
 If you look at the workspace, you'll notice that the icon next to each variable is different,
 and if you hover over it, it will tell you the type of variable it is.
 
+You can also check the "class" of the variable with the `class` function:
+```matlab
+>> class(patient_name)
+```
+```output
+ans =
+    'string'
+```
+
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::

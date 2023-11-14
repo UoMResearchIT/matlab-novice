@@ -1,7 +1,7 @@
 ---
 title: Arrays
-teaching: 50
-exercises: 20
+teaching: 30
+exercises: 30
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
@@ -380,8 +380,8 @@ We can take slices of character arrays as well:
 
 ```matlab
 >> element = 'oxygen';
->> disp(['first three characters: ', element(1:3)])
->> disp(['last three characters: ', element(4:6)])
+>> disp("first three characters: " + element(1:3))
+>> disp("last three characters: " + element(4:6))
 ```
 
 ```output

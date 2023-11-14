@@ -1,6 +1,6 @@
 ---
 title: Plotting data
-teaching: 25
+teaching: 30
 exercises: 10
 ---
 
@@ -209,6 +209,39 @@ and pass it as a first argument to `title`, `xlabel` or `ylabel`, for example:
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
+## Where is the `nexttile`?
+
+You can specify which *tile* you want to plot next by specifying the number as an argument to `nexttile` like so:
+```matlab
+>> tiledlayout(3,5)
+>> nexttile(3)
+```
+Note that, as opposed to numerical arrays, the indexing goes along the row first, and then jumps to the next column.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Resizing tiles
+
+You can also choose a different size for a plot by occupying many *tiles* in one go.
+You do that by specifying the number of rows and columns you want to use in an array (`[rows,columns]`), like this:
+```matlab
+>> nexttile([3,1])
+```
+And you can specify the starting tile at the same time, like this:
+```matlab
+>> nexttile(8,[2,3])
+```
+Note that using a starting tile that overlaps another plot will erase that axes. For example, try:
+```matlab
+>> nexttile(1,[2,2])
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::::  callout
+
 ## Clearing a figure
 
 If you now try to plot something like the mean, as we had done before,
@@ -271,5 +304,7 @@ In our case, which one you use is a matter of taste.
 - Use `hold on` and `hold off` to plot multiple lines at the same time.
 - Use `legend` and add `,DisplayName="legend name here"` inside the plot function to add a legend.
 - Use `tiledlayout(m,n)` to create a grid of `m` x `n` plots, and use `nexttile` to change the position of the next plot.
+- Choose the location and size of the tile by passing arguments to `nextile` as `nexttile(position,[m,n])`.
+- Use `heatmap` or `imagesc` to plot a whole matrix with values coded as color hues.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
