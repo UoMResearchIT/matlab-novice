@@ -610,6 +610,46 @@ The first three figures output to the `results` directory are as shown below:
 We've now automated the generation of these figures for all the data stored in our data folder.
 With minor modifications, this script could be re-used to check all our future data files.
 
+::::::::::::::::::::::::::::::::::::::  challenge
+
+## Investigating patients with a high mean
+
+We're particularly interested in patients who have a mean inflammation higher than the global mean.
+
+Write a script called `plot_high_mean_patients` that reads in the file `inflammation-01.csv` and compares the patients mean inflammation to the global mean. If their mean inflammation is greater than the global inflammation, use the function `patient_vs_mean` to save a 
+plot of their inflammation to disk for later analysis. Use both for loops and conditional statements to do this.
+
+Using what you've learned about dealing with multiple files, turn this script into a function that takes the filename
+of a data file as input and run it on all of the inflammation data files.
+
+:::::::::::::::  solution
+```matlab
+% PLOT_HIGH_MEAN_PATIENTS   Saves plots of patients with mean inflammation higher than the global mean inflammation.
+
+patient_data = readmatrix('data/base/inflammation-01.csv');
+
+per_day_mean = mean(patient_data);
+global_mean =  mean(patient_data(:));
+
+number_of_patients = size(patient_data,1);
+
+for patient_id = 1:number_of_patients
+
+    patient_mean = mean(patient_data(patient_id,:));
+
+    if(patient_mean > global_mean)
+        patient_reference = "Patient " + string(patient_id)
+        patient_vs_mean(per_day_mean, patient_data(patient_id,:), patient_reference)
+    end
+
+end
+```
+
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
