@@ -277,7 +277,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Repeating With Loops</h1>
-        <p> Last updated on 2023-11-13 | 
+        <p> Last updated on 2023-11-14 | 
         
         <a href="https://github.com/swcarpentry/matlab-novice-inflammation/edit/main/episodes/08-loops.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -313,17 +313,18 @@
 </div>
 </div>
 </div>
-<p>Recall that we have to do this analysis for every one of our dozen
-datasets, and we need a better way than typing out commands for each
-one, because we’ll find ourselves writing a lot of duplicate code.
-Remember, code that is repeated in two or more places will eventually be
-wrong in at least one. Also, if we make changes in the way we analyze
-our datasets, we have to introduce that change in every copy of our
-code. To avoid all of this repetition, we have to teach MATLAB to repeat
-our commands, and to do <em>that</em>, we have to learn how to write
-<em>loops</em>.</p>
-<p>Suppose we want to print each character in the word “lead” on a line
-of its own. One way is to use four <code>disp</code> statements:</p>
+<p>Recall that we have twelve datasets in total. We’re going to need a
+better way to analyze them all than typing out commands for each one,
+because we’ll find ourselves writing a lot of duplicated code. Code that
+is repeated in two or more places will eventually be wrong in at least
+one as our project develops over time. Also, if we make changes in the
+way we analyze our datasets, we have to introduce that change in every
+copy of our code. To avoid all of this repetition, we have to teach
+MATLAB to repeat our commands, and to do <em>that</em>, we have to learn
+how to write <em>loops</em>.</p>
+<p>We’ll start with an example. Suppose we want to print each character
+in the word “lead” on a line of its own. One way is to use four
+<code>disp</code> statements:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -455,11 +456,10 @@ better loop:</p>
 <span><span class="va">u</span></span>
 <span><span class="va">m</span></span></code></pre>
 </div>
-<p>This is much more robust code, as it can deal identically with words
-of arbitrary length. Loops are not only for working with strings, they
-allow us to do repetitive calculations regardless of data type. Here’s
-another loop that calculates the sum of all even numbers between 1 and
-10:</p>
+<p>This is much more robust code, as it can deal with words of arbitrary
+length. Loops are not only for working with strings, they allow us to do
+repetitive calculations regardless of data type. Here’s another loop
+that calculates the sum of all even numbers between 1 and 10:</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -562,7 +562,7 @@ Check your result for <code>b = 4</code> and <code>x = 5</code>.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -614,7 +614,7 @@ time:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -685,7 +685,7 @@ reverse order, one letter per line.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -705,10 +705,10 @@ reverse order, one letter per line.</p>
 <section id="analyzing-patient-data-from-multiple-files"><h2 class="section-heading">Analyzing patient data from multiple files<a class="anchor" aria-label="anchor" href="#analyzing-patient-data-from-multiple-files"></a>
 </h2>
 <hr class="half-width"><p>We now have almost everything we need to process multiple data files
-using a loop and the plotting code in our <code>plot_patient1</code>
-script.</p>
-<p>We still need to generate a list of data files to process, and then
-we can use a loop to repeat the analysis for each file.</p>
+using a loop and the plotting code in our
+<code>plot_daily_average</code> function from the last lesson.</p>
+<p>We will need to generate a list of data files to process, and then we
+can use a loop to repeat the analysis for each file.</p>
 <p>We can use the <code>dir</code> command to return a <strong>structure
 array</strong> containing the names of the files in the
 <code>data</code> directory. Each element in this <em>structure
@@ -717,7 +717,7 @@ a single file in the form of named <strong>fields</strong>.</p>
 <div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">files</span> <span class="op">=</span> <span class="va">dir</span>(<span class="ss">'data/inflammation-*.csv'</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">files</span> <span class="op">=</span> <span class="va">dir</span>(<span class="ss">'data/base/inflammation-*.csv'</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -754,7 +754,7 @@ following syntax:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>26-Jul-2015 22:24:31</code></pre>
+<pre class="output" tabindex="0"><code>06-Nov-2023 14:34:15</code></pre>
 </div>
 <p>A good first step towards processing multiple files is to write a
 loop which prints the name of each of our files. Let’s write this in a
@@ -764,7 +764,7 @@ script <code>plot_all.m</code> which we will then develop further:</p>
 </h3>
 <pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">%PLOT_ALL	Developing code to automate inflammation analysis</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="va">files</span> <span class="op">=</span> <span class="va">dir</span>(<span class="ss">'data/inflammation-*.csv'</span>)<span class="op">;</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="va">files</span> <span class="op">=</span> <span class="va">dir</span>(<span class="ss">'data/base/inflammation-*.csv'</span>)<span class="op">;</span></span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="kw">for</span> <span class="va">i</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">length</span>(<span class="va">files</span>)</span>
 <span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>	<span class="va">file_name</span> <span class="op">=</span> <span class="va">files</span>(<span class="va">i</span>).<span class="va">name</span><span class="op">;</span></span>
@@ -851,7 +851,7 @@ the data files, and the image files we want to save:</p>
 </h3>
 <pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">%PLOT_ALL	Developing code to automate inflammation analysis</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="va">files</span> <span class="op">=</span> <span class="va">dir</span>(<span class="ss">'data/inflammation-*.csv'</span>)<span class="op">;</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="va">files</span> <span class="op">=</span> <span class="va">dir</span>(<span class="ss">'data/base/inflammation-*.csv'</span>)<span class="op">;</span></span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="kw">for</span> <span class="va">i</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">length</span>(<span class="va">files</span>)</span>
 <span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">file_name</span> <span class="op">=</span> <span class="va">files</span>(<span class="va">i</span>).<span class="va">name</span><span class="op">;</span></span>
@@ -860,7 +860,7 @@ the data files, and the image files we want to save:</p>
 <span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">img_name</span> <span class="op">=</span> <span class="va">replace</span>(<span class="va">file_name</span><span class="op">,</span> <span class="ss">'.csv'</span><span class="op">,</span> <span class="ss">'.png'</span>)<span class="op">;</span></span>
 <span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">% Generate path to data file and image file</span></span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">file_name</span> <span class="op">=</span> <span class="va">fullfile</span>(<span class="ss">'data'</span><span class="op">,</span> <span class="va">file_name</span>)<span class="op">;</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">file_name</span> <span class="op">=</span> <span class="va">fullfile</span>(<span class="ss">'data'</span><span class="op">,</span> <span class="ss">'base'</span><span class="op">,</span> <span class="va">file_name</span>)<span class="op">;</span></span>
 <span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">img_name</span> <span class="op">=</span> <span class="va">fullfile</span>(<span class="ss">'results'</span><span class="op">,</span><span class="va">img_name</span>)<span class="op">;</span></span>
 <span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>    <span class="va">disp</span>(<span class="va">file_name</span>)</span>
@@ -903,7 +903,7 @@ multiple data files:</p>
 <pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">%PLOT_ALL   Print statistics for all patients.</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">%           Save plots of statistics to disk.</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="va">files</span> <span class="op">=</span> <span class="va">dir</span>(<span class="ss">'data/inflammation-*.csv'</span>)<span class="op">;</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="va">files</span> <span class="op">=</span> <span class="va">dir</span>(<span class="ss">'data/base/inflammation-*.csv'</span>)<span class="op">;</span></span>
 <span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="co">% Process each file in turn</span></span>
 <span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="kw">for</span> <span class="va">i</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">length</span>(<span class="va">files</span>)</span>
@@ -913,33 +913,12 @@ multiple data files:</p>
 <span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">img_name</span>  <span class="op">=</span> <span class="va">replace</span>(<span class="va">file_name</span><span class="op">,</span> <span class="ss">'.csv'</span><span class="op">,</span> <span class="ss">'.png'</span>)<span class="op">;</span></span>
 <span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">% Generate path to data file and image file</span></span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">file_name</span> <span class="op">=</span> <span class="va">fullfile</span>(<span class="ss">'data'</span><span class="op">,</span> <span class="va">file_name</span>)<span class="op">;</span></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">file_name</span> <span class="op">=</span> <span class="va">fullfile</span>(<span class="ss">'data'</span><span class="op">,</span> <span class="ss">'base'</span><span class="op">,</span> <span class="va">file_name</span>)<span class="op">;</span></span>
 <span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>    <span class="va">img_name</span>  <span class="op">=</span> <span class="va">fullfile</span>(<span class="ss">'results'</span><span class="op">,</span> <span class="va">img_name</span>)<span class="op">;</span></span>
 <span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>    <span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="va">file_name</span>)<span class="op">;</span></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>    <span class="va">plot_daily_average</span>(<span class="va">file_name</span><span class="op">,</span> <span class="va">img_name</span>)<span class="op">;</span></span>
 <span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">% Create figures</span></span>
-<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>    <span class="va">figure</span>(<span class="va">visible</span><span class="op">=</span><span class="ss">'off'</span>)</span>
-<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>    <span class="va">tlo</span> <span class="op">=</span> <span class="va">tiledlayout</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span>)<span class="op">;</span></span>
-<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>    <span class="va">xlabel</span>(<span class="va">tlo</span><span class="op">,</span><span class="ss">'Day of trial'</span>)</span>
-<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>    <span class="va">ylabel</span>(<span class="va">tlo</span><span class="op">,</span><span class="ss">'Inflammation'</span>)</span>
-<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>    <span class="va">nexttile</span></span>
-<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>    <span class="va">plot</span>(<span class="va">mean</span>(<span class="va">patient_data</span><span class="op">,</span> <span class="fl">1</span>))</span>
-<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a>    <span class="va">title</span>(<span class="ss">'Average'</span>)</span>
-<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a>    <span class="va">nexttile</span></span>
-<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a>    <span class="va">plot</span>(<span class="va">max</span>(<span class="va">patient_data</span><span class="op">,</span> []<span class="op">,</span> <span class="fl">1</span>))</span>
-<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a>    <span class="va">title</span>(<span class="ss">'Max'</span>)</span>
-<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a>    <span class="va">nexttile</span></span>
-<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a>    <span class="va">plot</span>(<span class="va">min</span>(<span class="va">patient_data</span><span class="op">,</span> []<span class="op">,</span> <span class="fl">1</span>))</span>
-<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a>    <span class="va">title</span>(<span class="ss">'Min'</span>)</span>
-<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a>    <span class="va">print</span>(<span class="va">img_name</span><span class="op">,</span> <span class="ss">'-dpng'</span>)</span>
-<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a>    <span class="va">close</span>()</span>
-<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre>
 </div>
 <p>We run the modified script using its name in the Command Window:</p>
 <div class="codewrapper sourceCode" id="cb42">
@@ -949,13 +928,68 @@ multiple data files:</p>
 </div>
 <p>The first three figures output to the <code>results</code> directory
 are as shown below:</p>
-<figure><img src="fig/inflammation-01.png" style="width:500px; height:400px" alt="inflammation-01.png" class="figure mx-auto d-block"></figure><figure><img src="fig/inflammation-02.png" style="width:500px; height:400px" alt="inflammation-02.png" class="figure mx-auto d-block"></figure><figure><img src="fig/inflammation-03.png" style="width:500px; height:400px" alt="inflammation-03.png" class="figure mx-auto d-block"></figure><p>Sure enough, the maxima of these data sets show exactly the same ramp
-as the first, and their minima show the same staircase structure.</p>
-<p>We’ve now automated the analysis and have confirmed that all the data
-files we have looked at show the same artifact. This is what we set out
-to test, and now we can just call one script to do it. With minor
-modifications, this script could be re-used to check all our future data
-files.</p>
+<figure><img src="fig/inflammation-01.png" style="width:500px; height:400px" alt="inflammation-01.png" class="figure mx-auto d-block"></figure><figure><img src="fig/inflammation-02.png" style="width:500px; height:400px" alt="inflammation-02.png" class="figure mx-auto d-block"></figure><figure><img src="fig/inflammation-03.png" style="width:500px; height:400px" alt="inflammation-03.png" class="figure mx-auto d-block"></figure><p>We’ve now automated the generation of these figures for all the data
+stored in our data folder. With minor modifications, this script could
+be re-used to check all our future data files.</p>
+<div id="investigating-patients-with-a-high-mean" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="investigating-patients-with-a-high-mean" class="callout-inner">
+<h3 class="callout-title">Investigating patients with a high mean<a class="anchor" aria-label="anchor" href="#investigating-patients-with-a-high-mean"></a>
+</h3>
+<div class="callout-content">
+<p>We’re particularly interested in patients who have a mean
+inflammation higher than the global mean.</p>
+<p>Write a script called <code>plot_high_mean_patients</code> that reads
+in the file <code>inflammation-01.csv</code> and compares the patients
+mean inflammation to the global mean. If their mean inflammation is
+greater than the global inflammation, use the function
+<code>patient_vs_mean</code> to save a plot of their inflammation to
+disk for later analysis. Use both for loops and conditional statements
+to do this.</p>
+<p>Using what you’ve learned about dealing with multiple files, turn
+this script into a function that takes the filename of a data file as
+input and run it on all of the inflammation data files.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb43">
+<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">% PLOT_HIGH_MEAN_PATIENTS   Saves plots of patients with mean inflammation higher than the global mean inflammation.</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="ss">'data/base/inflammation-01.csv'</span>)<span class="op">;</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="va">per_day_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span>)<span class="op">;</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="va">global_mean</span> <span class="op">=</span>  <span class="va">mean</span>(<span class="va">patient_data</span>(<span class="op">:</span>))<span class="op">;</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="va">number_of_patients</span> <span class="op">=</span> <span class="va">size</span>(<span class="va">patient_data</span><span class="op">,</span><span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="kw">for</span> <span class="va">patient_id</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">number_of_patients</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">patient_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span>(<span class="va">patient_id</span><span class="op">,:</span>))<span class="op">;</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span>(<span class="va">patient_mean</span> <span class="op">&gt;</span> <span class="va">global_mean</span>)</span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">patient_reference</span> <span class="op">=</span> <span class="st">"Patient "</span> <span class="op">+</span> <span class="va">string</span>(<span class="va">patient_id</span>)</span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">patient_vs_mean</span>(<span class="va">per_day_mean</span><span class="op">,</span> <span class="va">patient_data</span>(<span class="va">patient_id</span><span class="op">,:</span>)<span class="op">,</span> <span class="va">patient_reference</span>)</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1028,7 +1062,7 @@ operations.”</li>
   "url": "https://uomresearchit.github.io/matlab-novice/08-loops.html",
   "identifier": "https://uomresearchit.github.io/matlab-novice/08-loops.html",
   "dateCreated": "2014-12-12",
-  "dateModified": "2023-11-13",
+  "dateModified": "2023-11-14",
   "datePublished": "2023-11-14"
 }
 
