@@ -77,11 +77,11 @@
   Programming with MATLAB
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 42%" class="percentage">
-    42%
+<aside class="col-md-12 lesson-progress"><div style="width: 41%" class="percentage">
+    41%
   </div>
   <div class="progress software">
-    <div class="progress-bar software" role="progressbar" style="width: 42%" aria-valuenow="42" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar software" role="progressbar" style="width: 41%" aria-valuenow="41" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -279,13 +279,13 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Plotting data</h1>
-        <p> Last updated on 2023-11-13 | 
+        <p> Last updated on 2023-11-14 | 
         
         <a href="https://github.com/swcarpentry/matlab-novice-inflammation/edit/main/episodes/04-plotting.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
         
         
-        <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 35 minutes </p>
+        <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 40 minutes </p>
         
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -529,7 +529,63 @@ example:</p>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_min</span>)</span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Min'</span>)</span></code></pre>
 </div>
-<figure><img src="../fig/plotting_max-min-tiledplot-titles.svg" alt="Max Min tiledplot with shared labels" class="figure mx-auto d-block"></figure><div id="clearing-a-figure" class="callout callout">
+<figure><img src="../fig/plotting_max-min-tiledplot-titles.svg" alt="Max Min tiledplot with shared labels" class="figure mx-auto d-block"></figure><div id="where-is-the-nexttile" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="where-is-the-nexttile" class="callout-inner">
+<h3 class="callout-title">Where is the <code>nexttile</code>?<a class="anchor" aria-label="anchor" href="#where-is-the-nexttile"></a>
+</h3>
+<div class="callout-content">
+<p>You can specify which <em>tile</em> you want to plot next by
+specifying the number as an argument to <code>nexttile</code> like
+so:</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">tiledlayout</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">5</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">nexttile</span>(<span class="fl">3</span>)</span></code></pre>
+</div>
+<p>Note that, as opposed to numerical arrays, the indexing goes along
+the row first, and then jumps to the next column.</p>
+</div>
+</div>
+</div>
+<div id="resizing-tiles" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="resizing-tiles" class="callout-inner">
+<h3 class="callout-title">Resizing tiles<a class="anchor" aria-label="anchor" href="#resizing-tiles"></a>
+</h3>
+<div class="callout-content">
+<p>You can also choose a different size for a plot by occupying many
+<em>tiles</em> in one go. You do that by specifying the number of rows
+and columns you want to use in an array (<code>[rows,columns]</code>),
+like this:</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">nexttile</span>([<span class="fl">3</span><span class="op">,</span><span class="fl">1</span>])</span></code></pre>
+</div>
+<p>And you can specify the starting tile at the same time, like
+this:</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">nexttile</span>(<span class="fl">8</span><span class="op">,</span>[<span class="fl">2</span><span class="op">,</span><span class="fl">3</span>])</span></code></pre>
+</div>
+<p>Note that using a starting tile that overlaps another plot will erase
+that axes. For example, try:</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">nexttile</span>(<span class="fl">1</span><span class="op">,</span>[<span class="fl">2</span><span class="op">,</span><span class="fl">2</span>])</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="clearing-a-figure" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -553,13 +609,13 @@ the inflamation. One option is to use a heatmap, that is, use the colour
 of each point to represent the inflamation values.</p>
 <p>In MATLAB, at least two methods can do this for us. The <a href="https://uk.mathworks.com/help/matlab/ref/heatmap.html" class="external-link"><code>heatmap</code>
 function</a> takes a table as input and produces a heatmap:</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">heatmap</span>(<span class="va">patient_data</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Inflammation'</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Patient number'</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">heatmap</span>(<span class="va">patient_data</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Inflammation'</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Patient number'</span>)</span></code></pre>
 </div>
 <figure><img src="../fig/plotting_heatmap.svg" alt="Heat map" class="figure mx-auto d-block"></figure><p>We gain something by visualizing the whole dataset at once; for
 example, we can see that some patients (3, 15, 25, 31, 36 and 60) have
@@ -567,13 +623,13 @@ very noisy data. However, it is harder to distinguish the details of the
 inflammatory response.</p>
 <p>Similarly, the <a href="https://uk.mathworks.com/help/matlab/ref/imagesc.html" class="external-link"><code>imagesc</code>
 function</a> represents the matrix as a color image.</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">imagesc</span>(<span class="va">patient_data</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Inflammation'</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Patient number'</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">imagesc</span>(<span class="va">patient_data</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Inflammation'</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Patient number'</span>)</span></code></pre>
 </div>
 <figure><img src="../fig/plotting_imagesc-heatmap.svg" alt="imagesc Heat map" class="figure mx-auto d-block"></figure><p>Every value in the matrix is <em>mapped</em> to a color. Blue regions
 in this heat map are low values, while yellow shows high values.</p>
@@ -604,6 +660,10 @@ add a legend.</li>
 <li>Use <code>tiledlayout(m,n)</code> to create a grid of <code>m</code>
 x <code>n</code> plots, and use <code>nexttile</code> to change the
 position of the next plot.</li>
+<li>Choose the location and size of the tile by passing arguments to
+<code>nextile</code> as <code>nexttile(position,[m,n])</code>.</li>
+<li>Use <code>heatmap</code> or <code>imagesc</code> to plot a whole
+matrix with values coded as color hues.</li>
 </ul></div>
 </div>
 </div>
@@ -666,7 +726,7 @@ position of the next plot.</li>
   "url": "https://uomresearchit.github.io/matlab-novice/instructor/04-plotting.html",
   "identifier": "https://uomresearchit.github.io/matlab-novice/instructor/04-plotting.html",
   "dateCreated": "2014-12-12",
-  "dateModified": "2023-11-13",
+  "dateModified": "2023-11-14",
   "datePublished": "2023-11-14"
 }
 
