@@ -6,6 +6,8 @@
 
 % ## Tip: Good Enough Practices for Scientific Computing
 
+  pwd
+  ls
   patient_data = readmatrix('data/base/inflammation-01.csv');
   size(patient_data)
   class(patient_data)

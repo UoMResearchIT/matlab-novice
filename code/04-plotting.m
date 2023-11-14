@@ -66,6 +66,17 @@
   plot(per_day_min)
   title('Min')
 
+% ## Where is the `nexttile`?
+  tiledlayout(3,5)
+  nexttile(3)
+
+
+% ## Resizing tiles
+  nexttile([3,1])
+  nexttile(8,[2,3])
+  nexttile(1,[2,2])
+
+
 % ## Clearing a figure
 
 % ## Heatmaps

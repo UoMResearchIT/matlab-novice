@@ -24,6 +24,7 @@
   size3 = 'L'
   patient_name = "Jane Doe"
   alive_on_day_3 = true
+  class(patient_name)
 
 
   c3 = frac == mass/age

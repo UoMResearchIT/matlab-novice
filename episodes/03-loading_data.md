@@ -1,7 +1,7 @@
 ---
 title: Loading data
-teaching: 30
-exercises: 10
+teaching: 35
+exercises: 15
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
@@ -53,10 +53,18 @@ Use the **Current Folder** window in the MATLAB GUI to browse to your project fo
 (the one now containing the 'data', 'results' and 'src' directories).
 
 To verify the current directory in matlab we can run `pwd` (print working directory).
+```matlab
+>> pwd
+```
+```output
+.../Desktop/matlab-novice-inflammation
+```
 A second check we can do is to run the `ls` (list) command in the Command Window to list the contents
 of the working directory ---
 we should get the following output:
-
+```matlab
+>> ls
+```
 ```output
 data  results  src
 ```
@@ -75,6 +83,11 @@ The first few rows of our first file, `data/base/inflammation-01.csv`, look like
 0,0.034,0.114,0.2,0.272,0.321,0.328,0.32,0.314,0.287,0.246,0.215,0.207,0.171,0.146,0.131,0.107,0.1,0.088,0.065,0.061,0.052,0.04,0.042,0.04,0.03,0.031,0.031,0.016,0.019,0.02,0.017,0.019,0.006,0.009,0.01,0.01,0.005,0.001,0.011
 0,0.081,0.216,0.277,0.273,0.356,0.38,0.349,0.315,0.23,0.235,0.198,0.106,0.198,0.084,0.171,0.126,0.14,0.086,0.01,0.06,0.081,0.022,0.035,0.01,0.086,-0,0.102,0.032,0.07,0.017,0.136,0.022,-0,0.031,0.054,-0,-0,0.05,0.001
 ```
+
+There is a very tempting button that says "Import Data" in the toolbar.
+If you click on it, you can find the file, and it will take you through a GUI wizard to upload the data.
+However, this is much more complicated than what we need, and it is not very helpful for loading multiple files (as we will in later episodes).
+Instead, lets try to do it on the command window.
 
 We can search the documentation to try to learn how to read our matrix of data.
 Type `read matrix` into the documentation toolbar.

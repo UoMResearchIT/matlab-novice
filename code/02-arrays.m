@@ -56,8 +56,8 @@
 % ! Challenge:
 % ## Slicing character arrays
   element = 'oxygen';
-  disp(['first three characters: ', element(1:3)])
-  disp(['last three characters: ', element(4:6)])
+  disp("first three characters: " + element(1:3))
+  disp("last three characters: " + element(4:6))
 % !! Solution:
 
 
