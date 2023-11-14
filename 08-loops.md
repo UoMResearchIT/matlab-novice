@@ -20,18 +20,16 @@ exercises: 10
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-Recall that we have to do this analysis for every one of our dozen datasets, and we need a better way than
-typing out commands for each one,
-because we'll find ourselves writing a lot of duplicate code.
-Remember, code that is repeated in two or more places
-will eventually be wrong in at least one.
+Recall that we have twelve datasets in total. 
+We're going to need a better way to analyze them all than typing out commands for each one,
+because we'll find ourselves writing a lot of duplicated code.
+Code that is repeated in two or more places will eventually be wrong in at least one as our project develops over time.
 Also, if we  make changes in the way we analyze our datasets,
 we have to introduce that change in every copy of our code.
 To avoid all of this repetition, we have to teach MATLAB to
-repeat our commands,
-and to do *that*,
-we have to learn how to write *loops*.
+repeat our commands, and to do *that*, we have to learn how to write *loops*.
 
+We'll start with an example.
 Suppose we want to print each character in the word "lead" on
 a line of its own. One way is to use four `disp` statements:
 
@@ -183,7 +181,7 @@ m
 ```
 
 This is much more robust code,
-as it can deal identically with
+as it can deal with
 words of arbitrary length.
 Loops are not only for working with strings,
 they allow us to do repetitive
@@ -395,9 +393,9 @@ end
 ## Analyzing patient data from multiple files
 We now have almost everything we need to process
 multiple data files using a loop and the plotting code in our
-`plot_patient1` script.
+`plot_daily_average` function from the last lesson.
 
-We still need to generate a list of data files to process,
+We will need to generate a list of data files to process,
 and then we can use a loop to repeat the analysis for each file.
 
 We can use the `dir` command to return a **structure array** containing
@@ -406,7 +404,7 @@ Each element in this *structure array* is a **structure**, containing
 information about a single file in the form of named **fields**.
 
 ```matlab
->> files = dir('data/inflammation-*.csv')
+>> files = dir('data/base/inflammation-*.csv')
 ```
 
 ```output
@@ -439,7 +437,7 @@ To get the modification date of the third file, we can do:
 ```
 
 ```output
-26-Jul-2015 22:24:31
+06-Nov-2023 14:34:15
 ```
 
 A good first step towards processing multiple files is to write a loop which prints
@@ -449,7 +447,7 @@ Let's write this in a script `plot_all.m` which we will then develop further:
 ```matlab
 %PLOT_ALL	Developing code to automate inflammation analysis
 
-files = dir('data/inflammation-*.csv');
+files = dir('data/base/inflammation-*.csv');
 
 for i = 1:length(files)
 	file_name = files(i).name;
@@ -526,7 +524,7 @@ and the image files we want to save:
 ```matlab
 %PLOT_ALL	Developing code to automate inflammation analysis
 
-files = dir('data/inflammation-*.csv');
+files = dir('data/base/inflammation-*.csv');
 
 for i = 1:length(files)
     file_name = files(i).name;
@@ -535,7 +533,7 @@ for i = 1:length(files)
     img_name = replace(file_name, '.csv', '.png');
 
     % Generate path to data file and image file
-    file_name = fullfile('data', file_name);
+    file_name = fullfile('data', 'base', file_name);
     img_name = fullfile('results',img_name);
 
     disp(file_name)
@@ -576,7 +574,7 @@ We're now ready to modify `plot_all.m` to actually process multiple data files:
 %PLOT_ALL   Print statistics for all patients.
 %           Save plots of statistics to disk.
 
-files = dir('data/inflammation-*.csv');
+files = dir('data/base/inflammation-*.csv');
 
 % Process each file in turn
 for i = 1:length(files)
@@ -586,32 +584,11 @@ for i = 1:length(files)
     img_name  = replace(file_name, '.csv', '.png');
 
     % Generate path to data file and image file
-    file_name = fullfile('data', file_name);
+    file_name = fullfile('data', 'base', file_name);
     img_name  = fullfile('results', img_name);
 
-    patient_data = readmatrix(file_name);
+    plot_daily_average(file_name, img_name);
 
-    % Create figures
-    figure(visible='off')
-
-    tlo = tiledlayout(1,3);
-    xlabel(tlo,'Day of trial')
-    ylabel(tlo,'Inflammation')
-
-    nexttile
-    plot(mean(patient_data, 1))
-    title('Average')
-
-    nexttile
-    plot(max(patient_data, [], 1))
-    title('Max')
-
-    nexttile
-    plot(min(patient_data, [], 1))
-    title('Min')
-
-    print(img_name, '-dpng')
-    close()
 end
 ```
 
@@ -629,14 +606,49 @@ The first three figures output to the `results` directory are as shown below:
 
 <img src="fig/inflammation-03.png" style="width:500px; height:400px" alt="inflammation-03.png">
 
-Sure enough, the maxima of these data sets show exactly
-the same ramp as the first,
-and their minima show the same staircase structure.
 
-We've now automated the analysis and have confirmed that all the data
-files we have looked at show the same artifact. This is what we set out to test, and now
-we can just call one script to do it. With minor modifications, this
-script could be re-used to check all our future data files.
+We've now automated the generation of these figures for all the data stored in our data folder.
+With minor modifications, this script could be re-used to check all our future data files.
+
+::::::::::::::::::::::::::::::::::::::  challenge
+
+## Investigating patients with a high mean
+
+We're particularly interested in patients who have a mean inflammation higher than the global mean.
+
+Write a script called `plot_high_mean_patients` that reads in the file `inflammation-01.csv` and compares the patients mean inflammation to the global mean. If their mean inflammation is greater than the global inflammation, use the function `patient_vs_mean` to save a 
+plot of their inflammation to disk for later analysis. Use both for loops and conditional statements to do this.
+
+Using what you've learned about dealing with multiple files, turn this script into a function that takes the filename
+of a data file as input and run it on all of the inflammation data files.
+
+:::::::::::::::  solution
+```matlab
+% PLOT_HIGH_MEAN_PATIENTS   Saves plots of patients with mean inflammation higher than the global mean inflammation.
+
+patient_data = readmatrix('data/base/inflammation-01.csv');
+
+per_day_mean = mean(patient_data);
+global_mean =  mean(patient_data(:));
+
+number_of_patients = size(patient_data,1);
+
+for patient_id = 1:number_of_patients
+
+    patient_mean = mean(patient_data(patient_id,:));
+
+    if(patient_mean > global_mean)
+        patient_reference = "Patient " + string(patient_id)
+        patient_vs_mean(per_day_mean, patient_data(patient_id,:), patient_reference)
+    end
+
+end
+```
+
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
