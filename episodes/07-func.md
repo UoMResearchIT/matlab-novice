@@ -9,7 +9,7 @@ exercises: 20
 - Learn how to write a function
 - Define a function that takes arguments.
 - Compare and contrast MATLAB function files with MATLAB scripts.
-- Recognize why we should divide programs into small, single-purpose functions.
+- Recognise why we should divide programs into small, single-purpose functions.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -220,9 +220,9 @@ function patient_analysis(patient_number)
 end
 ```
 
-Congratulations! You've now created a Matlab function from a Matlab script!
+Congratulations! You've now created a MATLAB function from a MATLAB script!
 
-You may have noticed that the code inside the function is indented. Matlab does not need this, but it makes it much more 
+You may have noticed that the code inside the function is indented. MATLAB does not need this, but it makes it much more 
 readable!
 
 Lets clear our workspace and run our function in the command line:
@@ -251,7 +251,7 @@ If we want to save them, we need to pass them as outputs.
 
 Lets say, for example, that we want to save the mean of each patient.
 In our `patient_analysis.m` we already compute the value and save it in `p_mean`,
-but we need to tell matlab that we want the function to return it.
+but we need to tell MATLAB that we want the function to return it.
 
 To do that we modify the function definition like this:
 ```matlab
@@ -446,7 +446,7 @@ end
 of the function defined in the file.
 - Define functions using the `function` keyword to start the definition, and close the definition with the keyword `end`.
 - Functions have an independent workspace. Access variables from your workspace inside a function by passing them as inputs. Access variables from the function returning them as outputs.
-- The header of a dunction with inputs an outputs has the form:
+- The header of a function with inputs an outputs has the form:
 
 ```function [output_1,output_2,...] = function_name(input_1,input_2,...)```
 
