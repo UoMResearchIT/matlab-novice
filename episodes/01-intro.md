@@ -382,7 +382,7 @@ ans =
    1   1
 ```
 
-Matlab then compared each element of B and asked "is this element greater than 3?".
+MATLAB then compared each element of B and asked "is this element greater than 3?".
 The result is another array, of the same size and dimensions as B, with the answers.
 
 We can also do sums, multiplications, and pretty much anything we want with an array, but we need to be careful with what we do.
