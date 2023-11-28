@@ -19,7 +19,7 @@ exercises: 30
 
 ## Initializing an Array
 
-We just talked about how matlab *thinks* in arrays, and declared some very simple arrays using square brackets.
+We just talked about how MATLAB *thinks* in arrays, and declared some very simple arrays using square brackets.
 In some cases, we will want to create space to save data, but not save anything just yet.
 One way of doing so is with `zeros`.
 The function [zeros](https://uk.mathworks.com/help/matlab/ref/zeros.html)
@@ -44,8 +44,8 @@ Z =
      0     0     0
      0     0     0
 ```
-yields a 3x3 array.
-If we want a single row and 5 columns, we need to remember that matlab reads `rows`x`columns`, so
+yields a 3×3 array.
+If we want a single row and 5 columns, we need to remember that matlab reads `rows`×`columns`, so
 ```matlab
 >> Z = zeros(1x5)
 ```
@@ -78,7 +78,7 @@ So for example,
 ```matlab
 >> Fives = ones(3,6)*5;
 ```
-Produces a 3x6 matrix full of fives.
+Produces a 3×6 matrix full of fives.
 
 
 The [`magic` function](https://uk.mathworks.com/help/matlab/ref/magic.html) works in a similar way,
@@ -105,7 +105,7 @@ Array **indexing**, is the method by which we can select one or more different e
 A solid understanding of array indexing will be essential to working with arrays.
 Lets start with selecting one element.
 
-First, we will create an 8x8 "magic" matrix:
+First, we will create an 8×8 "magic" matrix:
 
 ```matlab
 >> M = magic(8)
@@ -198,7 +198,7 @@ The rows and columns we just selected could have been specified as ranges.
 So if we want the rows from 4 to 6 and columns from 5 to 7,
 we can specify the ranges as `4:6` and `5:7`.
 On top of being a much quicker and neater way to get the rows and columns,
-matlab knows that the range will produce an array, so we do not even need the square brackets anymore.
+MATLAB knows that the range will produce an array, so we do not even need the square brackets anymore.
 So the command above becomes:
 ```matlab
 >> M(4:6, 5:7)
@@ -258,9 +258,9 @@ However, we need to know that there are 8 columns, which is not very robust.
 
 When indexing the elements of an array, the key word `end` can be used to get the last index available.
 
-For example, `M(2,end)` returns the last element of the second row:
+For example, `M(2, end)` returns the last element of the second row:
 ```matlab
->> M(2,end)
+>> M(2, end)
 ```
 ```output
 ans =
@@ -268,7 +268,7 @@ ans =
 ```
 
 We can also use it in combination with the `:` operator.
-For example, `M(5:end,3)` returns the elements of column 3 from row 5 until the end:
+For example, `M(5:end, 3)` returns the elements of column 3 from row 5 until the end:
 ```matlab
 >> M(5:end,3)
 ```
@@ -463,9 +463,9 @@ last three characters: gen
   They all produce a square matrix if only one argument is given,
   but you can specify the dimensions you want separated by a comma, as in `zeros(rows,columns)`.
 - To select data points we use round brackets and provide the row and column indices of the elements we want.
-  They can be just numbers or arrays of numbers. E.g. `M(5,[3,4,5])`"
+  They can be just numbers or arrays of numbers. E.g. `M(5, [3,4,5])`"
 - We can use the colon operator `:` to generate ordered arrays as `start:end` or `start:increment:end`.
-- We can use the keyword `end` to get the index of the last element.
+- To obtain the index of the final element, the keyword `end` can be employed.
 - The colon operator by itself `:` selects all the elements.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
