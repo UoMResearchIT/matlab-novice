@@ -97,7 +97,7 @@ disp(p_min == g_min)
 
 ## Comments
 
-You might have noticed that we described what we want our code to do in lines starting withg the percent sign: `%`.
+You might have noticed that we described what we want our code to do in lines starting with the percent sign: `%`.
 This is another plus of writing scripts: 
 you can comment your code to make it easier to understand when you come back to it after a while.
 
@@ -297,7 +297,7 @@ title('Min')
 
 The script now allows us to create all 3 plots with a single command: `plot_daily_average`.
 
-We can ask matlab to save the image too using the `print` command.
+We can ask MATLAB to save the image too using the `print` command.
 In order to maintain an organised project we'll save the images
 in the `results` directory:
 
