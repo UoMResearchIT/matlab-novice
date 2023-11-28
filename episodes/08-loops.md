@@ -21,10 +21,10 @@ exercises: 10
 
 
 Recall that we have twelve datasets in total. 
-We're going to need a better way to analyze them all than typing out commands for each one,
+We're going to need a better way to analyse them all than typing out commands for each one,
 because we'll find ourselves writing a lot of duplicated code.
 Code that is repeated in two or more places will eventually be wrong in at least one as our project develops over time.
-Also, if we  make changes in the way we analyze our datasets,
+Also, if we  make changes in the way we analyse our datasets,
 we have to introduce that change in every copy of our code.
 To avoid all of this repetition, we have to teach MATLAB to
 repeat our commands, and to do *that*, we have to learn how to write *loops*.
@@ -77,7 +77,6 @@ disp(word(4))
 ```
 error: A(I): index out of bounds; value 4 out of bound 3
 ```
-{: .error}
 
 There's a better approach:
 
@@ -99,7 +98,7 @@ d
 ```
 
 This improved version uses a [for loop]({{ page.root }}/reference.html#for-loop) to
-repeat an operation---in this case, printing to the screen---once for
+repeat an operation --- in this case, printing to the screen --- once for
 each element in an array.
 
 The general form of a for loop is:
@@ -109,7 +108,6 @@ for variable = collection
     do things with variable
 end
 ```
-{: .source}
 
 The for loop executes the commands in the
 [loop body]({{ page.root }}/reference.html#loop-body)
@@ -152,7 +150,7 @@ it's not the best way to write our loop:
 * We might update `word` and forget to modify the loop to reflect that
   change.
 
-* We might make a mistake while counting the number of letters in
+* We could make a mistake while counting the number of letters in
   `word`.
 
 Fortunately,
