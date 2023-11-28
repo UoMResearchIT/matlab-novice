@@ -8,10 +8,10 @@ introduction to [MATLAB](https://en.wikipedia.org/wiki/MATLAB) is built around a
 Our real goal isn't to teach you MATLAB, but to teach you the basic concepts
 that all programming depends on. We use MATLAB in our lessons because:
 
-1. we have to use *something* for examples;
-2. it's well-documented;
-3. it has a large (and growing) user base among scientists in academia and industry; and
-4. it has a large library of packages available for performing diverse tasks.
+1. We have to use *something* for examples;
+2. It's well-documented;
+3. The user base among scientists in academia and industry is large and continues to grow; and
+4. It has a large library of packages available for performing diverse tasks.
 
 But the two most important things are to use whatever language your colleagues
 are using, so that you can share your work with them easily, and to use that
