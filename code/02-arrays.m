@@ -35,7 +35,7 @@
   M(5, 1:8)
 
 % ## The key-word `end`
-  M(2,end)
+  M(2, end)
   M(5:end,3)
 
   M(5, 1:end)

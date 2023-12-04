@@ -165,6 +165,30 @@
 
 % ! Challenge:
 % ## Changing behaviour based on patient data
+  % Load patient data
+  patient_data = readmatrix('data/base/inflammation-01.csv');
+  
+  % Compute global statistics
+  g_mean = mean(patient_data(:));
+  g_max = max(patient_data(:));
+  g_min = min(patient_data(:));
+  
+  patient_number = 8;
+  
+  % Compute patient statistics
+  p_mean = mean(patient_data(patient_number,:));
+  p_max = max(patient_data(patient_number,:));
+  p_min = min(patient_data(patient_number,:));
+  
+  % Compare patient vs global
+  disp('Patient:')
+  disp(patient_number)
+  disp('High mean?')
+  disp(p_mean > g_mean)
+  disp('Highest max?')
+  disp(p_max == g_max)
+  disp('Lowest min?')
+  disp(p_min == g_min)
 % !! Solution:
   % Load patient data
   patient_data = readmatrix('data/base/inflammation-01.csv');

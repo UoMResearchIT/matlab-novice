@@ -131,9 +131,9 @@
 % ## Plotting patient vs mean
 % !! Solution:
   function patient_vs_mean(per_day_mean,patient_data,patient_reference)
-      % PATIENT_VS_MEAN   Plots the global mean and patient inflamation on top of each other.
+      % PATIENT_VS_MEAN   Plots the global mean and patient inflammation on top of each other.
       %   per_day_mean should be a vector with the global mean.
-      %   pataient_data should be a vector with only the patient data.
+      %   patient_data should be a vector with only the patient data.
       %   patient_reference will be used to identify the patient on the plot.
       %
       %   Sample usage:
@@ -152,7 +152,7 @@
   
       %Overlap patient data
       hold on
-      plot(pataient_data,DisplayName=patient_reference)
+      plot(patient_data,DisplayName=patient_reference)
       hold off
   
       % Save plot
