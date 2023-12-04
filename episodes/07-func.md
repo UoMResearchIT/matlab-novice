@@ -386,10 +386,10 @@ Create a function called `patient_vs_mean` that generates a plot like this one:
 
 The function should have the following inputs:
 
-- `per_day_mean` - A 1D array with the average inflamation per day already loaded
+- `per_day_mean` - A 1D array with the average inflammation per day already loaded
 (you'll have to load the data and compute per_day_mean before calling the function).
 
-- `pataient_data` - A 1D array with the data for the patient of interest only.
+- `patient_data` - A 1D array with the data for the patient of interest only.
 
 - `patient_reference` - A string that will be used to identify the patient on the plot,
 and also as a file name (you should add the extension `png` in your function).
@@ -402,9 +402,9 @@ Look back at the previous lessons if you need to!
 
 ```matlab
 function patient_vs_mean(per_day_mean,patient_data,patient_reference)
-    % PATIENT_VS_MEAN   Plots the global mean and patient inflamation on top of each other.
+    % PATIENT_VS_MEAN   Plots the global mean and patient inflammation on top of each other.
     %   per_day_mean should be a vector with the global mean.
-    %   pataient_data should be a vector with only the patient data.
+    %   patient_data should be a vector with only the patient data.
     %   patient_reference will be used to identify the patient on the plot.
     %
     %   Sample usage:
@@ -423,7 +423,7 @@ function patient_vs_mean(per_day_mean,patient_data,patient_reference)
 
     %Overlap patient data
     hold on
-    plot(pataient_data,DisplayName=patient_reference)
+    plot(patient_data,DisplayName=patient_reference)
     hold off
 
     % Save plot
