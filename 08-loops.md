@@ -6,16 +6,16 @@ exercises: 10
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- "Explain what a for loop does."
-- "Correctly write for loops that repeat simple commands."
-- "Trace changes to a loop variable as the loops runs."
-- "Use a for loop to process multiple files"
+- Explain what a for loop does.
+- Correctly write for loops that repeat simple commands.
+- Trace changes to a loop variable as the loops runs.
+- Use a for loop to process multiple files.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- "How can I repeat the same operations on multiple values?"
+- How can I repeat the same operations on multiple values?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -651,6 +651,6 @@ end
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- "Use `for` to create a loop that repeats one or more operations."
+- Use `for` to create a loop that repeats one or more operations.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
