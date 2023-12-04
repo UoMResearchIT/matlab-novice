@@ -463,9 +463,9 @@ last three characters: gen
   They all produce a square matrix if only one argument is given,
   but you can specify the dimensions you want separated by a comma, as in `zeros(rows,columns)`.
 - To select data points we use round brackets and provide the row and column indices of the elements we want.
-  They can be just numbers or arrays of numbers. E.g. `M(5, [3,4,5])`"
-- We can use the colon operator `:` to generate ordered arrays as `start:end` or `start:increment:end`.
-- To obtain the index of the final element, the keyword `end` can be employed.
+  They can be just numbers or arrays of numbers, e.g. `M(5,[3,4,5])`.
+- Use the colon operator `:` to generate ordered arrays as `start:end` or `start:increment:end`.
+- Use the keyword `end` to obtain the index of the final element.
 - The colon operator by itself `:` selects all the elements.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
