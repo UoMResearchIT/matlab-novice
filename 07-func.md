@@ -9,7 +9,7 @@ exercises: 20
 - Learn how to write a function
 - Define a function that takes arguments.
 - Compare and contrast MATLAB function files with MATLAB scripts.
-- Recognize why we should divide programs into small, single-purpose functions.
+- Recognise why we should divide programs into small, single-purpose functions.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -183,7 +183,7 @@ We already have a `.m` file called `patient_analysis`, so lets begin by defining
 Open the `patient_analysis.m` file, if you don't already have it open.
 Instead of line 9, where `patient_number` is set, we want to provide that variable as an input.
 So lets remove that line, and right at the top of our script we'll add the function definition
-telling matlab what our function is called and what inputs it needs. The function will take the variable `patient_number`
+telling MATLAB what our function is called and what inputs it needs. The function will take the variable `patient_number`
 as input and since we removed the line that assigned a value to that variable, the input will decide which patient is
 analysed.
 
@@ -220,9 +220,9 @@ function patient_analysis(patient_number)
 end
 ```
 
-Congratulations! You've now created a Matlab function from a Matlab script!
+Congratulations! You've now created a MATLAB function from a MATLAB script!
 
-You may have noticed that the code inside the function is indented. Matlab does not need this, but it makes it much more 
+You may have noticed that the code inside the function is indented. MATLAB does not need this, but it makes it much more 
 readable!
 
 Lets clear our workspace and run our function in the command line:
@@ -251,7 +251,7 @@ If we want to save them, we need to pass them as outputs.
 
 Lets say, for example, that we want to save the mean of each patient.
 In our `patient_analysis.m` we already compute the value and save it in `p_mean`,
-but we need to tell matlab that we want the function to return it.
+but we need to tell MATLAB that we want the function to return it.
 
 To do that we modify the function definition like this:
 ```matlab
@@ -386,10 +386,10 @@ Create a function called `patient_vs_mean` that generates a plot like this one:
 
 The function should have the following inputs:
 
-- `per_day_mean` - A 1D array with the average inflamation per day already loaded
+- `per_day_mean` - A 1D array with the average inflammation per day already loaded
 (you'll have to load the data and compute per_day_mean before calling the function).
 
-- `pataient_data` - A 1D array with the data for the patient of interest only.
+- `patient_data` - A 1D array with the data for the patient of interest only.
 
 - `patient_reference` - A string that will be used to identify the patient on the plot,
 and also as a file name (you should add the extension `png` in your function).
@@ -402,9 +402,9 @@ Look back at the previous lessons if you need to!
 
 ```matlab
 function patient_vs_mean(per_day_mean,patient_data,patient_reference)
-    % PATIENT_VS_MEAN   Plots the global mean and patient inflamation on top of each other.
+    % PATIENT_VS_MEAN   Plots the global mean and patient inflammation on top of each other.
     %   per_day_mean should be a vector with the global mean.
-    %   pataient_data should be a vector with only the patient data.
+    %   patient_data should be a vector with only the patient data.
     %   patient_reference will be used to identify the patient on the plot.
     %
     %   Sample usage:
@@ -423,7 +423,7 @@ function patient_vs_mean(per_day_mean,patient_data,patient_reference)
 
     %Overlap patient data
     hold on
-    plot(pataient_data,DisplayName=patient_reference)
+    plot(patient_data,DisplayName=patient_reference)
     hold off
 
     % Save plot
@@ -446,7 +446,7 @@ end
 of the function defined in the file.
 - Define functions using the `function` keyword to start the definition, and close the definition with the keyword `end`.
 - Functions have an independent workspace. Access variables from your workspace inside a function by passing them as inputs. Access variables from the function returning them as outputs.
-- The header of a dunction with inputs an outputs has the form:
+- The header of a function with inputs an outputs has the form:
 
 ```function [output_1,output_2,...] = function_name(input_1,input_2,...)```
 

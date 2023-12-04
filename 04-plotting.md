@@ -22,7 +22,7 @@ exercises: 10
 ## Plotting
 The mathematician Richard Hamming once said,
 "The purpose of computing is insight, not numbers," and the best
-way to develop insight is often to visualize data. Visualization
+way to develop insight is often to visualise data. Visualisation
 deserves an entire lecture (or course) of its own, but we can
 explore a few features of MATLAB here.
 
@@ -100,7 +100,7 @@ For example, we might want to contrast the mean values accross patients
 with the inflammation of a single patient.
 If we are displaying more than one line, it is important to add a legend.
 We can specify the legend names by adding `,DisplayName="legend name here"`
-inside the plot function. We then need to activate the legend by running `legend`
+inside the plot function. We then need to activate the legend by running `legend`.
 So, to plot the mean values we first do:
 ```matlab
 >> plot(per_day_mean,DisplayName="Mean")
@@ -123,7 +123,7 @@ Then, we can use the instruction `hold on` to add a plot for patient_5.
 
 So this patient seems fairly average.
 
-Remember to tell matlab you are done by adding `hold off` when you have finished adding lines to the figure!
+Remember to tell MATLAB you are done by adding `hold off` when you have finished adding lines to the figure!
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 

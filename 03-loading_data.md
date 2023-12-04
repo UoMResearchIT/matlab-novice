@@ -52,7 +52,7 @@ A final step is to set the *current folder* in MATLAB to our project folder.
 Use the **Current Folder** window in the MATLAB GUI to browse to your project folder
 (the one now containing the 'data', 'results' and 'src' directories).
 
-To verify the current directory in matlab we can run `pwd` (print working directory).
+To verify the current directory in MATLAB we can run `pwd` (print working directory).
 ```matlab
 >> pwd
 ```
@@ -260,7 +260,7 @@ we want to select all the rows for a given column:
 >> day_9 = patient_data(:,9);
 ```
 The result is now not a row of 40 elements, but a column with 60 items.
-However, matlab is smart enough to figure out what to do with enquieries just like the ones we did before.
+However, MATLAB is smart enough to figure out what to do with enquieries just like the ones we did before.
 ```matlab
 >> mean_d9 = mean(day_9)
 >> max_d9 = max(day_9)
@@ -317,7 +317,7 @@ Would you be happy to do it if you had 1000 days worth of data?
 #### **Whole array analysis**
 
 The analysis we've done until now would be very tedious to repeat for each patient or day.
-Luckily, we've learnt that matlab is used to thinking in terms of arrays.
+Luckily, we've learnt that MATLAB is used to thinking in terms of arrays.
 Surely it must be possible to get the mean of each patient or each day in one go.
 It is definitely tempting to simply call the mean on the array, so let's try it:
 ```matlab
@@ -334,7 +334,7 @@ The other statistics behave in the same way, so we can more appropriately label 
 >> per_day_std = std(patient_data);
 ```
 
-You'll notice that each of the above variables is a `1x40` array.
+You'll notice that each of the above variables is a `1×40` array.
 
 Now that we have the information for each day in an array,
 we can take advantage of Matlab's capacity to do array operations.
@@ -420,7 +420,7 @@ If we want patient averages, we want the columns to be averaged, that is, dimens
 >> per_patient_mean = mean(patient_data,2);
 ```
 
-As expected, the result is a `60x1` vector, with the mean for each patient.
+As expected, the result is a `60×1` vector, with the mean for each patient.
 
 Unfortunately, `max`, `min` and `std` do not behave quite in the same way.
 If you explore their documentation, you'll see that we need to add another argument,
@@ -431,7 +431,7 @@ so that the commands become:
 >> per_patient_std = std(patient_data,[],2);
 ```
 
-All of the above return a `60x1` vector.
+All of the above return a `60×1` vector.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -441,7 +441,7 @@ Can you find the patients that got the highest inflamation?
 
 :::::::::::::::  solution
 
-Using the power matlab has to compare arrays,
+Using the power MATLAB has to compare arrays,
 we can check which patients have a `max` equal to the `global_max`.
 If we wrap this check in the find function, we get the row numbers:
 ```matlab
