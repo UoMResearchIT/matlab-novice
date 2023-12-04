@@ -277,7 +277,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Repeating With Loops</h1>
-        <p> Last updated on 2023-11-14 | 
+        <p> Last updated on 2023-12-04 | 
         
         <a href="https://github.com/swcarpentry/matlab-novice-inflammation/edit/main/episodes/08-loops.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -314,11 +314,11 @@
 </div>
 </div>
 <p>Recall that we have twelve datasets in total. We’re going to need a
-better way to analyze them all than typing out commands for each one,
+better way to analyse them all than typing out commands for each one,
 because we’ll find ourselves writing a lot of duplicated code. Code that
 is repeated in two or more places will eventually be wrong in at least
 one as our project develops over time. Also, if we make changes in the
-way we analyze our datasets, we have to introduce that change in every
+way we analyse our datasets, we have to introduce that change in every
 copy of our code. To avoid all of this repetition, we have to teach
 MATLAB to repeat our commands, and to do <em>that</em>, we have to learn
 how to write <em>loops</em>.</p>
@@ -365,8 +365,11 @@ exist.</p></li>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="va">disp</span>(<span class="va">word</span>(<span class="fl">3</span>))</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="va">disp</span>(<span class="va">word</span>(<span class="fl">4</span>))</span></code></pre>
 </div>
-<pre><code>error: A(I): index out of bounds; value 4 out of bound 3</code></pre>
-<p>{: .error}</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>error: A(I): index out of bounds; value 4 out of bound 3</code></pre>
+</div>
 <p>There’s a better approach:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -388,13 +391,16 @@ exist.</p></li>
 <span><span class="va">d</span></span></code></pre>
 </div>
 <p>This improved version uses a <a href="%7B%7B%20page.root%20%7D%7D/reference.html#for-loop">for loop</a>
-to repeat an operation—in this case, printing to the screen—once for
+to repeat an operation — in this case, printing to the screen — once for
 each element in an array.</p>
 <p>The general form of a for loop is:</p>
-<pre><code>for variable = collection
-    do things with variable
-end</code></pre>
-<p>{: .source}</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">for</span> <span class="va">variable</span> <span class="op">=</span> <span class="va">collection</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    # <span class="va">Do</span> <span class="va">things</span> <span class="va">with</span> <span class="va">variable</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre>
+</div>
 <p>The for loop executes the commands in the <a href="%7B%7B%20page.root%20%7D%7D/reference.html#loop-body">loop
 body</a> for every value in the array <code>collection</code>. This
 value is called the <a href="%7B%7B%20page.root%20%7D%7D/reference.html#loop-variable">loop
@@ -429,7 +435,7 @@ change the first line of our loop by hand:</p>
 <p>Although this works, it’s not the best way to write our loop:</p>
 <ul><li><p>We might update <code>word</code> and forget to modify the loop
 to reflect that change.</p></li>
-<li><p>We might make a mistake while counting the number of letters in
+<li><p>We could make a mistake while counting the number of letters in
 <code>word</code>.</p></li>
 </ul><p>Fortunately, MATLAB provides us with a convenient function to write a
 better loop:</p>
@@ -1039,9 +1045,9 @@ operations.”</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.14.1" class="external-link">sandpaper (0.14.1)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.15.0" class="external-link">sandpaper (0.15.0)</a>,
         <a href="https://github.com/carpentries/pegboard/tree/0.7.3" class="external-link">pegboard (0.7.3)</a>,
-      and <a href="https://github.com/carpentries/varnish/tree/0.3.3" class="external-link">varnish (0.3.3)</a>.</p>
+      and <a href="https://github.com/carpentries/varnish/tree/0.4.0" class="external-link">varnish (0.4.0)</a>.</p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1062,8 +1068,8 @@ operations.”</li>
   "url": "https://uomresearchit.github.io/matlab-novice/08-loops.html",
   "identifier": "https://uomresearchit.github.io/matlab-novice/08-loops.html",
   "dateCreated": "2014-12-12",
-  "dateModified": "2023-11-14",
-  "datePublished": "2023-11-28"
+  "dateModified": "2023-12-04",
+  "datePublished": "2023-12-04"
 }
 
   </script><script>
