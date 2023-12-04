@@ -315,20 +315,48 @@ to `true` and `false` does.
 
 ## Changing behaviour based on patient data
 
-We'd like to improve our `patient_analysis` script from the previous lesson, specifically it's output. Currently the 
-script displays `0` or `1` to indicate whether or not the patient has a high mean, has a maximum equivalent to the 
-highest in the dataset, and has a minimum equivalent to the lowest in the dataset. Instead, we'd like the script to
-print a line of descriptive text when each of these is true:
+We'd like to improve our `patient_analysis` script from the previous lesson, specifically it's output.
+Currently the script displays `0` or `1` to indicate whether or not the patient has a high mean,
+has a maximum equivalent to the highest in the dataset, and has a minimum equivalent to the lowest in the dataset.
+Instead, we'd like the script to print a line of descriptive text only when each of these is true:
+
 1. The mean inflammation for the patient is higher than the global mean.
 2. The maximum inflammation for the patient is the same as the global maximum.
 3. The minimum inflammation for the patient is the same as the global minimum.
-
-If none of the above is the case, then the script should print a line informing us that the patient's mean, maximum
+4. If none of the above is the case, then the script should print a line informing us that the patient's mean, maximum
 and minimum inflammation are not remarkable.
 
-Using the `patient_analysis` script from the previous lesson as a starting point, can you use conditional statements
-to make a script that does this? There are several different ways to do this, so compare your finished script with 
-your neighbour and see if you did it the same way.
+Using the `patient_analysis` script from the previous lesson as a starting point (shown below for reference),
+can you use conditional statements to make a script that does this?
+
+```matlab
+% Load patient data
+patient_data = readmatrix('data/base/inflammation-01.csv');
+
+% Compute global statistics
+g_mean = mean(patient_data(:));
+g_max = max(patient_data(:));
+g_min = min(patient_data(:));
+
+patient_number = 8;
+
+% Compute patient statistics
+p_mean = mean(patient_data(patient_number,:));
+p_max = max(patient_data(patient_number,:));
+p_min = min(patient_data(patient_number,:));
+
+% Compare patient vs global
+disp('Patient:')
+disp(patient_number)
+disp('High mean?')
+disp(p_mean > g_mean)
+disp('Highest max?')
+disp(p_max == g_max)
+disp('Lowest min?')
+disp(p_min == g_min)
+```
+
+There are several different ways to do this, so compare your finished script with your neighbour and see if you did it the same way.
 
 :::::::::::::::  solution
 ```matlab
