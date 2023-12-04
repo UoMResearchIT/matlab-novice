@@ -74,7 +74,7 @@ disp(word(3))
 disp(word(4))
 ```
 
-```
+```output
 error: A(I): index out of bounds; value 4 out of bound 3
 ```
 
@@ -103,9 +103,9 @@ each element in an array.
 
 The general form of a for loop is:
 
-```
+```matlab
 for variable = collection
-    do things with variable
+    # Do things with variable
 end
 ```
 
