@@ -55,7 +55,7 @@ x =
     55
 ```
 
-Notice that matlab responded by printing an output confirming that the variable has the desired value,
+Notice that MATLAB responded by printing an output confirming that the variable has the desired value,
 and also that the variable appeared in the workspace.
 
 A variable is just a name for a piece of data or *value*.
@@ -162,7 +162,7 @@ There are only two options (yes or no, true or false, 0 or 1),
 and so it is "cheaper" for the computer to save space only for those two options.
 
 The "type" of this data is not the same as the "type" of data that represents a number.
-It comes from a logical comparison, and so matlab identifies it as such.
+It comes from a logical comparison, and so MATLAB identifies it as such.
 
 You can also see that in the workspace these variables have a tick next to them, instead of the squares we had seen.
 There are actually other symbols that appear there, relating to the different types of information we can save in 
@@ -265,11 +265,11 @@ We often asks questions or characterise things in negative.
 and "I didn't shoot no deputy" are just some examples.
 
 Naturally, we may want to do so in programming too.
-In matlab the negative is represented with `~`.
+In MATLAB the negative is represented with `~`.
 For example, we can check if the speed is indeed not faster than the limit with `~(speed > 70)`,
-which matlab reads as "not speed greater than 70".
+which MATLAB reads as "not speed greater than 70".
 
-Can you express these questions in matlab code?
+Can you express these questions in MATLAB code?
 
 - Is 1 + 2 + 3 + 4 not smaller than 10?
 - Is 5 to the power of 3 different from 125?
@@ -283,7 +283,7 @@ We can ask the first two question in positive, encapsulate it in brackets, and t
 - `~(1 + 2 + 3 + 4 < 10)`
 - `~(5^3 == 125)`
 
-Asking if two things are different is so common, that matlab has a special symbol for it.
+Asking if two things are different is so common, that MATLAB has a special symbol for it.
 So the second question, we could have asked instead with
 
 - `5^3 ~= 125`
@@ -292,7 +292,7 @@ We can ask if x+y is greater or equal to x/y with:
 
 - `x+y > x/y || x+y == x/y`
 
-There is actually again a shortcut for this, matlab understands `>=` as "greater or equal to",
+There is actually again a shortcut for this, MATLAB understands `>=` as "greater or equal to",
 and of cours for smaller or equal too it understands `<=`.
 So the same condition could be written as:
 
@@ -313,7 +313,7 @@ Remembering to add the brackets, we get:
 ### Arrays
 
 You may notice that all of the variable types start with a `1x1`.
-This is because matlab thinks in terms of *groups* of variables called arrays, or matrices.
+This is because MATLAB thinks in terms of *groups* of variables called arrays, or matrices.
 
 We can create an array using square brackets and separating each value with a comma:
 ```matlab
@@ -365,7 +365,7 @@ C =
 
 Something to bear in mind, however, is that all values in an array **must be of the same type**.
 
-We mentioned before that matlab is actually more used to working with arrays than individual variables.
+We mentioned before that MATLAB is actually more used to working with arrays than individual variables.
 Well, if it is so used to working with arrays, can we do operations with them?
 
 The answer is yes! In fact, this is what makes MATLAB a particularly interesting programming language.
@@ -382,7 +382,7 @@ ans =
    1   1
 ```
 
-Matlab then compared each element of B and asked "is this element greater than 3?".
+MATLAB then compared each element of B and asked "is this element greater than 3?".
 The result is another array, of the same size and dimensions as B, with the answers.
 
 We can also do sums, multiplications, and pretty much anything we want with an array, but we need to be careful with what we do.
@@ -455,7 +455,7 @@ If we want to delete a variable we can do so by typing `clear` and the name of t
 >> clear alive_on_day_3
 ```
 You might be able to see it disappear from the workspace.
-If you now try to use alive_on_day_3, matlab will give an error.
+If you now try to use alive_on_day_3, MATLAB will give an error.
 
 We can also delete **all** of our variables with the command `clear`, without any variable names following it.
 Be careful though, there's no way back!

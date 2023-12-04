@@ -25,6 +25,9 @@
   for letter = 1:4
       disp(word(letter))
   end
+  for variable = collection
+      # Do things with variable
+  end
   %LOOP_DEMO   Demo script to explain loops
   
   word = 'tin';
@@ -98,14 +101,14 @@
 
 
 % ## Analyzing patient data from multiple files
-  files = dir('data/inflammation-*.csv')
+  files = dir('data/base/inflammation-*.csv')
   filename = files(1).name;
   disp(filename)
   mod_date = files(3).date;
   disp(mod_date)
   %PLOT_ALL	Developing code to automate inflammation analysis
   
-  files = dir('data/inflammation-*.csv');
+  files = dir('data/base/inflammation-*.csv');
   
   for i = 1:length(files)
   	file_name = files(i).name;
@@ -122,7 +125,7 @@
 
   %PLOT_ALL	Developing code to automate inflammation analysis
   
-  files = dir('data/inflammation-*.csv');
+  files = dir('data/base/inflammation-*.csv');
   
   for i = 1:length(files)
       file_name = files(i).name;
@@ -131,7 +134,7 @@
       img_name = replace(file_name, '.csv', '.png');
   
       % Generate path to data file and image file
-      file_name = fullfile('data', file_name);
+      file_name = fullfile('data', 'base', file_name);
       img_name = fullfile('results',img_name);
   
       disp(file_name)
@@ -140,7 +143,7 @@
   %PLOT_ALL   Print statistics for all patients.
   %           Save plots of statistics to disk.
   
-  files = dir('data/inflammation-*.csv');
+  files = dir('data/base/inflammation-*.csv');
   
   % Process each file in turn
   for i = 1:length(files)
@@ -150,33 +153,37 @@
       img_name  = replace(file_name, '.csv', '.png');
   
       % Generate path to data file and image file
-      file_name = fullfile('data', file_name);
+      file_name = fullfile('data', 'base', file_name);
       img_name  = fullfile('results', img_name);
   
-      patient_data = readmatrix(file_name);
+      plot_daily_average(file_name, img_name);
   
-      % Create figures
-      figure(visible='off')
-  
-      tlo = tiledlayout(1,3);
-      xlabel(tlo,'Day of trial')
-      ylabel(tlo,'Inflammation')
-  
-      nexttile
-      plot(mean(patient_data, 1))
-      title('Average')
-  
-      nexttile
-      plot(max(patient_data, [], 1))
-      title('Max')
-  
-      nexttile
-      plot(min(patient_data, [], 1))
-      title('Min')
-  
-      print(img_name, '-dpng')
-      close()
   end
   plot_all
+
+% ! Challenge:
+% ## Investigating patients with a high mean
+% !! Solution:
+  % PLOT_HIGH_MEAN_PATIENTS   Saves plots of patients with mean inflammation higher than the global mean inflammation.
+  
+  patient_data = readmatrix('data/base/inflammation-01.csv');
+  
+  per_day_mean = mean(patient_data);
+  global_mean =  mean(patient_data(:));
+  
+  number_of_patients = size(patient_data,1);
+  
+  for patient_id = 1:number_of_patients
+  
+      patient_mean = mean(patient_data(patient_id,:));
+  
+      if(patient_mean > global_mean)
+          patient_reference = "Patient " + string(patient_id)
+          patient_vs_mean(per_day_mean, patient_data(patient_id,:), patient_reference)
+      end
+  
+  end
+
+
 
 

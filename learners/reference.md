@@ -2,16 +2,16 @@
 title: 'Learning resources'
 ---
 
-[Matlab online](https://mathworks.com/products/matlab-online.html) lets you use the software for free, which can be useful when you do not have access to the university licences.
+[MATLAB online](https://mathworks.com/products/matlab-online.html) lets you use the software for free, which can be useful when you do not have access to the university licences.
 
-The [totorials section](https://mathworks.com/support/learn-with-matlab-tutorials.html)
+The [tutorials section](https://mathworks.com/support/learn-with-matlab-tutorials.html)
 on MATLAB's site also lists useful video tutorials and examples to work through.
 
 [MATLAB Academy](https://matlabacademy.mathworks.com/)
 provides a lot of self-taught material and free courses.
 In particular, the [Onramp](https://matlabacademy.mathworks.com/details/matlab-onramp/gettingstarted) program covers material similar to this course.
 
-[Matlab cody](https://mathworks.com/matlabcentral/cody) can be a good way to keep practicing and find interesting challenges to learn how to code with MATLAB.
+[MATLAB cody](https://mathworks.com/matlabcentral/cody) can be a good way to keep practicing and find interesting challenges to learn how to code with MATLAB.
 
 
 ## Glossary
