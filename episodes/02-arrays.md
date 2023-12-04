@@ -34,7 +34,7 @@ Z =
      0     0     0     0     0
 ```
 creates a matrix of 3 rows and 5 columns, filled with zeros.
-If we had only passed one dimension, matlab assumes you want a square matrix, so
+If we had only passed one dimension, MATLAB assumes you want a square matrix, so
 ```matlab
 >> Z = zeros(3)
 ```
@@ -45,7 +45,7 @@ Z =
      0     0     0
 ```
 yields a 3×3 array.
-If we want a single row and 5 columns, we need to remember that matlab reads `rows`×`columns`, so
+If we want a single row and 5 columns, we need to remember that MATLAB reads `rows`×`columns`, so
 ```matlab
 >> Z = zeros(1x5)
 ```
@@ -296,7 +296,7 @@ This is much better, now this works for any size of matrix, and we don't need to
 
 ## Using `:` as an index
 
-Getting a whole row or column is such a common operation, that matlab has a shortcut:
+Getting a whole row or column is such a common operation, that MATLAB has a shortcut:
 Using `:` alone is equivalent to `1:end`!
 
 For example, We can then get the whole fifth row with:

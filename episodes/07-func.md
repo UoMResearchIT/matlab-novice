@@ -183,7 +183,7 @@ We already have a `.m` file called `patient_analysis`, so lets begin by defining
 Open the `patient_analysis.m` file, if you don't already have it open.
 Instead of line 9, where `patient_number` is set, we want to provide that variable as an input.
 So lets remove that line, and right at the top of our script we'll add the function definition
-telling matlab what our function is called and what inputs it needs. The function will take the variable `patient_number`
+telling MATLAB what our function is called and what inputs it needs. The function will take the variable `patient_number`
 as input and since we removed the line that assigned a value to that variable, the input will decide which patient is
 analysed.
 

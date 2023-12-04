@@ -52,7 +52,7 @@ A final step is to set the *current folder* in MATLAB to our project folder.
 Use the **Current Folder** window in the MATLAB GUI to browse to your project folder
 (the one now containing the 'data', 'results' and 'src' directories).
 
-To verify the current directory in matlab we can run `pwd` (print working directory).
+To verify the current directory in MATLAB we can run `pwd` (print working directory).
 ```matlab
 >> pwd
 ```

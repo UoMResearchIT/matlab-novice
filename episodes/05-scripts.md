@@ -41,7 +41,7 @@ edit src/patient_analysis.m
 ```
 
 Matlab will create a file called `patient_analysis.m` in the `src` folder.
-It is important that we let matlab know that we want it to find stuff in this folder.
+It is important that we let MATLAB know that we want it to find stuff in this folder.
 To do this, right click on the folder icon in the file browser and select "Add to Path".
 
 :::::::::::::::::::::::::::::::::::::::::  callout
