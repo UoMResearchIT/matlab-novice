@@ -453,6 +453,42 @@ ans =
 ```
 So patient 31 has the maximum inflamation level.
 
+<br>
+
+::::::::::::  solution
+
+## Alternative solution
+
+We can only do this because we had already calculated `per_patient_max`.
+However, there is another way of doing this.
+Just as we used `find` to locate the patients that had a maximum inflammation value equal to the global maximum,
+we can find the value from the whole data set:
+```matlab
+find(patient_data == global_max)
+```
+```
+ans =
+     391
+```
+However, this resulted in a rather odd number.
+This number represents the linear index of the global maximum.
+Linear indices result from counting through the elements in the first column, then continue the count on the second column and so on.
+Luckily, there is a function to convert this linear index into a row and number column, `ind2sub`.
+We need to provide the size of our array, and the linear index, i.e. `ind2sub([60,40],391)`.
+We also need to provide space for both outputs (the row and column numbers), so we call it as `[r,c]=ind2sub([60,40],391)`.
+ternatively, we can get the size and index inside the call:
+```matlab
+>> [r,c]=ind2sub(size(patient_data),find(patient_data == global_max))
+```
+```
+r =
+    31
+c =
+     7
+```
+
+::::::::::::
+
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
