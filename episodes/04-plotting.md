@@ -1,6 +1,6 @@
 ---
 title: Plotting data
-teaching: 30
+teaching: 50
 exercises: 10
 ---
 

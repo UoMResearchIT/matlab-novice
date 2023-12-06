@@ -1,7 +1,7 @@
 ---
 title: Arrays
 teaching: 30
-exercises: 30
+exercises: 10
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives

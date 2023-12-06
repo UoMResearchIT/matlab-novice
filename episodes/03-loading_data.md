@@ -1,6 +1,6 @@
 ---
 title: Loading data
-teaching: 35
+teaching: 25
 exercises: 15
 ---
 
