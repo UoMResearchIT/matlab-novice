@@ -106,7 +106,7 @@ it creates the file with the correct path and name for you.
 so that MATLAB knows where to find the script.
 To do that, right click on the `src` directory, go to "Add to Path" and to "Selected Folders". Alternatively, run:
 ```matlab
-addpath("src")
+>> addpath("src")
 ```
 
 Try copying and pasting the plot commands for the max inflammation on the script and clicking on the "Run" button!
@@ -122,7 +122,7 @@ Because we now have a script, it should be much easier to change the plot to the
 >> xlabel("Day of trial")
 ```
 
-![](fig/plotting_min-inflammation.svg){alt="Minumum inflammation"}
+![](fig/plotting_min-inflammation.svg){alt='Minumum inflammation'}
 
 These two are much more noisy than the mean, as we'd be expect.
 
@@ -219,7 +219,7 @@ To be able to plot something on each of the tiles, we use the [`nexttile`](https
 
 Lets start a new script for this topic:
 ```matlab
-edit src/tiled_plot.m
+>> edit src/tiled_plot.m
 ```
 We can show the average daily min and max plots together with:
 ```matlab
@@ -240,7 +240,7 @@ We can show the average daily min and max plots together with:
 We can also specify titles and labels for the whole tiled layout if we assign the tiled layout to a variable 
 and pass it as a first argument to `title`, `xlabel` or `ylabel`, for example:
 ```matlab
->> tlo=tiledlayout(1, 2)
+>> tlo=tiledlayout(1, 2);
 >> title(tlo,"Per day data")
 >> xlabel(tlo,"Day of trial")
 >> ylabel(tlo,"Inflamation")
@@ -294,7 +294,11 @@ Note that using a starting tile that overlaps another plot will erase that axes.
 If you now try to plot something like the mean, as we had done before,
 you will notice that the plot is assigned to the second plot space in the tiled layout.
 
-To clear the tiled layout, you can use the instruction `clf`, which stands for "clear figure".
+To clear the tiled layout, you can use the instruction 
+```matlab
+>> clf
+```
+which stands for "clear figure".
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 

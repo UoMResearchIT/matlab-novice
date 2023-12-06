@@ -68,6 +68,11 @@
 % ## Most inflamed patients
 % !! Solution:
   find(per_patient_max == global_max)
+% !! Solution:
+% ## Alternative solution
+  find(patient_data == global_max)
+  [r,c]=ind2sub(size(patient_data),find(patient_data == global_max))
+
 
 
 

@@ -47,7 +47,7 @@ Z =
 yields a 3×3 array.
 If we want a single row and 5 columns, we need to remember that MATLAB reads `rows`×`columns`, so
 ```matlab
->> Z = zeros(1x5)
+>> Z = zeros(1,5)
 ```
 ```output
 Z =

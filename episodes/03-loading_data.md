@@ -464,7 +464,7 @@ However, there is another way of doing this.
 Just as we used `find` to locate the patients that had a maximum inflammation value equal to the global maximum,
 we can find the value from the whole data set:
 ```matlab
-find(patient_data == global_max)
+>> find(patient_data == global_max)
 ```
 ```
 ans =
