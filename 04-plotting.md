@@ -1,14 +1,16 @@
 ---
 title: Plotting data
-teaching: 30
+teaching: 50
 exercises: 10
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Display simple graphs with appropriate titles and labels.
-- Get familiar with the functions `plot`, `heatmap` and `imagesc`.
+- Get familiar with the `plot` function.
+- Learn how to plot multiple lines at the same time.
 - Learn how to show images side by side.
+- Get familiar with the `heatmap` and `imagesc` functions.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -60,9 +62,9 @@ We need to give the figure a `title` and label the axes using `xlabel` and `ylab
 so that other people can understand what it shows
 (including us, if we return to this plot 6 months from now).
 ```matlab
->> title('Daily average inflammation')
->> xlabel('Day of trial')
->> ylabel('Inflammation')
+>> title("Daily average inflammation")
+>> xlabel("Day of trial")
+>> ylabel("Inflammation")
 ```
 
 ![](fig/plotting_average-inflammation.svg){alt='Average inflammation'}
@@ -74,18 +76,50 @@ Let's have a look at two other statistics: the maximum and minimum
 inflammation per day across all patients.
 ```matlab
 >> plot(per_day_max)
->> title('Maximum inflammation per day')
->> ylabel('Inflammation')
->> xlabel('Day of trial')
+>> title("Maximum inflammation per day")
+>> ylabel("Inflammation")
+>> xlabel("Day of trial")
 ```
 
 ![](fig/plotting_max-inflammation.svg){alt='Maximum inflammation'}
 
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Scripts
+
+We often have to repeat a series of commands to achieve what we want, like with these plots.
+To be able to reuse our commands with more ease, we use scripts.
+
+A more in depth exploration of scripts will be covered on the next episode.
+For now, we'll just start by clicking `new->script`, using `ctrl+N`, or typing `edit` on the command window.
+
+Any of the above should open a new "Editor" window.
+Save the file inside the `src` folder, as `single_plot.m`.
+
+Alternatively, if you run
+```matlab
+>> edit src/single_plot.m
+```
+it creates the file with the correct path and name for you.
+
+**Note:** Make sure to add the `src` folder to your path,
+so that MATLAB knows where to find the script.
+To do that, right click on the `src` directory, go to "Add to Path" and to "Selected Folders". Alternatively, run:
+```matlab
+>> addpath("src")
+```
+
+Try copying and pasting the plot commands for the max inflammation on the script and clicking on the "Run" button!
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Because we now have a script, it should be much easier to change the plot to the minimum inflammation:
+
 ```matlab
 >> plot(per_day_min)
->> title('Minimum inflammation per day')
->> ylabel('Inflammation')
->> xlabel('Day of trial')
+>> title("Minimum inflammation per day")
+>> ylabel("Inflammation")
+>> xlabel("Day of trial")
 ```
 
 ![](fig/plotting_min-inflammation.svg){alt='Minumum inflammation'}
@@ -98,6 +132,14 @@ It is often the case that we want to plot more than one line in a single figure.
 In MATLAB we can "hold" a figure and keep plotting on the same axes.
 For example, we might want to contrast the mean values accross patients
 with the inflammation of a single patient.
+
+Lets reuse the code we have in the script, but save it as a new script called "multiline_plot.m".
+You can do that using the dropdown menu on the save button, or by running this command on the terminal:
+```matlab
+>> copyfile("src/single_plot.m","src/multiline_plot.m")
+```
+and then open the new file with `edit src/multiline_plot.m`, as before.
+
 If we are displaying more than one line, it is important to add a legend.
 We can specify the legend names by adding `,DisplayName="legend name here"`
 inside the plot function. We then need to activate the legend by running `legend`.
@@ -105,9 +147,9 @@ So, to plot the mean values we first do:
 ```matlab
 >> plot(per_day_mean,DisplayName="Mean")
 >> legend
->> title('Daily average inflammation')
->> xlabel('Day of trial')
->> ylabel('Inflammation')
+>> title("Daily average inflammation")
+>> xlabel("Day of trial")
+>> ylabel("Inflammation")
 ```
 
 ![](fig/plotting_average_inflammation_with_legend.svg){alt='Average inflamation with legend'}
@@ -138,9 +180,9 @@ The first part for the mean remains unchanged:
 ```matlab
 >> plot(per_day_mean,DisplayName="Mean")
 >> legend
->> title('Daily average inflammation')
->> xlabel('Day of trial')
->> ylabel('Inflammation')
+>> title("Daily average inflammation")
+>> xlabel("Day of trial")
+>> ylabel("Inflammation")
 ```
 
 Now we need to get the specific data for each patient.
@@ -174,35 +216,40 @@ It is often convenient to show different plots side by side.
 The [`tiledlayout(m,n)`](https://mathworks.com/help/matlab/ref/tiledlayout.html) command allows us to do just that.
 The first two parameter define a grid of `m` rows and `n` columns in which our plots will be placed.
 To be able to plot something on each of the tiles, we use the [`nexttile`](https://mathworks.com/help/releases/R2019b/matlab/ref/nexttile.html) command.
-For example, we can show the average daily min and max plots together with:
+
+Lets start a new script for this topic:
+```matlab
+>> edit src/tiled_plot.m
+```
+We can show the average daily min and max plots together with:
 ```matlab
 >> tiledlayout(1, 2)
 >> nexttile
 >> plot(per_day_max)
->> title('Max')
->> xlabel('Day of trial')
->> ylabel('Inflamation')
+>> title("Max")
+>> xlabel("Day of trial")
+>> ylabel("Inflamation")
 >> nexttile
 >> plot(per_day_min)
->> title('Min')
->> xlabel('Day of trial')
->> ylabel('Inflamation')
+>> title("Min")
+>> xlabel("Day of trial")
+>> ylabel("Inflamation")
 ```
 ![](fig/plotting_max-min-tiledplot.svg){alt='Max Min tiledplot'}
 
 We can also specify titles and labels for the whole tiled layout if we assign the tiled layout to a variable 
 and pass it as a first argument to `title`, `xlabel` or `ylabel`, for example:
 ```matlab
->> tlo=tiledlayout(1, 2)
->> title(tlo,'Per day data')
->> xlabel(tlo,'Day of trial')
->> ylabel(tlo,'Inflamation')
+>> tlo=tiledlayout(1, 2);
+>> title(tlo,"Per day data")
+>> xlabel(tlo,"Day of trial")
+>> ylabel(tlo,"Inflamation")
 >> nexttile
 >> plot(per_day_max)
->> title('Max')
+>> title("Max")
 >> nexttile
 >> plot(per_day_min)
->> title('Min')
+>> title("Min")
 ```
 
 ![](fig/plotting_max-min-tiledplot-titles.svg){alt='Max Min tiledplot with shared labels'}
@@ -247,7 +294,11 @@ Note that using a starting tile that overlaps another plot will erase that axes.
 If you now try to plot something like the mean, as we had done before,
 you will notice that the plot is assigned to the second plot space in the tiled layout.
 
-To clear the tiled layout, you can use the instruction `clf`, which stands for "clear figure".
+To clear the tiled layout, you can use the instruction 
+```matlab
+>> clf
+```
+which stands for "clear figure".
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -263,9 +314,9 @@ The [`heatmap` function](https://uk.mathworks.com/help/matlab/ref/heatmap.html)
 takes a table as input and produces a heatmap:
 ```matlab
 >> heatmap(patient_data)
->> title('Inflammation')
->> xlabel('Day of trial')
->> ylabel('Patient number')
+>> title("Inflammation")
+>> xlabel("Day of trial")
+>> ylabel("Patient number")
 ```
 
 ![](fig/plotting_heatmap.svg){alt='Heat map'}
@@ -278,9 +329,9 @@ Similarly, the [`imagesc` function](https://uk.mathworks.com/help/matlab/ref/ima
 represents the matrix as a color image. 
 ```matlab
 >> imagesc(patient_data)
->> title('Inflammation')
->> xlabel('Day of trial')
->> ylabel('Patient number')
+>> title("Inflammation")
+>> xlabel("Day of trial")
+>> ylabel("Patient number")
 ```
 
 ![](fig/plotting_imagesc-heatmap.svg){alt='imagesc Heat map'}
@@ -300,7 +351,7 @@ In our case, which one you use is a matter of taste.
 
 - Use `plot(vector)` to visualize data in the y axis with an index number in the x axis.
 - Use `plot(X,Y)` to specify values in both axes.
-- Document your plots with `title('My title')`, `xlabel('My horizontal label')` and `ylabel('My vertical label')`.
+- Document your plots with `title("My title")`, `xlabel("My horizontal label")` and `ylabel("My vertical label")`.
 - Use `hold on` and `hold off` to plot multiple lines at the same time.
 - Use `legend` and add `,DisplayName="legend name here"` inside the plot function to add a legend.
 - Use `tiledlayout(m,n)` to create a grid of `m` x `n` plots, and use `nexttile` to change the position of the next plot.
