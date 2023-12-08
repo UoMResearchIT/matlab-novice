@@ -78,11 +78,11 @@
   Programming with MATLAB
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 28%" class="percentage">
-    28%
+<aside class="col-md-12 lesson-progress"><div style="width: 24%" class="percentage">
+    24%
   </div>
   <div class="progress software">
-    <div class="progress-bar software" role="progressbar" style="width: 28%" aria-valuenow="28" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar software" role="progressbar" style="width: 24%" aria-valuenow="24" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -278,13 +278,13 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Loading data</h1>
-        <p> Last updated on 2023-12-04 | 
+        <p> Last updated on 2023-12-08 | 
         
         <a href="https://github.com/swcarpentry/matlab-novice-inflammation/edit/main/episodes/03-loading_data.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
         
         
-        <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 50 minutes </p>
+        <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 40 minutes </p>
         
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -824,14 +824,14 @@ that the commands become:</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Using the power MATLAB has to compare arrays, we can check which
 patients have a <code>max</code> equal to the <code>global_max</code>.
@@ -844,6 +844,51 @@ If we wrap this check in the find function, we get the row numbers:</p>
 <pre><code><span><span class="va">ans</span> <span class="op">=</span></span>
 <span>     <span class="fl">31</span></span></code></pre>
 <p>So patient 31 has the maximum inflamation level.</p>
+<p><br></p>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">
+  Alternative solution
+  </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
+<p>We can only do this because we had already calculated
+<code>per_patient_max</code>. However, there is another way of doing
+this. Just as we used <code>find</code> to locate the patients that had
+a maximum inflammation value equal to the global maximum, we can find
+the value from the whole data set:</p>
+<div class="codewrapper sourceCode" id="cb40">
+<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">find</span>(<span class="va">patient_data</span> <span class="op">==</span> <span class="va">global_max</span>)</span></code></pre>
+</div>
+<pre><code><span><span class="va">ans</span> <span class="op">=</span></span>
+<span>     <span class="fl">391</span></span></code></pre>
+<p>However, this resulted in a rather odd number. This number represents
+the linear index of the global maximum. Linear indices result from
+counting through the elements in the first column, then continue the
+count on the second column and so on. Luckily, there is a function to
+convert this linear index into a row and number column,
+<code>ind2sub</code>. We need to provide the size of our array, and the
+linear index, i.e. <code>ind2sub([60,40],391)</code>. We also need to
+provide space for both outputs (the row and column numbers), so we call
+it as <code>[r,c]=ind2sub([60,40],391)</code>. ternatively, we can get
+the size and index inside the call:</p>
+<div class="codewrapper sourceCode" id="cb42">
+<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> [<span class="va">r</span><span class="op">,</span><span class="va">c</span>]<span class="op">=</span><span class="va">ind2sub</span>(<span class="va">size</span>(<span class="va">patient_data</span>)<span class="op">,</span><span class="va">find</span>(<span class="va">patient_data</span> <span class="op">==</span> <span class="va">global_max</span>))</span></code></pre>
+</div>
+<pre><code><span><span class="va">r</span> <span class="op">=</span></span>
+<span>    <span class="fl">31</span></span>
+<span><span class="va">c</span> <span class="op">=</span></span>
+<span>     <span class="fl">7</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -931,8 +976,8 @@ arguments need to be <code>(array,[],DIM)</code> instead.</li>
   "url": "https://uomresearchit.github.io/matlab-novice/instructor/03-loading_data.html",
   "identifier": "https://uomresearchit.github.io/matlab-novice/instructor/03-loading_data.html",
   "dateCreated": "2014-12-12",
-  "dateModified": "2023-12-04",
-  "datePublished": "2023-12-05"
+  "dateModified": "2023-12-08",
+  "datePublished": "2023-12-08"
 }
 
   </script><script>
