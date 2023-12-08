@@ -5,7 +5,7 @@
 % ## Initializing an Array
   Z = zeros(3,5)
   Z = zeros(3)
-  Z = zeros(1x5)
+  Z = zeros(1,5)
   R = rand(8);
   O = ones(10,10);
 
