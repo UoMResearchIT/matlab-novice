@@ -323,14 +323,13 @@ high-level tools to do these things efficiently, sparing us the grisly
 detail.</p>
 <p>Before we get started, however, let’s make sure we have the
 directories to help organise this project.</p>
-<div id="tip-good-enough-practices-for-scientific-computing" class="callout callout">
+<div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-good-enough-practices-for-scientific-computing" class="callout-inner">
-<h3 class="callout-title">Tip: Good Enough Practices for Scientific
-Computing<a class="anchor" aria-label="anchor" href="#tip-good-enough-practices-for-scientific-computing"></a>
-</h3>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-good-enough-practices-for-scientific-computing">Tip: Good Enough Practices for Scientific
+Computing<a class="anchor" aria-label="anchor" href="#tip-good-enough-practices-for-scientific-computing"></a></h3>
 <div class="callout-content">
 <p><a href="https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/" class="external-link">Good
 Enough Practices for Scientific Computing</a> is a paper written by
@@ -364,7 +363,7 @@ MATLAB GUI to browse to your project folder (the one now containing the
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">pwd</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">pwd</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -377,7 +376,7 @@ should get the following output:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ls</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ls</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -413,7 +412,7 @@ using “base/”), and this will be followed by the name of the file:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="ss">'data/base/inflammation-01.csv'</span>)<span class="op">;</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="ss">'data/base/inflammation-01.csv'</span>)<span class="op">;</span></span></code></pre>
 </div>
 <p>This loads the data and assigns it to a variable,
 <em>patient_data</em>. This is a good example of when to use a
@@ -426,7 +425,7 @@ columns. If you can’t see the workspace, you can check this with
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">size</span>(<span class="va">patient_data</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">size</span>(<span class="va">patient_data</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -441,7 +440,7 @@ an array:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">class</span>(<span class="va">patient_data</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">class</span>(<span class="va">patient_data</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -463,7 +462,7 @@ have to get all the columns for a given row, with:</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">patient_5</span> <span class="op">=</span> <span class="va">patient_data</span>(<span class="fl">5</span><span class="op">,:</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">patient_5</span> <span class="op">=</span> <span class="va">patient_data</span>(<span class="fl">5</span><span class="op">,:</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -481,7 +480,7 @@ look at the mean instead, for example.</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">mean_p5</span><span class="op">=</span><span class="va">mean</span>(<span class="va">patient_5</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">mean_p5</span><span class="op">=</span><span class="va">mean</span>(<span class="va">patient_5</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -494,9 +493,9 @@ standard deviation.</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">max_p5</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_5</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">min_p5</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">patient_5</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">std_p5</span> <span class="op">=</span> <span class="va">std</span>(<span class="va">patient_5</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">max_p5</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_5</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">min_p5</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">patient_5</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">std_p5</span> <span class="op">=</span> <span class="va">std</span>(<span class="va">patient_5</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -526,7 +525,7 @@ the <code>max</code>, <code>min</code> and <code>std</code>?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>We already know that the colon operator as an index returns all the
 elements, so <code>patient_data(:)</code> will return a vector with all
@@ -534,7 +533,7 @@ the data points. To compute the mean, we then use:</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">global_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span>(<span class="op">:</span>))</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">global_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span>(<span class="op">:</span>))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -547,9 +546,9 @@ the data points. To compute the mean, we then use:</p>
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">global_max</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_data</span>(<span class="op">:</span>))</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">global_min</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">patient_data</span>(<span class="op">:</span>))</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">global_std</span> <span class="op">=</span> <span class="va">std</span>(<span class="va">patient_data</span>(<span class="op">:</span>))</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">global_max</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_data</span>(<span class="op">:</span>))</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">global_min</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">patient_data</span>(<span class="op">:</span>))</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">global_std</span> <span class="op">=</span> <span class="va">std</span>(<span class="va">patient_data</span>(<span class="op">:</span>))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -570,10 +569,10 @@ compares with them:</p>
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">mean_p5</span> <span class="op">&gt;</span> <span class="va">global_mean</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">max_p5</span> <span class="op">==</span> <span class="va">global_max</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">min_p5</span> <span class="op">==</span> <span class="va">global_min</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">std_p5</span> <span class="op">&lt;</span> <span class="va">global_std</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">mean_p5</span> <span class="op">&gt;</span> <span class="va">global_mean</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">max_p5</span> <span class="op">==</span> <span class="va">global_max</span></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">min_p5</span> <span class="op">==</span> <span class="va">global_min</span></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">std_p5</span> <span class="op">&lt;</span> <span class="va">global_std</span></span></code></pre>
 </div>
 <pre><code><span><span class="va">ans</span> <span class="op">=</span></span>
 <span>  <span class="va">logical</span></span>
@@ -614,7 +613,7 @@ column:</p>
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">day_9</span> <span class="op">=</span> <span class="va">patient_data</span>(<span class="op">:,</span><span class="fl">9</span>)<span class="op">;</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">day_9</span> <span class="op">=</span> <span class="va">patient_data</span>(<span class="op">:,</span><span class="fl">9</span>)<span class="op">;</span></span></code></pre>
 </div>
 <p>The result is now not a row of 40 elements, but a column with 60
 items. However, MATLAB is smart enough to figure out what to do with
@@ -622,10 +621,10 @@ enquieries just like the ones we did before.</p>
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">mean_d9</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">day_9</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">max_d9</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">day_9</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">min_d9</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">day_9</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">std_d9</span> <span class="op">=</span> <span class="va">std</span>(<span class="va">day_9</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">mean_d9</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">day_9</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">max_d9</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">day_9</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">min_d9</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">day_9</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">std_d9</span> <span class="op">=</span> <span class="va">std</span>(<span class="va">day_9</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -643,10 +642,10 @@ enquieries just like the ones we did before.</p>
 <div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">mean_d9</span> <span class="op">&gt;</span> <span class="va">global_mean</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">max_d9</span> <span class="op">==</span> <span class="va">global_max</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">min_d9</span> <span class="op">==</span> <span class="va">global_min</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">std_d9</span> <span class="op">&lt;</span> <span class="va">global_std</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">mean_d9</span> <span class="op">&gt;</span> <span class="va">global_mean</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">max_d9</span> <span class="op">==</span> <span class="va">global_max</span></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">min_d9</span> <span class="op">==</span> <span class="va">global_min</span></span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">std_d9</span> <span class="op">&lt;</span> <span class="va">global_std</span></span></code></pre>
 </div>
 <pre><code><span><span class="va">ans</span> <span class="op">=</span></span>
 <span>  <span class="va">logical</span></span>
@@ -690,7 +689,7 @@ simply call the mean on the array, so let’s try it:</p>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span><span class="op">=</span><span class="va">mean</span>(<span class="va">patient_data</span>)<span class="op">;</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span><span class="op">=</span><span class="va">mean</span>(<span class="va">patient_data</span>)<span class="op">;</span></span></code></pre>
 </div>
 <p>We’ve supressed the output, but the workspace (or use of
 <code>size</code>) tells us that the result is a 1x40 array. Matlab
@@ -701,10 +700,10 @@ appropriately label our variables as:</p>
 <div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span>)<span class="op">;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_max</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_data</span>)<span class="op">;</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_min</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">patient_data</span>)<span class="op">;</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_std</span> <span class="op">=</span> <span class="va">std</span>(<span class="va">patient_data</span>)<span class="op">;</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span>)<span class="op">;</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_max</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_data</span>)<span class="op">;</span></span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_min</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">patient_data</span>)<span class="op">;</span></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_std</span> <span class="op">=</span> <span class="va">std</span>(<span class="va">patient_data</span>)<span class="op">;</span></span></code></pre>
 </div>
 <p>You’ll notice that each of the above variables is a <code>1×40</code>
 array.</p>
@@ -715,7 +714,7 @@ average:</p>
 <div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_mean</span> <span class="op">&gt;</span> <span class="va">global_mean</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_mean</span> <span class="op">&gt;</span> <span class="va">global_mean</span></span></code></pre>
 </div>
 <pre><code>ans =
   1×40 logical array
@@ -728,7 +727,7 @@ find function:</p>
 <div class="codewrapper sourceCode" id="cb32">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">find</span>(<span class="va">ans</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">find</span>(<span class="va">ans</span>)</span></code></pre>
 </div>
 <pre><code>ans =
      3     4     5     6     7     8     9    10    11    12    13    14    15    16    17</code></pre>
@@ -739,7 +738,7 @@ the documentation browser or using the <code>help</code> command</p>
 <div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">help</span> <span class="va">mean</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">help</span> <span class="va">mean</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -794,7 +793,7 @@ averaged, that is, dimension 2.</p>
 <div class="codewrapper sourceCode" id="cb36">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_patient_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span><span class="op">,</span><span class="fl">2</span>)<span class="op">;</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_patient_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span><span class="op">,</span><span class="fl">2</span>)<span class="op">;</span></span></code></pre>
 </div>
 <p>As expected, the result is a <code>60×1</code> vector, with the mean
 for each patient.</p>
@@ -805,9 +804,9 @@ that the commands become:</p>
 <div class="codewrapper sourceCode" id="cb37">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_patient_max</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_data</span><span class="op">,</span>[]<span class="op">,</span><span class="fl">2</span>)<span class="op">;</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_patient_min</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">patient_data</span><span class="op">,</span>[]<span class="op">,</span><span class="fl">2</span>)<span class="op">;</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_patient_std</span> <span class="op">=</span> <span class="va">std</span>(<span class="va">patient_data</span><span class="op">,</span>[]<span class="op">,</span><span class="fl">2</span>)<span class="op">;</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_patient_max</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_data</span><span class="op">,</span>[]<span class="op">,</span><span class="fl">2</span>)<span class="op">;</span></span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_patient_min</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">patient_data</span><span class="op">,</span>[]<span class="op">,</span><span class="fl">2</span>)<span class="op">;</span></span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_patient_std</span> <span class="op">=</span> <span class="va">std</span>(<span class="va">patient_data</span><span class="op">,</span>[]<span class="op">,</span><span class="fl">2</span>)<span class="op">;</span></span></code></pre>
 </div>
 <p>All of the above return a <code>60×1</code> vector.</p>
 <div id="most-inflamed-patients" class="callout challenge">
@@ -827,7 +826,7 @@ that the commands become:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Using the power MATLAB has to compare arrays, we can check which
 patients have a <code>max</code> equal to the <code>global_max</code>.
@@ -835,7 +834,7 @@ If we wrap this check in the find function, we get the row numbers:</p>
 <div class="codewrapper sourceCode" id="cb38">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">find</span>(<span class="va">per_patient_max</span> <span class="op">==</span> <span class="va">global_max</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">find</span>(<span class="va">per_patient_max</span> <span class="op">==</span> <span class="va">global_max</span>)</span></code></pre>
 </div>
 <pre><code><span><span class="va">ans</span> <span class="op">=</span></span>
 <span>     <span class="fl">31</span></span></code></pre>
@@ -846,7 +845,7 @@ If we wrap this check in the find function, we get the row numbers:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Alternative solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>We can only do this because we had already calculated
 <code>per_patient_max</code>. However, there is another way of doing
@@ -856,7 +855,7 @@ the value from the whole data set:</p>
 <div class="codewrapper sourceCode" id="cb40">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">find</span>(<span class="va">patient_data</span> <span class="op">==</span> <span class="va">global_max</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">find</span>(<span class="va">patient_data</span> <span class="op">==</span> <span class="va">global_max</span>)</span></code></pre>
 </div>
 <pre><code><span><span class="va">ans</span> <span class="op">=</span></span>
 <span>     <span class="fl">391</span></span></code></pre>
@@ -873,7 +872,7 @@ the size and index inside the call:</p>
 <div class="codewrapper sourceCode" id="cb42">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> [<span class="va">r</span><span class="op">,</span><span class="va">c</span>]<span class="op">=</span><span class="va">ind2sub</span>(<span class="va">size</span>(<span class="va">patient_data</span>)<span class="op">,</span><span class="va">find</span>(<span class="va">patient_data</span> <span class="op">==</span> <span class="va">global_max</span>))</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> [<span class="va">r</span><span class="op">,</span><span class="va">c</span>]<span class="op">=</span><span class="va">ind2sub</span>(<span class="va">size</span>(<span class="va">patient_data</span>)<span class="op">,</span><span class="va">find</span>(<span class="va">patient_data</span> <span class="op">==</span> <span class="va">global_max</span>))</span></code></pre>
 </div>
 <pre><code><span><span class="va">r</span> <span class="op">=</span></span>
 <span>    <span class="fl">31</span></span>
@@ -970,7 +969,7 @@ arguments need to be <code>(array,[],DIM)</code> instead.</li>
   "identifier": "https://uomresearchit.github.io/matlab-novice/instructor/03-loading_data.html",
   "dateCreated": "2014-12-12",
   "dateModified": "2023-12-08",
-  "datePublished": "2024-02-27"
+  "datePublished": "2024-03-05"
 }
 
   </script><script>
