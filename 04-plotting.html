@@ -341,8 +341,9 @@ simply use the day number, which we can generate as a range with
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="section level3 callout-title callout-inner">
-<h3 class="callout-title">Callout</h3>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
+</h3>
 <div class="callout-content">
 <p><strong>Note:</strong> If we only provide a vector as an argument it
 plots a data-point for each value on the y axis, and it uses the index
@@ -357,8 +358,9 @@ is not desireable.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="section level3 callout-title callout-inner">
-<h3 class="callout-title">Callout</h3>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
+</h3>
 <div class="callout-content">
 <p><strong>Note:</strong> We do not even need to have the vector saved
 as a variable. We would obtain the same plot with the command
@@ -390,12 +392,13 @@ inflammation per day across all patients.</p>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="st">"Inflammation"</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="st">"Day of trial"</span>)</span></code></pre>
 </div>
-<figure><img src="fig/plotting_max-inflammation.svg" alt="Maximum inflammation" class="figure mx-auto d-block"></figure><div id="callout3" class="callout">
+<figure><img src="fig/plotting_max-inflammation.svg" alt="Maximum inflammation" class="figure mx-auto d-block"></figure><div id="scripts" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="section level3 callout-title callout-inner">
-<h3 class="callout-title" id="scripts">Scripts<a class="anchor" aria-label="anchor" href="#scripts"></a></h3>
+<div id="scripts" class="callout-inner">
+<h3 class="callout-title">Scripts<a class="anchor" aria-label="anchor" href="#scripts"></a>
+</h3>
 <div class="callout-content">
 <p>We often have to repeat a series of commands to achieve what we want,
 like with these plots. To be able to reuse our commands with more ease,
@@ -581,12 +584,13 @@ example:</p>
 <span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_min</span>)</span>
 <span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="st">"Min"</span>)</span></code></pre>
 </div>
-<figure><img src="fig/plotting_max-min-tiledplot-titles.svg" alt="Max Min tiledplot with shared labels" class="figure mx-auto d-block"></figure><div id="callout4" class="callout">
+<figure><img src="fig/plotting_max-min-tiledplot-titles.svg" alt="Max Min tiledplot with shared labels" class="figure mx-auto d-block"></figure><div id="where-is-the-nexttile" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="section level3 callout-title callout-inner">
-<h3 class="callout-title" id="where-is-the-nexttile">Where is the <code>nexttile</code>?<a class="anchor" aria-label="anchor" href="#where-is-the-nexttile"></a></h3>
+<div id="where-is-the-nexttile" class="callout-inner">
+<h3 class="callout-title">Where is the<code>nexttile</code>?<a class="anchor" aria-label="anchor" href="#where-is-the-nexttile"></a>
+</h3>
 <div class="callout-content">
 <p>You can specify which <em>tile</em> you want to plot next by
 specifying the number as an argument to <code>nexttile</code> like
@@ -602,12 +606,13 @@ the row first, and then jumps to the next column.</p>
 </div>
 </div>
 </div>
-<div id="callout5" class="callout">
+<div id="resizing-tiles" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="section level3 callout-title callout-inner">
-<h3 class="callout-title" id="resizing-tiles">Resizing tiles<a class="anchor" aria-label="anchor" href="#resizing-tiles"></a></h3>
+<div id="resizing-tiles" class="callout-inner">
+<h3 class="callout-title">Resizing tiles<a class="anchor" aria-label="anchor" href="#resizing-tiles"></a>
+</h3>
 <div class="callout-content">
 <p>You can also choose a different size for a plot by occupying many
 <em>tiles</em> in one go. You do that by specifying the number of rows
@@ -635,12 +640,13 @@ that axes. For example, try:</p>
 </div>
 </div>
 </div>
-<div id="callout6" class="callout">
+<div id="clearing-a-figure" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="section level3 callout-title callout-inner">
-<h3 class="callout-title" id="clearing-a-figure">Clearing a figure<a class="anchor" aria-label="anchor" href="#clearing-a-figure"></a></h3>
+<div id="clearing-a-figure" class="callout-inner">
+<h3 class="callout-title">Clearing a figure<a class="anchor" aria-label="anchor" href="#clearing-a-figure"></a>
+</h3>
 <div class="callout-content">
 <p>If you now try to plot something like the mean, as we had done
 before, you will notice that the plot is assigned to the second plot
@@ -757,7 +763,7 @@ matrix with values coded as color hues.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.2" class="external-link">sandpaper (0.16.2)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.4" class="external-link">pegboard (0.7.4)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.1" class="external-link">varnish (1.0.1)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.3" class="external-link">sandpaper (0.16.3)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.4" class="external-link">pegboard (0.7.4)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.1" class="external-link">varnish (1.0.1)</a></p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -780,7 +786,7 @@ matrix with values coded as color hues.</li>
   "identifier": "https://uomresearchit.github.io/matlab-novice/04-plotting.html",
   "dateCreated": "2014-12-12",
   "dateModified": "2023-12-08",
-  "datePublished": "2024-03-12"
+  "datePublished": "2024-03-19"
 }
 
   </script><script>
