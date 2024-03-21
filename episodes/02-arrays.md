@@ -346,6 +346,29 @@ ans =
    62   63    1
 ```
 
+or even the whole matrix. Try for example:
+
+```matlab
+>> N = M(:)
+```
+and you'll see that it returns all the elements of M.
+The result, however, is a column vector, not a matrix.
+We can make sure that the result of `M(:)` has 8x8=64 elements
+by using the function [size](https://uk.mathworks.com/help/matlab/ref/size.html),
+which returns the dimensions of the array given as an input:
+```matlab
+>> size(N)
+```
+```output
+ans =
+   64    1
+```
+So it has 64 rows and 1 column.
+Effectively, then, `M(:)` 'flattens' the array into a column vector.
+The order of the elements in the resulting vector comes from appending each column of the original array in turn.
+This is the result of something called [linear indexing](https://uk.mathworks.com/company/technical-articles/matrix-indexing-in-matlab.html),
+which is a way of accessing elements of an array by a single index.
+
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ## Master indexing
@@ -371,8 +394,6 @@ ans =
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
-
 ## Slicing character arrays
 
 A subsection of an array is called a [slice]({{ page.root }}/reference.html#slice).
@@ -389,71 +410,20 @@ first three characters: oxy
 last three characters: gen
 ```
 
-1. Use slicing to:
-  - Select all elements from the 3rd to the last one.
-  - Find out what is the value of `element(1:2:end)`?
-  - Figure out how would you get all characters except the first and last?
+And we can use all the tricks we have learned to select the data we want.
+For example, to select every other character we can use the colon operator with an increment of 2:
+```matlab
+>> element(1:2:end)
+```
+```output
+ans =
+    'oye'
+```
 
-2. We used the single colon operator `:` in the indices to get all the available column or row numbers,
-   but we can also use it like this: `M(:)`. What do you think will happen?
-   How many elements does `M(:)` have?
-   What would happen if we use it for the element variable? Compare the result from `element` and `element(:)`.
-   Are there any differences?
+We can also use the colon operator to access all the elements of the array,
+but you'll notice that the only difference between evaluating `element` and `element(:)`
+is that the former is a row vector, and the latter a column vector.
 
-:::::::::::::::  solution
-
-
-1) Exercises using slicing
-
-  - To select all elements from 3rd to last we can use start our range at `3` and use the keyword `end`:
-    ```matlab
-    >> element(3:end)
-    ```
-    ```output
-    ans =
-        'ygen'
-    ```
-
-  - The command `element(1:2:end)` starts at the first character, selects every other element (notice the interval is 2),
-    and goes all the way until the last element, so:
-    ```matlab
-    >> element(1:2:end)
-    ```
-    ```output
-    ans =
-        'oye'
-    ```
-
-  - To select each character starting with the second we set the start at `2`,
-    and to not include the last one we can finish at `end-1`:
-    ```matlab
-    >> element(2:end-1)
-    ```
-    ```output
-    ans =
-        'xyge'
-    ```
-
-2) The colon operator gets all the elements that it can find, and so using it as `M(:)` returns all the elements of M.
-   We can make sure that the result of `M(:)` has 8x8=64 elements
-   by using the function [size](https://uk.mathworks.com/help/matlab/ref/size.html),
-   which returns the dimensions of the array given as an input:
-   ```matlab
-   >> size(M(:))
-   ```
-   ```output
-   ans =
-       64    1
-   ```
-   So it has 64 rows and 1 column. Efectively, then, `M(:)` 'flattens' the array into a column vector.
-   The order of the elements in the resulting vector comes from appending each column of the original array in turn.
-   Therefore, the last 8 elements we see if we evaluate `M(:)` correspond to the last column of `M`, for example.
-
-   The difference between evaluating `element` and `element(:)` is that the former is a row vector, and the latter a column vector.
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 
