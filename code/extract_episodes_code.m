@@ -5,6 +5,11 @@ function extract_episodes_code(episode_names,q)
 %   Otherwise, it will iterate through the "*.md" files in "episodes/"
 %
 %   The extracted code blocks are saved in the "code" folder.
+%
+%   Usage:
+%   - Add the 'code' and 'episodes' directories to MATLAB's path.
+%   - To extract the code from all episodes, run on the console:
+%     >> extract_episodes_code()
 
     quiet=false;
     if ~exist("episode_names","var")
