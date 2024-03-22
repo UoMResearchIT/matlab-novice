@@ -32,11 +32,14 @@ We will start by exploring the function `plot`.
 The most common usage is to provide two vectors, like `plot(X,Y)`.
 Lets start by plotting the average inflammation across patients over time.
 For the `Y` vector we can provide `per_day_mean`,
-and for the `X` vector we can simply use the day number,
-which we can generate as a range with `1:40`.
+and for the `X` vector we want to use the number of the day in the trial,
+which we can generate as a range with:
+```matlab
+>> day_of_trial = 1:40;
+```
 Then our plot can be generated with:
 ```matlab
->> plot(1:40,per_day_mean)
+>> plot(day_of_trial, per_day_mean)
 ```
 
 :::::::::::::::::::::::::::::::::::::::::  callout
@@ -53,7 +56,7 @@ In most cases, however, using the indices on the x axis is not desireable.
 :::::::::::::::::::::::::::::::::::::::::  callout
 
 **Note:** We do not even need to have the vector saved as a variable.
-We would obtain the same plot with the command `plot(mean(patient_data, 1))`.
+We would obtain the same plot with the command `plot(1:40, mean(patient_data, 1))`, or `plot(mean(patient_data, 1))`.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -75,7 +78,7 @@ As we expected, this figure tells us way more than the numbers we had seen in th
 Let's have a look at two other statistics: the maximum and minimum
 inflammation per day across all patients.
 ```matlab
->> plot(per_day_max)
+>> plot(day_of_trial, per_day_max)
 >> title("Maximum inflammation per day")
 >> ylabel("Inflammation")
 >> xlabel("Day of trial")
@@ -116,7 +119,8 @@ Try copying and pasting the plot commands for the max inflammation on the script
 Because we now have a script, it should be much easier to change the plot to the minimum inflammation:
 
 ```matlab
->> plot(per_day_min)
+>> day_of_trial = 1:40;
+>> plot(day_of_trial, per_day_min)
 >> title("Minimum inflammation per day")
 >> ylabel("Inflammation")
 >> xlabel("Day of trial")
@@ -145,7 +149,8 @@ We can specify the legend names by adding `,DisplayName="legend name here"`
 inside the plot function. We then need to activate the legend by running `legend`.
 So, to plot the mean values we first do:
 ```matlab
->> plot(per_day_mean,DisplayName="Mean")
+>> day_of_trial = 1:40;
+>> plot(day_of_trial, per_day_mean, DisplayName="Mean")
 >> legend
 >> title("Daily average inflammation")
 >> xlabel("Day of trial")
@@ -157,7 +162,7 @@ So, to plot the mean values we first do:
 Then, we can use the instruction `hold on` to add a plot for patient_5.
 ```matlab
 >> hold on
->> plot(patient_5,DisplayName="Patient 5")
+>> plot(day_of_trial, patient_5, DisplayName="Patient 5")
 >> hold off
 ```
 
@@ -178,7 +183,8 @@ Try to plot the mean across all patients and the inflammation data for patients 
 The first part for the mean remains unchanged: 
 
 ```matlab
->> plot(per_day_mean,DisplayName="Mean")
+>> day_of_trial = 1:40;
+>> plot(day_of_trial, per_day_mean, DisplayName="Mean")
 >> legend
 >> title("Daily average inflammation")
 >> xlabel("Day of trial")
@@ -191,14 +197,14 @@ Now we can either save that data in a variable, or we use it directly in the plo
 
 ```matlab
 >> hold on
->> plot(patient_data(3,:),DisplayName="Patient 3")
->> plot(patient_data(4,:),DisplayName="Patient 4")
+>> plot(day_of_trial, patient_data(3,:), DisplayName="Patient 3")
+>> plot(day_of_trial, patient_data(4,:), DisplayName="Patient 4")
 >> hold off
 ```
 
 The result looks like this:
 
-![](fig/plotting_patients-3-4.svg){alt='Average inflamation and Patients 3 & 4'}
+![](fig/plotting_patients-3-4.svg){alt='Average inflammation and Patients 3 & 4'}
 
 Patient 4 seems also quite average, but patient's 3 measurements are quite noisy!
 
@@ -223,14 +229,15 @@ Lets start a new script for this topic:
 ```
 We can show the average daily min and max plots together with:
 ```matlab
+>> day_of_trial = 1:40;
 >> tiledlayout(1, 2)
 >> nexttile
->> plot(per_day_max)
+>> plot(day_of_trial, per_day_max)
 >> title("Max")
 >> xlabel("Day of trial")
 >> ylabel("Inflamation")
 >> nexttile
->> plot(per_day_min)
+>> plot(day_of_trial, per_day_min)
 >> title("Min")
 >> xlabel("Day of trial")
 >> ylabel("Inflamation")
@@ -240,15 +247,16 @@ We can show the average daily min and max plots together with:
 We can also specify titles and labels for the whole tiled layout if we assign the tiled layout to a variable 
 and pass it as a first argument to `title`, `xlabel` or `ylabel`, for example:
 ```matlab
+>> day_of_trial = 1:40;
 >> tlo=tiledlayout(1, 2);
 >> title(tlo,"Per day data")
 >> xlabel(tlo,"Day of trial")
 >> ylabel(tlo,"Inflamation")
 >> nexttile
->> plot(per_day_max)
+>> plot(day_of_trial, per_day_max)
 >> title("Max")
 >> nexttile
->> plot(per_day_min)
+>> plot(day_of_trial, per_day_min)
 >> title("Min")
 ```
 
