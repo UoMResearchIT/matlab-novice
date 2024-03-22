@@ -45,6 +45,8 @@
 
   M(1:4, :)
   M(:, 6:end)
+  N = M(:)
+  size(N)
 
 % ! Challenge:
 % ## Master indexing
@@ -52,14 +54,10 @@
   M(2:3:end, :)
 
 
-
-% ! Challenge:
 % ## Slicing character arrays
   element = 'oxygen';
   disp("first three characters: " + element(1:3))
   disp("last three characters: " + element(4:6))
-% !! Solution:
-
-
+  element(1:2:end)
 
 
