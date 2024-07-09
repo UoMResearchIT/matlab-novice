@@ -46,7 +46,7 @@
             </li>
           </ul></li>
       </div>
-      
+
       <div class="dropdown" id="instructor-dropdown">
         <button class="btn btn-secondary dropdown-toggle bordered-button" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
           <i aria-hidden="true" class="icon" data-feather="eye"></i> Learner View <i data-feather="chevron-down"></i>
@@ -170,7 +170,7 @@
                 </div><!--/div.accordion-flush-->
               </div><!--div.sidenav-view-selector -->
             </div><!--/div.col -->
-      
+
             <hr></div><!--/div.mobile-row -->
 
           <div class="accordion accordion-flush" id="accordionFlush11">
@@ -189,7 +189,7 @@
     <div class="accordion-header" id="flush-heading1">
         <a href="index.html">Summary and Setup</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -198,7 +198,7 @@
     <div class="accordion-header" id="flush-heading2">
         <a href="01-intro.html">1. Working With Variables</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -212,7 +212,7 @@
         </span>
       </button>
     </div><!--/div.accordion-header-->
-        
+
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#initializing-an-array">Initializing an Array</a></li>
@@ -220,7 +220,7 @@
 <li><a href="#slicing-character-arrays">Slicing character arrays</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -229,7 +229,7 @@
     <div class="accordion-header" id="flush-heading4">
         <a href="03-loading_data.html">3. Loading data</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -238,7 +238,7 @@
     <div class="accordion-header" id="flush-heading5">
         <a href="04-plotting.html">4. Plotting data</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -247,7 +247,7 @@
     <div class="accordion-header" id="flush-heading6">
         <a href="05-scripts.html">5. Writing MATLAB Scripts</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -256,7 +256,7 @@
     <div class="accordion-header" id="flush-heading7">
         <a href="06-cond.html">6. Making Choices</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -265,7 +265,7 @@
     <div class="accordion-header" id="flush-heading8">
         <a href="07-func.html">7. Creating Functions</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -274,7 +274,7 @@
     <div class="accordion-header" id="flush-heading9">
         <a href="08-loops.html">8. Repeating With Loops</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -306,10 +306,10 @@
               </div>
             </div>
             <hr class="half-width resources"><a href="aio.html">See all in one page</a>
-            
+
 
             <hr class="d-none d-sm-block d-md-none"><div class="d-grid gap-1">
-            
+
             </div>
           </div><!-- /div.accordion -->
         </div><!-- /div.sidebar-inner -->
@@ -330,18 +330,18 @@
           Previous: Working With
         </a>
         <a class="chapter-link float-end" href="03-loading_data.html" rel="next">
-          Next: Loading data... 
+          Next: Loading data...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Arrays</h1>
         <p>Last updated on 2024-03-22 |
-        
+
         <a href="https://github.com/swcarpentry/matlab-novice-inflammation/edit/main/episodes/02-arrays.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-        
-        
-        
+
+
+
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -370,8 +370,8 @@
 </div>
 </div>
 </div>
-<section id="initializing-an-array"><h2 class="section-heading">Initializing an Array<a class="anchor" aria-label="anchor" href="#initializing-an-array"></a>
-</h2>
+<section><h2 class="section-heading" id="initializing-an-array">Initializing an Array<a class="anchor" aria-label="anchor" href="#initializing-an-array"></a>
+<a class="anchor" aria-label="anchor" href="#initializing-an-array"></a></h2>
 <hr class="half-width"><p>We just talked about how MATLAB <em>thinks</em> in arrays, and
 declared some very simple arrays using square brackets. In some cases,
 we will want to create space to save data, but not save anything just
@@ -479,8 +479,8 @@ elements on each row or column is the same number.</p>
 <p>In this case, each row or column adds up to 34. But how could I tell
 in a bigger matrix? How can I select some of the elements of the array
 and sum them, for example?</p>
-</section><section id="array-indexing"><h2 class="section-heading">Array indexing<a class="anchor" aria-label="anchor" href="#array-indexing"></a>
-</h2>
+</section><section><h2 class="section-heading" id="array-indexing">Array indexing<a class="anchor" aria-label="anchor" href="#array-indexing"></a>
+<a class="anchor" aria-label="anchor" href="#array-indexing"></a></h2>
 <hr class="half-width"><p>Array <strong>indexing</strong>, is the method by which we can select
 one or more different elements of an array. A solid understanding of
 array indexing will be essential to working with arrays. Lets start with
@@ -634,7 +634,7 @@ need the square brackets anymore. So the command above becomes:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>We need to select every other element in both dimensions. To do that,
 we define the apropriate intervals with an increment of 2:</p>
@@ -838,7 +838,7 @@ numbers 5 or 8, and using <code>end</code> only once:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>We need to tart with row <code>2</code>, and subsequently select
 every third row:</p>
@@ -860,8 +860,8 @@ every third row:</p>
 </div>
 </div>
 </div>
-</section><section id="slicing-character-arrays"><h2 class="section-heading">Slicing character arrays<a class="anchor" aria-label="anchor" href="#slicing-character-arrays"></a>
-</h2>
+</section><section><h2 class="section-heading" id="slicing-character-arrays">Slicing character arrays<a class="anchor" aria-label="anchor" href="#slicing-character-arrays"></a>
+<a class="anchor" aria-label="anchor" href="#slicing-character-arrays"></a></h2>
 <hr class="half-width"><p>A subsection of an array is called a <a href="%7B%7B%20page.root%20%7D%7D/reference.html#slice">slice</a>. We
 can take slices of character arrays as well:</p>
 <div class="codewrapper sourceCode" id="cb44">
@@ -932,7 +932,7 @@ elements.</li>
           Previous: Working With
         </a>
         <a class="chapter-link float-end" href="03-loading_data.html" rel="next">
-          Next: Loading data... 
+          Next: Loading data...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
@@ -943,18 +943,18 @@ elements.</li>
       		<footer class="row footer mx-md-3"><hr><div class="col-md-6">
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
-        
+
         <a href="https://github.com/swcarpentry/matlab-novice-inflammation/edit/main/episodes/02-arrays.md" class="external-link">Edit on GitHub</a>
-        
+
 	
         | <a href="https://github.com/swcarpentry/matlab-novice-inflammation/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
         | <a href="https://github.com/swcarpentry/matlab-novice-inflammation/" class="external-link">Source</a></p>
 				<p><a href="https://github.com/swcarpentry/matlab-novice-inflammation/blob/main/CITATION" class="external-link">Cite</a> | <a href="mailto:team@carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 			</div>
 			<div class="col-md-6">
-        
+
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
-        
+
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
         <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.5" class="external-link">sandpaper (0.16.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.3" class="external-link">varnish (1.0.3)</a></p>
 			</div>
@@ -979,7 +979,7 @@ elements.</li>
   "identifier": "https://uomresearchit.github.io/matlab-novice/02-arrays.html",
   "dateCreated": "2014-12-12",
   "dateModified": "2024-03-22",
-  "datePublished": "2024-07-02"
+  "datePublished": "2024-07-09"
 }
 
   </script><script>
