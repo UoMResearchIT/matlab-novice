@@ -1319,7 +1319,7 @@ need the square brackets anymore. So the command above becomes:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>We need to select every other element in both dimensions. To do that,
 we define the apropriate intervals with an increment of 2:</p>
@@ -1523,7 +1523,7 @@ numbers 5 or 8, and using <code>end</code> only once:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>We need to tart with row <code>2</code>, and subsequently select
 every third row:</p>
@@ -1857,7 +1857,7 @@ the <code>max</code>, <code>min</code> and <code>std</code>?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>We already know that the colon operator as an index returns all the
 elements, so <code>patient_data(:)</code> will return a vector with all
@@ -2159,7 +2159,7 @@ that the commands become:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Using the power MATLAB has to compare arrays, we can check which
 patients have a <code>max</code> equal to the <code>global_max</code>.
@@ -2178,7 +2178,7 @@ If we wrap this check in the find function, we get the row numbers:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Alternative solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>We can only do this because we had already calculated
 <code>per_patient_max</code>. However, there is another way of doing
@@ -2473,7 +2473,7 @@ for patients 3 and 4 together.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The first part for the mean remains unchanged:</p>
 <div class="codewrapper sourceCode" id="cb11">
@@ -3652,7 +3652,7 @@ logical operations.</li>
 </div>
 </section></section><section id="aio-07-func"><p>Content from <a href="07-func.html">Creating Functions</a></p>
 <hr>
-<p>Last updated on 2023-12-04 |
+<p>Last updated on 2024-11-18 |
 
         <a href="https://github.com/swcarpentry/matlab-novice-inflammation/edit/main/episodes/07-func.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 65 minutes</p>
@@ -3694,24 +3694,25 @@ functions.</li>
 <hr class="half-width">
 <p>It has come to our attention that the data about inflammation that
 we’ve been analysing contains some systematic errors. The measurements
-were made using the incorrect scale, with inflammation recorded in
-Arbitrary Inflammation Units (AIU) rather than the scientific standard
-International Inflmmation Units (IIU). Luckily there is a handy formula
-which can be used for converting measurements in AIU to IIU, but it
+were made using the incorrect scale, with inflammation recorded in units
+of Swellocity (swell) rather than the scientific standard units of
+Inflammatons (inf). Luckily there is a handy formula which can be used
+for converting measurements in Swellocity to Inflammatons, but it
 involves some hard to remember constants:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="va">inflammation_IIU</span> <span class="op">=</span> (<span class="va">inflammation_AIU</span> <span class="op">+</span> <span class="va">B</span>)<span class="op">*</span><span class="va">A</span></span>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="va">inflammation_in_inf</span> <span class="op">=</span> (<span class="va">inflammation_in_swell</span> <span class="op">+</span> <span class="va">B</span>)<span class="op">*</span><span class="va">A</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="va">B</span> <span class="op">=</span> <span class="fl">5.634</span></span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="va">A</span> <span class="op">=</span> <span class="fl">0.275</span></span></code></pre>
 </div>
-<p>There are twelve files worth of data to be converted from AIU to IIU:
-is there a way we can do this quickly and conveniently? If we have to
-re-enter the conversion formula multiple times, the chance of us getting
-the constants wrong is high. Thankfully there is a convenient way to
-teach MATLAB how to do new things, like converting units from AIU to
-IIU. We can do this by writing a function.</p>
+<p>There are twelve files worth of data to be converted from Swellocity
+to Inflammatons: is there a way we can do this quickly and conveniently?
+If we have to re-enter the conversion formula multiple times, the chance
+of us getting the constants wrong is high. Thankfully there is a
+convenient way to teach MATLAB how to do new things, like converting
+units from Swellocity to Inflammatons. We can do this by writing a
+function.</p>
 <p>We have already used some predefined MATLAB functions which we can
 pass arguments to. How can we define our own?</p>
 <p>A MATLAB function <em>must</em> be saved in a text file with a
@@ -3751,19 +3752,20 @@ directory that MATLAB knows about. Following the same logic we used with
 scripts, we will put our source code files in the <code>src</code>
 folder.</p>
 <p>Let’s put this into practice to create a function that will teach
-MATLAB to use our AIU to IIU conversion formula. Create a file called
-<code>inflammation_AIU_to_IIU.m</code> in the <code>src</code> folder,
-enter the following function definition, and save the file:</p>
+MATLAB to use our Swellocity to Inflammaton conversion formula. Create a
+file called <code>inflammation_swell_to_inf.m</code> in the
+<code>src</code> folder, enter the following function definition, and
+save the file:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="kw">function</span> <span class="va">inflammation_in_IIU</span> <span class="op">=</span> <span class="va">inflammation_AIU_to_IIU</span>(<span class="va">inflammation_in_AIU</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>   <span class="co">% INFLAMMATION_AIU_TO_IIU  Convert inflammation mesured in AIU to inflammation measued in IIU.</span></span>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="kw">function</span> <span class="va">inflammation_in_inf</span> <span class="op">=</span> <span class="va">inflammation_swell_to_inf</span>(<span class="va">inflammation_in_swell</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>   <span class="co">% INFLAMMATION_SWELL_TO_INF  Convert inflammation mesured in Swellocity to inflammation measured in Inflammatons.</span></span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>   <span class="va">A</span> <span class="op">=</span> <span class="fl">0.275</span><span class="op">;</span></span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>   <span class="va">B</span> <span class="op">=</span> <span class="fl">5.634</span><span class="op">;</span></span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>   <span class="va">inflammation_in_IIU</span> <span class="op">=</span> (<span class="va">inflammation_in_AIU</span> <span class="op">+</span> <span class="va">B</span>)<span class="op">*</span><span class="va">A</span><span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>   <span class="va">inflammation_in_inf</span> <span class="op">=</span> (<span class="va">inflammation_in_swell</span> <span class="op">+</span> <span class="va">B</span>)<span class="op">*</span><span class="va">A</span><span class="op">;</span></span>
 <span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a></span>
 <span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="kw">end</span></span></code></pre>
 </div>
@@ -3772,7 +3774,7 @@ MATLAB:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">inflammation_AIU_to_IIU</span>(<span class="fl">0.5</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">inflammation_swell_to_inf</span>(<span class="fl">0.5</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3781,41 +3783,43 @@ MATLAB:</p>
 </div>
 <p>We got the number we expected, and at first glance it seems like it
 is almost the same as a script. However, if you look at the variables in
-the workspace, you’ll probably notice one big difference. Although a
-variable called <code>inflammation_in_IIU</code> was defined in the
-function, it does not exist in our workspace.</p>
+the workspace, you’ll notice one big difference. Although a variable
+called <code>inflammation_in_inf</code> was defined in the function, it
+does not exist in our workspace.</p>
 <p>Lets have a look using the debugger to see what is happening.</p>
 <p>When we pass a value, like <code>0.5</code>, to the function, it is
-assigned to the variable <code>inflammation_in_AIU</code> so that it can
-be used in the body of the function. To return a value from the
+assigned to the variable <code>inflammation_in_swell</code> so that it
+can be used in the body of the function. To return a value from the
 function, we must assign that value to the variable
-<code>inflammation_in_IIU</code> from our function definition line. What
-ever value <code>inflammation_in_IIU</code> has when the
+<code>inflammation_in_inf</code> from our function definition line. What
+ever value <code>inflammation_in_inf</code> has when the
 <code>end</code> keyword in the function definition is reached, that
 will be the value returned.</p>
-<p>Outside the function, the variables <code>inflammation_in_AIU</code>,
-<code>inflammation_in_IIU</code>, <code>A</code>, and <code>B</code>
-aren’t accessible; they are only used by in function body.</p>
+<p>Outside the function, the variables
+<code>inflammation_in_swell</code>, <code>inflammation_in_inf</code>,
+<code>A</code>, and <code>B</code> aren’t accessible; they are only used
+by in function body.</p>
 <p>This is one of the major differences between scripts and functions: a
-script can be thought of as automating the command line, with full
-access to all variables in the base workspace, whereas a function has
-its own separate workspace.</p>
+script automates the command line, with full access to all variables in
+the base workspace, whereas a function has its own separate
+workspace.</p>
 <p>To be able to access variables from your workspace inside a function,
 you have to pass them in as inputs. To be able to save variables to your
-workspace, it needs to return them as outputs.</p>
+workspace from inside your function, the function needs to return them
+as outputs.</p>
 <p>As with any operation, if we want to save the result, we need to
 assign the result to a variable, for example:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">val_in_IIU</span> <span class="op">=</span> <span class="va">inflammation_AIU_to_IIU</span>(<span class="fl">0.5</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">val_in_inf</span> <span class="op">=</span> <span class="va">inflammation_swell_to_inf</span>(<span class="fl">0.5</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span><span class="va">val_in_IIU</span> <span class="op">=</span> <span class="fl">1.6869</span></span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="va">val_in_inf</span> <span class="op">=</span> <span class="fl">1.6869</span></span></code></pre>
 </div>
-<p>And we can see <code>val_in_IIU</code> saved in our workspace.</p>
+<p>And we can see <code>val_in_inf</code> saved in our workspace.</p>
 <div id="writing-your-own-conversion-function" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -3823,13 +3827,22 @@ assign the result to a variable, for example:</p>
 <div id="writing-your-own-conversion-function" class="callout-inner">
 <h3 class="callout-title">Writing your own conversion function</h3>
 <div class="callout-content">
-<p>We’d like a function that reverses the conversion of AIU to IIU.
-Re-arrange the conversion formula and write a function called
-<code>inflammation_IIU_to_AIU</code> that converts inflammation measued
-in IIU to inflammation measured in AIU.</p>
+<p>We’d like a function that reverses the conversion of Swellocity to
+Inflammatons. Re-arrange the conversion formula and write a function
+called <code>inflammation_inf_to_swell</code> that converts inflammation
+measued in Inflammatons to inflammation measured in Swellocity.</p>
 <p>Remember to save your function definition in a file with the required
 name, start the file with the function definition line, followed by the
 function body, ending with the <code>end</code> keyword.</p>
+<p>For reference the conversion formula to take inflammation measured in
+Swellocity to inflammation measured in Inflammatons is:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="va">inflammation_in_inf</span> <span class="op">=</span> (<span class="va">inflammation_in_swell</span> <span class="op">+</span> <span class="va">B</span>)<span class="op">*</span><span class="va">A</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="va">B</span> <span class="op">=</span> <span class="fl">5.634</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="va">A</span> <span class="op">=</span> <span class="fl">0.275</span></span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -3838,20 +3851,20 @@ function body, ending with the <code>end</code> keyword.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="kw">function</span> <span class="va">inflammation_in_AIU</span> <span class="op">=</span> <span class="va">inflammation_IIU_to_AIU</span>(<span class="va">inflammation_in_IIU</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>   <span class="co">% INFLAMMTION_IIU_TO_AIU   Convert inflammation measured in IIU to inflammation measured in AIU.</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>   <span class="va">A</span> <span class="op">=</span> <span class="fl">0.275</span><span class="op">;</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>   <span class="va">B</span> <span class="op">=</span> <span class="fl">5.634</span><span class="op">;</span></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>   <span class="va">inflammation_in_AIU</span> <span class="op">=</span> <span class="va">inflammation_in_IIU</span><span class="op">/</span><span class="va">A</span> <span class="op">-</span> <span class="va">B</span><span class="op">;</span></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="kw">end</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="kw">function</span> <span class="va">inflammation_in_swell</span> <span class="op">=</span> <span class="va">inflammation_inf_to_swell</span>(<span class="va">inflammation_in_inf</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>   <span class="co">% INFLAMMTION_INF_TO_SWELL   Convert inflammation measured in Inflammatons to inflammation measured in Swellocity.</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>   <span class="va">A</span> <span class="op">=</span> <span class="fl">0.275</span><span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>   <span class="va">B</span> <span class="op">=</span> <span class="fl">5.634</span><span class="op">;</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>   <span class="va">inflammation_in_swell</span> <span class="op">=</span> <span class="va">inflammation_in_inf</span><span class="op">/</span><span class="va">A</span> <span class="op">-</span> <span class="va">B</span><span class="op">;</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="kw">end</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -3898,39 +3911,39 @@ definition telling MATLAB what our function is called and what inputs it
 needs. The function will take the variable <code>patient_number</code>
 as input and since we removed the line that assigned a value to that
 variable, the input will decide which patient is analysed.</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="kw">function</span> <span class="va">patient_analysis</span>(<span class="va">patient_number</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>    <span class="co">% PATIENT_ANALYSIS   Computes mean, max and min of a patient and compares to global statistics.</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>    <span class="co">%    Takes the patient number as an input, and prints the relevant information to console.</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>    <span class="co">%    Sample usage:</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>    <span class="co">%       patient_analysis(5)</span></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>    <span class="co">% Load patient data</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>    <span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="ss">'data/base/inflammation-01.csv'</span>)<span class="op">;</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>    <span class="co">% Compute global statistics</span></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>    <span class="va">g_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span>(<span class="op">:</span>))<span class="op">;</span></span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>    <span class="va">g_max</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_data</span>(<span class="op">:</span>))<span class="op">;</span></span>
-<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>    <span class="va">g_min</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">patient_data</span>(<span class="op">:</span>))<span class="op">;</span></span>
-<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>    <span class="co">% Compute patient statistics</span></span>
-<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a>    <span class="va">p_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span>(<span class="va">patient_number</span><span class="op">,:</span>))<span class="op">;</span></span>
-<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a>    <span class="va">p_max</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_data</span>(<span class="va">patient_number</span><span class="op">,:</span>))<span class="op">;</span></span>
-<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a>    <span class="va">p_min</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">patient_data</span>(<span class="va">patient_number</span><span class="op">,:</span>))<span class="op">;</span></span>
-<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a></span>
-<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a>    <span class="co">% Compare patient vs global</span></span>
-<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a>    <span class="va">disp</span>(<span class="ss">'Patient:'</span>)</span>
-<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a>    <span class="va">disp</span>(<span class="va">patient_number</span>)</span>
-<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a>    <span class="va">disp</span>(<span class="ss">'High mean?'</span>)</span>
-<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a>    <span class="va">disp</span>(<span class="va">p_mean</span> <span class="op">&gt;</span> <span class="va">g_mean</span>)</span>
-<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a>    <span class="va">disp</span>(<span class="ss">'Highest max?'</span>)</span>
-<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a>    <span class="va">disp</span>(<span class="va">p_max</span> <span class="op">==</span> <span class="va">g_max</span>)</span>
-<span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a>    <span class="va">disp</span>(<span class="ss">'Lowest min?'</span>)</span>
-<span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a>    <span class="va">disp</span>(<span class="va">p_min</span> <span class="op">==</span> <span class="va">g_min</span>)</span>
-<span id="cb9-29"><a href="#cb9-29" tabindex="-1"></a></span>
-<span id="cb9-30"><a href="#cb9-30" tabindex="-1"></a><span class="kw">end</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="kw">function</span> <span class="va">patient_analysis</span>(<span class="va">patient_number</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>    <span class="co">% PATIENT_ANALYSIS   Computes mean, max and min of a patient and compares to global statistics.</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>    <span class="co">%    Takes the patient number as an input, and prints the relevant information to console.</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>    <span class="co">%    Sample usage:</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    <span class="co">%       patient_analysis(5)</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>    <span class="co">% Load patient data</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>    <span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="ss">'data/base/inflammation-01.csv'</span>)<span class="op">;</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>    <span class="co">% Compute global statistics</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>    <span class="va">g_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span>(<span class="op">:</span>))<span class="op">;</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>    <span class="va">g_max</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_data</span>(<span class="op">:</span>))<span class="op">;</span></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a>    <span class="va">g_min</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">patient_data</span>(<span class="op">:</span>))<span class="op">;</span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a>    <span class="co">% Compute patient statistics</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>    <span class="va">p_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span>(<span class="va">patient_number</span><span class="op">,:</span>))<span class="op">;</span></span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a>    <span class="va">p_max</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_data</span>(<span class="va">patient_number</span><span class="op">,:</span>))<span class="op">;</span></span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a>    <span class="va">p_min</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">patient_data</span>(<span class="va">patient_number</span><span class="op">,:</span>))<span class="op">;</span></span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a>    <span class="co">% Compare patient vs global</span></span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a>    <span class="va">disp</span>(<span class="ss">'Patient:'</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a>    <span class="va">disp</span>(<span class="va">patient_number</span>)</span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a>    <span class="va">disp</span>(<span class="ss">'High mean?'</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a>    <span class="va">disp</span>(<span class="va">p_mean</span> <span class="op">&gt;</span> <span class="va">g_mean</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a>    <span class="va">disp</span>(<span class="ss">'Highest max?'</span>)</span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a>    <span class="va">disp</span>(<span class="va">p_max</span> <span class="op">==</span> <span class="va">g_max</span>)</span>
+<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a>    <span class="va">disp</span>(<span class="ss">'Lowest min?'</span>)</span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a>    <span class="va">disp</span>(<span class="va">p_min</span> <span class="op">==</span> <span class="va">g_min</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="kw">end</span></span></code></pre>
 </div>
 <p>Congratulations! You’ve now created a MATLAB function from a MATLAB
 script!</p>
@@ -3938,12 +3951,12 @@ script!</p>
 MATLAB does not need this, but it makes it much more readable!</p>
 <p>Lets clear our workspace and run our function in the command
 line:</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">clear</span></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">clc</span></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">patient_analysis</span>(<span class="fl">13</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">clear</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">clc</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">patient_analysis</span>(<span class="fl">13</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3970,18 +3983,18 @@ In our <code>patient_analysis.m</code> we already compute the value and
 save it in <code>p_mean</code>, but we need to tell MATLAB that we want
 the function to return it.</p>
 <p>To do that we modify the function definition like this:</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="kw">function</span> <span class="va">p_mean</span> <span class="op">=</span> <span class="va">patient_analysis</span>(<span class="va">patient_number</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="kw">function</span> <span class="va">p_mean</span> <span class="op">=</span> <span class="va">patient_analysis</span>(<span class="va">patient_number</span>)</span></code></pre>
 </div>
 <p>It is important that the variable name is the same that is used
 inside the function.</p>
 <p>If we now run our function in the command line, we get:</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="va">p13</span> <span class="op">=</span> <span class="va">patient_analysis</span>(<span class="fl">13</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="va">p13</span> <span class="op">=</span> <span class="va">patient_analysis</span>(<span class="fl">13</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4001,17 +4014,17 @@ p13 =
 min and max as well. To do that, we need to specify all the outputs in
 square brackets, as an array. So we need to replace the function
 definition for:</p>
-<div class="codewrapper sourceCode" id="cb15">
-<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="kw">function</span> [<span class="va">p_mean</span><span class="op">,</span><span class="va">p_max</span><span class="op">,</span><span class="va">p_min</span>] <span class="op">=</span> <span class="va">patient_analysis</span>(<span class="va">patient_number</span>)</span></code></pre>
-</div>
-<p>To call our function now we need to provide space for all 3 outputs,
-so in the command line, we run it as:</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>[<span class="va">p13_mean</span><span class="op">,</span><span class="va">p13_max</span><span class="op">,</span><span class="va">p13_min</span>] <span class="op">=</span> <span class="va">patient_analysis</span>(<span class="fl">13</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="kw">function</span> [<span class="va">p_mean</span><span class="op">,</span><span class="va">p_max</span><span class="op">,</span><span class="va">p_min</span>] <span class="op">=</span> <span class="va">patient_analysis</span>(<span class="va">patient_number</span>)</span></code></pre>
+</div>
+<p>To call our function now we need to provide space for all 3 outputs,
+so in the command line, we run it as:</p>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>[<span class="va">p13_mean</span><span class="op">,</span><span class="va">p13_max</span><span class="op">,</span><span class="va">p13_min</span>] <span class="op">=</span> <span class="va">patient_analysis</span>(<span class="fl">13</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4068,47 +4081,47 @@ script.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="kw">function</span> <span class="va">plot_daily_average</span>(<span class="va">data_file</span><span class="op">,</span><span class="va">plot_name</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>    <span class="co">%PLOT_DAILY_AVERAGE   Plots daily average, max and min inflammation accross patients.</span></span>
-<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>    <span class="co">%   The function takes the data in data_file and saves it as plot_name</span></span>
-<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>    <span class="co">%   Example usage:</span></span>
-<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>    <span class="co">%       plot_daily_average('data/base/inflammation-03.csv','results/plot3.png')</span></span>
-<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>    <span class="co">% Load patient data</span></span>
-<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>    <span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="va">data_file</span>)<span class="op">;</span></span>
-<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a>    <span class="va">figure</span>(<span class="va">visible</span><span class="op">=</span><span class="ss">'off'</span>)</span>
-<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a></span>
-<span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a>    <span class="co">% Define tiled layout and labels</span></span>
-<span id="cb18-13"><a href="#cb18-13" tabindex="-1"></a>    <span class="va">tlo</span> <span class="op">=</span> <span class="va">tiledlayout</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span>)<span class="op">;</span></span>
-<span id="cb18-14"><a href="#cb18-14" tabindex="-1"></a>    <span class="va">xlabel</span>(<span class="va">tlo</span><span class="op">,</span><span class="ss">'Day of trial'</span>)</span>
-<span id="cb18-15"><a href="#cb18-15" tabindex="-1"></a>    <span class="va">ylabel</span>(<span class="va">tlo</span><span class="op">,</span><span class="ss">'Inflammation'</span>)</span>
-<span id="cb18-16"><a href="#cb18-16" tabindex="-1"></a></span>
-<span id="cb18-17"><a href="#cb18-17" tabindex="-1"></a>    <span class="co">% Plot average inflammation per day</span></span>
-<span id="cb18-18"><a href="#cb18-18" tabindex="-1"></a>    <span class="va">nexttile</span></span>
-<span id="cb18-19"><a href="#cb18-19" tabindex="-1"></a>    <span class="va">plot</span>(<span class="va">mean</span>(<span class="va">patient_data</span><span class="op">,</span> <span class="fl">1</span>))</span>
-<span id="cb18-20"><a href="#cb18-20" tabindex="-1"></a>    <span class="va">title</span>(<span class="ss">'Average'</span>)</span>
-<span id="cb18-21"><a href="#cb18-21" tabindex="-1"></a></span>
-<span id="cb18-22"><a href="#cb18-22" tabindex="-1"></a>    <span class="co">% Plot max inflammation per day</span></span>
-<span id="cb18-23"><a href="#cb18-23" tabindex="-1"></a>    <span class="va">nexttile</span></span>
-<span id="cb18-24"><a href="#cb18-24" tabindex="-1"></a>    <span class="va">plot</span>(<span class="va">max</span>(<span class="va">patient_data</span><span class="op">,</span> []<span class="op">,</span> <span class="fl">1</span>))</span>
-<span id="cb18-25"><a href="#cb18-25" tabindex="-1"></a>    <span class="va">title</span>(<span class="ss">'Max'</span>)</span>
-<span id="cb18-26"><a href="#cb18-26" tabindex="-1"></a></span>
-<span id="cb18-27"><a href="#cb18-27" tabindex="-1"></a>    <span class="co">% Plot min inflammation per day</span></span>
-<span id="cb18-28"><a href="#cb18-28" tabindex="-1"></a>    <span class="va">nexttile</span></span>
-<span id="cb18-29"><a href="#cb18-29" tabindex="-1"></a>    <span class="va">plot</span>(<span class="va">min</span>(<span class="va">patient_data</span><span class="op">,</span> []<span class="op">,</span> <span class="fl">1</span>))</span>
-<span id="cb18-30"><a href="#cb18-30" tabindex="-1"></a>    <span class="va">title</span>(<span class="ss">'Min'</span>)</span>
-<span id="cb18-31"><a href="#cb18-31" tabindex="-1"></a></span>
-<span id="cb18-32"><a href="#cb18-32" tabindex="-1"></a>    <span class="co">% Save plot in 'results' folder as png image:</span></span>
-<span id="cb18-33"><a href="#cb18-33" tabindex="-1"></a>    <span class="va">saveas</span>(<span class="va">gcf</span><span class="op">,</span><span class="va">plot_name</span>)</span>
-<span id="cb18-34"><a href="#cb18-34" tabindex="-1"></a></span>
-<span id="cb18-35"><a href="#cb18-35" tabindex="-1"></a>    <span class="va">close</span>()</span>
-<span id="cb18-36"><a href="#cb18-36" tabindex="-1"></a><span class="kw">end</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="kw">function</span> <span class="va">plot_daily_average</span>(<span class="va">data_file</span><span class="op">,</span><span class="va">plot_name</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>    <span class="co">%PLOT_DAILY_AVERAGE   Plots daily average, max and min inflammation accross patients.</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>    <span class="co">%   The function takes the data in data_file and saves it as plot_name</span></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>    <span class="co">%   Example usage:</span></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>    <span class="co">%       plot_daily_average('data/base/inflammation-03.csv','results/plot3.png')</span></span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>    <span class="co">% Load patient data</span></span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a>    <span class="va">patient_data</span> <span class="op">=</span> <span class="va">readmatrix</span>(<span class="va">data_file</span>)<span class="op">;</span></span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a>    <span class="va">figure</span>(<span class="va">visible</span><span class="op">=</span><span class="ss">'off'</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a>    <span class="co">% Define tiled layout and labels</span></span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a>    <span class="va">tlo</span> <span class="op">=</span> <span class="va">tiledlayout</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span>)<span class="op">;</span></span>
+<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a>    <span class="va">xlabel</span>(<span class="va">tlo</span><span class="op">,</span><span class="ss">'Day of trial'</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" tabindex="-1"></a>    <span class="va">ylabel</span>(<span class="va">tlo</span><span class="op">,</span><span class="ss">'Inflammation'</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" tabindex="-1"></a>    <span class="co">% Plot average inflammation per day</span></span>
+<span id="cb19-18"><a href="#cb19-18" tabindex="-1"></a>    <span class="va">nexttile</span></span>
+<span id="cb19-19"><a href="#cb19-19" tabindex="-1"></a>    <span class="va">plot</span>(<span class="va">mean</span>(<span class="va">patient_data</span><span class="op">,</span> <span class="fl">1</span>))</span>
+<span id="cb19-20"><a href="#cb19-20" tabindex="-1"></a>    <span class="va">title</span>(<span class="ss">'Average'</span>)</span>
+<span id="cb19-21"><a href="#cb19-21" tabindex="-1"></a></span>
+<span id="cb19-22"><a href="#cb19-22" tabindex="-1"></a>    <span class="co">% Plot max inflammation per day</span></span>
+<span id="cb19-23"><a href="#cb19-23" tabindex="-1"></a>    <span class="va">nexttile</span></span>
+<span id="cb19-24"><a href="#cb19-24" tabindex="-1"></a>    <span class="va">plot</span>(<span class="va">max</span>(<span class="va">patient_data</span><span class="op">,</span> []<span class="op">,</span> <span class="fl">1</span>))</span>
+<span id="cb19-25"><a href="#cb19-25" tabindex="-1"></a>    <span class="va">title</span>(<span class="ss">'Max'</span>)</span>
+<span id="cb19-26"><a href="#cb19-26" tabindex="-1"></a></span>
+<span id="cb19-27"><a href="#cb19-27" tabindex="-1"></a>    <span class="co">% Plot min inflammation per day</span></span>
+<span id="cb19-28"><a href="#cb19-28" tabindex="-1"></a>    <span class="va">nexttile</span></span>
+<span id="cb19-29"><a href="#cb19-29" tabindex="-1"></a>    <span class="va">plot</span>(<span class="va">min</span>(<span class="va">patient_data</span><span class="op">,</span> []<span class="op">,</span> <span class="fl">1</span>))</span>
+<span id="cb19-30"><a href="#cb19-30" tabindex="-1"></a>    <span class="va">title</span>(<span class="ss">'Min'</span>)</span>
+<span id="cb19-31"><a href="#cb19-31" tabindex="-1"></a></span>
+<span id="cb19-32"><a href="#cb19-32" tabindex="-1"></a>    <span class="co">% Save plot in 'results' folder as png image:</span></span>
+<span id="cb19-33"><a href="#cb19-33" tabindex="-1"></a>    <span class="va">saveas</span>(<span class="va">gcf</span><span class="op">,</span><span class="va">plot_name</span>)</span>
+<span id="cb19-34"><a href="#cb19-34" tabindex="-1"></a></span>
+<span id="cb19-35"><a href="#cb19-35" tabindex="-1"></a>    <span class="va">close</span>()</span>
+<span id="cb19-36"><a href="#cb19-36" tabindex="-1"></a><span class="kw">end</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -4145,42 +4158,42 @@ add the extension <code>png</code> in your function).</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="kw">function</span> <span class="va">patient_vs_mean</span>(<span class="va">per_day_mean</span><span class="op">,</span><span class="va">patient_data</span><span class="op">,</span><span class="va">patient_reference</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>    <span class="co">% PATIENT_VS_MEAN   Plots the global mean and patient inflammation on top of each other.</span></span>
-<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>    <span class="co">%   per_day_mean should be a vector with the global mean.</span></span>
-<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>    <span class="co">%   patient_data should be a vector with only the patient data.</span></span>
-<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>    <span class="co">%   patient_reference will be used to identify the patient on the plot.</span></span>
-<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>    <span class="co">%</span></span>
-<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>    <span class="co">%   Sample usage:</span></span>
-<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a>    <span class="co">%       patient_data = readmatrix('data/base/inflammation-01.csv');</span></span>
-<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a>    <span class="co">%       per_day_mean = mean(patient_data);</span></span>
-<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a>    <span class="co">%       patient_vs_mean(per_day_mean,patient_data(5,:),"Patient 5")</span></span>
-<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a></span>
-<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a>    <span class="va">figure</span>(<span class="va">visible</span><span class="op">=</span><span class="ss">'off'</span>)</span>
-<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a></span>
-<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a>    <span class="co">%Plot per_day_mean</span></span>
-<span id="cb19-15"><a href="#cb19-15" tabindex="-1"></a>    <span class="va">plot</span>(<span class="va">per_day_mean</span><span class="op">,</span><span class="va">DisplayName</span><span class="op">=</span><span class="st">"Mean"</span>)</span>
-<span id="cb19-16"><a href="#cb19-16" tabindex="-1"></a>    <span class="va">legend</span></span>
-<span id="cb19-17"><a href="#cb19-17" tabindex="-1"></a>    <span class="va">title</span>(<span class="ss">'Daily average inflammation'</span>)</span>
-<span id="cb19-18"><a href="#cb19-18" tabindex="-1"></a>    <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
-<span id="cb19-19"><a href="#cb19-19" tabindex="-1"></a>    <span class="va">ylabel</span>(<span class="ss">'Inflammation'</span>)</span>
-<span id="cb19-20"><a href="#cb19-20" tabindex="-1"></a></span>
-<span id="cb19-21"><a href="#cb19-21" tabindex="-1"></a>    <span class="co">%Overlap patient data</span></span>
-<span id="cb19-22"><a href="#cb19-22" tabindex="-1"></a>    <span class="va">hold</span> <span class="va">on</span></span>
-<span id="cb19-23"><a href="#cb19-23" tabindex="-1"></a>    <span class="va">plot</span>(<span class="va">patient_data</span><span class="op">,</span><span class="va">DisplayName</span><span class="op">=</span><span class="va">patient_reference</span>)</span>
-<span id="cb19-24"><a href="#cb19-24" tabindex="-1"></a>    <span class="va">hold</span> <span class="va">off</span></span>
-<span id="cb19-25"><a href="#cb19-25" tabindex="-1"></a></span>
-<span id="cb19-26"><a href="#cb19-26" tabindex="-1"></a>    <span class="co">% Save plot</span></span>
-<span id="cb19-27"><a href="#cb19-27" tabindex="-1"></a>    <span class="va">saveas</span>(<span class="va">gcf</span><span class="op">,</span><span class="st">"results/"</span><span class="op">+</span><span class="va">patient_reference</span><span class="op">+</span><span class="st">".png"</span>)</span>
-<span id="cb19-28"><a href="#cb19-28" tabindex="-1"></a></span>
-<span id="cb19-29"><a href="#cb19-29" tabindex="-1"></a>    <span class="va">close</span>()</span>
-<span id="cb19-30"><a href="#cb19-30" tabindex="-1"></a></span>
-<span id="cb19-31"><a href="#cb19-31" tabindex="-1"></a><span class="kw">end</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="kw">function</span> <span class="va">patient_vs_mean</span>(<span class="va">per_day_mean</span><span class="op">,</span><span class="va">patient_data</span><span class="op">,</span><span class="va">patient_reference</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>    <span class="co">% PATIENT_VS_MEAN   Plots the global mean and patient inflammation on top of each other.</span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>    <span class="co">%   per_day_mean should be a vector with the global mean.</span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>    <span class="co">%   patient_data should be a vector with only the patient data.</span></span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>    <span class="co">%   patient_reference will be used to identify the patient on the plot.</span></span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>    <span class="co">%</span></span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>    <span class="co">%   Sample usage:</span></span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a>    <span class="co">%       patient_data = readmatrix('data/base/inflammation-01.csv');</span></span>
+<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a>    <span class="co">%       per_day_mean = mean(patient_data);</span></span>
+<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a>    <span class="co">%       patient_vs_mean(per_day_mean,patient_data(5,:),"Patient 5")</span></span>
+<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a>    <span class="va">figure</span>(<span class="va">visible</span><span class="op">=</span><span class="ss">'off'</span>)</span>
+<span id="cb20-13"><a href="#cb20-13" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" tabindex="-1"></a>    <span class="co">%Plot per_day_mean</span></span>
+<span id="cb20-15"><a href="#cb20-15" tabindex="-1"></a>    <span class="va">plot</span>(<span class="va">per_day_mean</span><span class="op">,</span><span class="va">DisplayName</span><span class="op">=</span><span class="st">"Mean"</span>)</span>
+<span id="cb20-16"><a href="#cb20-16" tabindex="-1"></a>    <span class="va">legend</span></span>
+<span id="cb20-17"><a href="#cb20-17" tabindex="-1"></a>    <span class="va">title</span>(<span class="ss">'Daily average inflammation'</span>)</span>
+<span id="cb20-18"><a href="#cb20-18" tabindex="-1"></a>    <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
+<span id="cb20-19"><a href="#cb20-19" tabindex="-1"></a>    <span class="va">ylabel</span>(<span class="ss">'Inflammation'</span>)</span>
+<span id="cb20-20"><a href="#cb20-20" tabindex="-1"></a></span>
+<span id="cb20-21"><a href="#cb20-21" tabindex="-1"></a>    <span class="co">%Overlap patient data</span></span>
+<span id="cb20-22"><a href="#cb20-22" tabindex="-1"></a>    <span class="va">hold</span> <span class="va">on</span></span>
+<span id="cb20-23"><a href="#cb20-23" tabindex="-1"></a>    <span class="va">plot</span>(<span class="va">patient_data</span><span class="op">,</span><span class="va">DisplayName</span><span class="op">=</span><span class="va">patient_reference</span>)</span>
+<span id="cb20-24"><a href="#cb20-24" tabindex="-1"></a>    <span class="va">hold</span> <span class="va">off</span></span>
+<span id="cb20-25"><a href="#cb20-25" tabindex="-1"></a></span>
+<span id="cb20-26"><a href="#cb20-26" tabindex="-1"></a>    <span class="co">% Save plot</span></span>
+<span id="cb20-27"><a href="#cb20-27" tabindex="-1"></a>    <span class="va">saveas</span>(<span class="va">gcf</span><span class="op">,</span><span class="st">"results/"</span><span class="op">+</span><span class="va">patient_reference</span><span class="op">+</span><span class="st">".png"</span>)</span>
+<span id="cb20-28"><a href="#cb20-28" tabindex="-1"></a></span>
+<span id="cb20-29"><a href="#cb20-29" tabindex="-1"></a>    <span class="va">close</span>()</span>
+<span id="cb20-30"><a href="#cb20-30" tabindex="-1"></a></span>
+<span id="cb20-31"><a href="#cb20-31" tabindex="-1"></a><span class="kw">end</span></span></code></pre>
 </div>
 </div>
 </div>
