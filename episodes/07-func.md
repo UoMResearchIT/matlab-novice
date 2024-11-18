@@ -23,19 +23,19 @@ exercises: 20
 ## Writing functions from scratch
 
 It has come to our attention that the data about inflammation that we've been analysing contains some systematic errors. 
-The measurements were made using the incorrect scale, with inflammation recorded in Arbitrary Inflammation Units (AIU) 
-rather than the scientific standard International Inflmmation Units (IIU). Luckily there is a handy formula which can be 
-used for converting measurements in AIU to IIU, but it involves some hard to remember constants:
+The measurements were made using the incorrect scale, with inflammation recorded in units of Swellocity (swell) 
+rather than the scientific standard units of Inflammatons (inf). Luckily there is a handy formula which can be 
+used for converting measurements in Swellocity to Inflammatons, but it involves some hard to remember constants:
 
 ```matlab
-inflammation_IIU = (inflammation_AIU + B)*A
+inflammation_in_inf = (inflammation_in_swell + B)*A
 B = 5.634
 A = 0.275
 ```
-There are twelve files worth of data to be converted from AIU to IIU: is there a way we can do this quickly and 
+There are twelve files worth of data to be converted from Swellocity to Inflammatons: is there a way we can do this quickly and 
 conveniently? If we have to re-enter the conversion formula multiple times, the chance of us getting the constants 
 wrong is high. Thankfully there is a convenient way to teach MATLAB how to do new things, like converting units from 
-AIU to IIU. We can do this by writing a function.
+Swellocity to Inflammatons. We can do this by writing a function.
 
 We have already used some predefined MATLAB functions which we can pass arguments to. How can we define our own?
 
@@ -70,25 +70,25 @@ i.e., a file containing a function has to be placed in a directory that MATLAB k
 Following the same logic we used with scripts,
 we will put our source code files in the `src` folder.
 
-Let's put this into practice to create a function that will teach MATLAB to use our AIU to IIU conversion formula.
-Create a file called `inflammation_AIU_to_IIU.m` in the `src` folder,
+Let's put this into practice to create a function that will teach MATLAB to use our Swellocity to Inflammaton conversion formula.
+Create a file called `inflammation_swell_to_inf.m` in the `src` folder,
 enter the following function definition, and save the file:
 
 ```matlab
-function inflammation_in_IIU = inflammation_AIU_to_IIU(inflammation_in_AIU)
-   % INFLAMMATION_AIU_TO_IIU  Convert inflammation mesured in AIU to inflammation measued in IIU.
+function inflammation_in_inf = inflammation_swell_to_inf(inflammation_in_swell)
+   % INFLAMMATION_SWELL_TO_INF  Convert inflammation mesured in Swellocity to inflammation measured in Inflammatons.
 
    A = 0.275;
    B = 5.634;
 
-   inflammation_in_IIU = (inflammation_in_AIU + B)*A;
+   inflammation_in_inf = (inflammation_in_swell + B)*A;
 
 end
 ```
 We can now call our function as we would any other function in MATLAB:
 
 ```matlab
->> inflammation_AIU_to_IIU(0.5)
+>> inflammation_swell_to_inf(0.5)
 ```
 
 ```output
@@ -96,57 +96,65 @@ ans = 1.6869
 ```
 
 We got the number we expected, and at first glance it seems like it is almost the same as a script.
-However, if you look at the variables in the workspace, you'll probably notice one big difference.
-Although a variable called `inflammation_in_IIU` was defined in the function, it does not exist in our workspace.
+However, if you look at the variables in the workspace, you'll notice one big difference.
+Although a variable called `inflammation_in_inf` was defined in the function, it does not exist in our workspace.
 
 Lets have a look using the debugger to see what is happening.
 
-When we pass a value, like `0.5`, to the function, it is assigned to the variable `inflammation_in_AIU` so that it can 
+When we pass a value, like `0.5`, to the function, it is assigned to the variable `inflammation_in_swell` so that it can 
 be used in the body of the function. To return a value from the function, we must assign that value to the variable
-`inflammation_in_IIU` from our function definition line. What ever value `inflammation_in_IIU` has when the `end` 
+`inflammation_in_inf` from our function definition line. What ever value `inflammation_in_inf` has when the `end` 
 keyword in the function definition is reached, that will be the value returned.
 
-Outside the function, the variables `inflammation_in_AIU`, `inflammation_in_IIU`, `A`, and `B` aren't accessible; they
+Outside the function, the variables `inflammation_in_swell`, `inflammation_in_inf`, `A`, and `B` aren't accessible; they
 are only used by in function body.
 
-This is one of the major differences between scripts and functions: a script can be thought of as automating the command line, with full access to all variables in the base workspace, whereas a function has its own separate workspace.
+This is one of the major differences between scripts and functions: a script automates the command line, with full access to all variables in the base workspace, whereas a function has its own separate workspace.
 
 To be able to access variables from your workspace inside a function, you have to pass them in as inputs.
-To be able to save variables to your workspace, it needs to return them as outputs.
+To be able to save variables to your workspace from inside your function, the function needs to return them as outputs.
 
 As with any operation, if we want to save the result, we need to assign the result to a variable, for example:
 
 ```matlab
->> val_in_IIU = inflammation_AIU_to_IIU(0.5)
+>> val_in_inf = inflammation_swell_to_inf(0.5)
 ```
 
 ```output
-val_in_IIU = 1.6869
+val_in_inf = 1.6869
 ```
 
-And we can see `val_in_IIU` saved in our workspace.
+And we can see `val_in_inf` saved in our workspace.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ## Writing your own conversion function
 
-We'd like a function that reverses the conversion of AIU to IIU. Re-arrange the conversion
-formula and write a function called `inflammation_IIU_to_AIU` that converts inflammation measued in IIU to inflammation
-measured in AIU.
+We'd like a function that reverses the conversion of Swellocity to Inflammatons. Re-arrange the conversion
+formula and write a function called `inflammation_inf_to_swell` that converts inflammation measued in Inflammatons to inflammation
+measured in Swellocity.
 
 Remember to save your function definition in a file with the required name, start the file with the function definition 
 line, followed by the function body, ending with the `end` keyword.
 
+For reference the conversion formula to take inflammation measured in Swellocity to inflammation measured in Inflammatons is:
+
+```matlab
+inflammation_in_inf = (inflammation_in_swell + B)*A
+B = 5.634
+A = 0.275
+```
+
 :::::::::::::  solution
 
 ```matlab
-function inflammation_in_AIU = inflammation_IIU_to_AIU(inflammation_in_IIU)
-   % INFLAMMTION_IIU_TO_AIU   Convert inflammation measured in IIU to inflammation measured in AIU.
+function inflammation_in_swell = inflammation_inf_to_swell(inflammation_in_inf)
+   % INFLAMMTION_INF_TO_SWELL   Convert inflammation measured in Inflammatons to inflammation measured in Swellocity.
 
    A = 0.275;
    B = 5.634;
 
-   inflammation_in_AIU = inflammation_in_IIU/A - B;
+   inflammation_in_swell = inflammation_in_inf/A - B;
 
 end
 ```
