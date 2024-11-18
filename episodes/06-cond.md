@@ -173,61 +173,6 @@ at least one part is true
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## True and False Statements
-
-The operations we tested above evaluate to a logical value:
-`true` or `false`.
-However these numerical comparison tests aren't the only values
-which are `true` or `false` in MATLAB.
-For example, `1` is considered `true` and `0` is considered `false`.
-In fact, *any* value can be used in a conditional statement.
-
-Run the code below in order to discover
-which values are considered `true` and which are
-considered `false`.
-
-```matlab
-if ''
-    disp('empty string is true')
-else
-    disp('empty string is false')
-end
-
-if 'foo'
-    disp('non empty string is true')
-else
-    disp('non empty string is false')
-end
-
-if []
-    disp('empty array is true')
-else
-    disp('empty array is false')
-end
-
-if [22.5, 1.0]
-    disp('non empty array is true')
-else
-    disp('non empty array is false')
-end
-
-if [0, 0]
-    disp('array of zeros is true')
-else
-    disp('array of zeros is false')
-end
-
-if true
-    disp('true is true')
-else
-    disp('true is false')
-end
-```
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
 ## Close Enough
 
 Write a script called `near` that performs a test on two variables, and displays `1`
