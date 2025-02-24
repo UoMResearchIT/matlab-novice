@@ -28,6 +28,15 @@ way to develop insight is often to visualise data. Visualisation
 deserves an entire lecture (or course) of its own, but we can
 explore a few features of MATLAB here.
 
+We will be using the data that we have loaded from `inflammation-01.csv` and the `per_day_mean` and `per_day_max` variables.
+If you haven't done so, you can load the data with:
+```matlab
+>> patient_data = readmatrix("data/base/inflammation-01.csv");
+>> per_day_mean = mean(patient_data);
+>> per_day_max = max(patient_data);
+>> patient_5 = patient_data(5,:);
+```
+
 We will start by exploring the function `plot`.
 The most common usage is to provide two vectors, like `plot(X,Y)`.
 Lets start by plotting the average inflammation across patients over time.
@@ -48,7 +57,7 @@ Then our plot can be generated with:
 and it uses the index of each element as the x axis.
 For our patient data the indices coincide with the day of the study,
 so `plot(per_day_mean)` generates the same plot.
-In most cases, however, using the indices on the x axis is not desireable.
+In most cases, however, using the indices on the x axis is not desirable.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -79,12 +88,11 @@ Let's have a look at two other statistics: the maximum and minimum
 inflammation per day across all patients.
 ```matlab
 >> plot(day_of_trial, per_day_max)
->> title("Maximum inflammation per day")
->> ylabel("Inflammation")
->> xlabel("Day of trial")
 ```
 
-![](fig/plotting_max-inflammation.svg){alt='Maximum inflammation'}
+![](fig/plotting_max-inflammation-no-labels.svg){alt='Max inflammation with no labels'}
+
+Oh no! all our labels are gone!, we need to add them back, but this is going to be tedious...
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
@@ -114,21 +122,40 @@ To do that, right click on the `src` directory, go to "Add to Path" and to "Sele
 
 Try copying and pasting the plot commands for the max inflammation on the script and clicking on the "Run" button!
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-Because we now have a script, it should be much easier to change the plot to the minimum inflammation:
+We can actually also include the data loading and the calculation of the mean and max in the script, so it will look like:
 
 ```matlab
->> day_of_trial = 1:40;
->> plot(day_of_trial, per_day_min)
->> title("Minimum inflammation per day")
->> ylabel("Inflammation")
->> xlabel("Day of trial")
+% *Script* to load data and plot inflammation values
+
+% Load the data
+patient_data = readmatrix("data/base/inflammation-01.csv");
+per_day_mean = mean(patient_data);
+per_day_max = max(patient_data);
+patient_5 = patient_data(5,:);
+day_of_trial = 1:40;
+
+% Plot
+plot(day_of_trial, per_day_mean)
+title("Mean inflammation per day")
+xlabel("Day of trial")
+ylabel("Inflammation")
 ```
 
-![](fig/plotting_min-inflammation.svg){alt='Minumum inflammation'}
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
-These two are much more noisy than the mean, as we'd be expect.
+Because we now have a script, it should be much easier to change the plot to plot the max values:
+
+```matlab
+% *Script* to load data and plot inflammation values
+%...
+plot(day_of_trial, per_day_max)
+title("Maximum inflammation per day")
+%...
+```
+
+![](fig/plotting_max-inflammation.svg){alt='Maximum inflammation'}
+
+Much better!
 
 ## Multiple lines in a plot
 
@@ -147,30 +174,42 @@ and then open the new file with `edit src/multiline_plot.m`, as before.
 If we are displaying more than one line, it is important to add a legend.
 We can specify the legend names by adding `,DisplayName="legend name here"`
 inside the plot function. We then need to activate the legend by running `legend`.
-So, to plot the mean values we first do:
+So, to plot the mean values we first go back to our script for the mean, and add a legend:
 ```matlab
->> day_of_trial = 1:40;
->> plot(day_of_trial, per_day_mean, DisplayName="Mean")
->> legend
->> title("Daily average inflammation")
->> xlabel("Day of trial")
->> ylabel("Inflammation")
+% *Script* to load data and plot multiple lines on the same plot
+
+% Load the data
+patient_data = readmatrix("data/base/inflammation-01.csv");
+per_day_mean = mean(patient_data);
+per_day_max = max(patient_data);
+patient_5 = patient_data(5,:);
+day_of_trial = 1:40;
+
+% Plot
+plot(day_of_trial, per_day_mean, DisplayName="Mean")    % Added DisplayName
+legend                                                  % Turns on legend
+title("Daily average inflammation")
+xlabel("Day of trial")
+ylabel("Inflammation")
 ```
 
-![](fig/plotting_average_inflammation_with_legend.svg){alt='Average inflamation with legend'}
+![](fig/plotting_average_inflammation_with_legend.svg){alt='Average inflammation with legend'}
 
 Then, we can use the instruction `hold on` to add a plot for patient_5.
 ```matlab
->> hold on
->> plot(day_of_trial, patient_5, DisplayName="Patient 5")
->> hold off
+% *Script* to load data and plot multiple lines on the same plot
+%...
+hold on
+plot(day_of_trial, patient_5, DisplayName="Patient 5")
+hold off
 ```
 
-![](fig/plotting_average_inflammation_and_patient_5_with_legend.svg){alt='Average inflamation and Patient 5'}
+![](fig/plotting_average_inflammation_and_patient_5_with_legend.svg){alt='Average inflammation and Patient 5'}
 
-So this patient seems fairly average.
+Great! We can now see the two lines overlapped!
 
-Remember to tell MATLAB you are done by adding `hold off` when you have finished adding lines to the figure!
+Remember to tell MATLAB you are done by adding `hold off` when you have finished adding lines to the figure.
+Alternatively, put the `hold off` command just before your first plot, and `hold on` immediately after it.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -180,26 +219,23 @@ Try to plot the mean across all patients and the inflammation data for patients 
 
 :::::::::::::::  solution
 
-The first part for the mean remains unchanged: 
+Most of the script remains unchanged, but we need to get the specific data for each patient.
+We can get the data for patients 3 and 4 as we do for patient 5.
+We can either save that data in a variable, or use it directly in the plot instruction, like this:
 
 ```matlab
->> day_of_trial = 1:40;
->> plot(day_of_trial, per_day_mean, DisplayName="Mean")
->> legend
->> title("Daily average inflammation")
->> xlabel("Day of trial")
->> ylabel("Inflammation")
-```
-
-Now we need to get the specific data for each patient.
-We can get the data for patients 3 and 4 as we did in the previous episode i.e. `patient_data(3,:)`.
-Now we can either save that data in a variable, or we use it directly in the plot instruction, like this:
-
-```matlab
->> hold on
->> plot(day_of_trial, patient_data(3,:), DisplayName="Patient 3")
->> plot(day_of_trial, patient_data(4,:), DisplayName="Patient 4")
->> hold off
+% *Script* to load data and plot multiple lines on the same plot
+%...
+% Plot
+plot(day_of_trial, per_day_mean, DisplayName="Mean")
+legend
+title("Daily average inflammation")
+xlabel("Day of trial")
+ylabel("Inflammation")
+hold on
+plot(day_of_trial, patient_data(3,:), DisplayName="Patient 3")
+plot(day_of_trial, patient_data(4,:), DisplayName="Patient 4")
+hold off
 ```
 
 The result looks like this:
@@ -229,35 +265,46 @@ Lets start a new script for this topic:
 ```
 We can show the average daily min and max plots together with:
 ```matlab
->> day_of_trial = 1:40;
->> tiledlayout(1, 2)
->> nexttile
->> plot(day_of_trial, per_day_max)
->> title("Max")
->> xlabel("Day of trial")
->> ylabel("Inflamation")
->> nexttile
->> plot(day_of_trial, per_day_min)
->> title("Min")
->> xlabel("Day of trial")
->> ylabel("Inflamation")
+% *Script* to load data and add multiple plots to a figure
+
+% Load the data
+patient_data = readmatrix("data/base/inflammation-01.csv");
+per_day_mean = mean(patient_data);
+per_day_max = max(patient_data);
+patient_5 = patient_data(5,:);
+day_of_trial = 1:40;
+
+% Plot
+tiledlayout(1, 2)                   % Grid of 1 row and 2 columns
+nexttile                            % First plot, on tile 1,1
+plot(day_of_trial, per_day_max)
+title("Max")
+xlabel("Day of trial")
+ylabel("Inflamation")
+nexttile                            % Second plot, on tile 1,2
+plot(day_of_trial, per_day_min)
+title("Min")
+xlabel("Day of trial")
+ylabel("Inflamation")
 ```
 ![](fig/plotting_max-min-tiledplot.svg){alt='Max Min tiledplot'}
 
 We can also specify titles and labels for the whole tiled layout if we assign the tiled layout to a variable 
 and pass it as a first argument to `title`, `xlabel` or `ylabel`, for example:
 ```matlab
->> day_of_trial = 1:40;
->> tlo=tiledlayout(1, 2);
->> title(tlo,"Per day data")
->> xlabel(tlo,"Day of trial")
->> ylabel(tlo,"Inflamation")
->> nexttile
->> plot(day_of_trial, per_day_max)
->> title("Max")
->> nexttile
->> plot(day_of_trial, per_day_min)
->> title("Min")
+% *Script* to load data and add multiple plots to a figure
+%...
+% Plot
+tlo=tiledlayout(1, 2);              % Saves the tiled layout to a variable
+title(tlo,"Per day data")           % Title for the whole layout
+xlabel(tlo,"Day of trial")          % Shared x label
+ylabel(tlo,"Inflamation")           % Shared y label
+nexttile
+plot(day_of_trial, per_day_max)
+title("Max")
+nexttile
+plot(day_of_trial, per_day_min)
+title("Min")
 ```
 
 ![](fig/plotting_max-min-tiledplot-titles.svg){alt='Max Min tiledplot with shared labels'}

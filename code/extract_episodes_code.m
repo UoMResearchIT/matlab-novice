@@ -50,11 +50,12 @@ function extract_episodes_code(episode_names,q)
             % Check for the start of a code block
             if startsWith(line, '```matlab')
                 in_code_block = true;
-                code_block = []; % Reset codeBlock
+                code_block = ['```matlab']; % Reset codeBlock
             elseif in_code_block 
                 if startsWith(line, '```')
                     in_code_block = false;
                     % Append full codeBlock to codeblock array
+                    code_block = [code_block; "```"];
                     code_blocks = [code_blocks; code_block];
                 else
                     % Accumulate lines within the code block
@@ -87,13 +88,29 @@ function extract_episodes_code(episode_names,q)
             error('Failed to save to file %s', output_file_name);
         end
         try
+            in_script=false;
             for j = 1:length(code_blocks)
                 stripped_line=strrep(code_blocks(j), ">> ", '');
+                if stripped_line == "```" || stripped_line == "```matlab"
+                    if in_script
+                        in_script=false;
+                        fprintf(out_fid, '%s\n', "----------------------------------------");
+                    end
+                    continue
+                end
+                if contains(stripped_line,"*Script*")
+                    in_script=true;
+                    fprintf(out_fid, '%s\n', "----------------------------------------");
+                end
                 if stripped_line == code_blocks(j) && ...
                         stripped_line ~= "" && ...
                         ~(startsWith(stripped_line,"%")) && ...
-                        ~quiet
-                    disp("Detected a line without leading >> ")
+                        ~quiet && ...
+                        ~in_script
+                    disp("Detected a line without leading >> : "+stripped_line)
+                end
+                if stripped_line == "  "
+                    stripped_line = "";
                 end
                 fprintf(out_fid, '%s\n', stripped_line);
             end
