@@ -232,9 +232,9 @@ c3 =
 ```
 
 We can also combine comparisons.
-For example, we can check whether frac is smaller than 10 ***and*** the age is greater than 5
+For example, we can check whether frac is smaller than 10 ***and*** the age is greater than 2.5
 ```matlab
->> c4 = frac < 10 && age > 5
+>> c4 = frac < 10 && age > 2.5
 ```
 ```output
 c4 =
@@ -245,9 +245,9 @@ c4 =
 In this case, both conditions need to be met for the result to be "yes" (1).
 
 If we want a "yes" as long as at least one of the conditions are met,
-we would ask if frac is smaller than 10 ***or*** the age is greater than 5
+we would ask if frac is smaller than 10 ***or*** the age is greater than 2.5
 ```matlab
->> c5 = frac < 10 || age > 5
+>> c5 = frac < 10 || age > 2.5
 ```
 ```output
 c5 =
@@ -255,54 +255,74 @@ c5 =
    1
 ```
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+It is quite common to want to *include the limits* in a comparison.
+For example, we might want to know if a number is greater or equal to another.
+We could construct this with two comparisons, one for greater and one for equal:
+```matlab
+>> c6 = age > 2.5 || age == 2.5
+```
+```output
+c6 =
+  logical
+   0
+```
+This is so common, however, that MATLAB has the special combinations saved for this: `>=` and `<=`.
 
-## Negating conditions and including the limits
-
-We often asks questions or characterise things in negative.
+Finally, we often asks questions or state things in negative.
 "We did not start late today.",
 "I was not going faster than the speed limit officer!",
 and "I didn't shoot no deputy" are just some examples.
 
 Naturally, we may want to do so in programming too.
 In MATLAB the negative is represented with `~`.
-For example, we can check if the speed is indeed not faster than the limit with `~(speed > 70)`,
+For example, we can check if the speed is indeed not faster than the limit with:
+```matlab
+>> speed = 65;
+>> ~(speed > 70)
+```
+```output
+ans =
+  logical
+   1
+```
 which MATLAB reads as "not speed greater than 70".
+
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Conditionals
+
 
 Can you express these questions in MATLAB code?
 
+**Note:** make sure that `x=55` and `y=2` are defined before you start!
+
+- Is 1 + 2 + 3 + 4 smaller than 10?
 - Is 1 + 2 + 3 + 4 not smaller than 10?
+- Is 5 to the power of 3 equal to 125?
 - Is 5 to the power of 3 different from 125?
+- Is x + y smaller than x/y?
+- Is x + y not smaller than x/y?
 - Is x + y greater or equal to x/y?
 - Is x + y not greater or equal to x/y?
 
 :::::::::::::::  solution
 
-We can ask the first two question in positive, encapsulate it in brackets, and then negate it:
+```matlab
+>> 1 + 2 + 3 + 4 < 10     # false
+>> ~(1 + 2 + 3 + 4 < 10)  # true
+>> 5^3 == 125             # true
+>> ~(5^3 == 125)          # false - Can also be: 5^3 ~= 125
+>> x+y < x/y              # false
+>> ~(x+y < x/y)           # true
+>> x+y >= x/y             # true - same as the previous one!
+>> ~(x+y >= x/y)          # false - same as x+y < x/y
+```
 
-- `~(1 + 2 + 3 + 4 < 10)`
-- `~(5^3 == 125)`
-
-Asking if two things are different is so common, that MATLAB has a special symbol for it.
-So the second question, we could have asked instead with
-
-- `5^3 ~= 125`
-
-We can ask if x+y is greater or equal to x/y with: 
-
-- `x+y > x/y || x+y == x/y`
-
-There is actually again a shortcut for this, MATLAB understands `>=` as "greater or equal to",
-and of cours for smaller or equal too it understands `<=`.
-So the same condition could be written as:
-
-- `x+y >= x/y`
-
-Asking if x + y is not greater or equal to x/y is the same question as above, but negated.
-Remembering to add the brackets, we get:
-
-- `~(x+y > x/y || x+y == x/y)`
-- or `~(x+y >= x/y)`
+Asking if two things are different is so common, that MATLAB has a special symbol for it: `~=`.
+The fourth question,then, we could have asked instead as `5^3 ~= 125`.
+Unfortunately, there is no special symbol for negating the `>`, `<`, `>=`, and `<=` comparisons.
+As we have seen, however, if we are clever with which one we use, the come for free!
 
 :::::::::::::::::::::::::
 
