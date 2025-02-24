@@ -181,7 +181,7 @@ std_p5 =
 ## All data points at once
 
 Can you think of a way to get the mean of the whole data?
-What about the `max`, `min` and `std`?
+What about the `max`?
 
 
 :::::::::::::::  solution
@@ -196,19 +196,13 @@ To compute the mean, we then use:
 global_mean =
     0.1053
 ```
-This works for `max`, `min` and `std` too:
+This works for `max` too:
 ```matlab
 >> global_max = max(patient_data(:))
->> global_min = min(patient_data(:))
->> global_std = std(patient_data(:))
 ```
 ```output
 global_max =
     0.4530
-global_min =
-     0
-global_std =
-    0.1118
 ```
 
 :::::::::::::::::::::::::
@@ -219,8 +213,6 @@ Now that we have the global statistics, we can check how patient 5 compares with
 ```matlab
 >> mean_p5 > global_mean
 >> max_p5 == global_max
->> min_p5 == global_min
->> std_p5 < global_std
 ```
 ```
 ans =
@@ -229,27 +221,9 @@ ans =
 ans =
   logical
    0
-ans =
-  logical
-   1
-ans =
-  logical
-   0
 ```
-So we know that patient 5 did not suffer more inflamation than average,
-that they are not the patient who got the most inflamed,
-that they had the global minimum inflamation at some point (0),
-and that the std of their inflamation is not below the average.
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Food for thought
-
-How would you find the patient who got the highest inflamation?
-
-Would you be happy to do it if you had 1000 patients?
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+So we know that patient 5 did not suffer more inflammation than average,
+and that they are not the patient who got the most inflamed.
 
 #### **One day at a time**
 
@@ -260,59 +234,17 @@ we want to select all the rows for a given column:
 >> day_9 = patient_data(:,9);
 ```
 The result is now not a row of 40 elements, but a column with 60 items.
-However, MATLAB is smart enough to figure out what to do with enquieries just like the ones we did before.
+However, MATLAB is smart enough to figure out what to do with enquiries just like the ones we did before.
 ```matlab
 >> mean_d9 = mean(day_9)
 >> max_d9 = max(day_9)
->> min_d9 = min(day_9)
->> std_d9 = std(day_9)
 ```
 ```output
 mean_d9 =
     0.3116
 max_d9 =
     0.3780
-min_d9 =
-    0.2290
-std_d9 =
-    0.0186
 ```
-
-We could now check how day 9 compares to the global values:
-```matlab
->> mean_d9 > global_mean
->> max_d9 == global_max
->> min_d9 == global_min
->> std_d9 < global_std
-```
-```
-ans =
-  logical
-   1
-ans =
-  logical
-   0
-ans =
-  logical
-   0
-ans =
-  logical
-   1
-```
-So we know that at day 9 there was significant inflamation,
-but that it is not the day with the highest inflamation;
-Also, that every patient was at least a bit inflamed at that moment,
-and that the standard deviation of inflamation this day is below the standard deviation of the whole dataset (so datapoints are closer to each other).
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Food for thought
-
-How would you find which days had an inflamation value above the global mean?
-
-Would you be happy to do it if you had 1000 days worth of data?
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
 
 #### **Whole array analysis**
 
@@ -323,22 +255,20 @@ It is definitely tempting to simply call the mean on the array, so let's try it:
 ```matlab
 >> x=mean(patient_data);
 ```
-We've supressed the output, but the workspace (or use of `size`) tells us that the result is a 1x40 array.
+We've suppressed the output, but the workspace (or use of `size`) tells us that the result is a 1x40 array.
 Matlab assumed that we want column averages, and indeed that is something we might want.
 
 The other statistics behave in the same way, so we can more appropriately label our variables as:
 ```matlab
 >> per_day_mean = mean(patient_data);
 >> per_day_max = max(patient_data);
->> per_day_min = min(patient_data);
->> per_day_std = std(patient_data);
 ```
 
 You'll notice that each of the above variables is a `1×40` array.
 
 Now that we have the information for each day in an array,
 we can take advantage of Matlab's capacity to do array operations.
-For example, we can find out which days had an inflamation above the global average:
+For example, we can find out which days had an inflammation above the global average:
 ```matlab
 >> per_day_mean > global_mean
 ```
@@ -361,7 +291,12 @@ ans =
 So it seems that days 3 to 17 were the critical days.
 
 
-But what if we want the analysis per patient, instead of per day?
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+### Per patient analysis
+
+We have seen that `mean` and `max` can compute the *per day* statistics if we called them on the whole array.
+But how can we get the *per patient* statistics?
 
 Lets look at the documentation for `mean`, either through the documentation browser or using the `help` command
 ```matlab
@@ -411,7 +346,7 @@ The first paragraph explains why it worked for a single day or patient.
 The input we used was a vector, so it took the mean.
 
 The second paragraph explains why we got per-day means when we used the whole data as input.
-Our array is 2D, and the first dimention is the rows, so it averaged the rows.
+Our array is 2D, and the first dimension is the rows, so it averaged the rows.
 
 The third paragraph is the key to what we want to do now. 
 A second argument `DIM` can be used to specify the direction in which to take the mean.
@@ -422,79 +357,17 @@ If we want patient averages, we want the columns to be averaged, that is, dimens
 
 As expected, the result is a `60×1` vector, with the mean for each patient.
 
-Unfortunately, `max`, `min` and `std` do not behave quite in the same way.
-If you explore their documentation, you'll see that we need to add another argument,
-so that the commands become:
+Unfortunately, `max` does not behave quite in the same way.
+If you explore its documentation, you'll see that we need to add another argument,
+so that the command becomes:
 ```matlab
 >> per_patient_max = max(patient_data,[],2);
->> per_patient_min = min(patient_data,[],2);
->> per_patient_std = std(patient_data,[],2);
 ```
-
-All of the above return a `60×1` vector.
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Most inflamed patients
-
-Can you find the patients that got the highest inflamation?
-
-:::::::::::::::  solution
-
-Using the power MATLAB has to compare arrays,
-we can check which patients have a `max` equal to the `global_max`.
-If we wrap this check in the find function, we get the row numbers:
-```matlab
->> find(per_patient_max == global_max)
-```
-```
-ans =
-     31
-```
-So patient 31 has the maximum inflamation level.
-
-<br>
-
-::::::::::::  solution
-
-## Alternative solution
-
-We can only do this because we had already calculated `per_patient_max`.
-However, there is another way of doing this.
-Just as we used `find` to locate the patients that had a maximum inflammation value equal to the global maximum,
-we can find the value from the whole data set:
-```matlab
->> find(patient_data == global_max)
-```
-```
-ans =
-     391
-```
-However, this resulted in a rather odd number.
-This number represents the linear index of the global maximum.
-Linear indices result from counting through the elements in the first column, then continue the count on the second column and so on.
-Luckily, there is a function to convert this linear index into a row and number column, `ind2sub`.
-We need to provide the size of our array, and the linear index, i.e. `ind2sub([60,40],391)`.
-We also need to provide space for both outputs (the row and column numbers), so we call it as `[r,c]=ind2sub([60,40],391)`.
-ternatively, we can get the size and index inside the call:
-```matlab
->> [r,c]=ind2sub(size(patient_data),find(patient_data == global_max))
-```
-```
-r =
-    31
-c =
-     7
-```
-
-::::::::::::
-
-:::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 We can gain some insight exploring the data like we have so far,
-but we all know that an image speaks more than a thousend numbers,
+but we all know that an image speaks more than a thousand numbers,
 so we'll learn to make some plots.
 
 
