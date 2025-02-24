@@ -98,7 +98,7 @@ function extract_episodes_code(episode_names,q)
                     end
                     continue
                 end
-                if contains(stripped_line,"*Script*")
+                if contains(stripped_line,"*Script*") || contains(stripped_line,"function ")
                     in_script=true;
                     fprintf(out_fid, '%s\n', "----------------------------------------");
                 end

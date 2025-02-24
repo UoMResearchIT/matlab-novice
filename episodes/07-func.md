@@ -22,19 +22,19 @@ exercises: 20
 
 ## Writing functions from scratch
 
-It has come to our attention that the data about inflammation that we've been analysing contains some systematic errors. 
-The measurements were made using the incorrect scale, with inflammation recorded in units of Swellocity (swell) 
-rather than the scientific standard units of Inflammatons (inf). Luckily there is a handy formula which can be 
+It has come to our attention that the data about inflammation that we've been analysing contains some systematic errors.
+The measurements were made using the incorrect scale, with inflammation recorded in units of Swellocity (swell)
+rather than the scientific standard units of Inflammatons (inf). Luckily there is a handy formula which can be
 used for converting measurements in Swellocity to Inflammatons, but it involves some hard to remember constants:
 
 ```matlab
-inflammation_in_inf = (inflammation_in_swell + B)*A
-B = 5.634
-A = 0.275
+>> A = 0.275
+>> B = 5.634
+>> inf = (swell + B)*A
 ```
-There are twelve files worth of data to be converted from Swellocity to Inflammatons: is there a way we can do this quickly and 
-conveniently? If we have to re-enter the conversion formula multiple times, the chance of us getting the constants 
-wrong is high. Thankfully there is a convenient way to teach MATLAB how to do new things, like converting units from 
+There are twelve files worth of data to be converted from Swellocity to Inflammatons: is there a way we can do this quickly and
+conveniently? If we have to re-enter the conversion formula multiple times, the chance of us getting the constants
+wrong is high. Thankfully there is a convenient way to teach MATLAB how to do new things, like converting units from
 Swellocity to Inflammatons. We can do this by writing a function.
 
 We have already used some predefined MATLAB functions which we can pass arguments to. How can we define our own?
@@ -43,11 +43,11 @@ A MATLAB function *must* be saved in a text file with a `.m` extension.
 The name of the file must be the same as the name
 of the function defined in the file.
 
-The first line of our function is called the *function definition* and must include the special `function` keyword to 
+The first line of our function is called the *function definition* and must include the special `function` keyword to
 let MATLAB know that we are defining a function. Anything following the function definition line is called the *body*
 of the function. The keyword `end` marks the end of the function body. The function only knows about code that comes
 between the function definition line and the `end` keyword. It will not have access to variables from outside this block
-of code apart from those that are passed in as *arguments* or *input parameters*. The rest of our code won't have access 
+of code apart from those that are passed in as *arguments* or *input parameters*. The rest of our code won't have access
 to any variables from inside this block, apart from those that are passed out as *output parameters*.
 
 A function can have multiple input and output parameters as required, but doesn't have to have any. The general form
@@ -56,7 +56,7 @@ of a function is shown in the pseudo-code below:
 ```matlab
 function [out1, out2] = function_name(in1, in2)
     % FUNCTION_NAME   Function description
-    %    Can add more text for the function help
+    %    Can add more text for the help
     %    An example is always useful!
 
     % This section below is called the body of the function
@@ -75,38 +75,35 @@ Create a file called `inflammation_swell_to_inf.m` in the `src` folder,
 enter the following function definition, and save the file:
 
 ```matlab
-function inflammation_in_inf = inflammation_swell_to_inf(inflammation_in_swell)
-   % INFLAMMATION_SWELL_TO_INF  Convert inflammation mesured in Swellocity to inflammation measured in Inflammatons.
+function inf = inflammation_swell_to_inf(swell)
+   % INFLAMMATION_SWELL_TO_INF  Convert inflammation measured in Swellocity to inflammation measured in Inflammatons.
 
    A = 0.275;
    B = 5.634;
 
-   inflammation_in_inf = (inflammation_in_swell + B)*A;
-
+   inf = (swell + B)*A;
 end
 ```
 We can now call our function as we would any other function in MATLAB:
-
 ```matlab
 >> inflammation_swell_to_inf(0.5)
 ```
-
 ```output
 ans = 1.6869
 ```
 
 We got the number we expected, and at first glance it seems like it is almost the same as a script.
 However, if you look at the variables in the workspace, you'll notice one big difference.
-Although a variable called `inflammation_in_inf` was defined in the function, it does not exist in our workspace.
+Although a variable called `inf` was defined in the function, it does not exist in our workspace.
 
 Lets have a look using the debugger to see what is happening.
 
-When we pass a value, like `0.5`, to the function, it is assigned to the variable `inflammation_in_swell` so that it can 
+When we pass a value, like `0.5`, to the function, it is assigned to the variable `swell` so that it can
 be used in the body of the function. To return a value from the function, we must assign that value to the variable
-`inflammation_in_inf` from our function definition line. What ever value `inflammation_in_inf` has when the `end` 
+`inf` from our function definition line. What ever value `inf` has when the `end`
 keyword in the function definition is reached, that will be the value returned.
 
-Outside the function, the variables `inflammation_in_swell`, `inflammation_in_inf`, `A`, and `B` aren't accessible; they
+Outside the function, the variables `swell`, `inf`, `A`, and `B` aren't accessible; they
 are only used by in function body.
 
 This is one of the major differences between scripts and functions: a script automates the command line, with full access to all variables in the base workspace, whereas a function has its own separate workspace.
@@ -119,7 +116,6 @@ As with any operation, if we want to save the result, we need to assign the resu
 ```matlab
 >> val_in_inf = inflammation_swell_to_inf(0.5)
 ```
-
 ```output
 val_in_inf = 1.6869
 ```
@@ -131,31 +127,30 @@ And we can see `val_in_inf` saved in our workspace.
 ## Writing your own conversion function
 
 We'd like a function that reverses the conversion of Swellocity to Inflammatons. Re-arrange the conversion
-formula and write a function called `inflammation_inf_to_swell` that converts inflammation measued in Inflammatons to inflammation
+formula and write a function called `inflammation_inf_to_swell` that converts inflammation measured in Inflammatons to inflammation
 measured in Swellocity.
 
-Remember to save your function definition in a file with the required name, start the file with the function definition 
-line, followed by the function body, ending with the `end` keyword.
+Remember to save your function definition in a file with the required name,
+start the file with the function definition line, followed by the function body, ending with the `end` keyword.
 
 For reference the conversion formula to take inflammation measured in Swellocity to inflammation measured in Inflammatons is:
 
 ```matlab
-inflammation_in_inf = (inflammation_in_swell + B)*A
-B = 5.634
-A = 0.275
+>> A = 0.275
+>> B = 5.634
+>> inf = (swell + B)*A
 ```
 
 :::::::::::::  solution
 
 ```matlab
-function inflammation_in_swell = inflammation_inf_to_swell(inflammation_in_inf)
+function swell = inflammation_inf_to_swell(inf)
    % INFLAMMTION_INF_TO_SWELL   Convert inflammation measured in Inflammatons to inflammation measured in Swellocity.
 
    A = 0.275;
    B = 5.634;
 
-   inflammation_in_swell = inflammation_in_inf/A - B;
-
+   swell = inf/A - B;
 end
 ```
 
@@ -172,147 +167,144 @@ One of the benefits of writing functions in MATLAB is that often they will also 
 This will work when each operation in the function can be applied to an array too.
 In our example, we are adding a number and multiplying by another, both of which work on arrays.
 
-This will make converting the inflammation data in our files using the function we've just written very quick. Give it 
-a go!
+This will make converting the inflammation data in our files using the function we've just written very quick. Give it a go!
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Transforming scripts into functions
 
-In the `patient_analysis` script we created, we can choose which patient to analyse by modifying the variable 
-`patient_number`. If we want information about patient 13, we need to open `patient_analysis.m`, go to line 9, modify 
-the variable, save and then run `patient_analysis`. This is a lot of steps for such a simple request.
+In the `plot_patient_inflammation_option` script we created in the previous episode,
+we can choose which patient to by modifying the variable `patient_number`,
+and whether to show on screen or save by modifying the variable `save_plots`.
+Because it is a script, we need to open the script, modify the variables, save and then run it.
+This is a lot of steps for such a simple request.
 
-Can we use what we've learned about writing functions to transform (or *refactor*) our script into a function, increasing 
-its usefulness in the process?
+Can we use what we've learned about writing functions to transform (or *refactor*) our script into a function,
+increasing its usefulness in the process?
 
-We already have a `.m` file called `patient_analysis`, so lets begin by defining a function with that name.
+We already have a `.m` file called `plot_patient_inflammation_option`, so lets begin by defining a function with that name.
 
-Open the `patient_analysis.m` file, if you don't already have it open.
-Instead of line 9, where `patient_number` is set, we want to provide that variable as an input.
-So lets remove that line, and right at the top of our script we'll add the function definition
-telling MATLAB what our function is called and what inputs it needs. The function will take the variable `patient_number`
-as input and since we removed the line that assigned a value to that variable, the input will decide which patient is
-analysed.
+Open the `plot_patient_inflammation_option.m` file, if you don't already have it open.
+Instead of lines 5 and 7, where `save_plots` and `patient_number` are set, we want to provide the variables as inputs.
+
+So lets remove those lines, and right at the top of our script we'll add the function definition,
+telling MATLAB what our function is called and what inputs it needs.
+The function will take the variables `patient_number` and `save_plots` as inputs,
+which will decide which patient is plotted and whether the plot is saved or displayed on screen.
 
 ```matlab
-function patient_analysis(patient_number)
-    % PATIENT_ANALYSIS   Computes mean, max and min of a patient and compares to global statistics.
-    %    Takes the patient number as an input, and prints the relevant information to console.
-    %    Sample usage:
-    %       patient_analysis(5)
+function plot_patient_inflammation_option(patient_number, save_plots)
+   % PLOT_PATIENT_INFLAMMATION_OPTION   Plots daily average, max and min inflammation.
+   %    Inputs:
+   %       patient_number - The patient number to plot
+   %       save_plots - A boolean to decide whether to save the plot to disk (if true) or display it on screen (if false).
+   %    Sample usage:
+   %       plot_patient_inflammation_option(5, false)
 
-    % Load patient data
-    patient_data = readmatrix('data/base/inflammation-01.csv');
+   pn_string = num2str(patient_number);
 
-    % Compute global statistics
-    g_mean = mean(patient_data(:));
-    g_max = max(patient_data(:));
-    g_min = min(patient_data(:));
+   % Load patient data
+   patient_data = readmatrix("data/base/inflammation-01.csv");
+   per_day_mean = mean(patient_data);
+   per_day_max = max(patient_data);
+   per_day_min = min(patient_data);
+   patient = patient_data(patient_number,:);
+   day_of_trial = 1:40;
 
-    % Compute patient statistics
-    p_mean = mean(patient_data(patient_number,:));
-    p_max = max(patient_data(patient_number,:));
-    p_min = min(patient_data(patient_number,:));
+   if save_plots == true
+      figure(visible='off')
+   else
+      figure
+   end
+   clf;
 
-    % Compare patient vs global
-    disp('Patient:')
-    disp(patient_number)
-    disp('High mean?')
-    disp(p_mean > g_mean)
-    disp('Highest max?')
-    disp(p_max == g_max)
-    disp('Lowest min?')
-    disp(p_min == g_min)
+   % Define tiled layout and labels
+   tlo = tiledlayout(1,2);
+   xlabel(tlo,"Day of trial")
+   ylabel(tlo,"Inflammation")
 
+   % Plot average inflammation per day with the patient data
+   nexttile
+   title("Average")
+   hold on
+   plot(day_of_trial, per_day_mean, "DisplayName", "Mean")
+   plot(day_of_trial, patient, "DisplayName", "Patient " + pn_string)
+   legend
+   hold off
+
+   % Plot max and min inflammation per day with the patient data
+   nexttile
+   title("Max and Min")
+   hold on
+   plot(day_of_trial, per_day_max, "DisplayName", "Max")
+   plot(day_of_trial, patient, "DisplayName", "Patient " + pn_string)
+   plot(day_of_trial, per_day_min, "DisplayName", "Min")
+   legend
+   hold off
+
+   if save_plots == true
+      % Save plot in "results" folder as png image:
+      saveas(fig,"results/patient_" + pn_string + ".png")
+
+      close(fig)
 end
 ```
 
 Congratulations! You've now created a MATLAB function from a MATLAB script!
 
-You may have noticed that the code inside the function is indented. MATLAB does not need this, but it makes it much more 
-readable!
+You may have noticed that the code inside the function is indented.
+MATLAB does not need this, but it makes it much more readable!
 
 Lets clear our workspace and run our function in the command line:
 ```matlab
 >> clear
 >> clc
->> patient_analysis(13)
-```
-```output
-Patient 13:
-High mean?
-   0
-Highest max?
-   0
-Lowest min?
-   1
+>> patient_analysis(13,true)
+>> patient_analysis(21,false)
 ```
 
-So now we can get the patient analysis of whichever patient we want,
-and we do not need to modify `patient_analysis.m` anymore.
+You will see the plot for patient 13 saved in the `results` folder, and the plot for patient 21 displayed on screen.
+
+So now we can get the patient plots of whichever patient we want,
+and we do not need to modify the script anymore.
+
 However, you may have noticed that we have no variables in our workspace.
-Remember, inside the function, the variables
-`patient_data`, `g_mean`, `g_max`, `g_min`, `p_mean`, `p_max`, and `p_min` are created,
+Remember, inside the function the variables are created,
 but then they are deleted when the function ends.
 If we want to save them, we need to pass them as outputs.
 
-Lets say, for example, that we want to save the mean of each patient.
-In our `patient_analysis.m` we already compute the value and save it in `p_mean`,
+Lets say, for example, that we want to save the data of the patient in question.
+In our `patient_analysis.m` we already extract the data and save it in `patient`,
 but we need to tell MATLAB that we want the function to return it.
 
 To do that we modify the function definition like this:
 ```matlab
-function p_mean = patient_analysis(patient_number)
+function patient = plot_patient_inflammation_option(patient_number, save_plots)
 ```
 
 It is important that the variable name is the same that is used inside the function.
 
 If we now run our function in the command line, we get:
 ```matlab
-p13 = patient_analysis(13)
+>> p13 = patient_analysis(13,true);
 ```
-```output
-Patient 5:
-High mean?
-   0
-Highest max?
-   0
-Lowest min?
-   1
 
-p13 =
-    0.1049
-```
+And the variable `p13` is saved in our workspace.
 
 We could return more outputs if we want.
-For example, lets return the min and max as well.
+For example, lets return the global mean as well.
 To do that, we need to specify all the outputs in square brackets, as an array.
 So we need to replace the function definition for:
 ```matlab
-function [p_mean,p_max,p_min] = patient_analysis(patient_number)
+function [per_day_mean,patient] = plot_patient_inflammation_option(patient_number, save_plots)
 ```
 
-To call our function now we need to provide space for all 3 outputs,
+To call our function now we need to provide space for all of the outputs,
 so in the command line, we run it as:
 ```matlab
-[p13_mean,p13_max,p13_min] = patient_analysis(13)
+>> [mean,p13] = patient_analysis(13,true);
 ```
-```output
-Patient 5:
-High mean?
-   0
-Highest max?
-   0
-Lowest min?
-   1
-p13_mean =
-    0.1049
-p13_max =
-    0.3450
-p13_min =
-     0
-```
+And now we have the global mean saved in the variable `mean`.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
@@ -325,132 +317,109 @@ so `ans` would save the mean.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Plotting daily average of different data files
+## Separation of concerns
 
-Look back at the `plot_daily_average` script.
-The data and resulting image file names are hard-coded in the script.
-We actually have 12 datafiles.
-Turn the script into a function that lets you generate the plots for any of the files.
+Now that we know how to write functions, we can start to make our code *modular*,
+separating the different parts of our program into small functions that can be reused.
 
-The function should operate on a single data file,
-and should have two parameters: `data_file` and `plot_file`.
-When called, the function should create the three graphs,
-and save the plot as `plot_file`.
+Our `plot_patient_inflammation_option` function is already quite long.
+You might remember that we have used the data loading and preparation in other scripts.
+- Can you extract that section of the code and put it into a separate function?
+- Then, refactor the `plot_patient_inflammation_option` function to use this new function.
 
-You should mostly be reusing code from the `plot_all` script.
+:::::::::::::  solution
 
-:::::::::::::::  solution
+For the data loading and preparation we will need the `patient_number` as an input,
+and we will return the `per_day_mean`, `per_day_max`, `per_day_min`, `patient`, and `day_of_trial` variables.
 
 ```matlab
-function plot_daily_average(data_file,plot_name)
-    %PLOT_DAILY_AVERAGE   Plots daily average, max and min inflammation accross patients.
-    %   The function takes the data in data_file and saves it as plot_name
-    %   Example usage:
-    %       plot_daily_average('data/base/inflammation-03.csv','results/plot3.png')
+function [day, patient, mean, max, min] load_and_prepare_data(patient_number)
+   % LOAD_AND_PREPARE_DATA   Load patient data and prepare it for plotting.
+   %    Inputs:
+   %       patient_number - The patient number to plot
+   %    Outputs:
+   %       day - The day of the trial
+   %       patient - The patient data
+   %       mean - The mean inflammation per day
+   %       max - The max inflammation per day
+   %       min - The min inflammation per day
+   %    Sample usage:
+   %       [day, patient, mean, max, min] = load_and_prepare_data(5)
 
-    % Load patient data
-    patient_data = readmatrix(data_file);
-
-    figure(visible='off')
-
-    % Define tiled layout and labels
-    tlo = tiledlayout(1,3);
-    xlabel(tlo,'Day of trial')
-    ylabel(tlo,'Inflammation')
-
-    % Plot average inflammation per day
-    nexttile
-    plot(mean(patient_data, 1))
-    title('Average')
-
-    % Plot max inflammation per day
-    nexttile
-    plot(max(patient_data, [], 1))
-    title('Max')
-
-    % Plot min inflammation per day
-    nexttile
-    plot(min(patient_data, [], 1))
-    title('Min')
-
-    % Save plot in 'results' folder as png image:
-    saveas(gcf,plot_name)
-
-    close()
+   % Load patient data
+   patient_data = readmatrix("data/base/inflammation-01.csv");
+   per_day_mean = mean(patient_data);
+   per_day_max = max(patient_data);
+   per_day_min = min(patient_data);
+   patient = patient_data(patient_number,:);
+   day_of_trial = 1:40;
 end
 ```
 
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Plotting patient vs mean
-
-Create a function called `patient_vs_mean` that generates a plot like this one:
-
-![](fig/plotting_average_inflammation_and_patient_5_with_legend.svg){alt='Plotting patient vs mean'}
-
-The function should have the following inputs:
-
-- `per_day_mean` - A 1D array with the average inflammation per day already loaded
-(you'll have to load the data and compute per_day_mean before calling the function).
-
-- `patient_data` - A 1D array with the data for the patient of interest only.
-
-- `patient_reference` - A string that will be used to identify the patient on the plot,
-and also as a file name (you should add the extension `png` in your function).
-
-When called, the function should create and save the plot as `patient_reference`.png in the results folder.
-
-Look back at the previous lessons if you need to!
-
-:::::::::::::::  solution
-
+Then, we need to modify the `plot_patient_inflammation_option` function to use this new function.
 ```matlab
-function patient_vs_mean(per_day_mean,patient_data,patient_reference)
-    % PATIENT_VS_MEAN   Plots the global mean and patient inflammation on top of each other.
-    %   per_day_mean should be a vector with the global mean.
-    %   patient_data should be a vector with only the patient data.
-    %   patient_reference will be used to identify the patient on the plot.
-    %
-    %   Sample usage:
-    %       patient_data = readmatrix('data/base/inflammation-01.csv');
-    %       per_day_mean = mean(patient_data);
-    %       patient_vs_mean(per_day_mean,patient_data(5,:),"Patient 5")
+function plot_patient_inflammation_option(patient_number, save_plots)
+   % PLOT_PATIENT_INFLAMMATION_OPTION   Plots daily average, max and min inflammation.
+   %    Inputs:
+   %       patient_number - The patient number to plot
+   %       save_plots - A boolean to decide whether to save the plot to disk (if true) or display it on screen (if false).
+   %    Sample usage:
+   %       plot_patient_inflammation_option(5, false)
 
-    figure(visible='off')
+   pn_string = num2str(patient_number);
 
-    %Plot per_day_mean
-    plot(per_day_mean,DisplayName="Mean")
-    legend
-    title('Daily average inflammation')
-    xlabel('Day of trial')
-    ylabel('Inflammation')
+   [day, patient, mean, max, min] = load_and_prepare_data(patient_number);
 
-    %Overlap patient data
-    hold on
-    plot(patient_data,DisplayName=patient_reference)
-    hold off
+   if save_plots == true
+      figure(visible='off')
+   else
+      figure
+   end
+   clf;
 
-    % Save plot
-    saveas(gcf,"results/"+patient_reference+".png")
+   % Define tiled layout and labels
+   tlo = tiledlayout(1,2);
+   xlabel(tlo,"Day of trial")
+   ylabel(tlo,"Inflammation")
 
-    close()
+   % Plot average inflammation per day with the patient data
+   nexttile
+   title("Average")
+   hold on
+   plot(day, mean, "DisplayName", "Mean")
+   plot(day, patient, "DisplayName", "Patient " + pn_string)
+   legend
+   hold off
 
+   % Plot max and min inflammation per day with the patient data
+   nexttile
+   title("Max and Min")
+   hold on
+   plot(day, max, "DisplayName", "Max")
+   plot(day, patient, "DisplayName", "Patient " + pn_string)
+   plot(day, min, "DisplayName", "Min")
+   legend
+   hold off
+
+   if save_plots == true
+      % Save plot in "results" folder as png image:
+      saveas(fig,"results/patient_" + pn_string + ".png")
+
+      close(fig)
 end
 ```
 
+There are a few other things we could extract into separate functions.
+For example, we can make functions that generate the individual plots in each tile.
+This would make our `plot_patient_inflammation_option` function even more readable and modular,
+and would allow us to reuse the plotting functions in other scripts.
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- A MATLAB function *must* be saved in a text file with a `.m` extension. The name of the file must be the same as the name
+- A MATLAB function *must* be saved in a text file with a `.m` extension. The name of the file *must* be the same as the name
 of the function defined in the file.
 - Define functions using the `function` keyword to start the definition, and close the definition with the keyword `end`.
 - Functions have an independent workspace. Access variables from your workspace inside a function by passing them as inputs. Access variables from the function returning them as outputs.
