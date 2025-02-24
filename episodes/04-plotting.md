@@ -84,8 +84,7 @@ so that other people can understand what it shows
 That's much better! Now the plot actually communicates something.
 As we expected, this figure tells us way more than the numbers we had seen in the previous section.
 
-Let's have a look at two other statistics: the maximum and minimum
-inflammation per day across all patients.
+Let's have a look at the maximum inflammation per day across all patients.
 ```matlab
 >> plot(day_of_trial, per_day_max)
 ```
@@ -271,6 +270,7 @@ We can show the average daily min and max plots together with:
 patient_data = readmatrix("data/base/inflammation-01.csv");
 per_day_mean = mean(patient_data);
 per_day_max = max(patient_data);
+per_day_min = min(patient_data);    % Added min values
 patient_5 = patient_data(5,:);
 day_of_trial = 1:40;
 

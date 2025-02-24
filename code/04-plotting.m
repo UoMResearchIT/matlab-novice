@@ -100,6 +100,7 @@
   patient_data = readmatrix("data/base/inflammation-01.csv");
   per_day_mean = mean(patient_data);
   per_day_max = max(patient_data);
+  per_day_min = min(patient_data);    % Added min values
   patient_5 = patient_data(5,:);
   day_of_trial = 1:40;
 
