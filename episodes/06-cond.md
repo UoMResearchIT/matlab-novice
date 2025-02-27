@@ -173,11 +173,13 @@ at least one part is true
 
 ## Close Enough
 
-Write a script called `near` that performs a test on two variables, and displays `1`
-when the first variable is within 10% of the other
-and `0` otherwise. Compare your implementation with
-your partner's: do you get the same answer for
-all possible pairs of numbers?
+Write a script called `near` that performs a test on two variables,
+and displays `1` when the first variable is within 10% of the other and `0` otherwise,
+that is, one is greater or equal than 90% and less or equal than 110% of the other.
+
+Compare your implementation with your partner's.
+Do you get the same answer for all possible pairs of numbers?
+Remember to try out positive and negative numbers!
 
 :::::::::::::::  solution
 
@@ -186,7 +188,7 @@ all possible pairs of numbers?
 a = 1.1;
 b = 1.2;
 
-if a/b >= 0.9 && a/b <= 1.1
+if a >= 0.9*b && a <= 1.1*b
     disp(1)
 else
     disp(0)
