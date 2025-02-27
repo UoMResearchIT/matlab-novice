@@ -92,6 +92,37 @@ We can now call our function as we would any other function in MATLAB:
 ans = 1.6869
 ```
 
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Run button for functions with inputs
+
+When we wanted to run a script we could just click the `run` button in the editor.
+For a function without inputs, we can do the same.
+However, when we have a function with inputs, like the one we just created, we will get an error if we try.
+
+This is because the `run` button doesn't know what to pass as the input to the function.
+We need to specify the value of the input, which is why we ran the function in the command line.
+
+There is an alternative, for when we want to run the function with the same input multiple times.
+The `run` button has a drop-down menu that allows us to specify the input value.
+To do that, select the option `type code to run`.
+
+![](fig/type_code_to_run_1.png){alt='Drop-down menu with the option "type code to run"' width=50%}
+
+This will prompt you with a pre-filled line of code that you can modify to pass the input value.
+
+![](fig/type_code_to_run_2.png){alt='Prompt with pre-filled line of code and filled input value' width=50%}
+
+Remember to hit `enter` to run the code.
+
+Once you've done that, the run code will use that value without having to go into the dropdown menu.
+You'll also find the option to run the code with your specified values in the drop-down menu.
+You can add different input values to the code and run it again.
+
+![](fig/type_code_to_run_3.png){alt='Drop-down menu with the options to run the code with the previously specified input values' width=50%}
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 We got the number we expected, and at first glance it seems like it is almost the same as a script.
 However, if you look at the variables in the workspace, you'll notice one big difference.
 Although a variable called `inf` was defined in the function, it does not exist in our workspace.
