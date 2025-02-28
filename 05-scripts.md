@@ -26,20 +26,6 @@ and we found that they let us save and run several commands in one go.
 In this episode we will revisit the scripts in a bit more depth,
 and will recap some of the concepts we've learned so far.
 
-We've written commands to load data from a `.csv` file,
-compute statistics from the data and plot the data in some figures.
-Let's put those commands in a script called `patient_analysis.m`,
-which we'll save in the `src` directory in our current folder, `matlab-novice-inflammation`.
-
-To create a new script we can click the "New script" button on the top left, or use the command:
-```matlab
->> edit src/patient_analysis.m
-```
-
-Matlab will create a file called `patient_analysis.m` in the `src` folder.
-It is important that we let MATLAB know that we want it to find stuff in this folder.
-To do this, right click on the folder icon in the file browser and select "Add to Path".
-
 :::::::::::::::::::::::::::::::::::::::::  callout
 
 ## The MATLAB path
@@ -63,32 +49,6 @@ absolute file path.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-We can now type the contents of the script:
-
-```matlab
-% Load patient data
-patient_data = readmatrix("data/base/inflammation-01.csv");
-
-% Compute global statistics
-g_mean = mean(patient_data(:));
-g_max = max(patient_data(:));
-g_min = min(patient_data(:));
-
-% Compute patient statistics
-p_mean = mean(patient_data(5,:));
-p_max = max(patient_data(5,:));
-p_min = min(patient_data(5,:));
-
-% Compare patient vs global
-disp("Patient 5:")
-disp("High mean?")
-disp(p_mean > g_mean)
-disp("Highest max?")
-disp(p_max == g_max)
-disp("Lowest min?")
-disp(p_min == g_min)
-```
-
 :::::::::::::::::::::::::::::::::::::::::  callout
 
 ## Comments
@@ -99,6 +59,57 @@ you can comment your code to make it easier to understand when you come back to 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Script for plotting -- Recap
+
+You should already have a script from the previous lesson that plots the mean and max using a tiled layout.
+We will replicate and improve upon that script as way of a recap, adding comments to make it easier to understand.
+
+Create a new script in the current directory called `plot_patient_inflammation.m`
+```matlab
+>> edit src/plot_patient_inflammation.m
+```
+
+In the script, lets recap what we need to do:
+
+```matlab
+% *Script* to plot daily average, max and min inflammation.
+
+% Load patient data
+patient_data = readmatrix("data/base/inflammation-01.csv");
+per_day_mean = mean(patient_data);
+per_day_max = max(patient_data);
+per_day_min = min(patient_data);
+patient = patient_data(5,:);
+day_of_trial = 1:40;
+
+fig = figure;
+clf;
+
+% Define tiled layout and labels
+tlo = tiledlayout(1,2);
+xlabel(tlo,"Day of trial")
+ylabel(tlo,"Inflammation")
+
+% Plot average inflammation per day with the patient data
+nexttile
+title("Average")
+hold on
+plot(day_of_trial, per_day_mean, "DisplayName", "Mean")
+plot(day_of_trial, patient, "DisplayName", "Patient 5")
+legend
+hold off
+
+% Plot max and min inflammation per day with the patient data
+nexttile
+title("Max and Min")
+hold on
+plot(day_of_trial, per_day_max, "DisplayName", "Max")
+plot(day_of_trial, patient, "DisplayName", "Patient 5")
+plot(day_of_trial, per_day_min, "DisplayName", "Min")
+legend
+hold off
+```
+
 Now, before running this script lets clear our workplace so that we can see what is happening.
 ```matlab
 >> clear
@@ -107,73 +118,38 @@ Now, before running this script lets clear our workplace so that we can see what
 
 If you now run the script by clicking "Run" on the graphical user interface,
 pressing `F5` on the keyboard,
-or typing the script's name `patient_analysis` on the command line (the file name without the extension),
-you'll see a bunch of variables appear in the workspace and this output:
-```matlab
->> patient_analysis
-```
-```output
-Patient 5:
-High mean?
-   0
-Highest max?
-   0
-Lowest min?
-   1
-```
-
-Remember, we supressed most outputs with `;`, so the only lines printed are the ones with `disp`.
+or typing the script's name `plot_patient_inflammation` on the command line (the file name without the extension),
+you'll see a bunch of variables appear in the workspace.
 
 As you can see, the script ran every line of code in the script in order, and created any variable we asked for.
 Having the code in the script makes it much easier to follow what we are doing, and also make changes.
-For example, if we now want to look at patient 8, all we need to do is change the number in lines 10, 11 and 12.
-We can actually do a bit better, and replace that number with a variable `patient_number`.
 
-This variable needs to exist before it is used, so lets insert it before computing the patient statistics, like so:
+Note that we are explicitly creating a new figure window using the `figure` command.
+
+Try this on the command line:
 
 ```matlab
-% Load patient data
-patient_data = readmatrix("data/base/inflammation-01.csv");
-
-% Compute global statistics
-g_mean = mean(patient_data(:));
-g_max = max(patient_data(:));
-g_min = min(patient_data(:));
-
-% Compute patient statistics
-patient_number = 8;
-p_mean = mean(patient_data(patient_number,:));
-p_max = max(patient_data(patient_number,:));
-p_min = min(patient_data(patient_number,:));
-
-% Compare patient vs global
-disp("Patient:")
-disp(patient_number)
-disp("High mean?")
-disp(p_mean > g_mean)
-disp("Highest max?")
-disp(p_max == g_max)
-disp("Lowest min?")
-disp(p_min == g_min)
+>> figure
 ```
 
-Note that we also changed the disp commands to show the right patient number.
+MATLAB's plotting commands only create a new figure window if one doesn't already exist:
+the default behaviour is to reuse the current figure window as we saw in the previous episode.
+Explicitly creating a new figure window in the script avoids any unexpected results from
+plotting on top of existing figures.
 
-Getting the results for whichever patient is now as simple as changing the value of `patient_number`.
-
-For the case of patient 8, we get:
+Now lets run the script:
 ```matlab
->> patient_analysis
+>> plot_patient_inflammation
 ```
-```output
-Patient:
-   8
-High mean?
-   1
-Highest max?
-   0
-Lowest min?
-   1
+
+You should see the figure appear.
+
+Try running `plot_patient_inflammation` again without closing the first figure to see that it does not plot on top of the previous figure
+A second figure is created. If you look carefully, at the top it is labelled as "Figure 2".
+
+It is worth mentioning that it is possible to close all the currently open figures with:
+```matlab
+>> close all
 ```
 
 :::::::::::::::::::::::::::::::::::::::::  callout
@@ -195,83 +171,17 @@ You should write help text for all of your own scripts and functions.
 Let's write an H1 line at the top of our script:
 
 ```matlab
-% PATIENT_ANALYSIS   Computes mean, max and min of a patient and compares to global statistics.
+% PLOT_PATIENT_INFLAMMATION   *Script* Plots daily average, max and min inflammation.
 ```
 
 We can then get help for our script by running
 
 ```matlab
->> help patient_analysis
+>> help plot_patient_inflammation
 ```
 ```output
-  patient_analysis   Computes mean, max and min of a patient and compares to global statistics.
+  plot_patient_inflammation   Computes mean, max and min of a patient and compares to global statistics.
 ```
-
-## Script for plotting
-
-You should already have a script from the previous lesson that plots the mean, max and min using a tiled layout.
-We will replicate that script, but add comments to make it easier to understand.
-
-Create a new script in the current directory called `plot_daily_average.m`
-```matlab
->> edit src/plot_daily_average.m
-```
-
-In the script, lets recap what we need to do:
-
-```matlab
-% PLOT_DAILY_AVERAGE   Plots daily average, max and min inflammation accross patients.
-
-% Load patient data
-patient_data = readmatrix("data/base/inflammation-01.csv");
-
-fig = figure;
-
-% Define tiled layout and labels
-tlo = tiledlayout(1,3);
-xlabel(tlo,"Day of trial")
-ylabel(tlo,"Inflammation")
-
-% Plot average inflammation per day
-nexttile
-plot(mean(patient_data, 1))
-title("Average")
-
-% Plot max inflammation per day
-nexttile
-plot(max(patient_data, [], 1))
-title("Max")
-
-% Plot min inflammation per day
-nexttile
-plot(min(patient_data, [], 1))
-title("Min")
-```
-
-Note that we are explicitly creating a new figure window using the `figure` command.
-
-Try this on the command line:
-
-```matlab
->> figure
-```
-
-MATLAB's plotting commands only create a new figure window if one doesn't already exist:
-the default behaviour is to reuse the current figure window as we saw in the previous episode.
-Explicitly creating a new figure window in the script avoids any unexpected results from
-plotting on top of existing figures.
-
-Now lets run the script:
-```matlab
->> plot_daily_average
-```
-
-You should see the figure appear.
-
-Try running `plot_daily_average` again without closing the first figure to see that it does not plot on top of the previous figure
-A second figure is created. If you look carefully, at the top it is labelled as "Figure 2".
-
-It is worth mentioning that it is possible to close all the currently open figures with `close all`.
 
 ### Saving figures
 
@@ -280,9 +190,77 @@ In order to maintain an organised project we'll save the images
 in the `results` directory:
 
 ```matlab
+% PLOT_PATIENT_INFLAMMATION   *Script* ...
+% ...
 % Save plot in "results" folder as png image:
-saveas(fig,"results/daily_average_01.png")
+saveas(fig,"results/patient_5.png")
 ```
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Plot patient N
+
+One of the advantages of having a script is that we can easily modify it to plot different patients.
+In our script, however, we have to modify a few lines to reflect the change in the titles and file name, for example.
+
+Can you modify the script so that we can plot any patient by only updating one variable at the top of the script?
+
+Note: You may want to use the `num2str` function to convert a number to a string.
+
+:::::::::::::::  solution
+
+Most of the script remains unchanged, but we need to create a new variable `patient_number` at the top of the script.
+Our updated script looks like this:
+
+```matlab
+% PLOT_PATIENT_INFLAMMATION   *Script* Plots daily average, max and min inflammation.
+
+patient_number = 5;                                                  %%%
+pn_string = num2str(patient_number);                                 %%%
+
+% Load patient data
+patient_data = readmatrix("data/base/inflammation-01.csv");
+per_day_mean = mean(patient_data);
+per_day_max = max(patient_data);
+per_day_min = min(patient_data);
+patient = patient_data(patient_number,:);                            %%%
+day_of_trial = 1:40;
+
+fig = figure;
+clf;
+
+% Define tiled layout and labels
+tlo = tiledlayout(1,2);
+xlabel(tlo,"Day of trial")
+ylabel(tlo,"Inflammation")
+
+% Plot average inflammation per day with the patient data
+nexttile
+title("Average")
+hold on
+plot(day_of_trial, per_day_mean, "DisplayName", "Mean")
+plot(day_of_trial, patient, "DisplayName", "Patient " + pn_string)   %%%
+legend
+hold off
+
+% Plot max and min inflammation per day with the patient data
+nexttile
+title("Max and Min")
+hold on
+plot(day_of_trial, per_day_max, "DisplayName", "Max")
+plot(day_of_trial, patient, "DisplayName", "Patient " + pn_string)   %%%
+plot(day_of_trial, per_day_min, "DisplayName", "Min")
+legend
+hold off
+
+% Save plot in "results" folder as png image:
+saveas(fig,"results/patient_" + pn_string + ".png")                  %%%
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
@@ -293,12 +271,11 @@ This is very useful because we can pass it as a reference, for example, for the 
 If we had not done that, we would need to pass the "current figure".
 You can get the current figure with `gcf`, like so:
 ```matlab
-% Save plot in "results" folder as png image:
-saveas(gcf,"results/daily_average_01.png")
+>> saveas(gcf,"results/patient_5.png")
 ```
 You can also use gcf to test you are on the right figure, for example with
 ```matlab
-gcf == fig
+>> gcf == fig
 ```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -321,39 +298,51 @@ an actual figure window if it were open.
 We can do so with the command `close`
 
 Adding these two lines, our finished script looks like this:
-
 ```matlab
-% PLOT_DAILY_AVERAGE   Saves plot of daily average, max and min inflammation accross patients.
+% PLOT_PATIENT_INFLAMMATION   *Script* Plots daily average, max and min inflammation.
+
+patient_number = 5;
+pn_string = num2str(patient_number);
 
 % Load patient data
 patient_data = readmatrix("data/base/inflammation-01.csv");
+per_day_mean = mean(patient_data);
+per_day_max = max(patient_data);
+per_day_min = min(patient_data);
+patient = patient_data(patient_number,:);
+day_of_trial = 1:40;
 
-fig = figure(Visible='off');
+fig = figure(Visible='off');                             % The figure will not be displayed
+clf;
 
 % Define tiled layout and labels
-tlo = tiledlayout(1,3);
+tlo = tiledlayout(1,2);
 xlabel(tlo,"Day of trial")
 ylabel(tlo,"Inflammation")
 
-% Plot average inflammation per day
+% Plot average inflammation per day with the patient data
 nexttile
-plot(mean(patient_data, 1))
 title("Average")
+hold on
+plot(day_of_trial, per_day_mean, "DisplayName", "Mean")
+plot(day_of_trial, patient, "DisplayName", "Patient " + pn_string)
+legend
+hold off
 
-% Plot max inflammation per day
+% Plot max and min inflammation per day with the patient data
 nexttile
-plot(max(patient_data, [], 1))
-title("Max")
-
-% Plot min inflammation per day
-nexttile
-plot(min(patient_data, [], 1))
-title("Min")
+title("Max and Min")
+hold on
+plot(day_of_trial, per_day_max, "DisplayName", "Max")
+plot(day_of_trial, patient, "DisplayName", "Patient " + pn_string)
+plot(day_of_trial, per_day_min, "DisplayName", "Min")
+legend
+hold off
 
 % Save plot in "results" folder as png image:
-saveas(fig,"results/daily_average_01.png")
+saveas(fig,"results/patient_" + pn_string + ".png")
 
-close(fig)
+close(fig)                                               % Closes the hidden figure
 ```
 
 The scripts we've written make regenerating plots easier,
@@ -375,7 +364,7 @@ which are then used to do something. So, can we create our own *functions*?
 - The first line of any script or function (known as the H1 line) should be a comment.
   It typically includes the name of the program, and a brief description.
 - You can use `help script_name` to get the information in the H1 line.
-- Create new figures with `figure`, or new 'invisible' figures with figure(visible='off').
+- Create new figures with `figure`, or new 'invisible' figures with `figure(visible='off')`.
   Remember to close them with `close()`, or `close all`.
 - Save figures with `saveas(fig,"results/my_plot_name.png")`,
   where `fig` is the figure you want to save,
