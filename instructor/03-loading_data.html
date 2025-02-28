@@ -335,7 +335,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Loading data</h1>
-        <p>Last updated on 2023-12-08 |
+        <p>Last updated on 2025-02-28 |
 
         <a href="https://github.com/swcarpentry/matlab-novice-inflammation/edit/main/episodes/03-loading_data.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -569,7 +569,7 @@ standard deviation.</p>
 <h3 class="callout-title">All data points at once</h3>
 <div class="callout-content">
 <p>Can you think of a way to get the mean of the whole data? What about
-the <code>max</code>, <code>min</code> and <code>std</code>?</p>
+the <code>max</code>?</p>
 </div>
 </div>
 </div>
@@ -594,24 +594,17 @@ the data points. To compute the mean, we then use:</p>
 <pre class="output" tabindex="0"><code><span><span class="va">global_mean</span> <span class="op">=</span></span>
 <span>    <span class="fl">0.1053</span></span></code></pre>
 </div>
-<p>This works for <code>max</code>, <code>min</code> and
-<code>std</code> too:</p>
+<p>This works for <code>max</code> too:</p>
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">global_max</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_data</span>(<span class="op">:</span>))</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">global_min</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">patient_data</span>(<span class="op">:</span>))</span>
-<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">global_std</span> <span class="op">=</span> <span class="va">std</span>(<span class="va">patient_data</span>(<span class="op">:</span>))</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">global_max</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_data</span>(<span class="op">:</span>))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code><span><span class="va">global_max</span> <span class="op">=</span></span>
-<span>    <span class="fl">0.4530</span></span>
-<span><span class="va">global_min</span> <span class="op">=</span></span>
-<span>     <span class="fl">0</span></span>
-<span><span class="va">global_std</span> <span class="op">=</span></span>
-<span>    <span class="fl">0.1118</span></span></code></pre>
+<span>    <span class="fl">0.4530</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -623,38 +616,17 @@ compares with them:</p>
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">mean_p5</span> <span class="op">&gt;</span> <span class="va">global_mean</span></span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">max_p5</span> <span class="op">==</span> <span class="va">global_max</span></span>
-<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">min_p5</span> <span class="op">==</span> <span class="va">global_min</span></span>
-<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">std_p5</span> <span class="op">&lt;</span> <span class="va">global_std</span></span></code></pre>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">max_p5</span> <span class="op">==</span> <span class="va">global_max</span></span></code></pre>
 </div>
 <pre><code><span><span class="va">ans</span> <span class="op">=</span></span>
 <span>  <span class="va">logical</span></span>
 <span>   <span class="fl">0</span></span>
 <span><span class="va">ans</span> <span class="op">=</span></span>
 <span>  <span class="va">logical</span></span>
-<span>   <span class="fl">0</span></span>
-<span><span class="va">ans</span> <span class="op">=</span></span>
-<span>  <span class="va">logical</span></span>
-<span>   <span class="fl">1</span></span>
-<span><span class="va">ans</span> <span class="op">=</span></span>
-<span>  <span class="va">logical</span></span>
 <span>   <span class="fl">0</span></span></code></pre>
-<p>So we know that patient 5 did not suffer more inflamation than
-average, that they are not the patient who got the most inflamed, that
-they had the global minimum inflamation at some point (0), and that the
-std of their inflamation is not below the average.</p>
-<div id="food-for-thought" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<div id="food-for-thought" class="callout-inner">
-<h3 class="callout-title">Food for thought</h3>
-<div class="callout-content">
-<p>How would you find the patient who got the highest inflamation?</p>
-<p>Would you be happy to do it if you had 1000 patients?</p>
-</div>
-</div>
-</div>
+<p>So we know that patient 5 did not suffer more inflammation than
+average, and that they are not the patient who got the most
+inflamed.</p>
 </div>
 <div class="section level4">
 <h4 id="one-day-at-a-time"><strong>One day at a time</strong><a class="anchor" aria-label="anchor" href="#one-day-at-a-time"></a></h4>
@@ -669,14 +641,12 @@ column:</p>
 </div>
 <p>The result is now not a row of 40 elements, but a column with 60
 items. However, MATLAB is smart enough to figure out what to do with
-enquieries just like the ones we did before.</p>
+enquiries just like the ones we did before.</p>
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">mean_d9</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">day_9</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">max_d9</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">day_9</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">min_d9</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">day_9</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">std_d9</span> <span class="op">=</span> <span class="va">std</span>(<span class="va">day_9</span>)</span></code></pre>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">max_d9</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">day_9</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -684,50 +654,7 @@ enquieries just like the ones we did before.</p>
 <pre class="output" tabindex="0"><code><span><span class="va">mean_d9</span> <span class="op">=</span></span>
 <span>    <span class="fl">0.3116</span></span>
 <span><span class="va">max_d9</span> <span class="op">=</span></span>
-<span>    <span class="fl">0.3780</span></span>
-<span><span class="va">min_d9</span> <span class="op">=</span></span>
-<span>    <span class="fl">0.2290</span></span>
-<span><span class="va">std_d9</span> <span class="op">=</span></span>
-<span>    <span class="fl">0.0186</span></span></code></pre>
-</div>
-<p>We could now check how day 9 compares to the global values:</p>
-<div class="codewrapper sourceCode" id="cb26">
-<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">mean_d9</span> <span class="op">&gt;</span> <span class="va">global_mean</span></span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">max_d9</span> <span class="op">==</span> <span class="va">global_max</span></span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">min_d9</span> <span class="op">==</span> <span class="va">global_min</span></span>
-<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">std_d9</span> <span class="op">&lt;</span> <span class="va">global_std</span></span></code></pre>
-</div>
-<pre><code><span><span class="va">ans</span> <span class="op">=</span></span>
-<span>  <span class="va">logical</span></span>
-<span>   <span class="fl">1</span></span>
-<span><span class="va">ans</span> <span class="op">=</span></span>
-<span>  <span class="va">logical</span></span>
-<span>   <span class="fl">0</span></span>
-<span><span class="va">ans</span> <span class="op">=</span></span>
-<span>  <span class="va">logical</span></span>
-<span>   <span class="fl">0</span></span>
-<span><span class="va">ans</span> <span class="op">=</span></span>
-<span>  <span class="va">logical</span></span>
-<span>   <span class="fl">1</span></span></code></pre>
-<p>So we know that at day 9 there was significant inflamation, but that
-it is not the day with the highest inflamation; Also, that every patient
-was at least a bit inflamed at that moment, and that the standard
-deviation of inflamation this day is below the standard deviation of the
-whole dataset (so datapoints are closer to each other).</p>
-<div id="food-for-thought-1" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<div id="food-for-thought-1" class="callout-inner">
-<h3 class="callout-title">Food for thought</h3>
-<div class="callout-content">
-<p>How would you find which days had an inflamation value above the
-global mean?</p>
-<p>Would you be happy to do it if you had 1000 days worth of data?</p>
-</div>
-</div>
+<span>    <span class="fl">0.3780</span></span></code></pre>
 </div>
 </div>
 <div class="section level4">
@@ -737,35 +664,33 @@ each patient or day. Luckily, we’ve learnt that MATLAB is used to
 thinking in terms of arrays. Surely it must be possible to get the mean
 of each patient or each day in one go. It is definitely tempting to
 simply call the mean on the array, so let’s try it:</p>
-<div class="codewrapper sourceCode" id="cb28">
+<div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span><span class="op">=</span><span class="va">mean</span>(<span class="va">patient_data</span>)<span class="op">;</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span><span class="op">=</span><span class="va">mean</span>(<span class="va">patient_data</span>)<span class="op">;</span></span></code></pre>
 </div>
-<p>We’ve supressed the output, but the workspace (or use of
+<p>We’ve suppressed the output, but the workspace (or use of
 <code>size</code>) tells us that the result is a 1x40 array. Matlab
 assumed that we want column averages, and indeed that is something we
 might want.</p>
 <p>The other statistics behave in the same way, so we can more
 appropriately label our variables as:</p>
-<div class="codewrapper sourceCode" id="cb29">
+<div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span>)<span class="op">;</span></span>
-<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_max</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_data</span>)<span class="op">;</span></span>
-<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_min</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">patient_data</span>)<span class="op">;</span></span>
-<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_std</span> <span class="op">=</span> <span class="va">std</span>(<span class="va">patient_data</span>)<span class="op">;</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span>)<span class="op">;</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_max</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_data</span>)<span class="op">;</span></span></code></pre>
 </div>
 <p>You’ll notice that each of the above variables is a <code>1×40</code>
 array.</p>
 <p>Now that we have the information for each day in an array, we can
 take advantage of Matlab’s capacity to do array operations. For example,
-we can find out which days had an inflamation above the global
+we can find out which days had an inflammation above the global
 average:</p>
-<div class="codewrapper sourceCode" id="cb30">
+<div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_mean</span> <span class="op">&gt;</span> <span class="va">global_mean</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_day_mean</span> <span class="op">&gt;</span> <span class="va">global_mean</span></span></code></pre>
 </div>
 <pre><code>ans =
   1×40 logical array
@@ -775,21 +700,30 @@ average:</p>
    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0</code></pre>
 <p>We could count which day it is, but lets take a shortcut and use the
 find function:</p>
-<div class="codewrapper sourceCode" id="cb32">
+<div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">find</span>(<span class="va">ans</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">find</span>(<span class="va">ans</span>)</span></code></pre>
 </div>
 <pre><code>ans =
      3     4     5     6     7     8     9    10    11    12    13    14    15    16    17</code></pre>
 <p>So it seems that days 3 to 17 were the critical days.</p>
-<p>But what if we want the analysis per patient, instead of per day?</p>
+<div id="per-patient-analysis" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="per-patient-analysis" class="callout-inner">
+<h3 class="callout-title">Per patient analysis</h3>
+<div class="callout-content">
+<p>We have seen that <code>mean</code> and <code>max</code> can compute
+the <em>per day</em> statistics if we called them on the whole array.
+But how can we get the <em>per patient</em> statistics?</p>
 <p>Lets look at the documentation for <code>mean</code>, either through
 the documentation browser or using the <code>help</code> command</p>
-<div class="codewrapper sourceCode" id="cb34">
+<div class="codewrapper sourceCode" id="cb32">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">help</span> <span class="va">mean</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">help</span> <span class="va">mean</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -835,109 +769,32 @@ the documentation browser or using the <code>help</code> command</p>
 <p>The first paragraph explains why it worked for a single day or
 patient. The input we used was a vector, so it took the mean.</p>
 <p>The second paragraph explains why we got per-day means when we used
-the whole data as input. Our array is 2D, and the first dimention is the
+the whole data as input. Our array is 2D, and the first dimension is the
 rows, so it averaged the rows.</p>
 <p>The third paragraph is the key to what we want to do now. A second
 argument <code>DIM</code> can be used to specify the direction in which
 to take the mean. If we want patient averages, we want the columns to be
 averaged, that is, dimension 2.</p>
-<div class="codewrapper sourceCode" id="cb36">
+<div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_patient_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span><span class="op">,</span><span class="fl">2</span>)<span class="op">;</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_patient_mean</span> <span class="op">=</span> <span class="va">mean</span>(<span class="va">patient_data</span><span class="op">,</span><span class="fl">2</span>)<span class="op">;</span></span></code></pre>
 </div>
 <p>As expected, the result is a <code>60×1</code> vector, with the mean
 for each patient.</p>
-<p>Unfortunately, <code>max</code>, <code>min</code> and
-<code>std</code> do not behave quite in the same way. If you explore
-their documentation, you’ll see that we need to add another argument, so
-that the commands become:</p>
-<div class="codewrapper sourceCode" id="cb37">
+<p>Unfortunately, <code>max</code> does not behave quite in the same
+way. If you explore its documentation, you’ll see that we need to add
+another argument, so that the command becomes:</p>
+<div class="codewrapper sourceCode" id="cb35">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_patient_max</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_data</span><span class="op">,</span>[]<span class="op">,</span><span class="fl">2</span>)<span class="op">;</span></span>
-<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_patient_min</span> <span class="op">=</span> <span class="va">min</span>(<span class="va">patient_data</span><span class="op">,</span>[]<span class="op">,</span><span class="fl">2</span>)<span class="op">;</span></span>
-<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_patient_std</span> <span class="op">=</span> <span class="va">std</span>(<span class="va">patient_data</span><span class="op">,</span>[]<span class="op">,</span><span class="fl">2</span>)<span class="op">;</span></span></code></pre>
-</div>
-<p>All of the above return a <code>60×1</code> vector.</p>
-<div id="most-inflamed-patients" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="most-inflamed-patients" class="callout-inner">
-<h3 class="callout-title">Most inflamed patients</h3>
-<div class="callout-content">
-<p>Can you find the patients that got the highest inflamation?</p>
-</div>
-</div>
-</div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
-</button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
-<div class="accordion-body">
-<p>Using the power MATLAB has to compare arrays, we can check which
-patients have a <code>max</code> equal to the <code>global_max</code>.
-If we wrap this check in the find function, we get the row numbers:</p>
-<div class="codewrapper sourceCode" id="cb38">
-<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">find</span>(<span class="va">per_patient_max</span> <span class="op">==</span> <span class="va">global_max</span>)</span></code></pre>
-</div>
-<pre><code><span><span class="va">ans</span> <span class="op">=</span></span>
-<span>     <span class="fl">31</span></span></code></pre>
-<p>So patient 31 has the maximum inflamation level.</p>
-<p><br></p>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Alternative solution </h4>
-</button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
-<div class="accordion-body">
-<p>We can only do this because we had already calculated
-<code>per_patient_max</code>. However, there is another way of doing
-this. Just as we used <code>find</code> to locate the patients that had
-a maximum inflammation value equal to the global maximum, we can find
-the value from the whole data set:</p>
-<div class="codewrapper sourceCode" id="cb40">
-<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">find</span>(<span class="va">patient_data</span> <span class="op">==</span> <span class="va">global_max</span>)</span></code></pre>
-</div>
-<pre><code><span><span class="va">ans</span> <span class="op">=</span></span>
-<span>     <span class="fl">391</span></span></code></pre>
-<p>However, this resulted in a rather odd number. This number represents
-the linear index of the global maximum. Linear indices result from
-counting through the elements in the first column, then continue the
-count on the second column and so on. Luckily, there is a function to
-convert this linear index into a row and number column,
-<code>ind2sub</code>. We need to provide the size of our array, and the
-linear index, i.e. <code>ind2sub([60,40],391)</code>. We also need to
-provide space for both outputs (the row and column numbers), so we call
-it as <code>[r,c]=ind2sub([60,40],391)</code>. ternatively, we can get
-the size and index inside the call:</p>
-<div class="codewrapper sourceCode" id="cb42">
-<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> [<span class="va">r</span><span class="op">,</span><span class="va">c</span>]<span class="op">=</span><span class="va">ind2sub</span>(<span class="va">size</span>(<span class="va">patient_data</span>)<span class="op">,</span><span class="va">find</span>(<span class="va">patient_data</span> <span class="op">==</span> <span class="va">global_max</span>))</span></code></pre>
-</div>
-<pre><code><span><span class="va">r</span> <span class="op">=</span></span>
-<span>    <span class="fl">31</span></span>
-<span><span class="va">c</span> <span class="op">=</span></span>
-<span>     <span class="fl">7</span></span></code></pre>
-</div>
-</div>
-</div>
-</div>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">per_patient_max</span> <span class="op">=</span> <span class="va">max</span>(<span class="va">patient_data</span><span class="op">,</span>[]<span class="op">,</span><span class="fl">2</span>)<span class="op">;</span></span></code></pre>
 </div>
 </div>
 </div>
 </div>
 <p>We can gain some insight exploring the data like we have so far, but
-we all know that an image speaks more than a thousend numbers, so we’ll
+we all know that an image speaks more than a thousand numbers, so we’ll
 learn to make some plots.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
@@ -995,7 +852,7 @@ arguments need to be <code>(array,[],DIM)</code> instead.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.10" class="external-link">sandpaper (0.16.10)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.7" class="external-link">pegboard (0.7.7)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.5" class="external-link">varnish (1.0.5)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.11" class="external-link">sandpaper (0.16.11)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.5" class="external-link">varnish (1.0.5)</a></p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1017,8 +874,8 @@ arguments need to be <code>(array,[],DIM)</code> instead.</li>
   "url": "https://uomresearchit.github.io/matlab-novice/instructor/03-loading_data.html",
   "identifier": "https://uomresearchit.github.io/matlab-novice/instructor/03-loading_data.html",
   "dateCreated": "2014-12-12",
-  "dateModified": "2023-12-08",
-  "datePublished": "2025-01-07"
+  "dateModified": "2025-02-28",
+  "datePublished": "2025-02-28"
 }
 
   </script><script>

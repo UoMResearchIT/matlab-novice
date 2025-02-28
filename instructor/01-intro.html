@@ -335,7 +335,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Working With Variables</h1>
-        <p>Last updated on 2023-12-04 |
+        <p>Last updated on 2025-02-28 |
 
         <a href="https://github.com/swcarpentry/matlab-novice-inflammation/edit/main/episodes/01-intro.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -568,7 +568,7 @@ to know more).</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>We mentioned above that we can get other symbols in the workspace
 which relate to the types of information we can save.</p>
@@ -642,11 +642,11 @@ same</p>
 </div>
 <p>We can also combine comparisons. For example, we can check whether
 frac is smaller than 10 <strong><em>and</em></strong> the age is greater
-than 5</p>
+than 2.5</p>
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c4</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">&lt;</span> <span class="fl">10</span> <span class="op">&amp;&amp;</span> <span class="va">age</span> <span class="op">&gt;</span> <span class="fl">5</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c4</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">&lt;</span> <span class="fl">10</span> <span class="op">&amp;&amp;</span> <span class="va">age</span> <span class="op">&gt;</span> <span class="fl">2.5</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -659,11 +659,11 @@ than 5</p>
 “yes” (1).</p>
 <p>If we want a “yes” as long as at least one of the conditions are met,
 we would ask if frac is smaller than 10 <strong><em>or</em></strong> the
-age is greater than 5</p>
+age is greater than 2.5</p>
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c5</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">&lt;</span> <span class="fl">10</span> <span class="op">||</span> <span class="va">age</span> <span class="op">&gt;</span> <span class="fl">5</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c5</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">&lt;</span> <span class="fl">10</span> <span class="op">||</span> <span class="va">age</span> <span class="op">&gt;</span> <span class="fl">2.5</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -672,24 +672,60 @@ age is greater than 5</p>
 <span>  <span class="va">logical</span></span>
 <span>   <span class="fl">1</span></span></code></pre>
 </div>
-<div id="negating-conditions-and-including-the-limits" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
+<p>It is quite common to want to <em>include the limits</em> in a
+comparison. For example, we might want to know if a number is greater or
+equal to another. We could construct this with two comparisons, one for
+greater and one for equal:</p>
+<div class="codewrapper sourceCode" id="cb27">
+<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c6</span> <span class="op">=</span> <span class="va">age</span> <span class="op">&gt;</span> <span class="fl">2.5</span> <span class="op">||</span> <span class="va">age</span> <span class="op">==</span> <span class="fl">2.5</span></span></code></pre>
 </div>
-<div id="negating-conditions-and-including-the-limits" class="callout-inner">
-<h3 class="callout-title">Negating conditions and including the limits</h3>
-<div class="callout-content">
-<p>We often asks questions or characterise things in negative. “We did
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code><span><span class="va">c6</span> <span class="op">=</span></span>
+<span>  <span class="va">logical</span></span>
+<span>   <span class="fl">0</span></span></code></pre>
+</div>
+<p>This is so common, however, that MATLAB has the special combinations
+saved for this: <code>&gt;=</code> and <code>&lt;=</code>.</p>
+<p>Finally, we often asks questions or state things in negative. “We did
 not start late today.”, “I was not going faster than the speed limit
 officer!”, and “I didn’t shoot no deputy” are just some examples.</p>
 <p>Naturally, we may want to do so in programming too. In MATLAB the
 negative is represented with <code>~</code>. For example, we can check
-if the speed is indeed not faster than the limit with
-<code>~(speed &gt; 70)</code>, which MATLAB reads as “not speed greater
-than 70”.</p>
+if the speed is indeed not faster than the limit with:</p>
+<div class="codewrapper sourceCode" id="cb29">
+<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">speed</span> <span class="op">=</span> <span class="fl">65</span><span class="op">;</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="op">~</span>(<span class="va">speed</span> <span class="op">&gt;</span> <span class="fl">70</span>)</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code><span><span class="va">ans</span> <span class="op">=</span></span>
+<span>  <span class="va">logical</span></span>
+<span>   <span class="fl">1</span></span></code></pre>
+</div>
+<p>which MATLAB reads as “not speed greater than 70”.</p>
+<div id="conditionals" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="conditionals" class="callout-inner">
+<h3 class="callout-title">Conditionals</h3>
+<div class="callout-content">
 <p>Can you express these questions in MATLAB code?</p>
-<ul><li>Is 1 + 2 + 3 + 4 not smaller than 10?</li>
+<p><strong>Note:</strong> make sure that <code>x=55</code> and
+<code>y=2</code> are defined before you start!</p>
+<ul><li>Is 1 + 2 + 3 + 4 smaller than 10?</li>
+<li>Is 1 + 2 + 3 + 4 not smaller than 10?</li>
+<li>Is 5 to the power of 3 equal to 125?</li>
 <li>Is 5 to the power of 3 different from 125?</li>
+<li>Is x + y smaller than x/y?</li>
+<li>Is x + y not smaller than x/y?</li>
 <li>Is x + y greater or equal to x/y?</li>
 <li>Is x + y not greater or equal to x/y?</li>
 </ul></div>
@@ -700,29 +736,28 @@ than 70”.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<p>We can ask the first two question in positive, encapsulate it in
-brackets, and then negate it:</p>
-<ul><li><code>~(1 + 2 + 3 + 4 &lt; 10)</code></li>
-<li><code>~(5^3 == 125)</code></li>
-</ul><p>Asking if two things are different is so common, that MATLAB has a
-special symbol for it. So the second question, we could have asked
-instead with</p>
-<ul><li><code>5^3 ~= 125</code></li>
-</ul><p>We can ask if x+y is greater or equal to x/y with:</p>
-<ul><li><code>x+y &gt; x/y || x+y == x/y</code></li>
-</ul><p>There is actually again a shortcut for this, MATLAB understands
-<code>&gt;=</code> as “greater or equal to”, and of cours for smaller or
-equal too it understands <code>&lt;=</code>. So the same condition could
-be written as:</p>
-<ul><li><code>x+y &gt;= x/y</code></li>
-</ul><p>Asking if x + y is not greater or equal to x/y is the same question
-as above, but negated. Remembering to add the brackets, we get:</p>
-<ul><li><code>~(x+y &gt; x/y || x+y == x/y)</code></li>
-<li>or <code>~(x+y &gt;= x/y)</code>
-</li>
-</ul></div>
+<div class="codewrapper sourceCode" id="cb31">
+<h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">3</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">&lt;</span> <span class="fl">10</span>     # <span class="va">false</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="op">~</span>(<span class="fl">1</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">3</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">&lt;</span> <span class="fl">10</span>)  # <span class="va">true</span></span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="fl">5</span><span class="op">^</span><span class="fl">3</span> <span class="op">==</span> <span class="fl">125</span>             # <span class="va">true</span></span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="op">~</span>(<span class="fl">5</span><span class="op">^</span><span class="fl">3</span> <span class="op">==</span> <span class="fl">125</span>)          # <span class="va">false</span> <span class="op">-</span> <span class="va">Can</span> <span class="va">also</span> <span class="va">be</span><span class="op">:</span> <span class="fl">5</span><span class="op">^</span><span class="fl">3</span> <span class="op">~=</span> <span class="fl">125</span></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span><span class="op">+</span><span class="va">y</span> <span class="op">&lt;</span> <span class="va">x</span><span class="op">/</span><span class="va">y</span>              # <span class="va">false</span></span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="op">~</span>(<span class="va">x</span><span class="op">+</span><span class="va">y</span> <span class="op">&lt;</span> <span class="va">x</span><span class="op">/</span><span class="va">y</span>)           # <span class="va">true</span></span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span><span class="op">+</span><span class="va">y</span> <span class="op">&gt;=</span> <span class="va">x</span><span class="op">/</span><span class="va">y</span>             # <span class="va">true</span> <span class="op">-</span> <span class="va">same</span> <span class="va">as</span> <span class="va">the</span> <span class="va">previous</span> <span class="va">one</span><span class="bn">!</span></span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="op">~</span>(<span class="va">x</span><span class="op">+</span><span class="va">y</span> <span class="op">&gt;=</span> <span class="va">x</span><span class="op">/</span><span class="va">y</span>)          # <span class="va">false</span> <span class="op">-</span> <span class="va">same</span> <span class="va">as</span> <span class="va">x</span><span class="op">+</span><span class="va">y</span> <span class="op">&lt;</span> <span class="va">x</span><span class="op">/</span><span class="va">y</span></span></code></pre>
+</div>
+<p>Asking if two things are different is so common, that MATLAB has a
+special symbol for it: <code>~=</code>. The fourth question,then, we
+could have asked instead as <code>5^3 ~= 125</code>. Unfortunately,
+there is no special symbol for negating the <code>&gt;</code>,
+<code>&lt;</code>, <code>&gt;=</code>, and <code>&lt;=</code>
+comparisons. As we have seen, however, if we are clever with which one
+we use, the come for free!</p>
+</div>
 </div>
 </div>
 </div>
@@ -734,10 +769,10 @@ as above, but negated. Remembering to add the brackets, we get:</p>
 <em>groups</em> of variables called arrays, or matrices.</p>
 <p>We can create an array using square brackets and separating each
 value with a comma:</p>
-<div class="codewrapper sourceCode" id="cb27">
+<div class="codewrapper sourceCode" id="cb32">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">A</span> <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span>]</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">A</span> <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -750,10 +785,10 @@ value with a comma:</p>
 <strong><em>row</em></strong> and 3
 <strong><em>columns</em></strong>.</p>
 <p>We can create matrices using semi-colons to separate rows:</p>
-<div class="codewrapper sourceCode" id="cb29">
+<div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">B</span> <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">;</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span><span class="op">;</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">6</span>]</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">B</span> <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">;</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span><span class="op">;</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">6</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -767,10 +802,10 @@ value with a comma:</p>
 the <code>3x2</code> we get from the workspace.</p>
 <p>We can also create arrays of other types of data. For example, we
 could create an array of names:</p>
-<div class="codewrapper sourceCode" id="cb31">
+<div class="codewrapper sourceCode" id="cb36">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Names</span> <span class="op">=</span> [<span class="st">"John"</span><span class="op">,</span> <span class="st">"Abigail"</span><span class="op">,</span> <span class="st">"Bertrand"</span><span class="op">,</span> <span class="st">"Lucile"</span>]</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Names</span> <span class="op">=</span> [<span class="st">"John"</span><span class="op">,</span> <span class="st">"Abigail"</span><span class="op">,</span> <span class="st">"Bertrand"</span><span class="op">,</span> <span class="st">"Lucile"</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -780,10 +815,10 @@ could create an array of names:</p>
     "John"    "Abigail"    "Bertrand"    "Lucile"</code></pre>
 </div>
 <p>We can use logical values too:</p>
-<div class="codewrapper sourceCode" id="cb33">
+<div class="codewrapper sourceCode" id="cb38">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">C</span> <span class="op">=</span> [<span class="va">true</span><span class="op">;</span> <span class="va">false</span><span class="op">;</span> <span class="va">false</span><span class="op">;</span> <span class="va">true</span>]</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">C</span> <span class="op">=</span> [<span class="va">true</span><span class="op">;</span> <span class="va">false</span><span class="op">;</span> <span class="va">false</span><span class="op">;</span> <span class="va">true</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -804,10 +839,10 @@ arrays, can we do operations with them?</p>
 interesting programming language.</p>
 <p>We can, for example, check the whole matrix B and look for values
 greater than, say, 3.</p>
-<div class="codewrapper sourceCode" id="cb35">
+<div class="codewrapper sourceCode" id="cb40">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">B</span> <span class="op">&gt;</span> <span class="fl">3</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">B</span> <span class="op">&gt;</span> <span class="fl">3</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -839,10 +874,10 @@ you are interested.</p>
 and it can make the code slower, so it is considered good form to
 suppress it. To suppress it, we add a semi-colon at the end of the
 line:</p>
-<div class="codewrapper sourceCode" id="cb37">
+<div class="codewrapper sourceCode" id="cb42">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">=</span> <span class="fl">33</span><span class="op">;</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">=</span> <span class="fl">33</span><span class="op">;</span></span></code></pre>
 </div>
 <p>At first glance nothing appears to have happened, but the workspace
 shows the new value was assigned.</p>
@@ -858,10 +893,10 @@ shows the new value was assigned.</p>
 <div class="callout-content">
 <p>If we really want to print the variable, then we can simply type its
 name and hit <kbd>Enter</kbd>,</p>
-<div class="codewrapper sourceCode" id="cb38">
+<div class="codewrapper sourceCode" id="cb43">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">patient_name</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">patient_name</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -880,10 +915,10 @@ and either have an effect on something or output something.</p>
 function, in particular, takes just one input – the variable that you
 want to print – and what it does is to print the variable in a nice way.
 For the variable patient_name, we would use it like this:</p>
-<div class="codewrapper sourceCode" id="cb40">
+<div class="codewrapper sourceCode" id="cb45">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">disp</span>(<span class="va">patient_name</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">disp</span>(<span class="va">patient_name</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -906,10 +941,10 @@ lines.</p>
 <p>We have declared a few variables now, and we might not be using all
 of them. If we want to delete a variable we can do so by typing
 <code>clear</code> and the name of the variable, e.g.:</p>
-<div class="codewrapper sourceCode" id="cb42">
+<div class="codewrapper sourceCode" id="cb47">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">clear</span> <span class="va">alive_on_day_3</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">clear</span> <span class="va">alive_on_day_3</span></span></code></pre>
 </div>
 <p>You might be able to see it disappear from the workspace. If you now
 try to use alive_on_day_3, MATLAB will give an error.</p>
@@ -918,10 +953,10 @@ command <code>clear</code>, without any variable names following it. Be
 careful though, there’s no way back!</p>
 <p>Another thing you might want to clear every once in a while is the
 output pane. To do that, we use the command <code>clc</code>.</p>
-<div class="codewrapper sourceCode" id="cb43">
+<div class="codewrapper sourceCode" id="cb48">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">clc</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">clc</span></span></code></pre>
 </div>
 <p>Again, be careful usig this command, there is no way back!</p>
 </div>
@@ -989,7 +1024,7 @@ clear the console.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.10" class="external-link">sandpaper (0.16.10)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.7" class="external-link">pegboard (0.7.7)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.5" class="external-link">varnish (1.0.5)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.11" class="external-link">sandpaper (0.16.11)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.5" class="external-link">varnish (1.0.5)</a></p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1011,8 +1046,8 @@ clear the console.</li>
   "url": "https://uomresearchit.github.io/matlab-novice/instructor/01-intro.html",
   "identifier": "https://uomresearchit.github.io/matlab-novice/instructor/01-intro.html",
   "dateCreated": "2014-12-12",
-  "dateModified": "2023-12-04",
-  "datePublished": "2025-01-07"
+  "dateModified": "2025-02-28",
+  "datePublished": "2025-02-28"
 }
 
   </script><script>
