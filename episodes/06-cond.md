@@ -206,8 +206,7 @@ end
 In the last lesson, we wrote a script that saved several plots to disk. It would nice if our script could be more 
 flexible.
 
-Can you modify it so that it either saves the plots to disk *or* displays them on screen?
-Make it easy to change between the two behaviours using a conditional statements.
+Can you modify it so that it either saves the plots to disk *or* displays them on screen, making it easy to change between the two behaviours using a conditional statement?
 
 :::::::::::::::  solution
 
