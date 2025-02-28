@@ -2,136 +2,172 @@
 
 
 
-  edit src/patient_analysis.m
 
 % ## The MATLAB path
 
-  % Load patient data
-  patient_data = readmatrix("data/base/inflammation-01.csv");
-  
-  % Compute global statistics
-  g_mean = mean(patient_data(:));
-  g_max = max(patient_data(:));
-  g_min = min(patient_data(:));
-  
-  % Compute patient statistics
-  p_mean = mean(patient_data(5,:));
-  p_max = max(patient_data(5,:));
-  p_min = min(patient_data(5,:));
-  
-  % Compare patient vs global
-  disp("Patient 5:")
-  disp("High mean?")
-  disp(p_mean > g_mean)
-  disp("Highest max?")
-  disp(p_max == g_max)
-  disp("Lowest min?")
-  disp(p_min == g_min)
 
 % ## Comments
 
-  clear
-  clc
-  patient_analysis
+% ## Script for plotting -- Recap
+  edit src/plot_patient_inflammation.m
+----------------------------------------
+  % *Script* to plot daily average, max and min inflammation.
+
   % Load patient data
   patient_data = readmatrix("data/base/inflammation-01.csv");
-  
-  % Compute global statistics
-  g_mean = mean(patient_data(:));
-  g_max = max(patient_data(:));
-  g_min = min(patient_data(:));
-  
-  % Compute patient statistics
-  patient_number = 8;
-  p_mean = mean(patient_data(patient_number,:));
-  p_max = max(patient_data(patient_number,:));
-  p_min = min(patient_data(patient_number,:));
-  
-  % Compare patient vs global
-  disp("Patient:")
-  disp(patient_number)
-  disp("High mean?")
-  disp(p_mean > g_mean)
-  disp("Highest max?")
-  disp(p_max == g_max)
-  disp("Lowest min?")
-  disp(p_min == g_min)
-  patient_analysis
+  per_day_mean = mean(patient_data);
+  per_day_max = max(patient_data);
+  per_day_min = min(patient_data);
+  patient = patient_data(5,:);
+  day_of_trial = 1:40;
+
+  fig = figure;
+  clf;
+
+  % Define tiled layout and labels
+  tlo = tiledlayout(1,2);
+  xlabel(tlo,"Day of trial")
+  ylabel(tlo,"Inflammation")
+
+  % Plot average inflammation per day with the patient data
+  nexttile
+  title("Average")
+  hold on
+  plot(day_of_trial, per_day_mean, "DisplayName", "Mean")
+  plot(day_of_trial, patient, "DisplayName", "Patient 5")
+  legend
+  hold off
+
+  % Plot max and min inflammation per day with the patient data
+  nexttile
+  title("Max and Min")
+  hold on
+  plot(day_of_trial, per_day_max, "DisplayName", "Max")
+  plot(day_of_trial, patient, "DisplayName", "Patient 5")
+  plot(day_of_trial, per_day_min, "DisplayName", "Min")
+  legend
+  hold off
+----------------------------------------
+  clear
+  clc
+  figure
+  plot_patient_inflammation
+  close all
 
 % ## Help text
 
-  % PATIENT_ANALYSIS   Computes mean, max and min of a patient and compares to global statistics.
-  help patient_analysis
-% ## Script for plotting
-  edit src/plot_daily_average.m
-  % PLOT_DAILY_AVERAGE   Plots daily average, max and min inflammation accross patients.
-  
+----------------------------------------
+  % PLOT_PATIENT_INFLAMMATION   *Script* Plots daily average, max and min inflammation.
+----------------------------------------
+  help plot_patient_inflammation
+% ### Saving figures
+----------------------------------------
+  % PLOT_PATIENT_INFLAMMATION   *Script* ...
+  % ...
+  % Save plot in "results" folder as png image:
+  saveas(fig,"results/patient_5.png")
+----------------------------------------
+
+% ! Challenge:
+% ## Plot patient N
+% !! Solution:
+----------------------------------------
+  % PLOT_PATIENT_INFLAMMATION   *Script* Plots daily average, max and min inflammation.
+
+  patient_number = 5;                                                  %%%
+  pn_string = num2str(patient_number);                                 %%%
+
   % Load patient data
   patient_data = readmatrix("data/base/inflammation-01.csv");
-  
+  per_day_mean = mean(patient_data);
+  per_day_max = max(patient_data);
+  per_day_min = min(patient_data);
+  patient = patient_data(patient_number,:);                            %%%
+  day_of_trial = 1:40;
+
   fig = figure;
-  
+  clf;
+
   % Define tiled layout and labels
-  tlo = tiledlayout(1,3);
+  tlo = tiledlayout(1,2);
   xlabel(tlo,"Day of trial")
   ylabel(tlo,"Inflammation")
-  
-  % Plot average inflammation per day
+
+  % Plot average inflammation per day with the patient data
   nexttile
-  plot(mean(patient_data, 1))
   title("Average")
-  
-  % Plot max inflammation per day
+  hold on
+  plot(day_of_trial, per_day_mean, "DisplayName", "Mean")
+  plot(day_of_trial, patient, "DisplayName", "Patient " + pn_string)   %%%
+  legend
+  hold off
+
+  % Plot max and min inflammation per day with the patient data
   nexttile
-  plot(max(patient_data, [], 1))
-  title("Max")
-  
-  % Plot min inflammation per day
-  nexttile
-  plot(min(patient_data, [], 1))
-  title("Min")
-  figure
-  plot_daily_average
-% ### Saving figures
+  title("Max and Min")
+  hold on
+  plot(day_of_trial, per_day_max, "DisplayName", "Max")
+  plot(day_of_trial, patient, "DisplayName", "Patient " + pn_string)   %%%
+  plot(day_of_trial, per_day_min, "DisplayName", "Min")
+  legend
+  hold off
+
   % Save plot in "results" folder as png image:
-  saveas(fig,"results/daily_average_01.png")
+  saveas(fig,"results/patient_" + pn_string + ".png")                  %%%
+----------------------------------------
+
+
 
 % ## Getting the current figure
-  % Save plot in "results" folder as png image:
-  saveas(gcf,"results/daily_average_01.png")
+  saveas(gcf,"results/patient_5.png")
   gcf == fig
 
 % ### Hiding figures
-  % PLOT_DAILY_AVERAGE   Saves plot of daily average, max and min inflammation accross patients.
-  
+----------------------------------------
+  % PLOT_PATIENT_INFLAMMATION   *Script* Plots daily average, max and min inflammation.
+
+  patient_number = 5;
+  pn_string = num2str(patient_number);
+
   % Load patient data
   patient_data = readmatrix("data/base/inflammation-01.csv");
-  
-  fig = figure(Visible='off');
-  
+  per_day_mean = mean(patient_data);
+  per_day_max = max(patient_data);
+  per_day_min = min(patient_data);
+  patient = patient_data(patient_number,:);
+  day_of_trial = 1:40;
+
+  fig = figure(Visible='off');                             % The figure will not be displayed
+  clf;
+
   % Define tiled layout and labels
-  tlo = tiledlayout(1,3);
+  tlo = tiledlayout(1,2);
   xlabel(tlo,"Day of trial")
   ylabel(tlo,"Inflammation")
-  
-  % Plot average inflammation per day
+
+  % Plot average inflammation per day with the patient data
   nexttile
-  plot(mean(patient_data, 1))
   title("Average")
-  
-  % Plot max inflammation per day
+  hold on
+  plot(day_of_trial, per_day_mean, "DisplayName", "Mean")
+  plot(day_of_trial, patient, "DisplayName", "Patient " + pn_string)
+  legend
+  hold off
+
+  % Plot max and min inflammation per day with the patient data
   nexttile
-  plot(max(patient_data, [], 1))
-  title("Max")
-  
-  % Plot min inflammation per day
-  nexttile
-  plot(min(patient_data, [], 1))
-  title("Min")
-  
+  title("Max and Min")
+  hold on
+  plot(day_of_trial, per_day_max, "DisplayName", "Max")
+  plot(day_of_trial, patient, "DisplayName", "Patient " + pn_string)
+  plot(day_of_trial, per_day_min, "DisplayName", "Min")
+  legend
+  hold off
+
   % Save plot in "results" folder as png image:
-  saveas(fig,"results/daily_average_01.png")
-  
-  close(fig)
+  saveas(fig,"results/patient_" + pn_string + ".png")
+
+  close(fig)                                               % Closes the hidden figure
+----------------------------------------
 
 

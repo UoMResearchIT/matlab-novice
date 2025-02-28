@@ -28,12 +28,23 @@
 
 
   c3 = frac == mass/age
-  c4 = frac < 10 && age > 5
-  c5 = frac < 10 || age > 5
+  c4 = frac < 10 && age > 2.5
+  c5 = frac < 10 || age > 2.5
+  c6 = age > 2.5 || age == 2.5
+  speed = 65;
+  ~(speed > 70)
 
 % ! Challenge:
-% ## Negating conditions and including the limits
+% ## Conditionals
 % !! Solution:
+  1 + 2 + 3 + 4 < 10     # false
+  ~(1 + 2 + 3 + 4 < 10)  # true
+  5^3 == 125             # true
+  ~(5^3 == 125)          # false - Can also be: 5^3 ~= 125
+  x+y < x/y              # false
+  ~(x+y < x/y)           # true
+  x+y >= x/y             # true - same as the previous one!
+  ~(x+y >= x/y)          # false - same as x+y < x/y
 
 
 % ### Arrays

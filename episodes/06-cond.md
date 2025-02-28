@@ -30,6 +30,7 @@ We will use conditional statements together with the logical operations we encou
 The simplest conditional statement consists starts with an `if`, and concludes with an `end`, like this:
 
 ```matlab
+% *Script* to illustrate use of conditionals
 num = 127;
 disp('before conditional...')
 
@@ -39,14 +40,13 @@ end
 
 disp('...after conditional')
 ```
-
 ```output
 before conditional...
 The number is greater than 100
 ...after conditional
 ```
-Now try changing the value of `num` to, say, 53:
 
+Now try changing the value of `num` to, say, 53:
 ```output
 before conditional...
 ...after conditional
@@ -59,6 +59,7 @@ We have managed to "do" or "not do" something, but we have not managed to choose
 For that, we need to introduce the keyword `else` in the conditional statement, like this:
 
 ```matlab
+% *Script* to illustrate use of conditionals
 num = 53;
 disp('before conditional...')
 
@@ -70,7 +71,6 @@ end
 
 disp('...after conditional')
 ```
-
 ```output
 before conditional...
 The number is not greater than 100
@@ -83,6 +83,7 @@ Only one of these statement bodies is ever executed, never both.
 
 We can also "nest" a conditional statements inside another conditional statement.
 ```matlab
+% *Script* to illustrate use of conditionals
 num = 53;
 
 disp('before conditional...')
@@ -97,7 +98,6 @@ end
 
 disp('...after conditional')
 ```
-
 ```output
 before conditional...
 The number is not greater than 100
@@ -110,7 +110,7 @@ We can chain several tests together using `elseif`.
 This makes it simple to write a script that gives the sign of a number:
 
 ```matlab
-%CONDITIONAL_DEMO   Demo script to illustrate use of conditionals
+% *Script* to illustrate use of conditionals
 
 num = 53;
 
@@ -133,7 +133,7 @@ and execution jumps to the end of the conditional.
 Let's demonstrate this by adding another condition which is true.
 
 ```matlab
-% Demo script to illustrate use of conditionals
+% *Script* to illustrate use of conditionals
 num = 53;
 
 if num > 0
@@ -150,23 +150,21 @@ end
 
 We can also combine logical operations, using `&&` (and) and `||` (or), as we did before:
 ```matlab
-if ((1 > 0) && (-1 > 0))
-    disp('both parts are true')
-else
-    disp('At least one part is not true')
-end
+>> if ((1 > 0) && (-1 > 0))
+>>     disp('both parts are true')
+>> else
+>>     disp('At least one part is not true')
+>> end
 ```
-
 ```output
 At least one part is not true
 ```
 
 ```matlab
-if (1 < 0) || (3 < 4)
-    disp('At least one part is true')
-end
+>> if (1 < 0) || (3 < 4)
+>>     disp('At least one part is true')
+>> end
 ```
-
 ```output
 at least one part is true
 ```
@@ -175,21 +173,22 @@ at least one part is true
 
 ## Close Enough
 
-Write a script called `near` that performs a test on two variables, and displays `1`
-when the first variable is within 10% of the other
-and `0` otherwise. Compare your implementation with
-your partner's: do you get the same answer for
-all possible pairs of numbers?
+Write a script called `near` that performs a test on two variables,
+and displays `1` when the first variable is within 10% of the other and `0` otherwise,
+that is, one is greater or equal than 90% and less or equal than 110% of the other.
+
+Compare your implementation with your partner's.
+Do you get the same answer for all possible pairs of numbers?
+Remember to try out positive and negative numbers!
 
 :::::::::::::::  solution
 
 ```matlab
-%NEAR   Display 1 if variable a is within 10% of variable b
-%       and display 0 otherwise
+%NEAR   *Script* that displays 1 if variable a is within 10% of variable b and 0 otherwise.
 a = 1.1;
 b = 1.2;
 
-if a/b >= 0.9 && a/b <= 1.1
+if a >= 0.9*b && a <= 1.1*b
     disp(1)
 else
     disp(0)
@@ -200,152 +199,79 @@ end
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+:::::::::::::::::::::::::::::::::::::::  challenge
+
 ## Scripts with choices
 
 In the last lesson, we wrote a script that saved several plots to disk. It would nice if our script could be more 
-flexible. Could we modify it so that it either saved the plots to disk *or* displayed them on screen? Could we do this
-in such a way to make it easy to change between the two behaviours? This is something that conditional statements allow
-us to do.
+flexible.
 
-We introduce a variable `save_plots` that we can set to either `true` or `false` and modify our script so that when
-`save_plots = true` the plots are saved to disk, and when `save_plots = false` the plots are printed to the screen.
+Can you modify it so that it either saves the plots to disk *or* displays them on screen, making it easy to change between the two behaviours using a conditional statement?
+
+:::::::::::::::  solution
+
+We can introduce a variable `save_plots` that we can set to either `true` or `false` and modify our script so that when
+`save_plots == true` the plots are saved to disk, and when `save_plots == false` the plots are printed to the screen.
 
 ```matlab
-% PLOT_DAILY_AVERAGE_OPTION   Plots daily average, max and min inflammation across patients. If save_plots is set to 
-% true, the figures are saved to disk. If save_plots is set to false, the figures are displayed on the screen.
+% PLOT_PATIENT_INFLAMMATION_OPTION   *Script* Plots daily average, max and min inflammation.
+% If save_plots is set to true, the figures are saved to disk.
+% If save_plots is set to false, the figures are displayed on the screen.
+
+save_plots = true;
+
+patient_number = 5;
+pn_string = num2str(patient_number);
 
 % Load patient data
-patient_data = readmatrix('data/base/inflammation-01.csv');
-
-save_plots=true;
+patient_data = readmatrix("data/base/inflammation-01.csv");
+per_day_mean = mean(patient_data);
+per_day_max = max(patient_data);
+per_day_min = min(patient_data);
+patient = patient_data(patient_number,:);
+day_of_trial = 1:40;
 
 if save_plots == true
     figure(visible='off')
 else
     figure
 end
+clf;
 
 % Define tiled layout and labels
-tlo = tiledlayout(1,3);
-xlabel(tlo,'Day of trial')
-ylabel(tlo,'Inflammation')
+tlo = tiledlayout(1,2);
+xlabel(tlo,"Day of trial")
+ylabel(tlo,"Inflammation")
 
-% Plot average inflammation per day
+% Plot average inflammation per day with the patient data
 nexttile
-plot(mean(patient_data, 1))
-title('Average')
+title("Average")
+hold on
+plot(day_of_trial, per_day_mean, "DisplayName", "Mean")
+plot(day_of_trial, patient, "DisplayName", "Patient " + pn_string)
+legend
+hold off
 
-% Plot max inflammation per day
+% Plot max and min inflammation per day with the patient data
 nexttile
-plot(max(patient_data, [], 1))
-title('Max')
-
-% Plot min inflammation per day
-nexttile
-plot(min(patient_data, [], 1))
-title('Min')
+title("Max and Min")
+hold on
+plot(day_of_trial, per_day_max, "DisplayName", "Max")
+plot(day_of_trial, patient, "DisplayName", "Patient " + pn_string)
+plot(day_of_trial, per_day_min, "DisplayName", "Min")
+legend
+hold off
 
 if save_plots == true 
-    % Save plot in 'results' folder as png image:
-    saveas(gcf,'results/daily_average_01.png')
+    % Save plot in "results" folder as png image:
+    saveas(fig,"results/patient_" + pn_string + ".png")
 
-    close()
-
-end
-```
-Save the script in a file names `plot_daily_average_option.m` and investigate what setting the variable `save_plots` 
-to `true` and `false` does.
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Changing behaviour based on patient data
-
-We'd like to improve our `patient_analysis` script from the previous lesson, specifically it's output.
-Currently the script displays `0` or `1` to indicate whether or not the patient has a high mean,
-has a maximum equivalent to the highest in the dataset, and has a minimum equivalent to the lowest in the dataset.
-Instead, we'd like the script to print a line of descriptive text only when each of these is true:
-
-1. The mean inflammation for the patient is higher than the global mean.
-2. The maximum inflammation for the patient is the same as the global maximum.
-3. The minimum inflammation for the patient is the same as the global minimum.
-4. If none of the above is the case, then the script should print a line informing us that the patient's mean, maximum
-and minimum inflammation are not remarkable.
-
-Using the `patient_analysis` script from the previous lesson as a starting point (shown below for reference),
-can you use conditional statements to make a script that does this?
-
-```matlab
-% Load patient data
-patient_data = readmatrix('data/base/inflammation-01.csv');
-
-% Compute global statistics
-g_mean = mean(patient_data(:));
-g_max = max(patient_data(:));
-g_min = min(patient_data(:));
-
-patient_number = 8;
-
-% Compute patient statistics
-p_mean = mean(patient_data(patient_number,:));
-p_max = max(patient_data(patient_number,:));
-p_min = min(patient_data(patient_number,:));
-
-% Compare patient vs global
-disp('Patient:')
-disp(patient_number)
-disp('High mean?')
-disp(p_mean > g_mean)
-disp('Highest max?')
-disp(p_max == g_max)
-disp('Lowest min?')
-disp(p_min == g_min)
+    close(fig)
 ```
 
-There are several different ways to do this, so compare your finished script with your neighbour and see if you did it the same way.
+Save the script in a file names `plot_patient_inflammation_option.m` and confirm that
+setting the variable `save_plots` to `true` and `false` do what we expect.
 
-:::::::::::::::  solution
-```matlab
-% Load patient data
-patient_data = readmatrix('data/base/inflammation-01.csv');
-
-% Compute global statistics
-g_mean = mean(patient_data(:));
-g_max = max(patient_data(:));
-g_min = min(patient_data(:));
-
-patient_number = 8;
-
-% Compute patient statistics
-p_mean = mean(patient_data(patient_number,:));
-p_max = max(patient_data(patient_number,:));
-p_min = min(patient_data(patient_number,:));
-
-% Compare patient vs global
-disp('Patient:')
-disp(patient_number)
-
-printed_something = false;
-
-if p_mean > g_mean
-    disp('Patient''s mean inflammation is higher than the global mean inflammation.')
-    printed_something = true;
-end
-
-if p_max == g_max
-    disp('Patient''s maximum inflammation is the same as the global maximum.')
-    printed_something = true;
-end
-
-if p_min == g_min
-    disp('Patient''s minimum inflammation is the same as the global minimum.')
-    printed_something = true;
-end
-
-if printed_something == false
-    disp('Patient''s mean, maximum and minimum inflammation are not of interest.')
-end
-
-```
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
